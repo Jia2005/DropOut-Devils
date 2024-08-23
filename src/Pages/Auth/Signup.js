@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importing useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Auth.css';
 
 function SignupPage() {
   const [role, setRole] = useState('student');
-  const navigate = useNavigate(); // Initializing useNavigate for redirecting
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +43,7 @@ function SignupPage() {
     }),
     onSubmit: (values) => {
       console.log('Signup details:', values);
-      navigate('/home'); // Redirecting to the homepage after a successful signup
+      navigate('/home');
     },
   });
 
@@ -51,7 +51,6 @@ function SignupPage() {
     <div className="auth-container">
       <h2>Signup</h2>
       <form onSubmit={formik.handleSubmit}>
-        {/* Email Field */}
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -66,7 +65,6 @@ function SignupPage() {
           )}
         </div>
 
-        {/* Password Field */}
         <div className="form-group">
           <label>Password:</label>
           <input
@@ -81,7 +79,6 @@ function SignupPage() {
           )}
         </div>
 
-        {/* Confirm Password Field */}
         <div className="form-group">
           <label>Confirm Password:</label>
           <input
@@ -96,7 +93,6 @@ function SignupPage() {
           )}
         </div>
 
-        {/* Role Selection */}
         <div className="form-group">
           <label>Role:</label>
           <select
@@ -114,7 +110,6 @@ function SignupPage() {
           </select>
         </div>
 
-        {/* Conditional Fields Based on Role */}
         {role === 'student' && (
           <>
             <div className="form-group">
@@ -224,7 +219,6 @@ function SignupPage() {
           </div>
         )}
 
-        {/* Submit Button */}
         <button type="submit" className="btn">Signup</button>
       </form>
     </div>
