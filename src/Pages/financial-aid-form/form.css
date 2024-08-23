@@ -5,6 +5,7 @@ body, h1, h2, h3, h4, h5, h6, ul, li, p, input, button {
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
+
 .form-page {
     background-color: #231942;
     
@@ -55,6 +56,23 @@ body, h1, h2, h3, h4, h5, h6, ul, li, p, input, button {
 li{
     list-style-type: none;
 }
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    margin-bottom: 15px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0vw;
+    margin-left: -21vw;
+}
+
+.radio-label {
+    margin-left: -21vw;
+    align-items: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -86,9 +104,6 @@ form input:focus, form textarea:focus {
     outline: none;
 }
 
-form input[type="radio"] {
-    margin-right: 10px;
-}
 
 button[type="submit"] {
     padding: 10px 15px;
