@@ -1,8 +1,49 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import './Auth.css';
+import { db } from '../../firebase';
+
+const signUpUser = async (email, password) => {
+  const auth = getAuth();
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    return { success: true, user };
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return { success: false, errorCode, errorMessage };
+  }
+};
+
+const storeUserDetails = async (uid, role, details) => {
+  const roleType = {
+    student: 1,
+    teacher: 2,
+    parent: 3,
+    admin: 4,
+  };
+
+  const type = roleType[role];
+
+  try {
+    await setDoc(doc(db, 'users', uid), { type, ...details });
+  } catch (error) {
+    console.error('Error storing user details:', error);
+  }
+};
+
+const checkChildEmailExists = async (childEmail) => {
+  const userRef = doc(db, 'users', childEmail);
+  const userDoc = await getDoc(userRef);
+
+  return userDoc.exists() && userDoc.data().type === 1; // Ensure the child is a student
+};
 
 function SignupPage() {
   const [role, setRole] = useState('student');
@@ -17,7 +58,7 @@ function SignupPage() {
       name: '',
       grade: '',
       subject: '',
-      childName: '',
+      childEmail: '',
       adminCode: '',
     },
     validationSchema: Yup.object({
@@ -26,11 +67,11 @@ function SignupPage() {
         .matches(/@gmail.com$/, 'Only Gmail addresses are allowed')
         .required('Required'),
       password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long')
-        .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-        .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-        .matches(/\d/, 'Password must contain at least one number')
-        .matches(/[@$!%*?&#]/, 'Password must contain at least one special character')
+        .min(8, 'Password must be at least 8 characters')
+        .matches(/[A-Z]/, 'Password must have at least one uppercase character')
+        .matches(/[a-z]/, 'Password must have at least one lowercase character')
+        .matches(/\d/, 'Password must have at least one number')
+        .matches(/[@$!%*?&#]/, 'Password must have at least one special character')
         .required('Required'),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -38,12 +79,45 @@ function SignupPage() {
       name: role !== 'admin' ? Yup.string().required('Required') : Yup.string(),
       grade: role === 'student' ? Yup.string().required('Required') : Yup.string(),
       subject: role === 'teacher' ? Yup.string().required('Required') : Yup.string(),
-      childName: role === 'parent' ? Yup.string().required('Required') : Yup.string(),
+      childEmail: role === 'parent' ? Yup.string().email('Invalid email address').required('Required') : Yup.string(),
       adminCode: role === 'admin' ? Yup.string().required('Admin code is required') : Yup.string(),
     }),
-    onSubmit: (values) => {
-      console.log('Signup details:', values);
-      navigate('/home');
+    onSubmit: async (values) => {
+      const { email, password, childEmail, name, grade, subject, adminCode } = values;
+      const result = await signUpUser(email, password);
+
+      if (result.success) {
+        const { uid } = result.user;
+
+        if (values.role === 'parent' && childEmail) {
+          const childExists = await checkChildEmailExists(childEmail);
+
+          if (childExists) {
+            alert('Student not registered with this email.');
+            return;
+          }
+        }
+
+        const roleDetails = {
+          student: { type: 1, name: values.name, grade: values.grade, email: values.email },
+          teacher: { type: 2, name: values.name, subject: values.subject, email: values.email },
+          parent: { type: 3, name: values.name, childEmail: values.childEmail, parentEmail: values.email },
+          admin: { type: 4, name: values.name, adminCode: values.adminCode, email: values.email }
+        };
+
+        const details = roleDetails[values.role];
+
+        await storeUserDetails(uid, values.role, details);
+
+        navigate('/home');
+      } else {
+        if (result.errorCode === 'auth/email-already-in-use') {
+          alert('The email address is already in use. Please use a different email.');
+        } else {
+          alert('Sign-up failed: ' + result.errorMessage);
+        }
+        console.error('Signup failed:', result.errorMessage);
+      }
     },
   });
 
@@ -60,9 +134,9 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.email}
           />
-          {formik.touched.email && formik.errors.email && (
+          {formik.touched.email && formik.errors.email ? (
             <div className="error">{formik.errors.email}</div>
-          )}
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -74,9 +148,9 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          {formik.touched.password && formik.errors.password && (
+          {formik.touched.password && formik.errors.password ? (
             <div className="error">{formik.errors.password}</div>
-          )}
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -88,9 +162,9 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.confirmPassword}
           />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
             <div className="error">{formik.errors.confirmPassword}</div>
-          )}
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -121,9 +195,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name && (
+              {formik.touched.name && formik.errors.name ? (
                 <div className="error">{formik.errors.name}</div>
-              )}
+              ) : null}
             </div>
             <div className="form-group">
               <label>Grade:</label>
@@ -134,9 +208,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.grade}
               />
-              {formik.touched.grade && formik.errors.grade && (
+              {formik.touched.grade && formik.errors.grade ? (
                 <div className="error">{formik.errors.grade}</div>
-              )}
+              ) : null}
             </div>
           </>
         )}
@@ -152,9 +226,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name && (
+              {formik.touched.name && formik.errors.name ? (
                 <div className="error">{formik.errors.name}</div>
-              )}
+              ) : null}
             </div>
             <div className="form-group">
               <label>Subject:</label>
@@ -165,9 +239,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.subject}
               />
-              {formik.touched.subject && formik.errors.subject && (
+              {formik.touched.subject && formik.errors.subject ? (
                 <div className="error">{formik.errors.subject}</div>
-              )}
+              ) : null}
             </div>
           </>
         )}
@@ -183,43 +257,62 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name && (
+              {formik.touched.name && formik.errors.name ? (
                 <div className="error">{formik.errors.name}</div>
-              )}
+              ) : null}
             </div>
             <div className="form-group">
-              <label>Child's Name:</label>
+              <label>Child's Email:</label>
               <input
-                type="text"
-                name="childName"
+                type="email"
+                name="childEmail"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.childName}
+                value={formik.values.childEmail}
               />
-              {formik.touched.childName && formik.errors.childName && (
-                <div className="error">{formik.errors.childName}</div>
-              )}
+              {formik.touched.childEmail && formik.errors.childEmail ? (
+                <div className="error">{formik.errors.childEmail}</div>
+              ) : null}
             </div>
           </>
         )}
 
         {role === 'admin' && (
-          <div className="form-group">
-            <label>Admin Code:</label>
-            <input
-              type="text"
-              name="adminCode"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.adminCode}
-            />
-            {formik.touched.adminCode && formik.errors.adminCode && (
-              <div className="error">{formik.errors.adminCode}</div>
-            )}
-          </div>
+          <>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <div className="error">{formik.errors.name}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label>Admin Code:</label>
+              <input
+                type="text"
+                name="adminCode"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.adminCode}
+              />
+              {formik.touched.adminCode && formik.errors.adminCode ? (
+                <div className="error">{formik.errors.adminCode}</div>
+              ) : null}
+            </div>
+          </>
         )}
 
         <button type="submit" className="btn">Signup</button>
+
+        <div className="login-link">
+          <p>Already have an account? <a href="/login">Log in</a></p>
+        </div>
       </form>
     </div>
   );
