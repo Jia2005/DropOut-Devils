@@ -108,9 +108,12 @@ function Form() {
                             </select> <br />
                             {errors["financial-income"] && <span className="error">{errors["financial-income"]}</span>}
                             <label htmlFor="any">Does your child receive any other scholarships?</label><br />
-                            <input type="radio" name="any"  value="yes" onChange={(e) => handleInputChange(e, "financial")} /> YES
-                            <input type="radio" name="any" className="any" value="no" onChange={(e) => handleInputChange(e, "financial")} /> NO <br /><br />
-                            {errors["financial-any"] && <span className="error">{errors["financial-any"]}</span>}
+                            <div className="radio-group">
+                                <input type="radio" id="yes" name="any" value="yes" onChange={(e) => handleInputChange(e, "financial")} />
+                                <label className="radio-label" htmlFor="yes">YES</label>
+                                <input type="radio" id="no" name="any" value="no" onChange={(e) => handleInputChange(e, "financial")} />
+                                <label className="radio-label" htmlFor="no">NO</label>
+                            </div>{errors["financial-any"] && <span className="error">{errors["financial-any"]}</span>}
                             <label htmlFor="specify">If yes, please specify: </label>
                             <input type="text" name="specify" placeholder="Details" onChange={(e) => handleInputChange(e, "financial")} />
                             {errors["financial-specify"] && <span className="error">{errors["financial-specify"]}</span>}
