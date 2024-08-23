@@ -4,7 +4,7 @@ import Form from './Pages/financial-aid-form/form';
 import SignupPage from './Pages/Auth/Signup';
 import LoginPage from './Pages/Auth/Login';
 import HomePage from './Pages/Home/Home';
-import app from './firebase';
+import {app} from './firebase';
 
 function App() {
   return (
