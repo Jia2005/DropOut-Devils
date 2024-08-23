@@ -7,11 +7,14 @@ import HomePage from './Pages/Home/Home';
 import UnauthorizedPage from './Pages/Auth/Unauth';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from './firebase';
+import Main from './main';
 
 function App() {
   return (
     <Router>
       <Routes>
+
+        <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/signup" element={<AuthRedirect Component={SignupPage} />} />
         <Route path="/login" element={<AuthRedirect Component={LoginPage} />} />
