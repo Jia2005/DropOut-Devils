@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
+import { db } from '../../firebase';
 
 const signUpUser = async (email, password) => {
   const auth = getAuth();
@@ -19,9 +21,33 @@ const signUpUser = async (email, password) => {
   }
 };
 
+const storeUserDetails = async (uid, role, details) => {
+  const roleType = {
+    student: 1,
+    teacher: 2,
+    parent: 3,
+    admin: 4,
+  };
+
+  const type = roleType[role];
+
+  try {
+    await setDoc(doc(db, 'users', uid), { type, ...details });
+  } catch (error) {
+    console.error('Error storing user details:', error);
+  }
+};
+
+const checkChildEmailExists = async (childEmail) => {
+  const userRef = doc(db, 'users', childEmail);
+  const userDoc = await getDoc(userRef);
+
+  return userDoc.exists() && userDoc.data().type === 1; // Ensure the child is a student
+};
+
 function SignupPage() {
   const [role, setRole] = useState('student');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -57,10 +83,32 @@ function SignupPage() {
       adminCode: role === 'admin' ? Yup.string().required('Admin code is required') : Yup.string(),
     }),
     onSubmit: async (values) => {
-      const { email, password } = values;
+      const { email, password, childEmail, name, grade, subject, adminCode } = values;
       const result = await signUpUser(email, password);
 
       if (result.success) {
+        const { uid } = result.user;
+
+        if (values.role === 'parent' && childEmail) {
+          const childExists = await checkChildEmailExists(childEmail);
+
+          if (childExists) {
+            alert('Student not registered with this email.');
+            return;
+          }
+        }
+
+        const roleDetails = {
+          student: { type: 1, name: values.name, grade: values.grade, email: values.email },
+          teacher: { type: 2, name: values.name, subject: values.subject, email: values.email },
+          parent: { type: 3, name: values.name, childEmail: values.childEmail, parentEmail: values.email },
+          admin: { type: 4, name: values.name, adminCode: values.adminCode, email: values.email }
+        };
+
+        const details = roleDetails[values.role];
+
+        await storeUserDetails(uid, values.role, details);
+
         navigate('/home');
       } else {
         if (result.errorCode === 'auth/email-already-in-use') {
@@ -230,22 +278,41 @@ function SignupPage() {
         )}
 
         {role === 'admin' && (
-          <div className="form-group">
-            <label>Admin Code:</label>
-            <input
-              type="text"
-              name="adminCode"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.adminCode}
-            />
-            {formik.touched.adminCode && formik.errors.adminCode ? (
-              <div className="error">{formik.errors.adminCode}</div>
-            ) : null}
-          </div>
+          <>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <div className="error">{formik.errors.name}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label>Admin Code:</label>
+              <input
+                type="text"
+                name="adminCode"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.adminCode}
+              />
+              {formik.touched.adminCode && formik.errors.adminCode ? (
+                <div className="error">{formik.errors.adminCode}</div>
+              ) : null}
+            </div>
+          </>
         )}
 
         <button type="submit" className="btn">Signup</button>
+
+        <div className="login-link">
+          <p>Already have an account? <a href="/login">Log in</a></p>
+        </div>
       </form>
     </div>
   );
