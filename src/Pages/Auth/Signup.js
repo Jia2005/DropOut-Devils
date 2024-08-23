@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importing useNavigate from react-router-dom
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Auth.css';
 
 function SignupPage() {
   const [role, setRole] = useState('student');
+  const navigate = useNavigate(); // Initializing useNavigate for redirecting
 
   const formik = useFormik({
     initialValues: {
@@ -24,11 +26,11 @@ function SignupPage() {
         .matches(/@gmail.com$/, 'Only Gmail addresses are allowed')
         .required('Required'),
       password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .matches(/[A-Z]/, 'Password must have at least one uppercase character')
-        .matches(/[a-z]/, 'Password must have at least one lowercase character')
-        .matches(/\d/, 'Password must have at least one number')
-        .matches(/[@$!%*?&#]/, 'Password must have at least one special character')
+        .min(8, 'Password must be at least 8 characters long')
+        .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+        .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
+        .matches(/\d/, 'Password must contain at least one number')
+        .matches(/[@$!%*?&#]/, 'Password must contain at least one special character')
         .required('Required'),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -39,8 +41,9 @@ function SignupPage() {
       childName: role === 'parent' ? Yup.string().required('Required') : Yup.string(),
       adminCode: role === 'admin' ? Yup.string().required('Admin code is required') : Yup.string(),
     }),
-    onSubmit: values => {
-      console.log('Signup values:', values);
+    onSubmit: (values) => {
+      console.log('Signup details:', values);
+      navigate('/home'); // Redirecting to the homepage after a successful signup
     },
   });
 
@@ -48,6 +51,7 @@ function SignupPage() {
     <div className="auth-container">
       <h2>Signup</h2>
       <form onSubmit={formik.handleSubmit}>
+        {/* Email Field */}
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -57,11 +61,12 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.email}
           />
-          {formik.touched.email && formik.errors.email ? (
+          {formik.touched.email && formik.errors.email && (
             <div className="error">{formik.errors.email}</div>
-          ) : null}
+          )}
         </div>
 
+        {/* Password Field */}
         <div className="form-group">
           <label>Password:</label>
           <input
@@ -71,11 +76,12 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          {formik.touched.password && formik.errors.password ? (
+          {formik.touched.password && formik.errors.password && (
             <div className="error">{formik.errors.password}</div>
-          ) : null}
+          )}
         </div>
 
+        {/* Confirm Password Field */}
         <div className="form-group">
           <label>Confirm Password:</label>
           <input
@@ -85,11 +91,12 @@ function SignupPage() {
             onBlur={formik.handleBlur}
             value={formik.values.confirmPassword}
           />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
             <div className="error">{formik.errors.confirmPassword}</div>
-          ) : null}
+          )}
         </div>
 
+        {/* Role Selection */}
         <div className="form-group">
           <label>Role:</label>
           <select
@@ -107,6 +114,7 @@ function SignupPage() {
           </select>
         </div>
 
+        {/* Conditional Fields Based on Role */}
         {role === 'student' && (
           <>
             <div className="form-group">
@@ -118,9 +126,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name ? (
+              {formik.touched.name && formik.errors.name && (
                 <div className="error">{formik.errors.name}</div>
-              ) : null}
+              )}
             </div>
             <div className="form-group">
               <label>Grade:</label>
@@ -131,9 +139,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.grade}
               />
-              {formik.touched.grade && formik.errors.grade ? (
+              {formik.touched.grade && formik.errors.grade && (
                 <div className="error">{formik.errors.grade}</div>
-              ) : null}
+              )}
             </div>
           </>
         )}
@@ -149,9 +157,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name ? (
+              {formik.touched.name && formik.errors.name && (
                 <div className="error">{formik.errors.name}</div>
-              ) : null}
+              )}
             </div>
             <div className="form-group">
               <label>Subject:</label>
@@ -162,9 +170,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.subject}
               />
-              {formik.touched.subject && formik.errors.subject ? (
+              {formik.touched.subject && formik.errors.subject && (
                 <div className="error">{formik.errors.subject}</div>
-              ) : null}
+              )}
             </div>
           </>
         )}
@@ -180,9 +188,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
-              {formik.touched.name && formik.errors.name ? (
+              {formik.touched.name && formik.errors.name && (
                 <div className="error">{formik.errors.name}</div>
-              ) : null}
+              )}
             </div>
             <div className="form-group">
               <label>Child's Name:</label>
@@ -193,9 +201,9 @@ function SignupPage() {
                 onBlur={formik.handleBlur}
                 value={formik.values.childName}
               />
-              {formik.touched.childName && formik.errors.childName ? (
+              {formik.touched.childName && formik.errors.childName && (
                 <div className="error">{formik.errors.childName}</div>
-              ) : null}
+              )}
             </div>
           </>
         )}
@@ -210,12 +218,13 @@ function SignupPage() {
               onBlur={formik.handleBlur}
               value={formik.values.adminCode}
             />
-            {formik.touched.adminCode && formik.errors.adminCode ? (
+            {formik.touched.adminCode && formik.errors.adminCode && (
               <div className="error">{formik.errors.adminCode}</div>
-            ) : null}
+            )}
           </div>
         )}
 
+        {/* Submit Button */}
         <button type="submit" className="btn">Signup</button>
       </form>
     </div>

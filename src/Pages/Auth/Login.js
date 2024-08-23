@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Auth.css';
@@ -66,6 +66,11 @@ function LoginPage() {
 
         <button type="submit" className="btn">Login</button>
       </form>
+
+      {/* Add the line for the sign-up link */}
+      <p>
+        Don't have an account? <Link to="/signup">Sign up</Link>
+      </p>
     </div>
   );
 }
