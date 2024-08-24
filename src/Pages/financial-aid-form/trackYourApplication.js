@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import './TrackYourApplication.css';
-
 function TrackYourApplication() {
     const [applicationId, setApplicationId] = useState("");
     const [applicationStatus, setApplicationStatus] = useState(null);
-
     const handleSearch = () => {
         setApplicationStatus({
             status: "Under Review",
@@ -18,7 +16,6 @@ function TrackYourApplication() {
             alerts: ["Additional information required for Marksheet."]
         });
     };
-
     return (
         <div className="track-container">
             <div className="search-section">
