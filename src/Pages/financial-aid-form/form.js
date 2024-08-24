@@ -188,7 +188,7 @@ function Form() {
                             <input type="file" name="mark-cert" onChange={(e) => handleFileChange(e, "documents")} />
                             <label htmlFor="aadhar-cert">Aadhar Certificate: </label>
                             <input type="file" name="aadhar-cert" onChange={(e) => handleFileChange(e, "documents")} />
-                            <button type="submit">Submit</button>
+                            <button type="submit" className="submit-button-form-final">Submit</button>
                         </div>
                     )}
                 </form>

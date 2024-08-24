@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CreateQuizPage from './Pages/Quiz/Createquiz';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Form from './Pages/financial-aid-form/form';
 import SignupPage from './Pages/Auth/Signup';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
+        <Route path="/quiz" element={<CreateQuizPage/>}/>
 
       </Routes>
     </Router>
