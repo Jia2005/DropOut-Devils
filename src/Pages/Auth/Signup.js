@@ -42,7 +42,7 @@ const checkChildEmailExists = async (childEmail) => {
   const userRef = doc(db, 'users', childEmail);
   const userDoc = await getDoc(userRef);
 
-  return userDoc.exists() && userDoc.data().type === 1; // Ensure the child is a student
+  return userDoc.exists() && userDoc.data().type === 1; 
 };
 
 function SignupPage() {
