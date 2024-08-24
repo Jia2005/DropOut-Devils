@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Main() {
 
@@ -9,12 +9,15 @@ function Main() {
 	const user = auth.currentUser;
 
   	useEffect(() => {
-  	    if (user) {
-  	      navigate('/home');
-  	    } else {
-  	      navigate('/login');
-  	    }
-  	},[]);
+		const check = onAuthStateChanged(auth, (user) => {
+			if (user) {
+			  navigate('/home');
+			}
+			else {
+				navigate('/login');
+			}
+		});
+  	},[auth]);
 
 	return (
 		<>
