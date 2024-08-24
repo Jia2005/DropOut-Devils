@@ -45,7 +45,7 @@ body, h1, h2, h3, h4, h5, h6, ul, li, p, input, button {
 .titles .tab:hover {
     color: #5e548e;
 }
-.submit-button{
+.submit-button-form{
     margin-left: 40vw;
 }
 .titles .active {
@@ -105,7 +105,7 @@ form input:focus, form textarea:focus {
 }
 
 
-button[type="submit"] {
+.submit-button-form-final {
     padding: 10px 15px;
     font-size: 16px;
     background-color: #5e548e;
@@ -116,7 +116,7 @@ button[type="submit"] {
     transition: background-color 0.3s ease-in-out;
 }
 
-button[type="submit"]:hover {
+.submit-button-form-final:hover {
     background-color: #9f86c0;
 }
 .personal-form, .academic-form, .financial-form, .documents-form {
