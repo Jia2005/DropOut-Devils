@@ -103,7 +103,7 @@
     font-size: 18px;
     border-radius: 6px;
     border: none;
-    background-color: #4a90e2;  /* Cooler shade */
+    background-color: #4a90e2; 
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -111,6 +111,6 @@
   }
   
   .submit-button:hover {
-    background-color: #357abd;  /* Darker cooler shade */
+    background-color: #357abd; 
   }
   

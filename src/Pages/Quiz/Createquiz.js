@@ -39,7 +39,6 @@ function CreateQuizPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle quiz submission logic here, like saving to the database
     console.log({ subject, grade, questions });
   };
 
