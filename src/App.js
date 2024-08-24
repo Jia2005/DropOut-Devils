@@ -5,6 +5,7 @@ import SignupPage from './Pages/Auth/Signup';
 import LoginPage from './Pages/Auth/Login';
 import HomePage from './Pages/Home/Home';
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
+import ApplicationReviewPage from './Pages/financial-aid-form/ApplicationReviewPage';
 import { app } from './firebase';
 import Main from './main';
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/trackYourApplication" element={<TrackYourApplication />} />
+        <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>

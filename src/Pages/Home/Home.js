@@ -4,13 +4,10 @@ import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 function HomePage() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const auth = getAuth();
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        
         setUser(user);
       } else {
         setUser(null);
