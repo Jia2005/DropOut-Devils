@@ -3,9 +3,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 import { db } from '../../firebase';
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const signUpUser = async (email, password) => {
   const auth = getAuth();
@@ -47,7 +47,6 @@ const checkChildEmailExists = async (childEmail) => {
 
 function SignupPage() {
   const [role, setRole] = useState('student');
-  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -109,7 +108,16 @@ function SignupPage() {
 
         await storeUserDetails(uid, values.role, details);
 
-        navigate('/home');
+        const auth = getAuth();
+
+        signInWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+          // signed in
+        })
+        .catch((error) => {
+          alert('Username or password is incorrect');
+        });
+
       } else {
         if (result.errorCode === 'auth/email-already-in-use') {
           alert('The email address is already in use. Please use a different email.');

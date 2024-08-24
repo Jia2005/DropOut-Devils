@@ -4,12 +4,7 @@ import Form from './Pages/financial-aid-form/form';
 import SignupPage from './Pages/Auth/Signup';
 import LoginPage from './Pages/Auth/Login';
 import HomePage from './Pages/Home/Home';
-
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
-
-import UnauthorizedPage from './Pages/Auth/Unauth';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
 import { app } from './firebase';
 import Main from './main';
 
@@ -27,8 +22,6 @@ function App() {
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
-
-        <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
       </Routes>
     </Router>

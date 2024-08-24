@@ -1,12 +1,11 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Auth.css';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function LoginPage() {
-  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -32,7 +31,7 @@ function LoginPage() {
       const auth = getAuth();
       signInWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
-          navigate('/home');
+          // signed in
         })
         .catch((error) => {
           alert('Username or password is incorrect');
