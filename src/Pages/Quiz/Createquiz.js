@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 import './Createquiz.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function CreateQuizPage() {
+  const [quizName, setQuizName] = useState('');
   const [subject, setSubject] = useState('');
   const [grade, setGrade] = useState('');
   const [questions, setQuestions] = useState([]);
+  const [submissionDate, setSubmissionDate] = useState('');
+  const [submissionTime, setSubmissionTime] = useState('');
+
+  const handleDeleteQuestion = (questionIndex) => {
+    const newQuestions = [...questions];
+    newQuestions.splice(questionIndex, 1);
+    setQuestions(newQuestions);
+  };
+
+  const handleDeleteOption = (questionIndex, optionIndex) => {
+    const newQuestions = [...questions];
+    newQuestions[questionIndex].options.splice(optionIndex, 1);
+    setQuestions(newQuestions);
+  };
 
   const handleAddQuestion = () => {
     setQuestions([
@@ -31,21 +50,66 @@ function CreateQuizPage() {
     setQuestions(newQuestions);
   };
 
-  const handleCorrectAnswerChange = (index, value) => {
+  const handleCorrectAnswerChange = (questionIndex, value) => {
     const newQuestions = [...questions];
-    newQuestions[index].correctAnswer = value;
+    newQuestions[questionIndex].correctAnswer = value;
     setQuestions(newQuestions);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ subject, grade, questions });
+
+    try {
+      const quizDoc = await addDoc(collection(db, 'quizzes'), {
+        quizName,
+        subject,
+        grade,
+        submissionDate,
+        submissionTime,
+      });
+
+      await Promise.all(
+        questions.map(async (question) => {
+          const correctAnswerIndex = question.options.indexOf(
+            question.correctAnswer
+          );
+
+          await addDoc(collection(db, 'questions'), {
+            quizId: quizDoc.id,
+            question: question.question,
+            options: question.options,
+            correctOptionIndex: correctAnswerIndex,
+          });
+        })
+      );
+
+      window.alert('Quiz submitted successfully!');
+
+      setQuizName('');
+      setSubject('');
+      setGrade('');
+      setQuestions([]);
+      setSubmissionDate('');
+      setSubmissionTime('');
+    } catch (error) {
+      console.error('Error adding quiz and questions: ', error);
+      window.alert('Error occurred while submitting the quiz.');
+    }
   };
 
   return (
     <div className="create-quiz-container">
       <h2>Create Quiz</h2>
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Quiz Name:</label>
+          <input
+            type="text"
+            value={quizName}
+            onChange={(e) => setQuizName(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-group">
           <label>Subject Name:</label>
           <input
@@ -76,14 +140,14 @@ function CreateQuizPage() {
                   onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  className="delete-icon"
+                  onClick={() => handleDeleteQuestion(qIndex)}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
               </div>
-              <button
-                type="button"
-                className="add-button"
-                onClick={() => handleAddOption(qIndex)}
-              >
-                Add Option
-              </button><br></br><br></br>
               {question.options.map((option, oIndex) => (
                 <div key={oIndex} className="option-group">
                   <label>Option {oIndex + 1}:</label>
@@ -95,24 +159,57 @@ function CreateQuizPage() {
                     }
                     required
                   />
+                  <button
+                    type="button"
+                    className="delete-icon"
+                    onClick={() => handleDeleteOption(qIndex, oIndex)}
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </button>
                 </div>
               ))}
+              <button
+                type="button"
+                className="add-button"
+                onClick={() => handleAddOption(qIndex)}
+              >
+                Add Option
+              </button><br></br><br></br>
               <div className="form-group">
                 <label>Correct Answer:</label>
-                <input
-                  type="text"
+                <select
                   value={question.correctAnswer}
-                  onChange={(e) =>
-                    handleCorrectAnswerChange(qIndex, e.target.value)
-                  }
+                  onChange={(e) => handleCorrectAnswerChange(qIndex, e.target.value)}
                   required
-                />
+                >
+                  <option value="">Select correct answer</option>
+                  {question.options.map((option, oIndex) => (
+                    <option key={oIndex} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           ))}
           <button type="button" className="add-button" onClick={handleAddQuestion}>
             Add Question
           </button>
+        </div>
+        <div className="form-group">
+          <label>Quiz should be submitted by:</label>
+          <input
+            type="date"
+            value={submissionDate}
+            onChange={(e) => setSubmissionDate(e.target.value)}
+            required
+          />
+          <input
+            type="time"
+            value={submissionTime}
+            onChange={(e) => setSubmissionTime(e.target.value)}
+            required
+          />
         </div>
         <button type="submit" className="submit-button">
           Upload Quiz
