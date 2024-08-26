@@ -30,6 +30,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
+        <Route path="/studentquiz" element={<QuizFormPage/>}/>
         <Route path="/learnplatform" element={<LP_Landing/>}/>
         <Route path="/subjects" element={<SubjectList/>}/>
         <Route path="//list-images/:subjectFolder/:chapterFolder" element={<VideoList/>}/>
