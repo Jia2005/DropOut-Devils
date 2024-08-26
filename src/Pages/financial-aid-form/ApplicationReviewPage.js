@@ -1,133 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs, updateDoc, doc } from "firebase/firestore";
-import './ApplicationReviewPage.css'; // Assuming the CSS file is named ApplicationReviewPage.css
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
+import "./ApplicationReviewPage.css";
 
 function ApplicationReviewPage() {
-  const [applications, setApplications] = useState([]);
-  const [selectedApplication, setSelectedApplication] = useState(null);
-  const [filter, setFilter] = useState("all");
-  const db = getFirestore();
+    const [applications, setApplications] = useState([]);
+    const [filteredApplications, setFilteredApplications] = useState([]);
+    const [selectedApplication, setSelectedApplication] = useState(null);
+    const [statusFilter, setStatusFilter] = useState("all");
 
-  useEffect(() => {
-    const fetchApplications = async () => {
-      const querySnapshot = await getDocs(collection(db, "financial_form"));
-      const apps = querySnapshot.docs.map(doc => ({
-        id: doc.id, 
-        ...doc.data(),
-        status: 'pending' 
-      }));
-      setApplications(apps);
+    useEffect(() => {
+        const fetchApplications = async () => {
+            const querySnapshot = await getDocs(collection(db, "financial_form"));
+            const apps = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setApplications(apps);
+            setFilteredApplications(apps);
+        };
+
+        fetchApplications();
+    }, []);
+
+    const handleStatusFilterChange = (e) => {
+        const selectedStatus = e.target.value;
+        setStatusFilter(selectedStatus);
+
+        if (selectedStatus === "all") {
+            setFilteredApplications(applications);
+        } else {
+            setFilteredApplications(applications.filter((app) => app.finalStatus === selectedStatus));
+        }
     };
 
-    fetchApplications();
-  }, []);
+    const handleViewApplication = (application) => {
+        setSelectedApplication(application);
+    };
 
-  const handleStatusUpdate = async (id, newStatus) => {
-    const applicationRef = doc(db, "financial_form", id);
-    await updateDoc(applicationRef, { status: newStatus });
-    setApplications(applications.map(app => app.id === id ? { ...app, status: newStatus } : app));
-  };
+    const handleDocumentStatusChange = async (docName, status) => {
+        if (selectedApplication) {
+            const updatedDocuments = {
+                ...selectedApplication.documents,
+                [docName]: {
+                    ...selectedApplication.documents[docName],
+                    status: status,
+                },
+            };
 
-  const handleApplicationClick = (app) => {
-    setSelectedApplication(app);
-  };
+            const updatedApplication = {
+                ...selectedApplication,
+                documents: updatedDocuments,
+            };
 
-  const handleDocumentStatusChange = async (docName, newStatus) => {
-    const updatedDocs = { ...selectedApplication.documents, [docName]: newStatus };
-    const applicationRef = doc(db, "financial_form", selectedApplication.id);
-    await updateDoc(applicationRef, { documents: updatedDocs });
-    setSelectedApplication({ ...selectedApplication, documents: updatedDocs });
-  };
+            await updateDoc(doc(db, "financial_form", selectedApplication.id), updatedApplication);
 
-  const filteredApplications = applications.filter(app => {
-    if (filter === "all") return true;
-    return app.status === filter;
-  });
+            setSelectedApplication(updatedApplication);
+            setApplications(applications.map((app) => (app.id === updatedApplication.id ? updatedApplication : app)));
+            setFilteredApplications(filteredApplications.map((app) => (app.id === updatedApplication.id ? updatedApplication : app)));
+        }
+    };
 
-  return (
-    <div className="application-review-page">
-      {!selectedApplication && (
-        <>
-          <h2>Review Applications</h2>
-          <div className="filter-container">
-            <label>Filter by Status: </label>
-            <select onChange={(e) => setFilter(e.target.value)}>
-              <option value="all">All</option>
-              <option value="pending">Pending</option>
-              <option value="verified">Verified</option>
-              <option value="rejected">Rejected</option>
-            </select>
-          </div>
-          <table className="application-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>School</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredApplications.map(app => (
-                <tr key={app.id}>
-                  <td><button onClick={() => handleApplicationClick(app)}>{app.personal.name}</button></td>
-                  <td>{app.academic.school}</td>
-                  <td>{app.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
+    const handleFinalStatusChange = async (status) => {
+        if (selectedApplication) {
+            const updatedApplication = {
+                ...selectedApplication,
+                finalStatus: status,
+            };
 
-      {selectedApplication && (
-        <div className="application-details">
-          <button className="back-button" onClick={() => setSelectedApplication(null)}>Back to Applications</button>
-          <h3>Application Details for {selectedApplication.personal.name}</h3>
-          <div className="details-section">
-            <h4>Personal Details</h4>
-            <p>Date of Birth: {selectedApplication.personal.dob}</p>
-            <p>Contact: {selectedApplication.personal.num}</p>
-            <p>Email: {selectedApplication.personal.em}</p>
-            <p>Address: {selectedApplication.personal.add}</p>
-          </div>
-          <div className="details-section">
-            <h4>Academic Details</h4>
-            <p>School: {selectedApplication.academic.school}</p>
-            <p>Grade: {selectedApplication.academic.grade}</p>
-            <p>Year: {selectedApplication.academic.year}</p>
-            <p>Marks: {selectedApplication.academic.marks}</p>
-          </div>
-          <div className="details-section">
-            <h4>Financial Details</h4>
-            <p>Household Income: {selectedApplication.financial.income}</p>
-            <p>Other Scholarships: {selectedApplication.financial.any}</p>
-            {selectedApplication.financial.any === "yes" && (
-              <p>Details: {selectedApplication.financial.specify}</p>
+            await updateDoc(doc(db, "financial_form", selectedApplication.id), updatedApplication);
+
+            setSelectedApplication(updatedApplication);
+            setApplications(applications.map((app) => (app.id === updatedApplication.id ? updatedApplication : app)));
+            setFilteredApplications(filteredApplications.map((app) => (app.id === updatedApplication.id ? updatedApplication : app)));
+        }
+    };
+
+    return (
+        <div className="application-review-page">
+            {selectedApplication ? (
+                <div className="application-details-container">
+                    <button className="back-button" onClick={() => setSelectedApplication(null)}>
+                        Back to Applications
+                    </button>
+                    <div className="application-details">
+                        <h2>Application Details for {selectedApplication.personal.name}</h2>
+                        <p><strong>Institution:</strong> {selectedApplication.academic.school}</p>
+                        <p><strong>Grade:</strong> {selectedApplication.academic.grade}</p>
+                        <p><strong>Year:</strong> {selectedApplication.academic.year}</p>
+                        <p><strong>Income:</strong> {selectedApplication.financial.income}</p>
+                        <h3>Documents</h3>
+                        {Object.keys(selectedApplication.documents).map((docName) => (
+                            <div key={docName} className="document-item">
+                                <a href={selectedApplication.documents[docName].url} target="_blank" rel="noopener noreferrer">
+                                    {docName}
+                                </a>
+                                <select
+                                    className="status-dropdown"
+                                    value={selectedApplication.documents[docName].status}
+                                    onChange={(e) => handleDocumentStatusChange(docName, e.target.value)}
+                                >
+                                    <option value="pending">Pending</option>
+                                    <option value="verified">Verify</option>
+                                    <option value="reupload">Reupload</option>
+                                </select>
+                            </div>
+                        ))}
+                        <div className="status-buttons">
+                            <button
+                                className="final-status-button approve"
+                                onClick={() => handleFinalStatusChange("approved")}
+                                disabled={selectedApplication.finalStatus === "approved"}
+                            >
+                                Final Approve
+                            </button>
+                            <button
+                                className="final-status-button reject"
+                                onClick={() => handleFinalStatusChange("rejected")}
+                                disabled={selectedApplication.finalStatus === "rejected"}
+                            >
+                                Final Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="applications-list">
+                    <h2>Applications</h2>
+                    <label>
+                        Filter by Status:
+                        <select value={statusFilter} onChange={handleStatusFilterChange}>
+                            <option value="all">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </label>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Institution</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredApplications.map((application) => (
+                                <tr key={application.id}>
+                                    <td>{application.personal.name}</td>
+                                    <td>{application.academic.school}</td>
+                                    <td>{application.finalStatus}</td>
+                                    <td>
+                                        <button className="view-button" onClick={() => handleViewApplication(application)}>
+                                            View Application
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
-          </div>
-          <div className="details-section">
-            <h4>Documents</h4>
-            <ul>
-              {Object.keys(selectedApplication.documents).map(docName => (
-                <li key={docName}>
-                  <a href={selectedApplication.documents[docName]} target="_blank" rel="noopener noreferrer">
-                    {docName} - Status: {selectedApplication.documents[docName] ? 'Uploaded' : 'Not Uploaded'}
-                  </a>
-                  <button onClick={() => handleDocumentStatusChange(docName, 'verified')}>Verify</button>
-                  <button onClick={() => handleDocumentStatusChange(docName, 'pending')}>Pending</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="final-status">
-            <button onClick={() => handleStatusUpdate(selectedApplication.id, 'verified')}>Final Approve</button>
-            <button onClick={() => handleStatusUpdate(selectedApplication.id, 'rejected')}>Final Reject</button>
-          </div>
         </div>
-      )}
-    </div>
-  );
+    );
 }
 
 export default ApplicationReviewPage;
-
