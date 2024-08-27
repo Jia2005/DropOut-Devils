@@ -19,6 +19,7 @@ import FormFolder from './Pages/Learning_Platform/Quizzes/ViewQP/FolderForm';
 import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
+import Lander from './Pages/Lander/Lander';
 function App() {
   return (
     <Router>
@@ -41,6 +42,7 @@ function App() {
         <Route path="/list-pdfs/:subjectFolder/:chapterFolder" element={<ListPdfs/>}/>
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
+        <Route path="/lander" element={<Lander/>}/>
 
 
       </Routes>
