@@ -1,106 +1,99 @@
-/* Basic styles */
-.track-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    background-color: #ffffff; /* Background color for the container */
+.track-application-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.track-application-container {
+    background: #fff;
+    padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.search-section {
+    max-width: 600px;
+    width: 100%;
     text-align: center;
+}
+
+h2 {
     margin-bottom: 20px;
+    color: #231942;
+    font-size: 24px;
 }
 
-.search-section h1 {
-    margin-bottom: 10px;
-    color: #231942; /* Dark blue */
-}
-
-.search-section input {
-    width: 80%;
-    max-width: 400px;
+.application-input {
+    width: 100%;
     padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #5e548e; /* Medium purple */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.search-section button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #231942; /* Dark blue */
-    color: #ffffff;
+.track-button {
+    background-color: #5e548e;
+    color: #fff;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.search-section button:hover {
-    background-color: #5e548e; /* Medium purple */
+.track-button:hover {
+    background-color: #9f86c0;
 }
 
-.status-section {
-    border-top: 2px solid #ccc;
-    padding-top: 20px;
+.message {
+    color: red;
+    margin-top: 10px;
 }
 
-.status-section h2 {
-    margin-bottom: 15px;
-    color: #9f86c0; /* Light purple */
-}
-
-.status-timeline,
-.documents-section,
-.alerts-section,
-.support-section {
+.application-details {
+    text-align: left;
     margin-top: 20px;
 }
 
-.documents-section ul,
-.alerts-section ul {
-    list-style-type: none;
-    padding: 0;
+.application-details p {
+    margin: 5px 0;
+    color: #333;
 }
 
-.documents-section li,
-.alerts-section li {
+.document-section {
+    margin-bottom: 15px;
+}
+
+.view-document {
+    display: inline-block;
+    margin-top: 5px;
+    color: #5e548e;
+    text-decoration: none;
+}
+
+.view-document:hover {
+    text-decoration: underline;
+}
+
+.reupload-section {
+    margin-top: 10px;
+}
+
+.file-input {
+    display: block;
     margin-bottom: 10px;
 }
 
-.documents-section .verified {
-    color: #4CAF50; /* Green */
-    font-weight: bold;
+.reupload-button {
+    background-color: #e0b1cb;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.documents-section .pending {
-    color: #F44336; /* Red */
-    font-weight: bold;
+.reupload-button:hover {
+    background-color: #be95c4;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    .search-section input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .search-section button {
-        width: 100%;
-        padding: 15px;
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .search-section h1 {
-        font-size: 24px;
-    }
-
-    .search-section input,
-    .search-section button {
-        font-size: 16px;
-    }
-}

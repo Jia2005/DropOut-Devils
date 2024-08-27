@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from '../../firebase'; 
+import { db, storage } from '../../firebase';
 import './form.css';
 import { getAuth } from "firebase/auth";
 
 function Form() {
+    const auth = getAuth();
+    const uid = auth.currentUser.uid;
     const [activeTab, setActiveTab] = useState("personal");
     const [formData, setFormData] = useState({
         personal: { name: '', dob: '', num: '', em: '', add: '' },
@@ -14,6 +16,7 @@ function Form() {
         documents: { 'income-cert': null, 'mark-cert': null, 'aadhar-cert': null }
     });
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -48,19 +51,29 @@ function Form() {
                 if (section === 'financial' && field === 'specify' && formData.financial.any === 'yes' && !formData.financial.specify) {
                     newErrors["financial-specify"] = "This field is required when receiving other scholarships";
                 }
-                if (field !== 'specify' && !formData[section][field] && field !== 'income-cert' && field !== 'mark-cert' && field !== 'aadhar-cert') {
+                if (field!=='specify' && !formData[section][field] && field !== 'income-cert' && field !== 'mark-cert' && field !== 'aadhar-cert') {
                     newErrors[`${section}-${field}`] = "This field is required";
                 }
             }
         }
+
+        // Validate document uploads
+        if (!formData.documents['income-cert']) {
+            newErrors["documents-income-cert"] = "Income Certificate is required";
+        }
+        if (!formData.documents['mark-cert']) {
+            newErrors["documents-mark-cert"] = "Marksheet Certificate is required";
+        }
+        if (!formData.documents['aadhar-cert']) {
+            newErrors["documents-aadhar-cert"] = "Aadhar Certificate is required";
+        }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-    
 
     const uploadFile = async (file, fileType) => {
-        const auth = getAuth();
-        const uid = auth.currentUser.uid; 
+        
         const storageRef = ref(storage, `documents/${uid}_${fileType}`);
         await uploadBytes(storageRef, file);
         return getDownloadURL(storageRef);
@@ -68,6 +81,8 @@ function Form() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+    
         if (validateForm()) {
             try {
                 // Upload files and get their URLs
@@ -82,25 +97,55 @@ function Form() {
     
                 const [incomeCertUrl, markCertUrl, aadharCertUrl] = fileUrls;
     
-                // Save data to Firestore
-                await addDoc(collection(db, "financial_form"), {
-                    ...formData,
+                // Save data to Firestore with initial statuses
+                const docRef = await addDoc(collection(db, "financial_form"), {
+                    personal: formData.personal,
+                    academic: formData.academic,
+                    financial: formData.financial,
                     documents: {
-                        'income-cert': incomeCertUrl,
-                        'mark-cert': markCertUrl,
-                        'aadhar-cert': aadharCertUrl
-                    }
+                        'income-cert': {
+                            url: incomeCertUrl,
+                            status: 'pending'
+                        },
+                        'mark-cert': {
+                            url: markCertUrl,
+                            status: 'pending'
+                        },
+                        'aadhar-cert': {
+                            url: aadharCertUrl,
+                            status: 'pending'
+                        }
+                    },
+                    finalStatus: 'pending' // Initial final status
                 });
     
-                alert("Form submitted successfully!");
+                const applicationId = docRef.id;
+                alert(`Form submitted successfully! Your application ID is ${applicationId}`);
+    
+                // Reset form fields after successful submission
+                setFormData({
+                    personal: { name: '', dob: '', num: '', em: '', add: '' },
+                    academic: { school: '', grade: '', year: '', marks: '' },
+                    financial: { income: '', any: '', specify: '' },
+                    documents: { 'income-cert': null, 'mark-cert': null, 'aadhar-cert': null }
+                });
+                setErrors({});
             } catch (error) {
                 console.error("Error submitting form: ", error);
-                alert("Failed to submit form.");
+                if (error.code === 'network-request-failed') {
+                    alert("Network error, please try again.");
+                } else {
+                    alert("Failed to submit form, please try again.");
+                }
+            } finally {
+                setLoading(false);
             }
         } else {
+            setLoading(false);
             alert("Please fill all required fields.");
         }
     };
+    
 
     return (
         <div className="form-page">
@@ -155,7 +200,7 @@ function Form() {
                     {activeTab === "financial" && (
                         <div className="financial-form">
                             <label htmlFor="income">Household Income: </label><br />
-                            <select name="income" value={formData.financial.income} onChange={(e) => handleInputChange(e, "financial")}>
+                            <select name="income" id="income" value={formData.financial.income} onChange={(e) => handleInputChange(e, "financial")}>
                                 <option value="">Select Income Range</option>
                                 <option value="Below 2 lakh">Below 2 lakh</option>
                                 <option value="2 lakhs to 5 lakhs">2 lakhs to 5 lakhs</option>
@@ -177,19 +222,28 @@ function Form() {
                                     {errors["financial-specify"] && <span className="error">{errors["financial-specify"]}</span>}
                                 </div>
                             )}
+                            
                         </div>
                     )}
 
                     {activeTab === "documents" && (
-                        <div className="document-upload-form">
+                        <div className="documents-form">
                             <label htmlFor="income-cert">Income Certificate: </label>
                             <input type="file" name="income-cert" onChange={(e) => handleFileChange(e, "documents")} />
+                            {errors["documents-income-cert"] && <span className="error">{errors["documents-income-cert"]}</span>}
                             <label htmlFor="mark-cert">Marksheet Certificate: </label>
                             <input type="file" name="mark-cert" onChange={(e) => handleFileChange(e, "documents")} />
+                            {errors["documents-mark-cert"] && <span className="error">{errors["documents-mark-cert"]}</span>}
                             <label htmlFor="aadhar-cert">Aadhar Certificate: </label>
                             <input type="file" name="aadhar-cert" onChange={(e) => handleFileChange(e, "documents")} />
-                            <button type="submit" className="submit-button-form-final">Submit</button>
+                            {errors["documents-aadhar-cert"] && <span className="error">{errors["documents-aadhar-cert"]}</span>}
                         </div>
+                    )}
+
+                    {activeTab === "documents" && (
+                        <button className="submit-button-form-final" type="submit" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit'}
+                        </button>
                     )}
                 </form>
             </div>
