@@ -34,12 +34,16 @@ function App() {
         
         <Route path="/learnplatform" element={<LP_Landing/>}/>
         <Route path="/subjects" element={<SubjectList/>}/>
-        <Route path="//list-images/:subjectFolder/:chapterFolder" element={<VideoList/>}/>
-        <Route path="//play-video/:subjectFolder/:chapterFolder/:videoName" element={<VideoPlayer/>}/>
+        <Route path="/list-images/:classFolder/:subjectFolder/:chapterFolder" element={<VideoList />} />
+        <Route path="/play-video/:classFolder/:subjectFolder/:chapterFolder/:videoName" element={<VideoPlayer />} />
+
         <Route path="/note" element={<Notes/>}/>
-        <Route path="/subjectnotes" element={<SubjectNotes/>}/>
+        <Route path="/subjectnotes/:classFolder/:subjectFolder/:chapterFolder" element={<SubjectNotes />} />
+
         <Route path="/viewqp" element={<FormFolder/>}/>
-        <Route path="/list-pdfs/:subjectFolder/:chapterFolder" element={<ListPdfs/>}/>
+        <Route path="/list-pdfs/:classFolder" element={<ListPdfs/>}/>
+
+        
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
         {/* Meetings section*/}

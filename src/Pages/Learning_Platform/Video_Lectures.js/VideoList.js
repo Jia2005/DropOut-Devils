@@ -4,13 +4,13 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase';
 
 function VideoList() {
-  const { subjectFolder, chapterFolder } = useParams();
+  const { classFolder, subjectFolder, chapterFolder } = useParams();
   const [imageLinks, setImageLinks] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchImages = async () => {
-      const folderPath = `${subjectFolder}/${chapterFolder}`;
+      const folderPath = `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
       const folderRef = ref(storage, folderPath);
       const result = await listAll(folderRef);
       const links = await Promise.all(result.items.map(async (itemRef) => {
@@ -21,7 +21,7 @@ function VideoList() {
     };
 
     fetchImages();
-  }, [subjectFolder, chapterFolder]);
+  }, [classFolder, subjectFolder, chapterFolder]);
 
   const isImage = (fileName) => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
@@ -31,12 +31,12 @@ function VideoList() {
 
   const handleImageClick = (imageName) => {
     const videoName = imageName.split('.')[0]; // Get the base name of the image to match the video name
-    navigate(`/play-video/${subjectFolder}/${chapterFolder}/${videoName}`);
+    navigate(`/play-video/${classFolder}/${subjectFolder}/${chapterFolder}/${videoName}`);
   };
 
   return (
     <div>
-      <h2>Images in {subjectFolder}/{chapterFolder}</h2>
+      <h2>Images in {classFolder}/{subjectFolder}/{chapterFolder}</h2>
       <ul>
         {imageLinks.map((image) => (
           <li key={image.name}>
