@@ -1,0 +1,23 @@
+/* General Container Styles */
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme Styles */
+.container.light {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container.dark {
+    background-color: #2e2e2e;
+    color: #ddd;
+}
+
+/* Content Section Styles */
+.content {
+    margin: 20px 0;
+}
+

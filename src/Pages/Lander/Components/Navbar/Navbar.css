@@ -1,0 +1,92 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    position: relative;
+    height: 140px;
+  }
+  
+  .navbar-left .logo {
+    height: 80px;
+  }
+
+  .navbar-left{
+    margin-left: 20px;
+  }
+  
+  .navbar-center {
+    flex: 1;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  
+  .navbar-item {
+    cursor: pointer;
+    padding: 20px;
+    position: relative; /* Needed for dropdown positioning */
+  }
+  
+  .navbar .pd{
+    margin-top: 10px;
+  }
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-width: 160px; /* Adjust as needed */
+    z-index: 1000;
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-align: left;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 20px;
+  }
+  
+  .notification-icon, .profile-icon, .search-icon {
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .notification-icon {
+    height: 24px; /* Slightly larger for notifications */
+  }
+  
+  .profile-icon {
+    height: 24px; /* Slightly larger for profile */
+  }
+  

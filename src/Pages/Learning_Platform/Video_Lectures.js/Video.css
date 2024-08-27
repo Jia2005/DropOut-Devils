@@ -1,0 +1,21 @@
+h1{
+    text-align: center;
+    background: rgb(77, 2, 98);
+    margin-top: 0px;
+}
+.Mom{
+    display: flex;
+    margin-top: 100px;
+
+}
+@media screen and (max-width: 80px) {
+    div.Mom{
+        display: block;
+    }
+}
+.Child2{
+    margin-left: 10px;
+}
+.Child1{
+    margin-left: 10px
+}
