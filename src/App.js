@@ -18,6 +18,8 @@ import FormFolder from './Pages/Learning_Platform/Quizzes/ViewQP/FolderForm';
 import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
+import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
+import Room from './Pages/Learning_Platform/Meetings/Room';
 function App() {
   return (
     <Router>
@@ -29,6 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
+        
         <Route path="/learnplatform" element={<LP_Landing/>}/>
         <Route path="/subjects" element={<SubjectList/>}/>
         <Route path="//list-images/:subjectFolder/:chapterFolder" element={<VideoList/>}/>
@@ -39,7 +42,9 @@ function App() {
         <Route path="/list-pdfs/:subjectFolder/:chapterFolder" element={<ListPdfs/>}/>
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
-
+        {/* Meetings section*/}
+        <Route path="/entermeet" element={<EnterMeet/>}/>
+        <Route path="/room/:roomID" element={<Room/>}/>
 
       </Routes>
     </Router>
