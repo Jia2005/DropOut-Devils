@@ -7,6 +7,8 @@ import LoginPage from './Pages/Auth/Login';
 import HomePage from './Pages/Home/Home';
 import QuizFormPage from './Pages/QuizStudent/QuizForm';
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
+import FundsDisbursement from './Pages/financial-aid-form/FundsDisbursement';
+import ApplicationReviewPage from './Pages/financial-aid-form/ApplicationReviewPage';
 import { app } from './firebase';
 import Main from './main';
 import LP_Landing from './Pages/Learning_Platform/LP_Landing';
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/trackYourApplication" element={<TrackYourApplication />} />
+        <Route path="/Funds" element={<FundsDisbursement />} />
+        <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
@@ -43,6 +47,7 @@ function App() {
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
         <Route path="/lander" element={<Lander/>}/>
+
 
 
       </Routes>
