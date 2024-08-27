@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './QuizForm.css';
+import { getAuth } from 'firebase/auth';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 function QuizFormPage() {
   const [studentName, setStudentName] = useState('');
@@ -15,6 +20,8 @@ function QuizFormPage() {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
   const [score, setScore] = useState(0);
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     if (quizGrade) {
@@ -38,8 +45,11 @@ function QuizFormPage() {
           .filter(doc => doc.data().quizId === quizId)
           .map(doc => doc.data());
 
+        console.log("Fetched Questions: ", questionList);
+
+        // Ensure correct answers are indices
         setQuestions(questionList);
-        setCorrectAnswers(questionList.map(q => q.correctAnswer)); // Ensure 'correctAnswer' is the index of the correct option
+        setCorrectAnswers(questionList.map(q => q.correctOptionIndex)); // Use correctOptionIndex
       };
 
       fetchQuizzes();
@@ -55,31 +65,44 @@ function QuizFormPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let calculatedScore = 0;
-  
+
     responses.forEach((response, index) => {
-      console.log(`Question ${index + 1}:`);
-      console.log(`User's Response: ${response}`);
-      console.log(`Correct Answer Index: ${correctAnswers[index]}`);
-      console.log(`Correct Option: ${questions[index].options[correctAnswers[index]]}`);
+      console.log(`Question ${index + 1}: User Response: ${response}, Correct Answer: ${correctAnswers[index]}`);
       if (response === correctAnswers[index]) {
         calculatedScore += 1;
-      } else {
-        console.log("Incorrect Answer");
       }
     });
-  
+
     console.log("Final Score: ", calculatedScore);
     setScore(calculatedScore);
     setSubmitted(true);
+
+    if (quizId && user) {
+      const quizRef = doc(db, 'quizzes', quizId);
+      await updateDoc(quizRef, {
+        attemptedBy: arrayUnion(user.uid)
+      });
+    }
   };
-  
+
   const handleResponseChange = (questionIndex, optionIndex) => {
     const newResponses = [...responses];
     newResponses[questionIndex] = optionIndex;
     setResponses(newResponses);
+  };
+
+  // Data for the pie chart
+  const chartData = {
+    labels: ['Correct', 'Incorrect'],
+    datasets: [{
+      data: [score, questions.length - score],
+      backgroundColor: ['#4caf50', '#f44336'],
+      borderColor: ['#ffffff', '#ffffff'],
+      borderWidth: 1,
+    }],
   };
 
   return (
@@ -148,6 +171,9 @@ function QuizFormPage() {
           <div className="submission-message">
             <h2>Thank you for submitting your responses!</h2>
             <p>Your score: {score} / {questions.length}</p>
+            <div className="pie-chart-container">
+              <Pie data={chartData} />
+            </div>
             <h3>Correct Answers:</h3>
             {questions.map((question, index) => (
               <div key={index} className="question-block">
@@ -179,3 +205,5 @@ function QuizFormPage() {
 }
 
 export default QuizFormPage;
+
+

@@ -4,7 +4,7 @@ import { db } from '../../firebase';
 import './Createquiz.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { doc, setDoc } from 'firebase/firestore';
 function CreateQuizPage() {
   const [quizName, setQuizName] = useState('');
   const [subject, setSubject] = useState('');
@@ -56,35 +56,44 @@ function CreateQuizPage() {
     setQuestions(newQuestions);
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const quizDoc = await addDoc(collection(db, 'quizzes'), {
+      // Create a new document reference with a generated ID
+      const quizDocRef = doc(collection(db, 'quizzes'));
+      const quizId = quizDocRef.id;
+  
+      // Set the document with the generated quizId and other quiz details
+      await setDoc(quizDocRef, {
+        quizId: quizId,
         quizName,
         subject,
         grade,
         submissionDate,
         submissionTime,
+        attemptedBy: []
       });
-
+  
+      // Add each question with the associated quizId
       await Promise.all(
-        questions.map(async (question) => {
-          const correctAnswerIndex = question.options.indexOf(
-            question.correctAnswer
-          );
-
+        questions.map(async (question, qIndex) => {
+          const correctAnswerIndex = question.options.indexOf(question.correctAnswer);
+  
           await addDoc(collection(db, 'questions'), {
-            quizId: quizDoc.id,
+            quizId: quizId, // Store quiz ID here
             question: question.question,
             options: question.options,
             correctOptionIndex: correctAnswerIndex,
           });
         })
       );
-
+  
       window.alert('Quiz submitted successfully!');
-
+  
+      // Clear the form fields after successful submission
       setQuizName('');
       setSubject('');
       setGrade('');
@@ -96,7 +105,7 @@ function CreateQuizPage() {
       window.alert('Error occurred while submitting the quiz.');
     }
   };
-
+  
   return (
     <div className="create-quiz-container">
       <h2>Create Quiz</h2>
