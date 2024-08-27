@@ -28,7 +28,7 @@ const Lander = () => {
   };
 
   const handleSectionClick = (section) => {
-    alert('Clicked on: ' + section); // Placeholder for section click handling
+    alert('Clicked on: ' + section);
     setDropdownOpen(false);
   };
 
