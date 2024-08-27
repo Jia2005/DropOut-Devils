@@ -5,7 +5,10 @@ import Form from './Pages/financial-aid-form/form';
 import SignupPage from './Pages/Auth/Signup';
 import LoginPage from './Pages/Auth/Login';
 import HomePage from './Pages/Home/Home';
+import QuizFormPage from './Pages/QuizStudent/QuizForm';
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
+import FundsDisbursement from './Pages/financial-aid-form/FundsDisbursement';
+import ApplicationReviewPage from './Pages/financial-aid-form/ApplicationReviewPage';
 import { app } from './firebase';
 import Main from './main';
 import LP_Landing from './Pages/Learning_Platform/LP_Landing';
@@ -18,8 +21,12 @@ import FormFolder from './Pages/Learning_Platform/Quizzes/ViewQP/FolderForm';
 import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
+
 import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
 import Room from './Pages/Learning_Platform/Meetings/Room';
+
+import Lander from './Pages/Lander/Lander';
+
 function App() {
   return (
     <Router>
@@ -27,11 +34,15 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/trackYourApplication" element={<TrackYourApplication />} />
+        <Route path="/Funds" element={<FundsDisbursement />} />
+        <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
-        
+
+        <Route path="/studentquiz" element={<QuizFormPage/>}/>
+
         <Route path="/learnplatform" element={<LP_Landing/>}/>
         <Route path="/subjects" element={<SubjectList/>}/>
         <Route path="//list-images/:subjectFolder/:chapterFolder" element={<VideoList/>}/>
@@ -42,9 +53,15 @@ function App() {
         <Route path="/list-pdfs/:subjectFolder/:chapterFolder" element={<ListPdfs/>}/>
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
+
         {/* Meetings section*/}
         <Route path="/entermeet" element={<EnterMeet/>}/>
         <Route path="/room/:roomID" element={<Room/>}/>
+
+        <Route path="/lander" element={<Lander/>}/>
+
+
+
 
       </Routes>
     </Router>

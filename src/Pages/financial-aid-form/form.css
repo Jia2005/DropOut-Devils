@@ -96,7 +96,7 @@ form textarea,select {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 95%;
+    width: 97%;
     transition: border-color 0.3s ease-in-out;
 }
 form input:focus, form textarea:focus {
@@ -108,8 +108,10 @@ form input:focus, form textarea:focus {
 .submit-button-form-final {
     padding: 10px 15px;
     font-size: 16px;
+    margin-top: 2%;
     background-color: #5e548e;
     color: #fff;
+    width: 15.5vw;
     border: none;
     border-radius: 4px;
     cursor: pointer;
