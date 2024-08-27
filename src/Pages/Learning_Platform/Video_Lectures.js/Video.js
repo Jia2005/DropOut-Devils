@@ -4,19 +4,19 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase';
 
 function VideoPlayer() {
-  const { subjectFolder, chapterFolder, videoName } = useParams();
+  const { classFolder, subjectFolder, chapterFolder, videoName } = useParams();
   const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
     const fetchVideo = async () => {
-      const videoPath = `${subjectFolder}/${chapterFolder}/${videoName}.mp4`; // assuming videos are .mp4 files
+      const videoPath = `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}/${videoName}.mp4`; // assuming videos are .mp4 files
       const videoRef = ref(storage, videoPath);
       const url = await getDownloadURL(videoRef);
       setVideoUrl(url);
     };
 
     fetchVideo();
-  }, [subjectFolder, chapterFolder, videoName]);
+  }, [classFolder, subjectFolder, chapterFolder, videoName]);
 
   return (
     <div>
