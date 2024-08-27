@@ -1,11 +1,11 @@
-/* General Container Styles */
 .container {
+    width: 100%;
+    height: 100%;
     padding: 20px;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Theme Styles */
 .container.light {
     background-color: #f0f0f0;
     color: #333;
@@ -16,7 +16,6 @@
     color: #ddd;
 }
 
-/* Content Section Styles */
 .content {
     margin: 20px 0;
 }
