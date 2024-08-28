@@ -54,6 +54,7 @@ function Notes() {
   };
 
   return (
+    <div className='allform'>
     <form onSubmit={handleSubmit}>
       <label>
         Select Class Folder:
@@ -107,6 +108,7 @@ function Notes() {
       <br />
       <button type="submit" disabled={!chapterFolder}>Get PDFs</button>
     </form>
+    </div>
   );
 }
 

@@ -1,0 +1,45 @@
+.panel {
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border: 5px solid #0000FF;
+}
+
+@media (min-width: 1400px) {
+    .panel {
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+}
+
+.panel h2 {
+    background-color: #4a90e2;
+    border-radius: 10px;;
+    color: white;
+    font-size: 35px;
+    padding: 10px;
+    margin: 0;
+    text-align: center; /* Center the text inside the header */
+}
+
+.panel ul {
+    padding-left: 20px; /* Ensures proper indentation for list */
+    margin: 0;
+    list-style-type: disc; /* Use the default disc bullets */
+}
+
+.panel li {
+    padding: 10px 0; /* Adds spacing between list items */
+    list-style-position: outside; /* Ensures bullets are outside the list item content */
+    display: block; /* Makes sure list items are block elements */
+ 
+}
+
+.panel li a {
+    text-decoration: none;
+    color: #0000FF;
+    display: block; /* Ensures each link starts on a new line within its list item */
+  
+}
