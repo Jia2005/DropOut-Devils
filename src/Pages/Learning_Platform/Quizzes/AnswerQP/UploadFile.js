@@ -80,10 +80,7 @@ function UploadFile() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Name/Unique ID:
-        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-      </label>
+      
       <br />
       <label>
         Class:
