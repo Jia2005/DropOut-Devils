@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, listAll } from 'firebase/storage';
 import { storage } from '../../../firebase'; // Import your Firebase storage setup
-
+import './SubjectList.css'
 function SubjectList() {
   const [classFolder, setClassFolder] = useState('');
   const [subjectFolder, setSubjectFolder] = useState('');
@@ -55,9 +55,11 @@ function SubjectList() {
   };
 
   return (
+    <div className='bod'>
+      <div className='allform'>
     <form onSubmit={handleSubmit}>
       <label>
-        Select Class:
+        <pre>Select Class:</pre>
         <select 
           value={classFolder} 
           onChange={handleClassChange} 
@@ -71,9 +73,10 @@ function SubjectList() {
           ))}
         </select>
       </label>
-      <br />
+      
       <label>
-        Select Subject:
+       
+        <pre>Select Subject:</pre>
         <select 
           value={subjectFolder} 
           onChange={handleSubjectChange} 
@@ -88,9 +91,9 @@ function SubjectList() {
           ))}
         </select>
       </label>
-      <br />
+      
       <label>
-        Select Chapter:
+        <pre>Select Chapter:</pre>
         <select 
           value={chapterFolder} 
           onChange={(e) => setChapterFolder(e.target.value)} 
@@ -105,9 +108,12 @@ function SubjectList() {
           ))}
         </select>
       </label>
-      <br />
+      
       <button type="submit" disabled={!chapterFolder}>Submit</button>
+      <br />
     </form>
+    </div>
+    </div>
   );
 }
 

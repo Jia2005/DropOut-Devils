@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase'; // Adjust the import path as needed
+import './SubjectNotes.css';
 
 function SubjectNotes() {
   const { classFolder, subjectFolder, chapterFolder } = useParams();
@@ -23,13 +24,13 @@ function SubjectNotes() {
   }, [classFolder, subjectFolder, chapterFolder]);
 
   return (
-    <div>
-      <h2>PDFs in {`${classFolder}/${subjectFolder}/${chapterFolder}`}</h2>
+    <div className='panel'>
+      <h2>PDFs available</h2>
       <ul>
         {pdfLinks.map((pdf) => (
           <li key={pdf.name}>
             <a href={pdf.url} download={pdf.name}>
-              <p>{pdf.name}</p>
+              {pdf.name}
             </a>
           </li>
         ))}

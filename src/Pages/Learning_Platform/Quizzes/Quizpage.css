@@ -1,0 +1,22 @@
+.panel{
+    text-align: center;
+    background-color: #F0F8FF;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.panel h2{
+    background-color: #4a90e2;
+    color: white;
+}
+.panel button{
+    width: 300px;
+    border: 2px solid #4a90e2;
+    color: #4a90e2;
+    background-color: #F0F8FF;
+    font-weight: bold;
+
+}.panel button:hover{
+    background-color: #4a90e2;
+    color: black;
+}
+
