@@ -5,6 +5,7 @@ import './Createquiz.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc } from 'firebase/firestore';
+
 function CreateQuizPage() {
   const [quizName, setQuizName] = useState('');
   const [subject, setSubject] = useState('');
@@ -56,17 +57,13 @@ function CreateQuizPage() {
     setQuestions(newQuestions);
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      // Create a new document reference with a generated ID
       const quizDocRef = doc(collection(db, 'quizzes'));
       const quizId = quizDocRef.id;
-  
-      // Set the document with the generated quizId and other quiz details
+
       await setDoc(quizDocRef, {
         quizId: quizId,
         quizName,
@@ -76,24 +73,22 @@ function CreateQuizPage() {
         submissionTime,
         attemptedBy: []
       });
-  
-      // Add each question with the associated quizId
+
       await Promise.all(
         questions.map(async (question, qIndex) => {
           const correctAnswerIndex = question.options.indexOf(question.correctAnswer);
-  
+
           await addDoc(collection(db, 'questions'), {
-            quizId: quizId, // Store quiz ID here
+            quizId: quizId,
             question: question.question,
             options: question.options,
             correctOptionIndex: correctAnswerIndex,
           });
         })
       );
-  
+
       window.alert('Quiz submitted successfully!');
-  
-      // Clear the form fields after successful submission
+
       setQuizName('');
       setSubject('');
       setGrade('');
@@ -105,7 +100,7 @@ function CreateQuizPage() {
       window.alert('Error occurred while submitting the quiz.');
     }
   };
-  
+
   return (
     <div className="create-quiz-container">
       <h2>Create Quiz</h2>
@@ -138,11 +133,11 @@ function CreateQuizPage() {
           />
         </div>
         <div className="question-group">
-          <h3>Questions:</h3><br></br>
+          <h3 className='heading'>Questions:</h3><br></br>
           {questions.map((question, qIndex) => (
             <div key={qIndex} className="question-block">
-              <div className="form-group">
-                <label>Question:</label>
+              <div className="form-group-2">
+                <h4>Question:</h4>
                 <input
                   type="text"
                   value={question.question}
@@ -205,7 +200,7 @@ function CreateQuizPage() {
             Add Question
           </button>
         </div>
-        <div className="form-group">
+        <div className="form-group-2">
           <label>Quiz should be submitted by:</label>
           <input
             type="date"
