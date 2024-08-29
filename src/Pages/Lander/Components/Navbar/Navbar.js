@@ -37,9 +37,9 @@ const Navbar = ({ role }) => {
           <li className='navbar-item'>Home</li>  
           <li className='navbar-item'>About</li>  
           <li className='navbar-item dropdown'>  
-            <div onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown} className='dropdown-toggle'>Features</div>  
+            <div onMouseEnter={toggleDropdown} className='dropdown-toggle'>Features</div>  
             {isDropdownOpen && (  
-              <div className='dropdown-menu'>  
+              <div className='dropdown-menu' onMouseLeave={toggleDropdown} >  
                 {getSectionOptions().map((section, index) => (  
                   <button  
                     key={index}  

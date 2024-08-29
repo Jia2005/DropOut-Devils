@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar'
 import RoleSwitcher from './Components/RoleSwitcher';
 import './Lander.css';
 
