@@ -27,22 +27,18 @@ function VideoPlayer() {
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (!document.fullscreenElement) {
-        // User exited fullscreen, navigate back to the previous page
         navigate(-1);
       }
     };
 
     if (videoUrl && videoRef.current) {
-      // Request fullscreen and play the video
       videoRef.current.requestFullscreen();
       videoRef.current.play();
 
-      // Add fullscreen change listener
       document.addEventListener('fullscreenchange', handleFullscreenChange);
     }
 
     return () => {
-      // Clean up the event listener when the component unmounts
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
   }, [videoUrl, navigate]);

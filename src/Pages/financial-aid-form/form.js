@@ -57,7 +57,6 @@ function Form() {
             }
         }
 
-        // Validate document uploads
         if (!formData.documents['income-cert']) {
             newErrors["documents-income-cert"] = "Income Certificate is required";
         }
@@ -85,7 +84,6 @@ function Form() {
     
         if (validateForm()) {
             try {
-                // Upload files and get their URLs
                 const fileUrls = await Promise.all(
                     Object.keys(formData.documents).map(async (fileKey) => {
                         if (formData.documents[fileKey]) {
@@ -97,7 +95,6 @@ function Form() {
     
                 const [incomeCertUrl, markCertUrl, aadharCertUrl] = fileUrls;
     
-                // Save data to Firestore with initial statuses
                 const docRef = await addDoc(collection(db, "financial_form"), {
                     personal: formData.personal,
                     academic: formData.academic,
@@ -116,13 +113,12 @@ function Form() {
                             status: 'pending'
                         }
                     },
-                    finalStatus: 'pending' // Initial final status
+                    finalStatus: 'pending' 
                 });
     
                 const applicationId = docRef.id;
                 alert(`Form submitted successfully! Your application ID is ${applicationId}`);
     
-                // Reset form fields after successful submission
                 setFormData({
                     personal: { name: '', dob: '', num: '', em: '', add: '' },
                     academic: { school: '', grade: '', year: '', marks: '' },

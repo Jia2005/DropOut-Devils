@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Adjust your Firebase storage import as needed
+import { storage } from '../../../firebase'; 
 
 function CreateLecture() {
   const [classFolder, setClassFolder] = useState('');
@@ -13,7 +13,6 @@ function CreateLecture() {
   const [videoFile, setVideoFile] = useState(null);
 
   useEffect(() => {
-    // Fetch the list of class folders from 'learn_platform' in Firebase Storage
     const fetchClasses = async () => {
       const classRef = ref(storage, 'learn_platform');
       const result = await listAll(classRef);
@@ -25,12 +24,11 @@ function CreateLecture() {
 
   const handleClassChange = async (e) => {
     setClassFolder(e.target.value);
-    // Fetch the list of subject folders within the selected class folder
     const subjectRef = ref(storage, `learn_platform/${e.target.value}/lec`);
     const result = await listAll(subjectRef);
     const subjectNames = result.prefixes.map((folder) => folder.name);
     setSubjects(subjectNames);
-    setSubjectFolder(''); // Reset subject and chapter selections when class changes
+    setSubjectFolder(''); 
     setChapters([]);
     setChapterFolder('');
     setNewChapter('');
@@ -38,12 +36,11 @@ function CreateLecture() {
 
   const handleSubjectChange = async (e) => {
     setSubjectFolder(e.target.value);
-    // Fetch the list of chapter folders within the selected subject folder
     const chapterRef = ref(storage, `learn_platform/${classFolder}/lec/${e.target.value}`);
     const result = await listAll(chapterRef);
     const chapterNames = result.prefixes.map((folder) => folder.name);
     setChapters(chapterNames);
-    setChapterFolder(''); // Reset chapter selection when subject changes
+    setChapterFolder('');
     setNewChapter('');
   };
 
@@ -53,7 +50,6 @@ function CreateLecture() {
     let chapterPath = chapterFolder;
     if (newChapter) {
       chapterPath = newChapter;
-      // No need to manually create the folder; just use this path for uploading the file
     }
 
     const videoRef = ref(storage, `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterPath}/${videoFile.name}`);
@@ -94,7 +90,7 @@ function CreateLecture() {
           value={chapterFolder}
           onChange={(e) => {
             setChapterFolder(e.target.value);
-            setNewChapter(''); // Clear new chapter if selecting existing chapter
+            setNewChapter('');
           }}
           disabled={!subjectFolder || newChapter}
         >
@@ -114,7 +110,7 @@ function CreateLecture() {
           value={newChapter}
           onChange={(e) => {
             setNewChapter(e.target.value);
-            setChapterFolder(''); // Clear existing chapter selection if entering new chapter
+            setChapterFolder(''); 
           }}
           disabled={!subjectFolder || chapterFolder}
         />

@@ -30,7 +30,7 @@ function VideoList() {
   };
 
   const handleImageClick = (imageName) => {
-    const videoName = imageName.split('.')[0]; // Get the base name of the image to match the video name
+    const videoName = imageName.split('.')[0];
     navigate(`/play-video/${classFolder}/${subjectFolder}/${chapterFolder}/${videoName}`);
   };
   

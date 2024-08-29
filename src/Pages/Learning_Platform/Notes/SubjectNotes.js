@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Adjust the import path as needed
+import { storage } from '../../../firebase';
 import './SubjectNotes.css';
 
 function SubjectNotes() {

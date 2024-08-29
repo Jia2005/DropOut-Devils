@@ -112,7 +112,6 @@ function SignupPage() {
 
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
-          // signed in
         })
         .catch((error) => {
           alert('Username or password is incorrect');
