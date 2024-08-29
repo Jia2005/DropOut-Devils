@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Adjust your Firebase storage import as needed
+import { storage } from '../../../firebase'; 
 
 function UploadPdf() {
   const [classFolder, setClassFolder] = useState('');
@@ -8,7 +8,6 @@ function UploadPdf() {
   const [pdfFile, setPdfFile] = useState(null);
 
   useEffect(() => {
-    // Fetch the list of class folders from 'quizzes' in Firebase Storage
     const fetchClasses = async () => {
       try {
         const classRef = ref(storage, 'quizzes');
@@ -40,12 +39,8 @@ function UploadPdf() {
 
     try {
       console.log('Starting folder creation and file upload...');
-
-      // Create a folder by uploading an empty file
       const emptyFileRef = ref(storage, `${ansFolderPath}.empty`);
-      await uploadBytes(emptyFileRef, new Uint8Array()); // This creates the folder
-
-      // Upload the PDF file
+      await uploadBytes(emptyFileRef, new Uint8Array()); 
       const pdfRef = ref(storage, qpFolderPath);
       await uploadBytes(pdfRef, pdfFile);
 
@@ -56,7 +51,6 @@ function UploadPdf() {
       alert('Error uploading file.');
     }
 
-    // Clear form data
     setClassFolder('');
     setPdfFile(null);
   };

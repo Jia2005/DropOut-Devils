@@ -35,15 +35,7 @@ function LP_Landing() {
       </h3>  
       </Link>  
     </div>
-
-    
-      
-      
-
   </div>
-  
-  
-  
   )
 }
 

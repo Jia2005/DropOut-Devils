@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../firebase';
-import './TrackYourApplication.css'; // Import the CSS file
+import './TrackYourApplication.css'; 
 
 function TrackYourApplication() {
     const [applicationId, setApplicationId] = useState('');
@@ -37,7 +37,6 @@ function TrackYourApplication() {
                 const data = docSnap.data();
                 setApplicationData(data);
 
-                // Check if disbursement details already exist for the current year
                 const currentYear = new Date().getFullYear();
                 if (data.disbursementDetails && new Date(data.disbursementDetails.date).getFullYear() === currentYear) {
                     setIsSubmitted(true);
@@ -83,7 +82,7 @@ function TrackYourApplication() {
             });
 
             alert('Document reuploaded successfully!');
-            fetchApplicationDetails(); // Refresh application details
+            fetchApplicationDetails(); 
         } catch (error) {
             console.error('Error reuploading document: ', error);
             alert('Error reuploading document. Please try again.');
