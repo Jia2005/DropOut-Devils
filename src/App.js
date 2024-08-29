@@ -28,6 +28,7 @@ import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLand
 import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLecture';
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
 import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
+import AdminSign from './Pages/Auth/AdminSign';
 function App() {
   return (
     <Router>
@@ -39,6 +40,7 @@ function App() {
         <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
+        <Route path='/adminsign' element={<AdminSign/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
         <Route path="/studentquiz" element={<QuizFormPage/>}/>
