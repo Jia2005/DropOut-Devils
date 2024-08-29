@@ -5,7 +5,7 @@ import './Createquiz.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc } from 'firebase/firestore';
-
+import { Timestamp } from 'firebase/firestore'; 
 function CreateQuizPage() {
   const [quizName, setQuizName] = useState('');
   const [subject, setSubject] = useState('');
@@ -57,6 +57,7 @@ function CreateQuizPage() {
     setQuestions(newQuestions);
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,15 +72,18 @@ function CreateQuizPage() {
         grade,
         submissionDate,
         submissionTime,
-        attemptedBy: []
+        createdAt: Timestamp.now(), // Add createdAt field with current timestamp
+        attemptedBy: [] // Initialize an empty array for storing attempted students' IDs
       });
-
+  
+      // Add each question with the associated quizId and question number
       await Promise.all(
         questions.map(async (question, qIndex) => {
           const correctAnswerIndex = question.options.indexOf(question.correctAnswer);
 
           await addDoc(collection(db, 'questions'), {
             quizId: quizId,
+            questionNumber: qIndex + 1, // Store question number here
             question: question.question,
             options: question.options,
             correctOptionIndex: correctAnswerIndex,
@@ -100,6 +104,7 @@ function CreateQuizPage() {
       window.alert('Error occurred while submitting the quiz.');
     }
   };
+  
 
   return (
     <div className="create-quiz-container">
