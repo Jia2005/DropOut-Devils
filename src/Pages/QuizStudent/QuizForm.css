@@ -1,30 +1,43 @@
 .quiz-form-container {
-  max-width: 800px;
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Arial', sans-serif;
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.comment {
+  font-weight: bold;
 }
 
 .quiz-selection {
-  text-align: center;
+  text-align: left;
 }
 
 .quiz-selection h2 {
   margin-bottom: 20px;
   color: #231942;
+  font-size: 5vh;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .quiz-item {
   background-color: #5e548e;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 20px;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-  color: #ffffff;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  color: #333;
 }
 
 .quiz-item:hover {
@@ -34,18 +47,24 @@
 
 .quiz-item h3 {
   margin: 0 0 10px;
+  font-size: 3vh;
 }
 
 .quiz-item p {
   margin: 5px 0;
+  font-size: 16px;
 }
 
-form {
+.questions-form {
   margin-top: 20px;
 }
 
 .question-block {
   margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-group label {
@@ -53,6 +72,7 @@ form {
   font-weight: bold;
   margin-bottom: 10px;
   color: #231942;
+  font-size: 18px;
 }
 
 .option-group {
@@ -63,33 +83,47 @@ form {
   background-color: #ffffff;
   border-radius: 4px;
   border: 1px solid #ccc;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .option-group input[type="radio"] {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .option-group.selected {
   background-color: #9f86c0;
   color: #ffffff;
+  border-color: #9f86c0;
 }
 
 .option-group.correct {
   border-color: #4caf50;
   background-color: #e8f5e9;
 }
-
-.correct-tick {
+.correct-answer {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
   color: #4caf50;
-  margin-left: 10px;
-  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding-left: 25px; /* Space for the tick mark */
 }
+
+.correct-answer::before {
+  content: "✔";
+  color: #4caf50;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+}
+
 
 .submit-button {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #231942;
   color: #ffffff;
   border: none;
@@ -109,13 +143,13 @@ form {
 }
 
 .submission-message h2 {
+  font-size: 4vh;
   color: #231942;
-  margin-bottom: 10px;
 }
 
 .submission-message p {
   font-size: 18px;
-  margin-bottom: 20px;
+  color: #5e548e;
 }
 
 .pie-chart-container {
@@ -128,6 +162,7 @@ form {
 
 .pie-chart-container canvas {
   max-width: 100%;
+  width: 20vh;
 }
 
 @media (max-width: 600px) {
@@ -135,9 +170,37 @@ form {
     padding: 10px;
   }
 
+  .quiz-item {
+    padding: 15px;
+  }
+
+  .quiz-item h3 {
+    font-size: 18px;
+  }
+
+  .quiz-item p {
+    font-size: 14px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+  }
+
+  .submit-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .submission-message h2 {
+    font-size: 20px;
+  }
+
+  .submission-message p {
+    font-size: 16px;
+  }
+
   .pie-chart-container {
     width: 100%;
-    height: 10vh;
+    height: 20vh;
   }
 }
-
