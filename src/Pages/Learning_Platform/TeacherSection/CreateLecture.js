@@ -60,7 +60,7 @@ function CreateLecture() {
       }
       basePath = `${basePath}/lec/${subjectFolder}/${chapterPath}`;
 
-    let chapterPath = chapterFolder;
+    chapterPath = chapterFolder;
     if (newChapter) {
       chapterPath = newChapter;
 
@@ -81,7 +81,7 @@ function CreateLecture() {
   };
 
   return (
-
+  <>  
     <div className='thisform'>
       <form onSubmit={handleUpload}>
         <label>
@@ -176,7 +176,7 @@ function CreateLecture() {
       </form>
     </div>
 
-    <form onSubmit={handleVideoUpload}>
+    <form onSubmit={handleUpload}>
       <label>
         Select Class:
         <select value={classFolder} onChange={handleClassChange} required>
@@ -245,8 +245,8 @@ function CreateLecture() {
       <br />
       <button type="submit" disabled={!videoFile}>Upload Lecture</button>
     </form>
-
+  </>
   );
-}
+}}
 
 export default CreateLecture;
