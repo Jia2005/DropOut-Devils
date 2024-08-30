@@ -29,6 +29,8 @@ import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLectur
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
 import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
 import AdminSign from './Pages/Auth/AdminSign';
+import UserProfile from './Pages/Profile/Profile';
+
 function App() {
   return (
     <Router>
@@ -41,6 +43,7 @@ function App() {
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/adminsign' element={<AdminSign/>}/>
+        <Route path='/profile' element={<UserProfile/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
         <Route path="/studentquiz" element={<QuizFormPage/>}/>
