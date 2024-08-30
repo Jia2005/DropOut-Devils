@@ -120,7 +120,7 @@ import Navbar from "../Navbar/Navbar";
 import "./ProgressReport.css";
 
 const ProgressReport = () => {
-    const [role, setRole] = useState('student');
+    const [role, setRole] = useState('parent');
     const [theme, setTheme] = useState('light');
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropdown = () => {
