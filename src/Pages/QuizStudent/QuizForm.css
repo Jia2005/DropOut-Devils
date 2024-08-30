@@ -7,11 +7,14 @@
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
-.comment{
-  font-weight: bolder;
+
+.comment {
+  font-weight: bold;
 }
+
 .quiz-selection {
   text-align: left;
 }
@@ -84,7 +87,7 @@
 }
 
 .option-group input[type="radio"] {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .option-group.selected {
@@ -97,12 +100,25 @@
   border-color: #4caf50;
   background-color: #e8f5e9;
 }
-
-.correct-tick {
+.correct-answer {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
   color: #4caf50;
-  margin-left: 10px;
-  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding-left: 25px; /* Space for the tick mark */
 }
+
+.correct-answer::before {
+  content: "✔";
+  color: #4caf50;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+}
+
 
 .submit-button {
   display: block;
@@ -114,12 +130,11 @@
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
   background-color: #5e548e;
-  transform: translateY(-2px);
 }
 
 .submission-message {
@@ -128,14 +143,13 @@
 }
 
 .submission-message h2 {
+  font-size: 4vh;
   color: #231942;
-  margin-bottom: 10px;
-  font-size: 22px;
 }
 
 .submission-message p {
   font-size: 18px;
-  margin-bottom: 20px;
+  color: #5e548e;
 }
 
 .pie-chart-container {
@@ -148,6 +162,7 @@
 
 .pie-chart-container canvas {
   max-width: 100%;
+  width: 20vh;
 }
 
 @media (max-width: 600px) {
