@@ -31,6 +31,7 @@ import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
 import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
+import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
 import LandingPage from './Pages/LandingPage/LandingPage';
 
 
@@ -68,7 +69,7 @@ function App() {
         <Route path="/uploadqp" element={<UploadQP/>}/>
         <Route path="/getanspdf" element={<Getanspdf/>}/>
         <Route path="/progressreport" element={<ProgressReport/>}/>
-        <Route path="/LandingPage" element={<LandingPage/>}/>
+        <Route path="LandingPage" element={<LandingPage/>}/>
       </Routes>
     </Router>
   );

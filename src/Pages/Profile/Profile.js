@@ -5,6 +5,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'fire
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
 import { faUserCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';   
 import './Profile.css';  
+import { Link } from 'react-router-dom';
 
 const UserProfile = () => {  
   const auth = getAuth();  
@@ -39,7 +40,7 @@ const UserProfile = () => {
           setRole(mapRole(userData.type));  
 
           if (userData.profilePic) {  
-            const profilePicUrl = await getDownloadURL(ref(storage, `profile_pictures/${user.uid}`));  
+            const profilePicUrl = await getDownloadURL(ref(storage,`profile_pictures/${user.uid}`));  
             setProfilePic(profilePicUrl);  
           }  
         }  
@@ -60,7 +61,6 @@ const UserProfile = () => {
   };  
 
   const handleSignOut = () => {
-    const auth = getAuth();
     signOut(auth).then(() => {
       window.location.href = '/login';
     }).catch((error) => {
@@ -109,6 +109,55 @@ const UserProfile = () => {
     setIsEditing(false);  
   };  
 
+  const renderSidebarMenu = () => {
+    switch (role) {
+      case 'Student':
+        return (
+          <ul>
+            <li className="center"><Link to="/home">Home</Link></li>
+            <li className="center"><Link to="/learnplatform">Learning Platform</Link></li>
+            <li className="center"><Link to="/form">Financial Aid</Link></li>
+            <li className="center"><Link to="/trackYourApplication">Track Your Application</Link></li>
+            <li className="center"><Link to="/">Dashboard</Link></li>
+            <li className="center"><Link to="/">Change Password</Link></li>
+          </ul>
+        );
+      case 'Teacher':
+        return (
+          <ul>
+            <li className="center"><Link to="/home">Home</Link></li>
+            <li className="center"><Link to="/teacherlanding">Learning Platform</Link></li>
+            <li className="center"><Link to="/quiz">Quiz Creation</Link></li>
+            <li className="center"><Link to="/">Student Dashboard</Link></li>
+            <li className="center"><Link to="/">Change Password</Link></li>
+          </ul>
+        );
+      case 'Parent':
+        return (
+          <ul>
+            <li className="center"><Link to="/home">Home</Link></li>
+            <li className="center"><Link to="/learnplatform">Learning Platform</Link></li>
+            <li className="center"><Link to="/progressreport">Progress Report</Link></li>
+            <li className="center"><Link to="/">Parental Portal</Link></li>
+            <li className="center"><Link to="/">Change Password</Link></li>
+          </ul>
+        );
+      case 'Admin':
+        return (
+          <ul>
+            <li className="center"><Link to="/home">Home</Link></li>
+            <li className="center"><Link to="/">Statistical Report</Link></li>
+            <li className="center"><Link to="/">Manage Users</Link></li>
+            <li className="center"><Link to="/applicationReview">View and Approve Applications</Link></li>
+            <li className="center"><Link to="/Funds">Approve Funds</Link></li>
+            <li className="center"><Link to="/">Delete User</Link></li>
+            <li className="center"><Link to="/">Change Password</Link></li>
+          </ul>
+        );
+      default:
+        return <ul><li className="center">Home</li></ul>;
+    }
+  };
 
   return (
     <div className="profile-container">
@@ -131,14 +180,10 @@ const UserProfile = () => {
           </div>
           <hr className="sidebar-divider" />
           <div className="sidebar-menu">
-            <ul>
-              <li className="center">Dashboard</li>
-              <li className="center">New Appointment</li>
-              <li className="center">Profile Settings</li>
-              <li className="center">Change Password</li>
-            </ul>
+            {renderSidebarMenu()}
           </div>
-          <button className="logout-button" onClick={handleSignOut}>Logout</button>
+          <div className='log'>
+          <button className="logout-button" onClick={handleSignOut}>Logout</button></div>
         </div>
       </div>
       <div className="profile-details">
@@ -160,7 +205,7 @@ const UserProfile = () => {
             <p><strong>Role:</strong> {role} </p>
           </div>
           <div className='upload-image'>
-          <input type="file" onChange={handleFileChange} />
+            <input type="file" onChange={handleFileChange} />
           </div>
           <button onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
