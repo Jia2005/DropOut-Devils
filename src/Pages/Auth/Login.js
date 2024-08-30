@@ -48,7 +48,7 @@ function LoginPage() {
 
         <div className="form-group">
           <label>Email:</label>
-          <input
+          <input className='takeInput'
             style={{ width:'100%' }}
             type="email"
             name="email"
@@ -63,7 +63,7 @@ function LoginPage() {
 
         <div className="form-group">
           <label>Password:</label>
-          <input
+          <input className='takeInput'
             type="password"
             name="password"
             onChange={formik.handleChange}

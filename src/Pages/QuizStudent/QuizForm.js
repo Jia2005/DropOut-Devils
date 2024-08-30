@@ -215,7 +215,8 @@ function QuizFormPage() {
                   <label>{`Q${question.questionNumber}. ${question.question}`}</label>
                   {question.options.map((option, oIndex) => (
                     <div key={oIndex} className={`option-group ${responses[qIndex] === oIndex ? 'selected' : ''}`}>
-                      <input
+                      <div className="optionAndName">
+                      <input className='optionValues'
                         type="radio"
                         id={`q${qIndex}o${oIndex}`}
                         name={`question${qIndex}`}
@@ -223,8 +224,8 @@ function QuizFormPage() {
                         onChange={() => handleResponseChange(qIndex, oIndex)}
                         checked={responses[qIndex] === oIndex}
                       />
-                      <label htmlFor={`q${qIndex}o${oIndex}`}>{option}</label>
-                    </div>
+                      <label className='optionName' htmlFor={`q${qIndex}o${oIndex}`}>{option}</label>
+                    </div></div>
                   ))}
                 </div>
               </div>
@@ -243,14 +244,14 @@ function QuizFormPage() {
           <div className="pie-chart-container">
             <Pie data={chartData} />
           </div>
-          <h3>Correct Answers:</h3>
+          <h3 className='hello'>Correct Answers:</h3>
           {questions.map((question, index) => (
             <div key={index} className="question-block">
               <div className="form-group">
-                <label>{`Q${question.questionNumber}. ${question.question}`}</label>
+                <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
                 {question.options.map((option, oIndex) => (
                   <div key={oIndex} className={`option-group ${oIndex === correctAnswers[index] ? 'correct' : ''}`}>
-                  <label htmlFor={`q${index}o${oIndex}`}>
+                  <label className='optionIs' htmlFor={`q${index}o${oIndex}`}>
                     {option} {oIndex === correctAnswers[index] && '✔️'}
                   </label>
                 </div>
