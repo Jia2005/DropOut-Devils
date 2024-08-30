@@ -23,7 +23,7 @@ function ListPdfs() {
   }, [classFolder]);
 
   return (
-    <div>
+    <div className='panel'>
       <h2>PDFs in {`${classFolder}/QP`}</h2>
       <ul>
         {pdfLinks.map((pdf) => (

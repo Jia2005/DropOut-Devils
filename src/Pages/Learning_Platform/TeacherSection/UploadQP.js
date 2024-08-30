@@ -56,6 +56,7 @@ function UploadPdf() {
   };
 
   return (
+    <div className='allform'>
     <form onSubmit={handlePdfUpload}>
       <label>
         Select Class:
@@ -81,6 +82,7 @@ function UploadPdf() {
       <br />
       <button type="submit" disabled={!pdfFile}>Upload PDF</button>
     </form>
+    </div>
   );
 }
 

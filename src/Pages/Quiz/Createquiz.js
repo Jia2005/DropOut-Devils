@@ -100,6 +100,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Quiz Name:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={quizName}
             onChange={(e) => setQuizName(e.target.value)}
@@ -109,6 +110,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Subject Name:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -118,6 +120,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Grade:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={grade}
             onChange={(e) => setGrade(e.target.value)}
@@ -145,7 +148,7 @@ function CreateQuizPage() {
                 </button>
               </div>
               {question.options.map((option, oIndex) => (
-                <div key={oIndex} className="option-group">
+                <div key={oIndex} className="option-group2">
                   <label>Option {oIndex + 1}:</label>
                   <input
                     type="text"
@@ -171,7 +174,7 @@ function CreateQuizPage() {
               >
                 Add Option
               </button><br></br><br></br>
-              <div className="form-group">
+              <div className="form-group" style={{ width:'85%' }}>
                 <label>Correct Answer:</label>
                 <select
                   value={question.correctAnswer}
@@ -195,19 +198,21 @@ function CreateQuizPage() {
         <div className="form-group-2">
           <label>Quiz should be submitted by:</label>
           <input
+            style={{ width:'100%' }}
             type="date"
             value={submissionDate}
             onChange={(e) => setSubmissionDate(e.target.value)}
             required
           />
           <input
+            style={{ width:'100%' }}
             type="time"
             value={submissionTime}
             onChange={(e) => setSubmissionTime(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button2">
           Upload Quiz
         </button>
       </form>

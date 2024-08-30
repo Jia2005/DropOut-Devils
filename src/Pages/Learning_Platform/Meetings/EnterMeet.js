@@ -25,7 +25,7 @@ const EnterMeet = () => {
     ];
 
     return (
-        <div className='home-page'>
+        <div className='allform'style={{marginTop: '270px'}}>
             <form onSubmit={handleFormSubmit} className='form'>
                 <div>
                     <label>Select Class </label>

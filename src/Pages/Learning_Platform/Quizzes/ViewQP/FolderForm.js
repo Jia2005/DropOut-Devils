@@ -25,6 +25,7 @@ function FormFolder() {
   };
 
   return (
+    <div className='allform'>
     <form onSubmit={handleSubmit}>
       <label>
         Select Class:
@@ -44,6 +45,7 @@ function FormFolder() {
       <br />
       <button type="submit" disabled={!classFolder}>Get PDFs</button>
     </form>
+    </div>
   );
 }
 
