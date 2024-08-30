@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Components/Navbar/Navbar'
 import RoleSwitcher from './Components/RoleSwitcher';
-import './lander.css';
+import './Lander.css';
 
 const Lander = () => {
   const [role, setRole] = useState('student');

@@ -1,5 +1,5 @@
 .quiz-form-container {
-  width: 100%;
+  width: 90%;
   height: 100vh;
   margin: 0 auto;
   padding: 20px;
@@ -10,7 +10,7 @@
   overflow-y: auto;
   box-sizing: border-box;
 }
-
+.QuesN
 .comment {
   font-weight: bold;
 }
@@ -59,37 +59,25 @@
   margin-top: 20px;
 }
 
-.question-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #231942;
-  font-size: 18px;
-}
-
 .option-group {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   padding: 8px;
+  
   background-color: #ffffff;
   border-radius: 4px;
   border: 1px solid #ccc;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-
-.option-group input[type="radio"] {
-  margin-left: 10px;
+.QuesNo{
+  font-weight: bold;
+  font-size: larger;
 }
-
+.optionIs{
+  font-size: large;
+  font-weight: 400;
+}
 .option-group.selected {
   background-color: #9f86c0;
   color: #ffffff;
@@ -100,31 +88,30 @@
   border-color: #4caf50;
   background-color: #e8f5e9;
 }
-.correct-answer {
-  border-color: #4caf50;
-  background-color: #e8f5e9;
+
+.option-group input {
+  margin-right: 10px; /* Space between radio button and label */
+}
+
+.option-group .option-label {
+  font-size: 16px;
+  color: #333;
+}
+.optionName{
+  display: inline;
+  font-size: large;
+}
+.option-group.correct .option-label {
   color: #4caf50;
   font-weight: bold;
-  position: relative;
-  padding-left: 25px; /* Space for the tick mark */
 }
-
-.correct-answer::before {
-  content: "✔";
-  color: #4caf50;
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2em;
-}
-
 
 .submit-button {
   display: block;
-  width: 100%;
+  width: 20%;
+  align-self: center;
   padding: 12px;
-  background-color: #231942;
+  background-color: #357ab8;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -164,7 +151,10 @@
   max-width: 100%;
   width: 20vh;
 }
-
+.hello{
+  text-align: left;
+  margin-bottom: 1vh;
+}
 @media (max-width: 600px) {
   .quiz-form-container {
     padding: 10px;
