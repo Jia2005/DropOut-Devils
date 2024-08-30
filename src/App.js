@@ -23,7 +23,6 @@ import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
 import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
 import Room from './Pages/Learning_Platform/Meetings/Room';
-import Lander from './Pages/Lander/Lander';
 import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLanding';
 import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLecture';
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
@@ -62,7 +61,6 @@ function App() {
         <Route path="/quizsec" element={<Quizzes/>}/>
         <Route path="/entermeet" element={<EnterMeet/>}/>
         <Route path="/room/:roomID" element={<Room/>}/>
-        <Route path="/lander" element={<Lander/>}/>
         <Route path="/teacherlanding" element={<TeacherLanding/>}/>
         <Route path="/createlecture" element={<CreateLecture/>}/>
         <Route path="/uploadref" element={<UploadRef/>}/>
