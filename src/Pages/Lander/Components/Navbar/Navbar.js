@@ -1,11 +1,14 @@
+// src/components/Navbar/Navbar.js
+
 import React, { useState } from 'react';
-import './Navbar.css'; // Ensure you have CSS for styling
+import { Link } from 'react-router-dom';
+import './Navbar.css'; 
 import main_logo from '../../assets/main-logo.png';
 import search_icon from '../../assets/search.png';
-import notification_icon from '../../assets/notification.png'; // Add notification icon path
-import profile_icon from '../../assets/profile.png'; // Add profile icon path
+import notification_icon from '../../assets/notification.png'; 
+import profile_icon from '../../assets/profile.png';
 
-const Navbar = ({ role }) => {
+const Navbar = ({ role, onFeatureSelect }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -17,7 +20,7 @@ const Navbar = ({ role }) => {
       case 'student':
         return ['Learning Platform', 'Financial Support', 'Student Support', 'Dashboard'];
       case 'parent':
-        return ['Learning Platform', 'Statistical Report', 'Parental Portal'];
+        return ['Learning Platform', 'Schedule Meeting'];
       case 'teacher':
         return ['Learning Platform', 'Quiz Creation', 'Uploading of Study Material', 'Student Dashboard'];
       case 'admin':
@@ -27,34 +30,45 @@ const Navbar = ({ role }) => {
     }
   };
 
-  return React.createElement('div', { className: 'navbar' },
-    React.createElement('div', { className: 'navbar-left' },
-      React.createElement('img', { src: main_logo, alt: 'Main Logo', className: 'logo' })
-    ),
-    React.createElement('div', { className: 'navbar-center' },
-      React.createElement('ul', { className: 'navbar-menu' },
-        React.createElement('li', { className: 'navbar-item pd' }, 'Home'),
-        React.createElement('li', { className: 'navbar-item pd' }, 'About'),
-        React.createElement('li', { className: 'navbar-item dropdown' },
-          React.createElement('button', { onClick: toggleDropdown, className: 'dropdown-toggle' },
-            'Features'
-          ),
-          isDropdownOpen && React.createElement('div', { className: 'dropdown-menu' },
-            getSectionOptions().map((section, index) =>
-              React.createElement('button', { key: index, onClick: () => alert('Clicked on: ' + section), className: 'dropdown-item' },
-                section
-              )
-            )
-          )
-        ),
-        React.createElement('li', { className: 'navbar-item pd' }, 'Contact')
-      )
-    ),
-    React.createElement('div', { className: 'navbar-right' },
-      React.createElement('img', { src: notification_icon, alt: 'Notifications', className: 'notification-icon' }),
-      React.createElement('img', { src: profile_icon, alt: 'Profile', className: 'profile-icon' }),
-      React.createElement('img', { src: search_icon, alt: 'Search', className: 'search-icon' })
-    )
+  return (
+    <div className="navbar">
+      <div className="navbar-left">
+        <img src={main_logo} alt="Main Logo" className="logo" />
+      </div>
+      <div className="navbar-center">
+        <ul className="navbar-menu">
+          <li className="navbar-item pd">Home</li>
+          <li className="navbar-item pd">About</li>
+          <li className="navbar-item dropdown">
+            <button onClick={toggleDropdown} className="dropdown-toggle-item">
+              Features
+            </button>
+            {isDropdownOpen && (
+              <div className="dropdown-menu">
+                {getSectionOptions().map((section, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      onFeatureSelect(section); // Notify parent component of feature selection
+                      setDropdownOpen(false); // Close dropdown after selection
+                    }}
+                    className="dropdown-item"
+                  >
+                    {section}
+                  </button>
+                ))}
+              </div>
+            )}
+          </li>
+          <li className="navbar-item pd">Contact</li>
+        </ul>
+      </div>
+      <div className="navbar-right">
+        <img src={notification_icon} alt="Notifications" className="notification-icon" />
+        <img src={profile_icon} alt="Profile" className="profile-icon" />
+        <img src={search_icon} alt="Search" className="search-icon" />
+      </div>
+    </div>
   );
 };
 

@@ -20,6 +20,8 @@ import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
 import Lander from './Pages/Lander/Lander';
+import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
+import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
 function App() {
   return (
     <Router>
@@ -43,6 +45,7 @@ function App() {
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
         <Route path="/lander" element={<Lander/>}/>
+        <Route path="/ProgressReport" element={<ProgressReport/>}/>
 
 
       </Routes>

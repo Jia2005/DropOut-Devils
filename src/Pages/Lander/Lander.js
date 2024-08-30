@@ -1,68 +1,28 @@
 import React, { useState } from 'react';
-import './lander.css'; // Ensure you have CSS for styling
 import Navbar from './Components/Navbar/Navbar';
 import RoleSwitcher from './Components/RoleSwitcher';
+import ProgressReport from './Components/ProgressReport/ProgressReport';
+import ScheduleMeeting from './Components/ScheduleMeeting/ScheduleMeeting';
+import './lander.css';
 
 const Lander = () => {
-  const [role, setRole] = useState('student'); // Default role
-  const [theme, setTheme] = useState('light'); // Default theme
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
+  const [role, setRole] = useState('student');
+  const [selectedFeature, setSelectedFeature] = useState(''); 
+  const handleFeatureSelect = (feature) => {
+    setSelectedFeature(feature);
   };
 
-  const getSectionOptions = () => {
-    switch (role) {
-      case 'student':
-        return ['Learning Platform', 'Financial Support', 'Student Support', 'Dashboard'];
-      case 'parent':
-        return ['Learning Platform', 'Statistical Report', 'Parental Portal'];
-      case 'teacher':
-        return ['Learning Platform', 'Quiz Creation', 'Uploading of Study Material', 'Student Dashboard'];
-      case 'admin':
-        return ['Statistical Report', 'Manage Users', 'View and Approve Applications', 'Delete User'];
-      default:
-        return [];
-    }
-  };
+  return (
+    <div className={`container2 ${role === 'parent' ? 'parent-role' : ''}`}>
+      <Navbar role={role} onFeatureSelect={handleFeatureSelect} /> {}
+      <RoleSwitcher currentRole={role} onRoleChange={setRole} />
 
-  const handleSectionClick = (section) => {
-    alert('Clicked on: ' + section); // Placeholder for section click handling
-    setDropdownOpen(false);
-  };
-
-  return React.createElement(
-    'div',
-    { className: `container ${theme}` },
-    React.createElement(Navbar, { theme, setTheme, role }),
-    React.createElement(RoleSwitcher, { currentRole: role, onRoleChange: setRole }),
-    React.createElement(
-      'header',
-      null,
-      React.createElement(
-        'button',
-        { onClick: toggleDropdown, className: 'dropdown-toggle' },
-        'Sections'
-      ),
-      isDropdownOpen &&
-        React.createElement(
-          'div',
-          { className: 'dropdown-menu' },
-          getSectionOptions().map((section, index) =>
-            React.createElement(
-              'button',
-              { key: index, onClick: () => handleSectionClick(section) },
-              section
-            )
-          )
-        )
-    ),
-    React.createElement(
-      'main',
-      null,
-      React.createElement('p', null, 'Content for role: ' + role)
-    )
+      {role === 'parent' && selectedFeature === 'Schedule Meeting' ? (
+        <ScheduleMeeting />
+      ) : role === 'parent' ? (
+        <ProgressReport /> 
+      ) : null}
+    </div>
   );
 };
 
