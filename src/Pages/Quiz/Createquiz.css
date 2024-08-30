@@ -13,23 +13,27 @@
   color: #333;
 }
 
-.form-group {
+.heading {
+  margin: 0;
+}
+
+.form-group-2 {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form-group-2 label {
   display: block;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #444;
+  color: #000;
 }
 
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group input[type="time"],
-.form-group input[type="date"],
-.form-group select {
-  width: 91%;
+.form-group-2 input[type="text"],
+.form-group-2 input[type="number"],
+.form-group-2 input[type="time"],
+.form-group-2 input[type="date"],
+.form-group-2 select {
+  width: 86%;
   padding: 10px;
   font-size: 16px;
   border-radius: 6px;
@@ -129,4 +133,20 @@
 
 .delete-icon:hover {
   color: #c00; 
+}
+
+
+.option-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.option-group label {
+  margin-right: 10px; 
+  flex-shrink: 0; 
+}
+
+.option-group input {
+  flex: 1; 
 }

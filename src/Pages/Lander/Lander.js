@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './lander.css'; // Ensure you have CSS for styling
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar'
 import RoleSwitcher from './Components/RoleSwitcher';
+import './Lander.css';
 
 const Lander = () => {
-  const [role, setRole] = useState('student'); // Default role
-  const [theme, setTheme] = useState('light'); // Default theme
+  const [role, setRole] = useState('student');
+  const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -28,41 +28,32 @@ const Lander = () => {
   };
 
   const handleSectionClick = (section) => {
-    alert('Clicked on: ' + section); // Placeholder for section click handling
+    alert('Clicked on: ' + section);
     setDropdownOpen(false);
   };
 
-  return React.createElement(
-    'div',
-    { className: `container ${theme}` },
-    React.createElement(Navbar, { theme, setTheme, role }),
-    React.createElement(RoleSwitcher, { currentRole: role, onRoleChange: setRole }),
-    React.createElement(
-      'header',
-      null,
-      React.createElement(
-        'button',
-        { onClick: toggleDropdown, className: 'dropdown-toggle' },
-        'Sections'
-      ),
-      isDropdownOpen &&
-        React.createElement(
-          'div',
-          { className: 'dropdown-menu' },
-          getSectionOptions().map((section, index) =>
-            React.createElement(
-              'button',
-              { key: index, onClick: () => handleSectionClick(section) },
-              section
-            )
-          )
-        )
-    ),
-    React.createElement(
-      'main',
-      null,
-      React.createElement('p', null, 'Content for role: ' + role)
-    )
+  return (
+    <div className={`container2 ${theme}`}>
+      <Navbar theme={theme} setTheme={setTheme} role={role} />
+      <RoleSwitcher currentRole={role} onRoleChange={setRole} />
+      <header>
+        <button onClick={toggleDropdown} className="dropdown-toggle">
+          Sections
+        </button>
+        {isDropdownOpen && (
+          <div className="dropdown-menu">
+            {getSectionOptions().map((section, index) => (
+              <button key={index} onClick={() => handleSectionClick(section)}>
+                {section}
+              </button>
+            ))}
+          </div>
+        )}
+      </header>
+      <main>
+        <p>Content for role: {role}</p>
+      </main>
+    </div>
   );
 };
 

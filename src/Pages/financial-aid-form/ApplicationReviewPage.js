@@ -86,7 +86,7 @@ function ApplicationReviewPage() {
                         <p><strong>Grade:</strong> {selectedApplication.academic.grade}</p>
                         <p><strong>Year:</strong> {selectedApplication.academic.year}</p>
                         <p><strong>Income:</strong> {selectedApplication.financial.income}</p>
-                        <h3>Documents</h3>
+                        <h3 className="doc">Documents</h3>
                         {Object.keys(selectedApplication.documents).map((docName) => (
                             <div key={docName} className="document-item">
                                 <a href={selectedApplication.documents[docName].url} target="_blank" rel="noopener noreferrer">

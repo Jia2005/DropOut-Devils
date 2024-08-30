@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../../firebase'; // Adjust your Firebase storage import as needed
+import { storage } from '../../../../firebase'; 
 
 function ListPdfs() {
   const { classFolder } = useParams();

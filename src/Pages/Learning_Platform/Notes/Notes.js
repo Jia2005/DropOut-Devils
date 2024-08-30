@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, listAll } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Import your Firebase storage setup
+import { storage } from '../../../firebase';
 
 function Notes() {
   const [classFolder, setClassFolder] = useState('');
@@ -12,7 +12,7 @@ function Notes() {
   const [chapters, setChapters] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch the list of class folders from Firebase Storage
+
   useEffect(() => {
     const fetchClasses = async () => {
       const folderRef = ref(storage, 'learn_platform');
@@ -23,7 +23,6 @@ function Notes() {
     fetchClasses();
   }, []);
 
-  // Fetch the list of subject folders based on the selected class
   const handleClassChange = async (e) => {
     setClassFolder(e.target.value);
     setSubjectFolder('');
@@ -36,7 +35,6 @@ function Notes() {
     setSubjects(subjectNames);
   };
 
-  // Fetch the list of chapter folders based on the selected subject
   const handleSubjectChange = async (e) => {
     setSubjectFolder(e.target.value);
     setChapterFolder('');

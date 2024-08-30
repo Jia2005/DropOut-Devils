@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, listAll } from 'firebase/storage';
+
 import { storage } from '../../../firebase'; // Import your Firebase storage setup
 import './SubjectList.css';
+
+
+import { storage } from '../../../firebase'; 
+import './SubjectList.css'
 
 function SubjectList() {
   const [classFolder, setClassFolder] = useState('');
@@ -15,7 +20,6 @@ function SubjectList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the list of classes (folders in 'learn_platform')
     const fetchClasses = async () => {
       const classRef = ref(storage, 'learn_platform');
       const result = await listAll(classRef);
@@ -32,6 +36,7 @@ function SubjectList() {
     setSubjects([]);
     setChapters([]);
 
+
     if (!isReviewLecture) {
       // Fetch the list of subjects (subfolders in 'lec' within selected class)
       const lecRef = ref(storage, `learn_platform/${e.target.value}/lec`);
@@ -39,12 +44,19 @@ function SubjectList() {
       const subjectNames = result.prefixes.map((folder) => folder.name);
       setSubjects(subjectNames);
     }
+
+    const lecRef = ref(storage, `learn_platform/${e.target.value}/lec`);
+    const result = await listAll(lecRef);
+    const subjectNames = result.prefixes.map((folder) => folder.name);
+    setSubjects(subjectNames);
+
   };
 
   const handleSubjectChange = async (e) => {
     setSubjectFolder(e.target.value);
     setChapterFolder('');
     setChapters([]);
+
 
     if (!isReviewLecture) {
       // Fetch the list of chapters (subfolders in selected subject)
@@ -61,6 +73,12 @@ function SubjectList() {
     setChapterFolder('');
     setSubjects([]);
     setChapters([]);
+
+    const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/${e.target.value}`);
+    const result = await listAll(subjectRef);
+    const chapterNames = result.prefixes.map((folder) => folder.name);
+    setChapters(chapterNames);
+
   };
 
   const handleSubmit = (e) => {

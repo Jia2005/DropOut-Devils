@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, listAll } from 'firebase/storage';
-import { storage } from '../../../../firebase'; // Adjust your Firebase storage import as needed
+import { storage } from '../../../../firebase'; 
 
 function FormFolder() {
   const [classFolder, setClassFolder] = useState('');
@@ -9,7 +9,6 @@ function FormFolder() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the list of class folders from 'quizzes' in Firebase Storage
     const fetchClasses = async () => {
       const classRef = ref(storage, 'quizzes');
       const result = await listAll(classRef);

@@ -96,7 +96,7 @@ form textarea,select {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 97%;
+    width: 80%;
     transition: border-color 0.3s ease-in-out;
 }
 form input:focus, form textarea:focus {

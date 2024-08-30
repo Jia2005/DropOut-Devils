@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { storage } from '../../../../firebase'; // Import your Firebase storage setup
+import { storage } from '../../../../firebase'; 
 import { ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
 
 function UploadFile() {
@@ -12,7 +12,6 @@ function UploadFile() {
   const [classes, setClasses] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
 
-  // Fetch class folders from 'quizzes'
   useEffect(() => {
     const fetchClasses = async () => {
       const quizzesFolderRef = ref(storage, 'quizzes');
@@ -23,7 +22,6 @@ function UploadFile() {
     fetchClasses();
   }, []);
 
-  // Fetch quizzes from 'ans' folder within the selected class
   useEffect(() => {
     if (formData.class) {
       const fetchQuizzes = async () => {
@@ -49,14 +47,12 @@ function UploadFile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.file) {
-      // Create a storage reference with the path 'quizzes/class/ans/quiz/filename'
       const storageRef = ref(storage, `quizzes/${formData.class}/ans/${formData.quiz}/${formData.file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, formData.file);
 
       uploadTask.on(
         'state_changed',
         (snapshot) => {
-          // Optional: Track the progress of the upload
         },
         (error) => {
           console.error("File upload error: ", error);
@@ -64,7 +60,6 @@ function UploadFile() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
-            // Reset form data and file input
             setFormData({
               name: '',
               class: '',
