@@ -1,5 +1,6 @@
 import React, { useState } from 'react';  
 import './Navbar.css';   
+import { Navigate, useNavigate } from 'react-router-dom';
 import main_logo from '../../assets/main-logo.png';  
 import search_icon from '../../assets/search.png';  
 import notification_icon from '../../assets/notification.png';   
@@ -7,7 +8,7 @@ import profile_icon from '../../assets/profile.png';
 
 const Navbar = ({ role }) => {  
   const [isDropdownOpen, setDropdownOpen] = useState(false);  
-
+  const navigate = useNavigate();
   const toggleDropdown = () => {  
     setDropdownOpen(prevState => !prevState);  
   };  
@@ -57,7 +58,7 @@ const Navbar = ({ role }) => {
       </div>  
       <div className='navbar-right'>  
         <img src={notification_icon} alt='Notifications' className='notification-icon' />  
-        <img src={profile_icon} alt='Profile' className='profile-icon' />  
+        <img src={profile_icon} onClick={()=>{navigate('/profile');}} alt='Profile' className='profile-icon' />  
         <img src={search_icon} alt='Search' className='search-icon' />  
       </div>  
     </div>  
