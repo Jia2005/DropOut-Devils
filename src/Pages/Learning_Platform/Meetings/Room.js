@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
+import './Room.css'
 const Room = () =>{
     const { roomID } = useParams();
     const myMeeting = async(element) =>{
@@ -16,8 +17,8 @@ const Room = () =>{
         });
     }
     return(
-        <div className="room-page">
-            <div ref={myMeeting} />
+        <div >
+            <div ref={myMeeting} className="room-page"/>
         </div>
     )
 }

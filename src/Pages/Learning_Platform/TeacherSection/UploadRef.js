@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
+
+import { storage } from '../../../firebase'; // Adjust your Firebase storage import as needed
+import './Teachform.css'
+
 import { storage } from '../../../firebase'; 
 
 function UploadRef() {
@@ -72,6 +76,7 @@ function UploadRef() {
   };
 
   return (
+    <div className='thatform'>
     <form onSubmit={handlePdfUpload}>
       <label>
         Select Class:
@@ -141,6 +146,7 @@ function UploadRef() {
       <br />
       <button type="submit" disabled={!pdfFile}>Upload PDF</button>
     </form>
+    </div>
   );
 }
 
