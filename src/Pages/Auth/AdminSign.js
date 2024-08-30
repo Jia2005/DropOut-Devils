@@ -91,6 +91,7 @@ function AdminSign() {
         <div className="form-group">
           <label>Email:</label>
           <input
+            style={{ width:'100%' }}
             type="email"
             name="email"
             onChange={formik.handleChange}
@@ -133,6 +134,7 @@ function AdminSign() {
         <div className="form-group">
           <label>Name:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             name="name"
             onChange={formik.handleChange}
@@ -147,6 +149,7 @@ function AdminSign() {
         <div className="form-group">
           <label>Admin Code:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             name="adminCode"
             onChange={formik.handleChange}
