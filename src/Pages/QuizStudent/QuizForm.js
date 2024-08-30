@@ -240,7 +240,24 @@ function QuizFormPage() {
         <div className="submission-message">
           <h2>Thank you for submitting your responses!</h2>
           <p>Your score: {score} / {questions.length}</p>
-          <Pie data={chartData} />
+          <div className="pie-chart-container">
+            <Pie data={chartData} />
+          </div>
+          <h3>Correct Answers:</h3>
+          {questions.map((question, index) => (
+            <div key={index} className="question-block">
+              <div className="form-group">
+                <label>{`Q${question.questionNumber}. ${question.question}`}</label>
+                {question.options.map((option, oIndex) => (
+                  <div key={oIndex} className={`option-group ${oIndex === correctAnswers[index] ? 'correct' : ''}`}>
+                  <label htmlFor={`q${index}o${oIndex}`}>
+                    {option} {oIndex === correctAnswers[index] && '✔️'}
+                  </label>
+                </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
