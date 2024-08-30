@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from '../../firebase';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import './form.css';
-import { getAuth } from "firebase/auth";
 
 function Form() {
     const auth = getAuth();
-    const uid = auth.currentUser.uid;
+    const [uid, setUid] = useState(null);
     const [activeTab, setActiveTab] = useState("personal");
     const [formData, setFormData] = useState({
         personal: { name: '', dob: '', num: '', em: '', add: '' },
@@ -18,6 +18,19 @@ function Form() {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, user => {
+            if (user) {
+                setUid(user.uid);
+            } else {
+                // Redirect to login or handle unauthenticated state
+                console.log("User not logged in");
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
