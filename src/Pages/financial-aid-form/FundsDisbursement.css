@@ -60,10 +60,10 @@ th {
     background-color: #5e548e;
     color: white;
 }
-.review-details p,h3{
+.review-details p,.here{
     margin: 0 10vw 0 10vw;
 }
-.review-details p,h3{
+.review-details p,.here{
     text-align: justify;
     margin-bottom: 1vh;
 }
