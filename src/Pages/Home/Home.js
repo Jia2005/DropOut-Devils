@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import ErrorPage from './Unauth';
+import Lander from '../Lander/Lander';
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -33,14 +35,8 @@ function HomePage() {
 
   return (
     user
-      ? <div>
-          <h1>Welcome to the Home Page!</h1>
-          <p>This is the landing page after a successful login.</p>
-          <button onClick={handleSignOut}>Logout</button>
-        </div>
-      : <div>
-          hello u are unauthorized
-        </div>
+      ? <Lander/>
+      : <ErrorPage/>
   );
 }
 

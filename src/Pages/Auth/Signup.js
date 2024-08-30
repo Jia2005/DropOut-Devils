@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import './Auth.css';
 import { db } from '../../firebase';
+import { useNavigate, Link } from 'react-router-dom';
 
 const signUpUser = async (email, password) => {
   const auth = getAuth();
@@ -44,6 +45,7 @@ const checkChildEmailExists = async (childEmail) => {
 };
 
 function SignupPage() {
+  const navigate = useNavigate();
   const [role, setRole] = useState('student');
 
   const formik = useFormik({
@@ -107,6 +109,7 @@ function SignupPage() {
 
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
+          navigate('/home');
         })
         .catch(() => {
           alert('Username or password is incorrect');
