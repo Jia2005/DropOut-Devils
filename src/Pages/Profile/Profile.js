@@ -1,113 +1,105 @@
-import React, { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'; 
-import './Profile.css';
+import React, { useEffect, useState } from 'react';  
+import { getAuth, onAuthStateChanged } from 'firebase/auth';  
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';  
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
+import { faUserCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';   
+import './Profile.css';  
 
-const UserProfile = () => {
-  const auth = getAuth();
-  const db = getFirestore();
-  const storage = getStorage();
+const UserProfile = () => {  
+  const auth = getAuth();  
+  const db = getFirestore();  
+  const storage = getStorage();  
 
-  const [user, setUser] = useState(null);
-  const [profilePic, setProfilePic] = useState('');
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [role, setRole] = useState('');
-  const [file, setFile] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [user, setUser] = useState(null);  
+  const [profilePic, setProfilePic] = useState('');  
+  const [name, setName] = useState('');  
+  const [age, setAge] = useState('');  
+  const [email, setEmail] = useState('');  
+  const [phone, setPhone] = useState('');  
+  const [role, setRole] = useState(''); // This will be set based on user data, not editable  
+  const [file, setFile] = useState(null);  
+  const [isEditing, setIsEditing] = useState(false);  
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const userRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userRef);
+  useEffect(() => {  
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {  
+      if (user) {  
+        const userRef = doc(db, 'users', user.uid);  
+        const userDoc = await getDoc(userRef);  
 
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          setUser(user);
-          setName(userData.name);
-          setAge(userData.age);
-          setEmail(userData.email);
-          setPhone(userData.phone);
-          setRole(mapRole(userData.type));
+        if (userDoc.exists()) {  
+          const userData = userDoc.data();  
+          setUser(user);  
+          setName(userData.name);  
+          setAge(userData.age);  
+          setEmail(userData.email);  
+          setPhone(userData.phone);  
+          
+          // Set role based on the type  
+          setRole(mapRole(userData.type));  
 
-          if (userData.profilePic) {
-            const profilePicUrl = await getDownloadURL(ref(storage, `profile_pictures/${user.uid}`));
-            setProfilePic(profilePicUrl);
-          }
-        }
-      }
-    });
+          if (userData.profilePic) {  
+            const profilePicUrl = await getDownloadURL(ref(storage, `profile_pictures/${user.uid}`));  
+            setProfilePic(profilePicUrl);  
+          }  
+        }  
+      }  
+    });  
 
-    return () => unsubscribe();
-  }, [auth, db, storage]);
+    return () => unsubscribe();  
+  }, [auth, db, storage]);  
 
-  const mapRole = (roleNumber) => {
-    switch (roleNumber) {
-      case 1: return 'Student';
-      case 2: return 'Teacher';
-      case 3: return 'Parent';
-      case 4: return 'Admin';
-      default: return 'Unknown';
-    }
-  };
+  const mapRole = (roleNumber) => {  
+    switch (roleNumber) {  
+      case 1: return 'Student';  
+      case 2: return 'Teacher';  
+      case 3: return 'Parent';  
+      case 4: return 'Admin';  
+      default: return 'Unknown';  
+    }  
+  };  
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileChange = (e) => {  
+    setFile(e.target.files[0]);  
+  };  
 
-  const handleUpload = async () => {
-    if (file) {
-      const storageRef = ref(storage, `profile_pictures/${user.uid}`);
-      await uploadBytes(storageRef, file);
-      const profilePicUrl = await getDownloadURL(storageRef);
-      setProfilePic(profilePicUrl);
-      const userRef = doc(db, 'users', user.uid);
-      await updateDoc(userRef, { profilePic: profilePicUrl });
-    }
-  };
+  const handleUpload = async () => {  
+    if (file) {  
+      const storageRef = ref(storage, `profile_pictures/${user.uid}`);  
+      await uploadBytes(storageRef, file);  
+      const profilePicUrl = await getDownloadURL(storageRef);  
+      setProfilePic(profilePicUrl);  
+      const userRef = doc(db, 'users', user.uid);  
+      await updateDoc(userRef, { profilePic: profilePicUrl });  
+    }  
+  };  
 
-  const handleDeleteProfilePic = async () => {
-    if (profilePic) {
-      const storageRef = ref(storage, `profile_pictures/${user.uid}`);
-      await deleteObject(storageRef);
-      setProfilePic('');
+  const handleDeleteProfilePic = async () => {  
+    if (profilePic) {  
+      const storageRef = ref(storage, `profile_pictures/${user.uid}`);  
+      await deleteObject(storageRef);  
+      setProfilePic('');  
 
-      const userRef = doc(db, 'users', user.uid);
-      await updateDoc(userRef, { profilePic: '' });
-    }
-  };
+      const userRef = doc(db, 'users', user.uid);  
+      await updateDoc(userRef, { profilePic: '' });  
+    }  
+  };  
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
+  const handleEdit = () => {  
+    setIsEditing(true);  
+  };  
 
-  const handleSave = async () => {
-    const userRef = doc(db, 'users', user.uid);
-    await updateDoc(userRef, {
-      name,
-      age,
-      email,
+  const handleSave = async () => {  
+    const userRef = doc(db, 'users', user.uid);  
+    await updateDoc(userRef, {  
+      name,  
+      age,  
+      email,  
       phone,
-      role: mapRoleNumber(role) 
-    });
-    setIsEditing(false);
-  };
+    });  
+    setIsEditing(false);  
+  };  
 
-  const mapRoleNumber = (roleString) => {
-    switch (roleString) {
-      case 'Student': return 1;
-      case 'Teacher': return 2;
-      case 'Parent': return 3;
-      case 'Admin': return 4;
-      default: return 1;
-    }
-  };
 
   return (
     <div className="profile-container">
@@ -156,12 +148,7 @@ const UserProfile = () => {
             <p><strong>Phone No.:</strong> {isEditing ? <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} /> : phone}</p>
           </div>
           <div className="detail-block">
-            <p><strong>Role:</strong> {isEditing ? <select value={role} onChange={(e) => setRole(e.target.value)} >
-              <option value="Student">Student</option>
-              <option value="Teacher">Teacher</option>
-              <option value="Parent">Parent</option>
-              <option value="Admin">Admin</option>
-            </select> : role}</p>
+            <p><strong>Role:</strong> {role} </p>
           </div>
           <input type="file" onChange={handleFileChange} />
           <button onClick={handleUpload}>Upload Profile Picture</button>
