@@ -1,32 +1,6 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import RoleSwitcher from './Components/RoleSwitcher';
-import ProgressReport from './Components/ProgressReport/ProgressReport';
-import ScheduleMeeting from './Components/ScheduleMeeting/ScheduleMeeting';
-import './lander.css';
-
-const Lander = () => {
-  const [role, setRole] = useState('student');
-  const [selectedFeature, setSelectedFeature] = useState(''); 
-  const handleFeatureSelect = (feature) => {
-    setSelectedFeature(feature);
-  };
-
-  return (
-    <div className={`container2 ${role === 'parent' ? 'parent-role' : ''}`}>
-      <Navbar role={role} onFeatureSelect={handleFeatureSelect} /> {}
-      <RoleSwitcher currentRole={role} onRoleChange={setRole} />
-
-      {role === 'parent' && selectedFeature === 'Schedule Meeting' ? (
-        <ScheduleMeeting />
-      ) : role === 'parent' ? (
-        <ProgressReport /> 
-      ) : null}
-=======
 import React, { useState, useEffect } from 'react';
-import Navbar from './Components/Navbar/Navbar'
-import './Lander.css'
+import Navbar from './Components/Navbar/Navbar';
+import './Lander.css';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import Firebase Auth
 
@@ -118,7 +92,6 @@ const Lander = () => {
       <main>
         <p>Content for role: {role}</p>
       </main>
->>>>>>> 852204d24ca1c1a6d31bb98654164afd86bb3b38
     </div>
   );
 };
