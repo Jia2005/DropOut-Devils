@@ -1,0 +1,30 @@
+.panel{
+    
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;    
+}
+@media  (min-width: 1400px) {
+    .panel{
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+    
+}
+.panel h2{
+    background-color: #4a90e2;
+    font-size: 35px;
+    color: white;
+    
+}
+.panel ul {
+    padding: 5px;
+
+    text-align: center;
+    font-weight: bold;
+
+}

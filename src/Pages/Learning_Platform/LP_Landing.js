@@ -29,21 +29,13 @@ function LP_Landing() {
       </h3>
       </Link>
 
-      <Link to ="#">
+      <Link to ="/entermeet">
       <h3>
         Meetings
       </h3>  
       </Link>  
     </div>
-
-    
-      
-      
-
   </div>
-  
-  
-  
   )
 }
 

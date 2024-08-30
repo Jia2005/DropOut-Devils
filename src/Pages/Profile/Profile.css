@@ -1,0 +1,183 @@
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.sidebar {
+  width: 20%;
+  padding: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #ddd;
+}
+
+.profile-pic {
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.circular-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.delete-pic-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.delete-pic-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.1);
+}
+
+.profile-name {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #333;
+}
+
+.sidebar-divider {
+  margin: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-menu {
+  flex-grow: 1;
+  margin-top: 20px;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar-menu li i {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.sidebar-menu li a {
+  text-decoration: none;
+  color: #333;
+  flex-grow: 1;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  color: #007bff; 
+}
+
+.upload-image {
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+  transform: scale(1.03);
+}
+
+.profile-details {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.detail-block-container {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.detail-block {
+  margin-bottom: 15px;
+}
+
+.detail-block p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.save-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}

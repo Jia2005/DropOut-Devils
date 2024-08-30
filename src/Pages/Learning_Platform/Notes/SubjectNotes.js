@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase';
+import './SubjectNotes.css';
 
 function SubjectNotes() {
-  const { subjectFolder, chapterFolder } = useParams();
+  const { classFolder, subjectFolder, chapterFolder } = useParams();
   const [pdfLinks, setPdfLinks] = useState([]);
 
   useEffect(() => {
     const fetchPDFs = async () => {
-      const fullPath = `${subjectFolder}/${chapterFolder}`;
+      const fullPath = `learn_platform/${classFolder}/ref/${subjectFolder}/${chapterFolder}`;
       const folderRef = ref(storage, fullPath);
       const result = await listAll(folderRef);
       const links = await Promise.all(result.items.map(async (itemRef) => {
@@ -20,16 +21,16 @@ function SubjectNotes() {
     };
 
     fetchPDFs();
-  }, [subjectFolder, chapterFolder]);
+  }, [classFolder, subjectFolder, chapterFolder]);
 
   return (
-    <div>
-      <h2>PDFs in {subjectFolder}/{chapterFolder}</h2>
+    <div className='panel'>
+      <h2>PDFs available</h2>
       <ul>
         {pdfLinks.map((pdf) => (
           <li key={pdf.name}>
             <a href={pdf.url} download={pdf.name}>
-              <p>{pdf.name}</p>
+              {pdf.name}
             </a>
           </li>
         ))}

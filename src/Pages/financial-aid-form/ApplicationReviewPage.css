@@ -1,0 +1,101 @@
+.application-review-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.application-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.application-details {
+  width: 100%;
+  max-width: 600px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: left;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: #231942;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.document-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.status-dropdown {
+  padding: 5px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 150px; 
+}
+
+.status-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.final-status-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.final-status-button.approve {
+  background-color: #28a745;
+}
+
+.final-status-button.reject {
+  background-color: #dc3545;
+}
+
+.applications-list {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #5e548e;
+  color: white;
+}
+
+.view-button {
+  background-color: #231942;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

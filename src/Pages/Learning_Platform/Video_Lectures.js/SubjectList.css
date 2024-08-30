@@ -1,5 +1,40 @@
-h1{
-    text-align: center;
-    background: rgb(77, 2, 98);
-    margin-top: 0px;
+.allform form{
+    border-radius: 10px;
+    background-color: #F0F8FF;
+    margin-top: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    padding: 5px;
+}
+
+.allform select, option{
+    background-color: white;
+}
+
+.allform label{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@media  (min-width: 1400px) {
+    .allform{
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+}
+
+.allform button:disabled {
+    background-color: #7ea9da;
+    font-weight: bold;
+    
+}
+.allform button:enabled {
+    border: 2px solid #4a90e2;
+    color: #ffffff;
+    background-color: #4a90e2;
+    font-weight: bold;
+}
+.allform input {
+    background-color: white;
 }

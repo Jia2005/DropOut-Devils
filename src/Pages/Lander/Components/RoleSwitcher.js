@@ -1,5 +1,5 @@
 import React from 'react';
-import './RoleSwitcher.css'; // Ensure you have a CSS file for styling the role switcher
+import './RoleSwitcher.css'; 
 
 const RoleSwitcher = ({ currentRole, onRoleChange }) => {
   const roles = ['student', 'admin', 'parent', 'teacher'];

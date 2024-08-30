@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './Quizpage.css'
 function Quizzes() {
   return (
-    <div>
-      this is a quizzes page
+    <div className="panel">
+      <h2>Test Section</h2>
       <br/>
 
-      <Link to = '/viewqp'>Question papers</Link>
+      <Link to = '/viewqp'><button>Question papers</button></Link>
       <br/>
-      <Link to = '#'>MCQs</Link>
+      <Link to = '/studentquiz'><button>MCQs</button></Link>
       <br/>
-      <Link to = '/uploadanswer'>Answer a question paper</Link>
+      <Link to = '/uploadanswer'><button>Answer a question paper</button></Link>
+      <br/>
+      <br/>
     </div>
   )
 }
