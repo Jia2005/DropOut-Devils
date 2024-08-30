@@ -212,7 +212,7 @@ function QuizFormPage() {
             {questions.map((question, qIndex) => (
               <div key={qIndex} className="question-block">
                 <div className="form-group">
-                  <label>{`Q${question.questionNumber}. ${question.question}`}</label>
+                  <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
                   {question.options.map((option, oIndex) => (
                     <div key={oIndex} className={`option-group ${responses[qIndex] === oIndex ? 'selected' : ''}`}>
                       <div className="optionAndName">
