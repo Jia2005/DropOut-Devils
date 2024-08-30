@@ -1,57 +1,3 @@
-<<<<<<< HEAD
-.progress-report {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.subjects-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.subjects-table th, 
-.subjects-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-
-.subjects-table th {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.attendance {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.overall-grade {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.notes {
-  margin-bottom: 20px;
-}
-
-.grading-system {
-  margin-bottom: 20px;
-}
-=======
 /* src/ProgressReport.css */
 .progress-report {
     max-width: 100%;
@@ -101,4 +47,3 @@
     color: #555;
   }
   
->>>>>>> 852204d24ca1c1a6d31bb98654164afd86bb3b38

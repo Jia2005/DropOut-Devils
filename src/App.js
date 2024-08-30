@@ -21,11 +21,6 @@ import FormFolder from './Pages/Learning_Platform/Quizzes/ViewQP/FolderForm';
 import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
-<<<<<<< HEAD
-import Lander from './Pages/Lander/Lander';
-import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
-import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
-=======
 import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
 import Room from './Pages/Learning_Platform/Meetings/Room';
 import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLanding';
@@ -36,9 +31,9 @@ import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
 import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
+import LandingPage from './Pages/LandingPage/LandingPage';
 
 
->>>>>>> 852204d24ca1c1a6d31bb98654164afd86bb3b38
 function App() {
   return (
     <Router>
@@ -65,12 +60,6 @@ function App() {
         <Route path="/list-pdfs/:classFolder" element={<ListPdfs/>}/>
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
-<<<<<<< HEAD
-        <Route path="/lander" element={<Lander/>}/>
-        <Route path="/ProgressReport" element={<ProgressReport/>}/>
-
-
-=======
         <Route path="/entermeet" element={<EnterMeet/>}/>
         <Route path="/room/:roomID" element={<Room/>}/>
         <Route path="/teacherlanding" element={<TeacherLanding/>}/>
@@ -79,7 +68,7 @@ function App() {
         <Route path="/uploadqp" element={<UploadQP/>}/>
         <Route path="/getanspdf" element={<Getanspdf/>}/>
         <Route path="/progressreport" element={<ProgressReport/>}/>
->>>>>>> 852204d24ca1c1a6d31bb98654164afd86bb3b38
+        <Route path="/LandingPage" element={<LandingPage/>}/>
       </Routes>
     </Router>
   );
