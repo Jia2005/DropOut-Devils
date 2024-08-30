@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import './Lander.css';
+import Navbar from './Components/Navbar/Navbar'
+import './Lander.css'
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import Firebase Auth
 
