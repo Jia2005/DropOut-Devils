@@ -1,0 +1,49 @@
+/* src/ProgressReport.css */
+.progress-report {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .student-details, .marks-section, .remarks-section, .attendance-section {
+    margin-bottom: 20px;
+  }
+  
+  .student-details p {
+    font-size: 1.2em;
+    margin: 5px 0;
+  }
+  
+  .marks-section table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .marks-section th, .marks-section td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .marks-section th {
+    background-color: #f0f0f0;
+  }
+  
+  .remarks-section p {
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .attendance-section p {
+    font-size: 1.1em;
+    color: #555;
+  }
+  

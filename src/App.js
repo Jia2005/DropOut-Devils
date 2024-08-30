@@ -28,11 +28,10 @@ import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLand
 import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLecture';
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
 import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
-
 import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
-
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
+import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
 
 
 function App() {
@@ -68,17 +67,8 @@ function App() {
         <Route path="/createlecture" element={<CreateLecture/>}/>
         <Route path="/uploadref" element={<UploadRef/>}/>
         <Route path="/uploadqp" element={<UploadQP/>}/>
-
         <Route path="/getanspdf" element={<Getanspdf/>}/>
-
-
-
-
-
-
-
-
-
+        <Route path="/progressreport" element={<ProgressReport/>}/>
       </Routes>
     </Router>
   );

@@ -44,25 +44,7 @@ function LoginPage() {
   return (
     <div className="auth-container">
       <h2>Login</h2>
-
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-group">
-          <label>Role:</label>
-          <select
-            name="role"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.role}
-          >
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-            <option value="parent">Parent</option>
-            <option value="admin">Admin</option>
-          </select>
-          {formik.touched.role && formik.errors.role ? (
-            <div className="error">{formik.errors.role}</div>
-          ) : null}
-        </div>
 
         <div className="form-group">
           <label>Email:</label>

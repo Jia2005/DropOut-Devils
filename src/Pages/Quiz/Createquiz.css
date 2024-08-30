@@ -100,7 +100,7 @@
   background-color: #3e9a5d;
 }
 
-.submit-button {
+.submit-button2 {
   display: block;
   width: 100%;
   padding: 10px;
@@ -114,7 +114,7 @@
   margin-top: 30px;
 }
 
-.submit-button:hover {
+.submit-button2:hover {
   background-color: #357ab8;
 }
 
