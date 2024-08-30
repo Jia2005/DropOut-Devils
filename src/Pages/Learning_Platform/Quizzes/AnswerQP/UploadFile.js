@@ -79,6 +79,7 @@ function UploadFile() {
   };
 
   return (
+    <div className='allform'>
     <form onSubmit={handleSubmit}>
       
       <br />
@@ -113,6 +114,7 @@ function UploadFile() {
       <br />
       <button type="submit">Submit</button>
     </form>
+    </div>
   );
 }
 

@@ -29,10 +29,6 @@ h1{
 
 
 }
-
-.allform select{
-   
-}
 @media  (min-width: 1400px) {
     .allform{
         margin-left: 300px;
@@ -40,10 +36,7 @@ h1{
     }
     
 }
-.allform select:enabled:hover{
-    background-color: #4a90e2;
-    color: black;
-}
+
 .allform button:disabled{
     background-color: #7ea9da;
     font-weight: bold;
@@ -55,4 +48,7 @@ h1{
     color: #ffffff;
     background-color: #4a90e2;
     font-weight: bold;
+}
+.allform input{
+    background-color: white;
 }

@@ -34,6 +34,12 @@ function TeacherLanding() {
         Enter a class
       </h3>  
       </Link>  
+
+      <Link to ="/getanspdf">
+      <h3>
+        Download the answer sheets
+      </h3>  
+      </Link>  
     </div>
 
     
