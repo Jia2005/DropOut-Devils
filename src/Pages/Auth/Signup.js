@@ -96,7 +96,7 @@ function SignupPage() {
         const roleDetails = {
           student: { type: 1, name: values.name, grade: values.grade, email: values.email },
           teacher: { type: 2, name: values.name, subject: values.subject, email: values.email },
-          parent: { type: 3, name: values.name, childEmail: values.childEmail, parentEmail: values.email }
+          parent: { type: 3, name: values.name, childEmail: values.childEmail, email: values.email }
         };
 
         const details = roleDetails[values.role];
@@ -130,6 +130,7 @@ function SignupPage() {
         <div className="form-group">
           <label>Email:</label>
           <input
+            style={{ width:'100%' }}
             type="email"
             name="email"
             onChange={formik.handleChange}
@@ -190,6 +191,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Name:</label>
               <input
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -203,6 +205,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Grade:</label>
               <input
+                style={{ width:'100%' }}
                 type="text"
                 name="grade"
                 onChange={formik.handleChange}
@@ -221,6 +224,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Name:</label>
               <input
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -234,6 +238,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Subject:</label>
               <input
+                style={{ width:'100%' }}
                 type="text"
                 name="subject"
                 onChange={formik.handleChange}
@@ -252,6 +257,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Name:</label>
               <input
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -265,6 +271,7 @@ function SignupPage() {
             <div className="form-group">
               <label>Child's Email:</label>
               <input
+                style={{ width:'100%' }}
                 type="email"
                 name="childEmail"
                 onChange={formik.handleChange}
@@ -281,7 +288,7 @@ function SignupPage() {
         <button type="submit" className="btn">Signup</button>
 
         <div className="login-link">
-          <br />
+          <br></br>
           <p>Already have an account? <a href="/login">Log in</a></p>
         </div>
       </form>

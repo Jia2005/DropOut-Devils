@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Auth.css';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ function LoginPage() {
         <div className="form-group">
           <label>Email:</label>
           <input
+            style={{ width:'100%' }}
             type="email"
             name="email"
             onChange={formik.handleChange}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';  
-import { getAuth, onAuthStateChanged } from 'firebase/auth';  
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';  
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';  
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
@@ -59,6 +59,15 @@ const UserProfile = () => {
     }  
   };  
 
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      window.location.href = '/login';
+    }).catch((error) => {
+      alert('There are some server issues');
+    });
+  };
+
   const handleFileChange = (e) => {  
     setFile(e.target.files[0]);  
   };  
@@ -114,7 +123,7 @@ const UserProfile = () => {
                 </button>
               </>
             ) : (
-              <FontAwesomeIcon icon={faUserCircle} size="6x" />
+              <FontAwesomeIcon icon={faUserCircle} size="9x" />
             )}
           </div>
           <div className="profile-name">
@@ -129,7 +138,7 @@ const UserProfile = () => {
               <li className="center">Change Password</li>
             </ul>
           </div>
-          <button className="logout-button">Logout</button>
+          <button className="logout-button" onClick={handleSignOut}>Logout</button>
         </div>
       </div>
       <div className="profile-details">
