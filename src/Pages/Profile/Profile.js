@@ -159,7 +159,9 @@ const UserProfile = () => {
           <div className="detail-block">
             <p><strong>Role:</strong> {role} </p>
           </div>
+          <div className='upload-image'>
           <input type="file" onChange={handleFileChange} />
+          </div>
           <button onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
             <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>

@@ -7,8 +7,8 @@
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
   box-sizing: border-box;
-  
 }
 .QuesN
 .comment {
@@ -57,8 +57,6 @@
 
 .questions-form {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
 }
 
 .option-group {
@@ -66,23 +64,20 @@
   align-items: center;
   margin-bottom: 10px;
   padding: 8px;
-  
-  background-color: #ffffff;
   border-radius: 4px;
-  border: 1px solid #ccc;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .QuesNo{
   font-weight: bold;
   font-size: larger;
-  text-align: left;
+  margin-bottom: 20px;
 }
 .optionIs{
   font-size: large;
   font-weight: 400;
 }
 .option-group.selected {
-  background-color: #9cc2e4;
+  background-color: #9f86c0;
   color: #ffffff;
   border-color: #9f86c0;
 }
@@ -111,7 +106,7 @@
 
 .submit-button {
   display: block;
-  width: 30%;
+  width: 20%;
   align-self: center;
   padding: 12px;
   background-color: #357ab8;
@@ -122,12 +117,10 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.question-block{
-  align-self: center;
-  width: 800px;
-  
-}
 
+.submit-button:hover {
+  background-color: #5e548e;
+}
 
 .submission-message {
   text-align: center;
@@ -143,11 +136,7 @@
   font-size: 18px;
   color: #5e548e;
 }
-.questions-form{
-  width: 800px;
-  align-self: center;
-  display: flex;
-}
+
 .pie-chart-container {
   margin: 20px auto;
   width: 60%;
@@ -155,9 +144,7 @@
   justify-content: center;
   display: flex;
 }
-.form-group{
-  align-self: center;
-}
+
 .pie-chart-container canvas {
   max-width: 100%;
   width: 20vh;

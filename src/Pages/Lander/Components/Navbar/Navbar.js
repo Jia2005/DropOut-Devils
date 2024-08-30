@@ -16,7 +16,7 @@ const Navbar = ({ role }) => {
   const getSectionOptions = () => {  
     switch (role) {  
       case 'student':  
-        return ['Learning Platform', 'Financial Support', 'Student Support', 'Dashboard'];  
+        return ['Learning Platform', 'Financial Aid', 'Student Support', 'Dashboard'];  
       case 'parent':  
         return ['Learning Platform', 'Statistical Report', 'Parental Portal'];  
       case 'teacher':  
