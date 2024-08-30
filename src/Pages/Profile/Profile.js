@@ -17,7 +17,7 @@ const UserProfile = () => {
   const [age, setAge] = useState('');  
   const [email, setEmail] = useState('');  
   const [phone, setPhone] = useState('');  
-  const [role, setRole] = useState(''); // This will be set based on user data, not editable  
+  const [role, setRole] = useState('');  
   const [file, setFile] = useState(null);  
   const [isEditing, setIsEditing] = useState(false);  
 
