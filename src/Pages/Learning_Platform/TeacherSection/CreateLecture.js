@@ -60,7 +60,12 @@ function CreateLecture() {
       }
       basePath = `${basePath}/lec/${subjectFolder}/${chapterPath}`;
 
+    }
+    let chapterPath = chapterFolder;
+
+
     chapterPath = chapterFolder;
+
     if (newChapter) {
       chapterPath = newChapter;
 
@@ -79,10 +84,15 @@ function CreateLecture() {
 
     alert('Video and image uploaded successfully!');
   };
-
+  
   return (
+
+
+    <div className='allform'>
+
   <>  
     <div className='thisform'>
+
       <form onSubmit={handleUpload}>
         <label>
           Select Class:
@@ -174,7 +184,17 @@ function CreateLecture() {
         <br />
         <button type="submit" disabled={!videoFile || !imageFile}>Upload Lecture</button>
       </form>
+    
+
+
+   
     </div>
+    
+    
+
+  );
+
+}
 
     <form onSubmit={handleUpload}>
       <label>

@@ -56,7 +56,7 @@ function Getanspdf() {
   };
 
   return (
-    <div className="form-container">
+    <div className="allform">
       <form onSubmit={handleDownload}>
         <label>
           Select Class:
