@@ -33,6 +33,8 @@ import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
 
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
+import ReviewList from './Pages/Learning_Platform/Video_Lectures.js/ReviewList';
+import ReviewVideo from './Pages/Learning_Platform/Video_Lectures.js/ReviewVideo';
 
 
 function App() {
@@ -70,6 +72,9 @@ function App() {
         <Route path="/uploadqp" element={<UploadQP/>}/>
 
         <Route path="/getanspdf" element={<Getanspdf/>}/>
+        <Route path="/list-images/:classFolder/rev" element={<ReviewList/>}/>
+        <Route path="/play-review-video/:classFolder/:videoName" element={<ReviewVideo/>}/>
+
 
 
 

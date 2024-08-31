@@ -6,8 +6,6 @@ import { storage } from '../../../firebase'; // Import your Firebase storage set
 import './SubjectList.css';
 
 
-import { storage } from '../../../firebase'; 
-import './SubjectList.css'
 
 function SubjectList() {
   const [classFolder, setClassFolder] = useState('');
@@ -67,7 +65,7 @@ function SubjectList() {
     }
   };
 
-  const handleReviewLectureChange = (e) => {
+  const handleReviewLectureChange = async(e) => {
     setIsReviewLecture(e.target.value === 'true');
     setSubjectFolder('');
     setChapterFolder('');
