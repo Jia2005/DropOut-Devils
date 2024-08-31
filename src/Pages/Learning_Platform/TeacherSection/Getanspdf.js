@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Adjust your Firebase storage import as needed
+import { storage } from '../../../firebase'; 
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import './Getanspdf.css';
 
 function Getanspdf() {
   const [classFolder, setClassFolder] = useState('');
@@ -11,12 +12,15 @@ function Getanspdf() {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
-    // Fetch the list of class folders from 'quizzes' in Firebase Storage
     const fetchClasses = async () => {
-      const classRef = ref(storage, 'quizzes');
-      const result = await listAll(classRef);
-      const classNames = result.prefixes.map((folder) => folder.name);
-      setClasses(classNames);
+      try {
+        const classRef = ref(storage, 'quizzes');
+        const result = await listAll(classRef);
+        const classNames = result.prefixes.map((folder) => folder.name);
+        setClasses(classNames);
+      } catch (error) {
+        console.error('Error fetching classes:', error);
+      }
     };
     fetchClasses();
   }, []);
@@ -25,7 +29,6 @@ function Getanspdf() {
     setClassFolder(e.target.value);
     setQuizFolder('');
 
-    // Fetch the list of quiz folders within the selected class folder
     const quizRef = ref(storage, `quizzes/${e.target.value}/ans`);
     const result = await listAll(quizRef);
     const quizNames = result.prefixes.map((folder) => folder.name);
@@ -37,11 +40,9 @@ function Getanspdf() {
     const zip = new JSZip();
     const folderRef = ref(storage, `quizzes/${classFolder}/ans/${quizFolder}`);
 
-    // Fetch all the files within the selected quiz folder
     const result = await listAll(folderRef);
     const pdfFiles = result.items.filter((item) => item.name.endsWith('.pdf'));
 
-    // Download each PDF and add it to the ZIP file
     await Promise.all(
       pdfFiles.map(async (item) => {
         const fileURL = await getDownloadURL(item);
@@ -50,14 +51,13 @@ function Getanspdf() {
       })
     );
 
-    // Generate the ZIP file and trigger the download
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     saveAs(zipBlob, `${quizFolder}.zip`);
   };
 
   return (
-    <div className="allform">
-      <form onSubmit={handleDownload}>
+    <div className="get-anspdf-wrapper">
+      <form className="get-anspdf-form" onSubmit={handleDownload}>
         <label>
           Select Class:
           <select value={classFolder} onChange={handleClassChange} required>

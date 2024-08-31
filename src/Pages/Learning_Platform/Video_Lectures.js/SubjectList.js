@@ -95,11 +95,12 @@ function SubjectList() {
   };
 
   return (
-    <div className='subject-list-container'>
+    <div className='subject-list-wrapper'>
       <form onSubmit={handleSubmit} className='subject-list-form'>
-        <label>
-          Select Class:
+        <div className='form-group'>
+          <label htmlFor='class-select'>Select Class:</label>
           <select 
+            id='class-select'
             value={classFolder} 
             onChange={handleClassChange} 
             required
@@ -111,11 +112,12 @@ function SubjectList() {
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
-        <label>
-          Is this a Review Lecture?
+        <div className='form-group'>
+          <label htmlFor='review-lecture-select'>Is this a Review Lecture?</label>
           <select 
+            id='review-lecture-select'
             value={isReviewLecture} 
             onChange={handleReviewLectureChange} 
             required
@@ -123,13 +125,14 @@ function SubjectList() {
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
-        </label>
+        </div>
 
         {!isReviewLecture && (
           <>
-            <label>
-              Select Subject:
+            <div className='form-group'>
+              <label htmlFor='subject-select'>Select Subject:</label>
               <select 
+                id='subject-select'
                 value={subjectFolder} 
                 onChange={handleSubjectChange} 
                 required
@@ -142,11 +145,12 @@ function SubjectList() {
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label>
-              Select Chapter:
+            <div className='form-group'>
+              <label htmlFor='chapter-select'>Select Chapter:</label>
               <select 
+                id='chapter-select'
                 value={chapterFolder} 
                 onChange={(e) => setChapterFolder(e.target.value)} 
                 required
@@ -159,12 +163,12 @@ function SubjectList() {
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
           </>
         )}
 
         <button 
-          className='btn-subjectlist'
+          className='submit-button'
           type="submit" 
           disabled={!classFolder || (!isReviewLecture && (!subjectFolder || !chapterFolder))}
         >

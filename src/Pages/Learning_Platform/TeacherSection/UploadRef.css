@@ -1,4 +1,4 @@
-.subject-list-wrapper {
+.upload-ref-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
@@ -6,77 +6,61 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.subject-list-form {
+  }
+  
+  .upload-ref-form {
     display: flex;
     flex-direction: column;
-}
-
-.form-group {
+  }
+  
+  .upload-ref-form label {
     margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
     font-size: 16px;
-}
-
-.form-group select, 
-.submit-button {
+  }
+  
+  .upload-ref-form select, 
+  .upload-ref-form input[type="text"], 
+  .upload-ref-form input[type="file"], 
+  .upload-ref-form button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-}
-
-.form-group select {
+  }
+  
+  .upload-ref-form select {
     background-color: #ffffff;
-}
-
-.submit-button {
+  }
+  
+  .upload-ref-form input[type="text"] {
+    background-color: #ffffff;
+  }
+  
+  .upload-ref-form input[type="file"] {
+    border: none;
+  }
+  
+  .upload-ref-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
+    padding: 15px;
+  }
+  
+  .upload-ref-form button:hover {
     background-color: #45a049;
-}
-
-.option-padding {
+  }
+  
+  .upload-ref-form option {
     padding: 10px;
-}
-
-.content-list {
-    margin-top: 20px;
-}
-
-.content-list h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.content-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.content-list li {
-    margin-bottom: 10px;
-}
-
-.content-list a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-size: 16px;
-}
-
-.content-list a:hover {
-    text-decoration: underline;
-}
+  }
+  
+  .upload-ref-form .input-new-chapter {
+    margin-top: 10px;
+  }
+  

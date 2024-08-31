@@ -67,11 +67,12 @@ function Notes() {
   };
 
   return (
-    <div className='notes'>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Select Class Folder:
+    <div className='notes-wrapper'>
+      <form onSubmit={handleSubmit} className='notes-form'>
+        <div className='form-group'>
+          <label htmlFor='class-select'>Select Class Folder:</label>
           <select 
+            id='class-select'
             value={classFolder} 
             onChange={handleClassChange} 
             required
@@ -83,11 +84,12 @@ function Notes() {
               </option>
             ))}
           </select>
-        </label>
-        <br />
-        <label>
-          Select Subject Folder:
+        </div>
+
+        <div className='form-group'>
+          <label htmlFor='subject-select'>Select Subject Folder:</label>
           <select 
+            id='subject-select'
             value={subjectFolder} 
             onChange={handleSubjectChange} 
             required
@@ -100,11 +102,12 @@ function Notes() {
               </option>
             ))}
           </select>
-        </label>
-        <br />
-        <label>
-          Select Chapter Folder:
+        </div>
+
+        <div className='form-group'>
+          <label htmlFor='chapter-select'>Select Chapter Folder:</label>
           <select 
+            id='chapter-select'
             value={chapterFolder} 
             onChange={(e) => setChapterFolder(e.target.value)} 
             required
@@ -117,20 +120,24 @@ function Notes() {
               </option>
             ))}
           </select>
-        </label>
-        <br />
-        <button className='btn-notes' type="submit" disabled={!chapterFolder}>
+        </div>
+
+        <button 
+          className='submit-button'
+          type="submit" 
+          disabled={!chapterFolder}
+        >
           {isFetching ? 'Loading...' : 'Get PDFs'}
         </button>
       </form>
 
       {pdfLinks.length > 0 && (
         <div className='pdf-list'>
-          <br></br><h3>Available PDFs:</h3><br></br>
+          <h2 style={{textAlign:'left'}}>Available PDFs:</h2>
           <ul>
             {pdfLinks.map((pdf) => (
               <li key={pdf.name}>
-                <a href={pdf.url} download={pdf.name}>
+                <a style={{textAlign:'left', color:'black',fontSize:'16px'}} href={pdf.url} download={pdf.name}>
                   {pdf.name}
                 </a>
               </li>

@@ -23,7 +23,7 @@ import Room from './Pages/Learning_Platform/Meetings/Room';
 import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLanding';
 import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLecture';
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
-import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
+import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadPdf';
 import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';

@@ -10,39 +10,39 @@ function Quizzes() {
   const renderContent = () => {
     switch (activeTab) {
       case 'questionPapers':
-        return <FormFolder/>;
+        return <FormFolder />;
       case 'mcqs':
-        return <QuizFormPage/>
+        return <QuizFormPage />;
       case 'uploadAnswer':
-        return <UploadFile/>;
+        return <UploadFile />;
       default:
         return '';
     }
   };
 
   return (
-    <div className="container-quiz">
-      <div className="tabs2">
+    <div className="quiz-container">
+      <div className="quiz-tabs">
         <button
-          className={`tab ${activeTab === 'questionPapers' ? 'active' : ''}`}
+          className={`quiz-tab ${activeTab === 'questionPapers' ? 'active' : ''}`}
           onClick={() => setActiveTab('questionPapers')}
         >
           Question Papers
         </button>
         <button
-          className={`tab ${activeTab === 'mcqs' ? 'active' : ''}`}
+          className={`quiz-tab ${activeTab === 'mcqs' ? 'active' : ''}`}
           onClick={() => setActiveTab('mcqs')}
         >
           MCQs
         </button>
         <button
-          className={`tab ${activeTab === 'uploadAnswer' ? 'active' : ''}`}
+          className={`quiz-tab ${activeTab === 'uploadAnswer' ? 'active' : ''}`}
           onClick={() => setActiveTab('uploadAnswer')}
         >
           Answer a Question Paper
         </button>
       </div>
-      <div className="content-quiz">
+      <div className="quiz-content">
         {renderContent()}
       </div>
     </div>

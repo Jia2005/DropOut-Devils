@@ -20,6 +20,7 @@ const ScheduleMeeting = () => {
         <div className="form-group">
           <label htmlFor="date">Preferred Date:</label>
           <input
+            className='date'
             type="date"
             id="date"
             value={date}

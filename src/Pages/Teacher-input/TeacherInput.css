@@ -17,7 +17,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-button {
+.teacher-input button {
   margin: 0 10px;
   padding: 10px 20px;
   border: none;
@@ -27,7 +27,7 @@ button {
   cursor: pointer;
 }
 
-button.active {
+.teacher-input button.active {
   background-color: #0056b3;
 }
 

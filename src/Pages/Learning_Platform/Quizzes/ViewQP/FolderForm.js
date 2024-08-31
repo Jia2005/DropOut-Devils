@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../../firebase'; 
-import './FormFolder.css'; // Ensure you have a CSS file for styling
+import { storage } from '../../../../firebase';
+import './FolderForm.css'; // Ensure you have a CSS file for styling
 
 function FormFolder() {
   const [classFolder, setClassFolder] = useState('');
@@ -40,11 +40,11 @@ function FormFolder() {
   };
 
   return (
-    <div className='form-container'>
+    <div className='form-folder-container'>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label style={{textAlign:'left'}} className='form-folder-label'>
           Select Class:
-          <select className='selection-form'
+          <select className='class-selection'
             value={classFolder} 
             onChange={(e) => setClassFolder(e.target.value)} 
             required
@@ -58,17 +58,17 @@ function FormFolder() {
           </select>
         </label>
         <br />
-        <button className='btn-formfolder' type="submit" disabled={!classFolder}>Get PDFs</button>
+        <button className='submit-button' type="submit" disabled={!classFolder}>Get PDFs</button>
       </form>
 
       {showPdfs && (
-        <div className='pdf-list'>
-          <h2>PDFs in {`${classFolder}/QP`}</h2>
+        <div className='pdf-list-container'>
+          <h2 style={{textAlign:'left'}}>PDFs in {`${classFolder}/QP`}</h2>
           <ul>
             {pdfLinks.map((pdf) => (
               <li key={pdf.name}>
                 <a href={pdf.url} download={pdf.name}>
-                  <p>{pdf.name}</p>
+                  <p style={{textAlign:'left', color:'black',fontSize:'16px'}}>{pdf.name}</p>
                 </a>
               </li>
             ))}

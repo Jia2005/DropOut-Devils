@@ -1,51 +1,84 @@
-.notes {
+.notes-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 80%; 
+    max-width: 80%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  form {
+}
+
+.notes-form {
     display: flex;
     flex-direction: column;
-  }
-  
-  label {
-    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
     font-size: 16px;
-  }
-  
-  select, .btn-notes {
+    font-weight: bold;
+}
+
+.form-group select,
+.submit-button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-  }
-  
-  select {
+}
+
+.form-group select {
     background-color: #ffffff;
-  }
-  
-  .btn-notes {
+}
+
+.submit-button {
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s ease;
-    padding: 15px; /* Increased padding for the .btn-notes */
-  }
-  
-  .btn-notes:hover {
+    padding: 15px;
+}
+
+.submit-button:hover {
     background-color: #45a049;
-  }
-  
-  option {
+}
+
+.option-padding {
     padding: 10px;
-  }
-  
+}
+
+.pdf-list {
+    margin-top: 20px;
+}
+
+.pdf-list h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.pdf-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.pdf-list li {
+    margin-bottom: 10px;
+}
+
+.pdf-list a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-size: 16px;
+}
+
+.pdf-list a:hover {
+    text-decoration: underline;
+}

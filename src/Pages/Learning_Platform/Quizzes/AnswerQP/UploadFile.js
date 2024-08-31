@@ -79,7 +79,7 @@ function UploadFile() {
     <form onSubmit={handleSubmit}>
       
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Class:
         <select className='select-file' name="class" value={formData.class} onChange={handleChange} required>
           <option value="" disabled>Select Class</option>
@@ -91,7 +91,7 @@ function UploadFile() {
         </select>
       </label>
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Quiz Name:
         <select name="quiz" value={formData.quiz} onChange={handleChange} required>
           <option value="" disabled>Select Quiz</option>
@@ -103,7 +103,7 @@ function UploadFile() {
         </select>
       </label>
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Upload PDF:
         <input type="file" onChange={handleFileChange} accept="application/pdf" required />
       </label>

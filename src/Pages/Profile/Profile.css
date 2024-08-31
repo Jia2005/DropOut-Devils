@@ -193,6 +193,16 @@
   justify-content: center;
 }
 
+.upload-image-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #231942;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 .upload-image-btn:hover {
   background-color: #140e25;
   color: white;

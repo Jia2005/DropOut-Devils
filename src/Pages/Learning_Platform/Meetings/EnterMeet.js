@@ -28,7 +28,7 @@ const EnterMeet = () => {
         <div className='enter-meet'>
             <form onSubmit={handleFormSubmit} className='meet-form'>
                 <div>
-                    <label>Select Class </label>
+                    <label style={{fontWeight:"bold",fontSize:'16px'}}>Select Class </label>
                     <select 
                         value={roomCode} 
                         onChange={(e) => setRoomCode(e.target.value)} 
@@ -41,7 +41,7 @@ const EnterMeet = () => {
                             </option>
                         ))}
                     </select>
-                </div>
+                </div><br></br>
                 <button className="meet-button" type='submit'>Enter room</button>
             </form>
         </div>

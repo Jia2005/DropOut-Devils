@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase';
-import './VideoList.css'
+import './VideoList.css';
+
 function VideoList() {
   const { classFolder, subjectFolder, chapterFolder } = useParams();
   const [imageLinks, setImageLinks] = useState([]);
@@ -35,20 +36,17 @@ function VideoList() {
   };
   
   return (
-    <div className='panel'>
-      <h2>Videos Available</h2>
-      <ul>
+    <div className='video-list-container'>
+      <h2 className='video-list-header'>Videos Available</h2>
+      <ul className='video-list-items'>
         {imageLinks.map((image) => (
-          <li key={image.name}>
-           
+          <li key={image.name} className='video-list-item'>
             <img 
               src={image.url} 
               alt={image.name} 
-              style={{ width: '300px', height: 'auto', cursor: 'pointer' }} 
               onClick={() => handleImageClick(image.name)} 
             />
             <p>Name: {image.name.split('.')[0]}</p>
-             
           </li>
         ))}
       </ul>

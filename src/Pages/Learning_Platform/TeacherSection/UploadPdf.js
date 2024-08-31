@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
 import { storage } from '../../../firebase'; 
+import './UploadPdf.css';
 
 function UploadPdf() {
   const [classFolder, setClassFolder] = useState('');
@@ -56,32 +57,32 @@ function UploadPdf() {
   };
 
   return (
-    <div className='allform'>
-    <form onSubmit={handlePdfUpload}>
-      <label>
-        Select Class:
-        <select value={classFolder} onChange={handleClassChange} required>
-          <option value="" disabled>Select Class</option>
-          {classes.map((className) => (
-            <option key={className} value={className}>
-              {className}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Upload PDF:
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={(e) => setPdfFile(e.target.files[0])}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit" disabled={!pdfFile}>Upload PDF</button>
-    </form>
+    <div className='upload-pdf-wrapper'>
+      <form className='upload-pdf-form' onSubmit={handlePdfUpload}>
+        <label>
+          Select Class:
+          <select value={classFolder} onChange={handleClassChange} required>
+            <option value="" disabled>Select Class</option>
+            {classes.map((className) => (
+              <option key={className} value={className}>
+                {className}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Upload PDF:
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={(e) => setPdfFile(e.target.files[0])}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit" disabled={!pdfFile}>Upload PDF</button>
+      </form>
     </div>
   );
 }

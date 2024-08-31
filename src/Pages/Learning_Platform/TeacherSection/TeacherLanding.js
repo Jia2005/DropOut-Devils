@@ -3,7 +3,7 @@ import './TeacherLanding.css';
 import CreateLecture from './CreateLecture';
 import UploadRef from './UploadRef';
 import EnterMeet from '../Meetings/EnterMeet';
-import UploadPdf from './UploadQP';
+import UploadPdf from './UploadPdf';
 import Getanspdf from './Getanspdf';
 
 function TeacherLanding() {
