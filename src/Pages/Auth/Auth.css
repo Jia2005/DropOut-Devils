@@ -23,7 +23,7 @@ label {
   margin-bottom: 5px;
 }
 
-input, select {
+.takeInput, select {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;

@@ -105,6 +105,14 @@
   color: #007bff; 
 }
 
+.upload-image {
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
 .logout-button {
   padding: 10px 20px;
   background-color: #dc3545;
@@ -113,7 +121,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end;
+  align-self: center;
 }
 
 .logout-button:hover {
@@ -172,4 +180,9 @@
 
 .save-button:hover {
   background-color: #218838;
+}
+
+.log {
+  display: flex;
+  justify-content: center;
 }

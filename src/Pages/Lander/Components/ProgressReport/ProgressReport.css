@@ -1,0 +1,126 @@
+.progress-report {
+  max-width: 90%;
+  padding: 20px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  margin-top: 20px;
+  color: #34495e;
+  font-size: 1.75rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+Link {
+  text-decoration: none;
+}
+
+p {
+  margin: 10px 0;
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+strong {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.subjects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.subject-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  flex: 1 1 calc(50% - 20px);
+  margin-bottom: 20px;
+}
+
+.subject-card h3 {
+  color: #2c3e50;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.subject-card p {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.attendance-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.attendance-summary {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.attendance-summary-container {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3vh;
+}
+
+.chart-container {
+  flex: 1;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .progress-report {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .subject-card {
+    flex: 1 1 100%;
+  }
+
+  .attendance-summary-container {
+    flex-direction: column;
+  }
+
+  .attendance-summary, .chart-container {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+}

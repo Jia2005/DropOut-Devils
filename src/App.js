@@ -7,7 +7,6 @@ import SignupPage from './Pages/Auth/Signup';
 import HomePage from './Pages/Home/Home';
 import QuizFormPage from './Pages/QuizStudent/QuizForm';
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
-import FundsDisbursement from './Pages/financial-aid-form/FundsDisbursement';
 import ApplicationReviewPage from './Pages/financial-aid-form/ApplicationReviewPage';
 import { app } from './firebase';
 import Main from './main';
@@ -23,34 +22,42 @@ import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
 import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
 import Room from './Pages/Learning_Platform/Meetings/Room';
-import Lander from './Pages/Lander/Lander';
 import TeacherLanding from './Pages/Learning_Platform/TeacherSection/TeacherLanding';
 import CreateLecture from './Pages/Learning_Platform/TeacherSection/CreateLecture';
 import UploadRef from './Pages/Learning_Platform/TeacherSection/UploadRef';
 import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
-
 import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
-
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
+
 import ReviewList from './Pages/Learning_Platform/Video_Lectures.js/ReviewList';
 import ReviewVideo from './Pages/Learning_Platform/Video_Lectures.js/ReviewVideo';
 
+import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
+import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
+import LandingPage from './Pages/LandingPage/LandingPage';
+import TeacherInput from './Pages/Teacher-input/TeacherInput';
+import FundsDisbursementPage from './Pages/financial-aid-form/FundsDisbursement';
+
+
 
 function App() {
+
+  const [component, setComponent] = useState('');
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/trackYourApplication" element={<TrackYourApplication />} />
-        <Route path="/Funds" element={<FundsDisbursement />} />
+        <Route path="/Funds" element={<FundsDisbursementPage />} />
         <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/adminsign' element={<AdminSign/>}/>
-        <Route path='/profile' element={<UserProfile/>}/>
-        <Route path="/home" element={<HomePage/>}/>
+        <Route path='/profile' element={<UserProfile setComponent={setComponent}/>}/>
+        <Route path="/home" element={<HomePage component={component} setComponent={setComponent}/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
         <Route path="/studentquiz" element={<QuizFormPage/>}/>
         <Route path="/learnplatform" element={<LP_Landing/>}/>
@@ -65,13 +72,12 @@ function App() {
         <Route path="/quizsec" element={<Quizzes/>}/>
         <Route path="/entermeet" element={<EnterMeet/>}/>
         <Route path="/room/:roomID" element={<Room/>}/>
-        <Route path="/lander" element={<Lander/>}/>
         <Route path="/teacherlanding" element={<TeacherLanding/>}/>
         <Route path="/createlecture" element={<CreateLecture/>}/>
         <Route path="/uploadref" element={<UploadRef/>}/>
         <Route path="/uploadqp" element={<UploadQP/>}/>
-
         <Route path="/getanspdf" element={<Getanspdf/>}/>
+
         <Route path="/list-images/:classFolder/rev" element={<ReviewList/>}/>
         <Route path="/play-review-video/:classFolder/:videoName" element={<ReviewVideo/>}/>
 
@@ -83,6 +89,12 @@ function App() {
 
 
 
+
+
+        <Route path="/progressreport" element={<ProgressReport/>}/>
+        <Route path="/lander" element={<LandingPage/>}/>
+        <Route path="/schedulemeet" element={<ScheduleMeeting/>}/>
+        <Route path="/teacherinput" element={<TeacherInput/>}/>
 
       </Routes>
     </Router>

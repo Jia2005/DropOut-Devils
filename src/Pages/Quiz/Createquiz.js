@@ -13,58 +13,47 @@ function CreateQuizPage() {
   const [questions, setQuestions] = useState([]);
   const [submissionDate, setSubmissionDate] = useState('');
   const [submissionTime, setSubmissionTime] = useState('');
-
   const handleDeleteQuestion = (questionIndex) => {
     const newQuestions = [...questions];
     newQuestions.splice(questionIndex, 1);
     setQuestions(newQuestions);
   };
-
   const handleDeleteOption = (questionIndex, optionIndex) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].options.splice(optionIndex, 1);
     setQuestions(newQuestions);
   };
-
   const handleAddQuestion = () => {
     setQuestions([
       ...questions,
       { question: '', options: [], correctAnswer: '' },
     ]);
   };
-
   const handleQuestionChange = (index, value) => {
     const newQuestions = [...questions];
     newQuestions[index].question = value;
     setQuestions(newQuestions);
   };
-
   const handleAddOption = (questionIndex) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].options.push('');
     setQuestions(newQuestions);
   };
-
   const handleOptionChange = (questionIndex, optionIndex, value) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].options[optionIndex] = value;
     setQuestions(newQuestions);
   };
-
   const handleCorrectAnswerChange = (questionIndex, value) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].correctAnswer = value;
     setQuestions(newQuestions);
   };
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const quizDocRef = doc(collection(db, 'quizzes'));
       const quizId = quizDocRef.id;
-
       await setDoc(quizDocRef, {
         quizId: quizId,
         quizName,
@@ -104,8 +93,6 @@ function CreateQuizPage() {
       window.alert('Error occurred while submitting the quiz.');
     }
   };
-  
-
   return (
     <div className="create-quiz-container">
       <h2>Create Quiz</h2>
@@ -113,6 +100,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Quiz Name:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={quizName}
             onChange={(e) => setQuizName(e.target.value)}
@@ -122,6 +110,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Subject Name:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -131,6 +120,7 @@ function CreateQuizPage() {
         <div className="form-group">
           <label>Grade:</label>
           <input
+            style={{ width:'100%' }}
             type="text"
             value={grade}
             onChange={(e) => setGrade(e.target.value)}
@@ -158,7 +148,7 @@ function CreateQuizPage() {
                 </button>
               </div>
               {question.options.map((option, oIndex) => (
-                <div key={oIndex} className="option-group">
+                <div key={oIndex} className="option-group2">
                   <label>Option {oIndex + 1}:</label>
                   <input
                     type="text"
@@ -184,7 +174,7 @@ function CreateQuizPage() {
               >
                 Add Option
               </button><br></br><br></br>
-              <div className="form-group">
+              <div className="form-group" style={{ width:'85%' }}>
                 <label>Correct Answer:</label>
                 <select
                   value={question.correctAnswer}
@@ -208,24 +198,25 @@ function CreateQuizPage() {
         <div className="form-group-2">
           <label>Quiz should be submitted by:</label>
           <input
+            style={{ width:'100%' }}
             type="date"
             value={submissionDate}
             onChange={(e) => setSubmissionDate(e.target.value)}
             required
           />
           <input
+            style={{ width:'100%' }}
             type="time"
             value={submissionTime}
             onChange={(e) => setSubmissionTime(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button2">
           Upload Quiz
         </button>
       </form>
     </div>
   );
 }
-
 export default CreateQuizPage;

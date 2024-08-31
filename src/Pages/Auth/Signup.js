@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import './Auth.css';
 import { db } from '../../firebase';
+import { useNavigate, Link } from 'react-router-dom';
 
 const signUpUser = async (email, password) => {
   const auth = getAuth();
@@ -44,6 +45,7 @@ const checkChildEmailExists = async (childEmail) => {
 };
 
 function SignupPage() {
+  const navigate = useNavigate();
   const [role, setRole] = useState('student');
 
   const formik = useFormik({
@@ -96,7 +98,7 @@ function SignupPage() {
         const roleDetails = {
           student: { type: 1, name: values.name, grade: values.grade, email: values.email },
           teacher: { type: 2, name: values.name, subject: values.subject, email: values.email },
-          parent: { type: 3, name: values.name, childEmail: values.childEmail, parentEmail: values.email }
+          parent: { type: 3, name: values.name, childEmail: values.childEmail, email: values.email }
         };
 
         const details = roleDetails[values.role];
@@ -107,6 +109,7 @@ function SignupPage() {
 
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
+          navigate('/home');
         })
         .catch(() => {
           alert('Username or password is incorrect');
@@ -129,7 +132,8 @@ function SignupPage() {
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
-          <input
+          <input className='takeInput'
+            style={{ width:'100%' }}
             type="email"
             name="email"
             onChange={formik.handleChange}
@@ -143,7 +147,7 @@ function SignupPage() {
 
         <div className="form-group">
           <label>Password:</label>
-          <input
+          <input className='takeInput'
             type="password"
             name="password"
             onChange={formik.handleChange}
@@ -157,7 +161,7 @@ function SignupPage() {
 
         <div className="form-group">
           <label>Confirm Password:</label>
-          <input
+          <input className='takeInput'
             type="password"
             name="confirmPassword"
             onChange={formik.handleChange}
@@ -189,7 +193,8 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -202,7 +207,8 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Grade:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="text"
                 name="grade"
                 onChange={formik.handleChange}
@@ -220,7 +226,8 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -233,7 +240,8 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Subject:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="text"
                 name="subject"
                 onChange={formik.handleChange}
@@ -251,7 +259,8 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -264,7 +273,8 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Child's Email:</label>
-              <input
+              <input className='takeInput'
+                style={{ width:'100%' }}
                 type="email"
                 name="childEmail"
                 onChange={formik.handleChange}
@@ -281,7 +291,7 @@ function SignupPage() {
         <button type="submit" className="btn">Signup</button>
 
         <div className="login-link">
-          <br />
+          <br></br>
           <p>Already have an account? <a href="/login">Log in</a></p>
         </div>
       </form>
