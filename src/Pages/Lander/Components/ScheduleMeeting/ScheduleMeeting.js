@@ -1,9 +1,10 @@
-// src/components/ScheduleMeeting/ScheduleMeeting.js
-
 import React, { useState } from 'react';
 import './ScheduleMeeting.css';
 
 const ScheduleMeeting = () => {
+  const [role, setRole] = useState('parent');
+  const [theme, setTheme] = useState('light');
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState(''); // State for time slot
 

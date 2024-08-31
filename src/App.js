@@ -7,7 +7,6 @@ import SignupPage from './Pages/Auth/Signup';
 import HomePage from './Pages/Home/Home';
 import QuizFormPage from './Pages/QuizStudent/QuizForm';
 import TrackYourApplication from './Pages/financial-aid-form/trackYourApplication';
-import FundsDisbursement from './Pages/financial-aid-form/FundsDisbursement';
 import ApplicationReviewPage from './Pages/financial-aid-form/ApplicationReviewPage';
 import { app } from './firebase';
 import Main from './main';
@@ -33,22 +32,27 @@ import UserProfile from './Pages/Profile/Profile';
 import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
 import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
 import LandingPage from './Pages/LandingPage/LandingPage';
+import TeacherInput from './Pages/Teacher-input/TeacherInput';
+import FundsDisbursementPage from './Pages/financial-aid-form/FundsDisbursement';
 
 
 function App() {
+
+  const [component, setComponent] = useState('');
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path="/trackYourApplication" element={<TrackYourApplication />} />
-        <Route path="/Funds" element={<FundsDisbursement />} />
+        <Route path="/Funds" element={<FundsDisbursementPage />} />
         <Route path="/applicationReview" element={<ApplicationReviewPage />} />
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/adminsign' element={<AdminSign/>}/>
-        <Route path='/profile' element={<UserProfile/>}/>
-        <Route path="/home" element={<HomePage/>}/>
+        <Route path='/profile' element={<UserProfile setComponent={setComponent}/>}/>
+        <Route path="/home" element={<HomePage component={component} setComponent={setComponent}/>}/>
         <Route path="/quiz" element={<CreateQuizPage/>}/>
         <Route path="/studentquiz" element={<QuizFormPage/>}/>
         <Route path="/learnplatform" element={<LP_Landing/>}/>
@@ -69,7 +73,9 @@ function App() {
         <Route path="/uploadqp" element={<UploadQP/>}/>
         <Route path="/getanspdf" element={<Getanspdf/>}/>
         <Route path="/progressreport" element={<ProgressReport/>}/>
-        <Route path="LandingPage" element={<LandingPage/>}/>
+        <Route path="/lander" element={<LandingPage/>}/>
+        <Route path="/schedulemeet" element={<ScheduleMeeting/>}/>
+        <Route path="/teacherinput" element={<TeacherInput/>}/>
       </Routes>
     </Router>
   );

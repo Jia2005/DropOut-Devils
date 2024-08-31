@@ -3,7 +3,7 @@ import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 import ErrorPage from './Unauth';
 import Lander from '../Lander/Lander';
 
-function HomePage() {
+function HomePage({component,setComponent}) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -35,7 +35,7 @@ function HomePage() {
 
   return (
     user
-      ? <Lander/>
+      ? <Lander component={component} setComponent={setComponent}/>
       : <ErrorPage/>
   );
 }

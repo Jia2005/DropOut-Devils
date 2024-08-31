@@ -4,11 +4,11 @@ import './Lander.css';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import Firebase Auth
 
-const Lander = () => {
+const Lander = ({component,setComponent}) => {
   const [role, setRole] = useState('');
   const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
+  
   // Firestore and Auth initialization
   const db = getFirestore();
   const auth = getAuth();
@@ -72,13 +72,25 @@ const Lander = () => {
     setDropdownOpen(false);
   };
 
+  const getRoleContent = () => {
+    switch (role) {
+      case 'student':
+        return <p>Welcome, Student! Here you can access your learning materials, check financial aid options, and get support.</p>;
+      case 'parent':
+        return <p>Welcome, Parent! You can view your child's progress, access reports, and use the parental portal.</p>;
+      case 'teacher':
+        return <p>Welcome, Teacher! Manage your quizzes, upload study materials, and monitor student dashboards.</p>;
+      case 'admin':
+        return <p>Welcome, Admin! Manage users, view reports, and approve or delete applications.</p>;
+      default:
+        return <p>Loading content...</p>;
+    }
+  };
+
   return (
     <div className={`container2 ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme} role={role} />
+      <Navbar theme={theme} setTheme={setTheme} role={role} setComponent={setComponent} />
       <header>
-        <button onClick={toggleDropdown} className="dropdown-toggle">
-          Sections
-        </button>
         {isDropdownOpen && (
           <div className="dropdown-menu">
             {getSectionOptions().map((section, index) => (
@@ -88,9 +100,9 @@ const Lander = () => {
             ))}
           </div>
         )}
-      </header>
+      </header><br></br>
       <main>
-        <p>Content for role: {role}</p>
+        {component}
       </main>
     </div>
   );

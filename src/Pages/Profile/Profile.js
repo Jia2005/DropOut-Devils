@@ -6,8 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';   
 import './Profile.css';  
 import { Link } from 'react-router-dom';
+import LP_Landing from '../Learning_Platform/LP_Landing';
+import Form from '../financial-aid-form/form';
+import TrackYourApplication from '../financial-aid-form/trackYourApplication';
+import CreateQuizPage from '../Quiz/Createquiz';
+import TeacherLanding from '../Learning_Platform/TeacherSection/TeacherLanding';
+import ProgressReport from '../Lander/Components/ProgressReport/ProgressReport';
+import ScheduleMeeting from '../Lander/Components/ScheduleMeeting/ScheduleMeeting';
+import ApplicationReviewPage from '../financial-aid-form/ApplicationReviewPage';
+import FundsDisbursementPage from '../financial-aid-form/FundsDisbursement';
+import TeacherInput from '../Teacher-input/TeacherInput';
 
-const UserProfile = () => {  
+const UserProfile = ({setComponent}) => {  
   const auth = getAuth();  
   const db = getFirestore();  
   const storage = getStorage();  
@@ -20,7 +30,86 @@ const UserProfile = () => {
   const [phone, setPhone] = useState('');  
   const [role, setRole] = useState('');  
   const [file, setFile] = useState(null);  
-  const [isEditing, setIsEditing] = useState(false);  
+  const [isEditing, setIsEditing] = useState(false); 
+  const [selectedComponent, setSelectedComponent] = useState('Home');
+
+  const handleMenuClick = (componentName) => {
+    setSelectedComponent(componentName);
+  };
+
+  const renderSelectedComponent = (component) => {
+    switch (component) {
+      case 'LP_Landing':
+        return <LP_Landing />;
+      case 'Financial Aid':
+        return <Form/>
+      case 'TrackYourApplication':
+        return <TrackYourApplication />;
+      case 'CreateQuizPage':
+        return <CreateQuizPage />;
+      case 'TeacherLanding':
+        return <TeacherLanding />;
+      case 'TeacherInput':
+        return <TeacherInput/>;
+      case 'ProgressReport':
+        return <ProgressReport />;
+      case 'ScheduleMeeting':
+        return <ScheduleMeeting />;
+      case 'ApplicationReviewPage':
+        return <ApplicationReviewPage />;
+      case 'FundsDisbursementPage':
+        return <FundsDisbursementPage />;
+      default:
+        return <div>Home</div>;
+
+    }
+  };
+
+  const renderSidebarMenu = () => {
+    const menuItems = {
+      Student: [
+        { text: 'Home', component: '' },
+        { text: 'Learning Platform', component: 'LP_Landing' },
+        { text: 'Financial Aid', component: 'Financial Aid' }, // Form component heres
+        { text: 'Track Your Application', component: 'TrackYourApplication' },
+        { text: 'Dashboard', component: '' },
+        { text: 'Change Password', component: '' },
+      ],
+      Teacher: [
+        { text: 'Home', component: '' },
+        { text: 'Learning Platform', component: 'TeacherLanding' },
+        { text: 'Quiz Creation', component: 'CreateQuizPage' },
+        { text: 'Create Student Report', component: 'TeacherInput' },
+        { text: 'Change Password', component: '' },
+      ],
+      Parent: [
+        { text: 'Home', component: '' },
+        { text: 'Learning Platform', component: 'LP_Landing' },
+        { text: 'Progress Report', component: 'ProgressReport' },
+        { text: 'Interact with Teacher', component: 'ScheduleMeeting' },
+        { text: 'Change Password', component: '' },
+      ],
+      Admin: [
+        { text: 'Home', component: '' },
+        { text: 'Statistical Report', component: '' },
+        { text: 'Manage Users', component: '' },
+        { text: 'View and Approve Applications', component: 'ApplicationReviewPage' },
+        { text: 'Approve Funds', component: 'FundsDisbursementPage' },
+        { text: 'Delete User', component: '' },
+        { text: 'Change Password', component: '' },
+      ]
+    };
+  
+    return (
+      <ul>
+        {menuItems[role]?.map((item, index) => (
+          <li key={index} className="center" onClick={() => setComponent(renderSelectedComponent(item.component))}>
+            <Link to="/home">{item.text}</Link>
+          </li>
+        )) || <li className="center">Home</li>}
+      </ul>
+    );
+  };
 
   useEffect(() => {  
     const unsubscribe = onAuthStateChanged(auth, async (user) => {  
@@ -109,55 +198,55 @@ const UserProfile = () => {
     setIsEditing(false);  
   };  
 
-  const renderSidebarMenu = () => {
-    switch (role) {
-      case 'Student':
-        return (
-          <ul>
-            <li className="center"><Link to="/home">Home</Link></li>
-            <li className="center"><Link to="/learnplatform">Learning Platform</Link></li>
-            <li className="center"><Link to="/form">Financial Aid</Link></li>
-            <li className="center"><Link to="/trackYourApplication">Track Your Application</Link></li>
-            <li className="center"><Link to="/">Dashboard</Link></li>
-            <li className="center"><Link to="/">Change Password</Link></li>
-          </ul>
-        );
-      case 'Teacher':
-        return (
-          <ul>
-            <li className="center"><Link to="/home">Home</Link></li>
-            <li className="center"><Link to="/teacherlanding">Learning Platform</Link></li>
-            <li className="center"><Link to="/quiz">Quiz Creation</Link></li>
-            <li className="center"><Link to="/">Student Dashboard</Link></li>
-            <li className="center"><Link to="/">Change Password</Link></li>
-          </ul>
-        );
-      case 'Parent':
-        return (
-          <ul>
-            <li className="center"><Link to="/home">Home</Link></li>
-            <li className="center"><Link to="/learnplatform">Learning Platform</Link></li>
-            <li className="center"><Link to="/progressreport">Progress Report</Link></li>
-            <li className="center"><Link to="/">Parental Portal</Link></li>
-            <li className="center"><Link to="/">Change Password</Link></li>
-          </ul>
-        );
-      case 'Admin':
-        return (
-          <ul>
-            <li className="center"><Link to="/home">Home</Link></li>
-            <li className="center"><Link to="/">Statistical Report</Link></li>
-            <li className="center"><Link to="/">Manage Users</Link></li>
-            <li className="center"><Link to="/applicationReview">View and Approve Applications</Link></li>
-            <li className="center"><Link to="/Funds">Approve Funds</Link></li>
-            <li className="center"><Link to="/">Delete User</Link></li>
-            <li className="center"><Link to="/">Change Password</Link></li>
-          </ul>
-        );
-      default:
-        return <ul><li className="center">Home</li></ul>;
-    }
-  };
+  // const renderSidebarMenu = () => {
+  //   switch (role) {
+  //     case 'Student':
+  //       return (
+  //         <ul>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
+  //           <li className="center" onClick={()=>setComponent(LP_Landing)}><Link to="/home/">Learning Platform</Link></li>
+  //           <li className="center" onClick={()=>setComponent(Form)}><Link to="/home">Financial Aid</Link></li>
+  //           <li className="center" onClick={()=>setComponent(TrackYourApplication)}><Link to="/home">Track Your Application</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Dashboard</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
+  //         </ul>
+  //       );
+  //     case 'Teacher':
+  //       return (
+  //         <ul>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
+  //           <li className="center" onClick={()=>setComponent(TeacherLanding)}><Link to="/home">Learning Platform</Link></li>
+  //           <li className="center" onClick={()=>setComponent(CreateQuizPage)}><Link to="/home">Quiz Creation</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Student Dashboard</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
+  //         </ul>
+  //       );
+  //     case 'Parent':
+  //       return (
+  //         <ul>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
+  //           <li className="center" onClick={()=>setComponent(LP_Landing)}><Link to="/home">Learning Platform</Link></li>
+  //           <li className="center" onClick={()=>setComponent(ProgressReport)}><Link to="/home">Progress Report</Link></li>
+  //           <li className="center" onClick={()=>setComponent(ScheduleMeeting)}><Link to="/home">Interact with Teacher</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
+  //         </ul>
+  //       );
+  //     case 'Admin':
+  //       return (
+  //         <ul>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Statistical Report</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Manage Users</Link></li>
+  //           <li className="center" onClick={()=>setComponent(ApplicationReviewPage)}><Link to="/home">View and Approve Applications</Link></li>
+  //           <li className="center" onClick={()=>setComponent(FundsDisbursementPage)}><Link to="/home">Approve Funds</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Delete User</Link></li>
+  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
+  //         </ul>
+  //       );
+  //     default:
+  //       return <ul><li className="center">Home</li></ul>;
+  //   }
+  // };
 
   return (
     <div className="profile-container">
@@ -206,7 +295,7 @@ const UserProfile = () => {
           </div>
           <div className='upload-image'>
             <input type="file" onChange={handleFileChange} />
-          </div>
+          </div><br></br>
           <button onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
             <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>
