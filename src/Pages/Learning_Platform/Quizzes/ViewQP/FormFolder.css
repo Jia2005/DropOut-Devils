@@ -1,0 +1,57 @@
+.form-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .form-container form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    margin-left: 10px;
+  }
+  
+  .btn-formfolder {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-formfolder:hover {
+    background-color: #45a049;
+  }
+  
+  .pdf-list {
+    margin-top: 20px;
+  }
+  
+  .pdf-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pdf-list li {
+    margin: 10px 0;
+  }
+  
+  .pdf-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .pdf-list a:hover {
+    text-decoration: underline;
+  }
+  

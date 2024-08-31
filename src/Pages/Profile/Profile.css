@@ -48,7 +48,8 @@
 
 .delete-pic-btn:hover {
   background-color: #c82333;
-  transform: scale(1.1);
+  transform: scale(1.03);
+  transition: 0.5s;
 }
 
 .profile-name {
@@ -127,6 +128,7 @@
 .logout-button:hover {
   background-color: #c82333;
   transform: scale(1.03);
+  transition: 0.5s;
 }
 
 .profile-details {
@@ -165,6 +167,8 @@
 
 .edit-button:hover {
   background-color: #0056b3;
+  transform: scale(1.03);
+  transition: 0.5s;
 }
 
 .save-button {
@@ -180,9 +184,18 @@
 
 .save-button:hover {
   background-color: #218838;
+  transform: scale(1.03);
+  transition: 0.5s;
 }
 
 .log {
   display: flex;
   justify-content: center;
+}
+
+.upload-image-btn:hover {
+  background-color: #140e25;
+  color: white;
+  transform: scale(1.03);
+  transition: 0.5s;
 }

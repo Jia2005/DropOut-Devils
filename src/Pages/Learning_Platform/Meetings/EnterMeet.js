@@ -25,8 +25,8 @@ const EnterMeet = () => {
     ];
 
     return (
-        <div className='allform'style={{marginTop: '270px'}}>
-            <form onSubmit={handleFormSubmit} className='form'>
+        <div className='enter-meet'>
+            <form onSubmit={handleFormSubmit} className='meet-form'>
                 <div>
                     <label>Select Class </label>
                     <select 
@@ -42,7 +42,7 @@ const EnterMeet = () => {
                         ))}
                     </select>
                 </div>
-                <button type='submit'>Enter room</button>
+                <button className="meet-button" type='submit'>Enter room</button>
             </form>
         </div>
     );

@@ -1,21 +1,52 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import './Quizpage.css'
-function Quizzes() {
-  return (
-    <div className="panel">
-      <h2>Test Section</h2>
-      <br/>
+import React, { useState } from 'react';
+import './Quizpage.css';
+import FormFolder from './ViewQP/FolderForm';
+import QuizFormPage from '../../QuizStudent/QuizForm';
+import UploadFile from './AnswerQP/UploadFile';
 
-      <Link to = '/viewqp'><button>Question papers</button></Link>
-      <br/>
-      <Link to = '/studentquiz'><button>MCQs</button></Link>
-      <br/>
-      <Link to = '/uploadanswer'><button>Answer a question paper</button></Link>
-      <br/>
-      <br/>
+function Quizzes() {
+  const [activeTab, setActiveTab] = useState('questionPapers');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'questionPapers':
+        return <FormFolder/>;
+      case 'mcqs':
+        return <QuizFormPage/>
+      case 'uploadAnswer':
+        return <UploadFile/>;
+      default:
+        return '';
+    }
+  };
+
+  return (
+    <div className="container-quiz">
+      <div className="tabs2">
+        <button
+          className={`tab ${activeTab === 'questionPapers' ? 'active' : ''}`}
+          onClick={() => setActiveTab('questionPapers')}
+        >
+          Question Papers
+        </button>
+        <button
+          className={`tab ${activeTab === 'mcqs' ? 'active' : ''}`}
+          onClick={() => setActiveTab('mcqs')}
+        >
+          MCQs
+        </button>
+        <button
+          className={`tab ${activeTab === 'uploadAnswer' ? 'active' : ''}`}
+          onClick={() => setActiveTab('uploadAnswer')}
+        >
+          Answer a Question Paper
+        </button>
+      </div>
+      <div className="content-quiz">
+        {renderContent()}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Quizzes
+export default Quizzes;

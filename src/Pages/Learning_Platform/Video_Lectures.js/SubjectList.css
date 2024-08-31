@@ -1,40 +1,50 @@
-.allform form{
-    border-radius: 10px;
-    background-color: #F0F8FF;
-    margin-top: 150px;
-    margin-left: 100px;
-    margin-right: 100px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    padding: 5px;
-}
-
-.allform select, option{
-    background-color: white;
-}
-
-.allform label{
-    font-weight: bold;
-    font-size: 14px;
-}
-
-@media  (min-width: 1400px) {
-    .allform{
-        margin-left: 300px;
-        margin-right: 300px;
-    }
-}
-
-.allform button:disabled {
-    background-color: #7ea9da;
-    font-weight: bold;
-    
-}
-.allform button:enabled {
-    border: 2px solid #4a90e2;
-    color: #ffffff;
-    background-color: #4a90e2;
-    font-weight: bold;
-}
-.allform input {
-    background-color: white;
-}
+.subject-list-container {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 80%;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .subject-list-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  select, .btn-subjectlist {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  select {
+    background-color: #ffffff;
+  }
+  
+  .btn-subjectlist {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-subjectlist:hover {
+    background-color: #45a049;
+  }
+  
+  option {
+    padding: 10px;
+  }
+  

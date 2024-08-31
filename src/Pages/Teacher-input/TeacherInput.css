@@ -11,13 +11,13 @@
     color: #333;
   }
   
-  .action-buttons {
+  .action-.teacher-inputs {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
   }
   
-  button {
+  .teacher-input {
     margin: 0 10px;
     padding: 10px 20px;
     border: none;
@@ -27,7 +27,7 @@
     cursor: pointer;
   }
   
-  button.active {
+  .teacher-input.active {
     background-color: #0056b3;
   }
   
@@ -58,7 +58,7 @@
     min-height: 100px;
   }
   
-  button[type="submit"] {
+  .teacher-input[type="submit"] {
     background-color: #28a745;
     border: none;
     color: white;
@@ -67,7 +67,7 @@
     cursor: pointer;
   }
   
-  button[type="submit"]:hover {
+  .teacher-input[type="submit"]:hover {
     background-color: #218838;
   }
   

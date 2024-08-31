@@ -25,57 +25,49 @@ function SubjectList() {
   }, []);
 
   const handleClassChange = async (e) => {
-    setClassFolder(e.target.value);
+    const selectedClass = e.target.value;
+    setClassFolder(selectedClass);
     setSubjectFolder('');
     setChapterFolder('');
     setSubjects([]);
     setChapters([]);
 
-
     if (!isReviewLecture) {
-      const lecRef = ref(storage, `learn_platform/${e.target.value}/lec`);
+      const lecRef = ref(storage, `learn_platform/${selectedClass}/lec`);
       const result = await listAll(lecRef);
       const subjectNames = result.prefixes.map((folder) => folder.name);
       setSubjects(subjectNames);
     }
-
-    const lecRef = ref(storage, `learn_platform/${e.target.value}/lec`);
-    const result = await listAll(lecRef);
-    const subjectNames = result.prefixes.map((folder) => folder.name);
-    setSubjects(subjectNames);
-
   };
 
   const handleSubjectChange = async (e) => {
-    setSubjectFolder(e.target.value);
+    const selectedSubject = e.target.value;
+    setSubjectFolder(selectedSubject);
     setChapterFolder('');
     setChapters([]);
 
-
     if (!isReviewLecture) {
-      const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/${e.target.value}`);
+      const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/${selectedSubject}`);
       const result = await listAll(subjectRef);
       const chapterNames = result.prefixes.map((folder) => folder.name);
       setChapters(chapterNames);
     }
   };
 
-
-  const handleReviewLectureChange = async(e) => {
-
   const handleReviewLectureChange = async (e) => {
-
-    setIsReviewLecture(e.target.value === 'true');
+    const isReview = e.target.value === 'true';
+    setIsReviewLecture(isReview);
     setSubjectFolder('');
     setChapterFolder('');
     setSubjects([]);
     setChapters([]);
 
-    const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/${e.target.value}`);
-    const result = await listAll(subjectRef);
-    const chapterNames = result.prefixes.map((folder) => folder.name);
-    setChapters(chapterNames);
-
+    if (isReview) {
+      const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/rev`);
+      const result = await listAll(subjectRef);
+      const chapterNames = result.prefixes.map((folder) => folder.name);
+      setChapters(chapterNames);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -88,84 +80,83 @@ function SubjectList() {
   };
 
   return (
-    <div className='bod'>
-      <div className='allform'>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <pre>Select Class:</pre>
-            <select 
-              value={classFolder} 
-              onChange={handleClassChange} 
-              required
-            >
-              <option value="" disabled>Select Class</option>
-              {classes.map((className) => (
-                <option key={className} value={className}>
-                  {className}
-                </option>
-              ))}
-            </select>
-          </label>
+    <div className='subject-list-container'>
+      <form onSubmit={handleSubmit} className='subject-list-form'>
+        <label>
+          Select Class:
+          <select 
+            value={classFolder} 
+            onChange={handleClassChange} 
+            required
+          >
+            <option value="" disabled>Select Class</option>
+            {classes.map((className) => (
+              <option key={className} value={className}>
+                {className}
+              </option>
+            ))}
+          </select>
+        </label>
 
-          <label>
-            <pre>Is this a Review Lecture?</pre>
-            <select 
-              value={isReviewLecture} 
-              onChange={handleReviewLectureChange} 
-              required
-            >
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select>
-          </label>
+        <label>
+          Is this a Review Lecture?
+          <select 
+            value={isReviewLecture} 
+            onChange={handleReviewLectureChange} 
+            required
+          >
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </label>
 
-          {!isReviewLecture && (
-            <>
-              <label>
-                <pre>Select Subject:</pre>
-                <select 
-                  value={subjectFolder} 
-                  onChange={handleSubjectChange} 
-                  required
-                  disabled={!classFolder}
-                >
-                  <option value="" disabled>Select Subject</option>
-                  {subjects.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
-                    </option>
-                  ))}
-                </select>
-              </label>
+        {!isReviewLecture && (
+          <>
+            <label>
+              Select Subject:
+              <select 
+                value={subjectFolder} 
+                onChange={handleSubjectChange} 
+                required
+                disabled={!classFolder}
+              >
+                <option value="" disabled>Select Subject</option>
+                {subjects.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-              <label>
-                <pre>Select Chapter:</pre>
-                <select 
-                  value={chapterFolder} 
-                  onChange={(e) => setChapterFolder(e.target.value)} 
-                  required
-                  disabled={!subjectFolder}
-                >
-                  <option value="" disabled>Select Chapter</option>
-                  {chapters.map((chapter) => (
-                    <option key={chapter} value={chapter}>
-                      {chapter}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </>
-          )}
+            <label>
+              Select Chapter:
+              <select 
+                value={chapterFolder} 
+                onChange={(e) => setChapterFolder(e.target.value)} 
+                required
+                disabled={!subjectFolder}
+              >
+                <option value="" disabled>Select Chapter</option>
+                {chapters.map((chapter) => (
+                  <option key={chapter} value={chapter}>
+                    {chapter}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
 
-          <button type="submit" disabled={!classFolder || (!isReviewLecture && (!subjectFolder || !chapterFolder))}>
-            Submit
-          </button>
-          <br />
-        </form>
-      </div>
+        <button 
+          type="submit" 
+          disabled={!classFolder || (!isReviewLecture && (!subjectFolder || !chapterFolder))}
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
 }
 
 export default SubjectList;

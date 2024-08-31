@@ -20,3 +20,47 @@
     color: black;
 }
 
+.container-quiz {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 100%;
+  }
+  
+  .tabs2 {
+    display: flex;
+    justify-content: center; 
+    gap: 10px;
+    margin-bottom: 20px;
+    height: 60px;
+  }
+  
+  .tab {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tab.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .tab:hover {
+    background-color: #c0c0c0;
+    color: white;
+  }
+  
+  .content-quiz {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+  

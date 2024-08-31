@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { storage } from '../../../../firebase'; 
 import { ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
+import './UploadFile.css';
 
 function UploadFile() {
   const [formData, setFormData] = useState({
@@ -74,13 +75,13 @@ function UploadFile() {
   };
 
   return (
-    <div className='allform'>
+    <div className='file-form'>
     <form onSubmit={handleSubmit}>
       
       <br />
       <label>
         Class:
-        <select name="class" value={formData.class} onChange={handleChange} required>
+        <select className='select-file' name="class" value={formData.class} onChange={handleChange} required>
           <option value="" disabled>Select Class</option>
           {classes.map((className) => (
             <option key={className} value={className}>
@@ -107,7 +108,7 @@ function UploadFile() {
         <input type="file" onChange={handleFileChange} accept="application/pdf" required />
       </label>
       <br />
-      <button type="submit">Submit</button>
+      <button className='button-file' type="submit">Submit</button>
     </form>
     </div>
   );

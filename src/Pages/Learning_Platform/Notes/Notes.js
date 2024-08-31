@@ -52,7 +52,7 @@ function Notes() {
   };
 
   return (
-    <div className='allform'>
+    <div className='notes'>
     <form onSubmit={handleSubmit}>
       <label>
         Select Class Folder:

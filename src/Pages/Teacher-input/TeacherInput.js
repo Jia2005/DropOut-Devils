@@ -344,7 +344,7 @@ const TeacherInput = () => {
           />
         </div>
 
-        <button type="submit">{actionType === "add" ? "Add Student" : "Update Student Records"}</button>
+        <button className='teacher-submit' type="submit">{actionType === "add" ? "Add Student" : "Update Student Records"}</button>
       </form>
     </div>
   );

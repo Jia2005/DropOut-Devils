@@ -1,5 +1,5 @@
 .container2 {
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
   font-family: Arial, sans-serif;
   transition: background-color 0.3s, color 0.3s;
@@ -29,7 +29,7 @@
 }
 
 .container2 {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: #ced8ff;
   transition: 0.5s;
