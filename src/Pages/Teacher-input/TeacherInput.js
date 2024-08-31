@@ -167,7 +167,7 @@ const TeacherInput = () => {
             type="email"
             value={lookupEmail}
             onChange={(e) => setLookupEmail(e.target.value)}
-          />
+          /><br></br><br></br>
           <button type="button" onClick={fetchStudentData}>Fetch Data</button>
         </div>
       )}
