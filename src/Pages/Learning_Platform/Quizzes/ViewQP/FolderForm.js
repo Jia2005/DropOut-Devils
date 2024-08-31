@@ -44,7 +44,7 @@ function FormFolder() {
       <form onSubmit={handleSubmit}>
         <label>
           Select Class:
-          <select 
+          <select className='selection-form'
             value={classFolder} 
             onChange={(e) => setClassFolder(e.target.value)} 
             required
@@ -58,7 +58,7 @@ function FormFolder() {
           </select>
         </label>
         <br />
-        <button type="submit" disabled={!classFolder}>Get PDFs</button>
+        <button className='btn-formfolder' type="submit" disabled={!classFolder}>Get PDFs</button>
       </form>
 
       {showPdfs && (

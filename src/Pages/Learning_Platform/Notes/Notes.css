@@ -2,11 +2,10 @@
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 400px; 
+    max-width: 80%; 
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
   }
   
   form {
@@ -19,7 +18,7 @@
     font-size: 16px;
   }
   
-  select, button {
+  select, .btn-notes {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -32,17 +31,17 @@
     background-color: #ffffff;
   }
   
-  button {
+  .btn-notes {
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s ease;
-    padding: 15px; /* Increased padding for the button */
+    padding: 15px; /* Increased padding for the .btn-notes */
   }
   
-  button:hover {
+  .btn-notes:hover {
     background-color: #45a049;
   }
   

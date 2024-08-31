@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ref, listAll } from 'firebase/storage';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase'; 
 import './SubjectList.css';
 
@@ -12,6 +12,8 @@ function SubjectList() {
   const [subjects, setSubjects] = useState([]);
   const [chapters, setChapters] = useState([]);
   const [isReviewLecture, setIsReviewLecture] = useState(false);
+  const [contentLinks, setContentLinks] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,13 +72,26 @@ function SubjectList() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const fetchContentLinks = async () => {
+    setIsFetching(true);
+    const folderPath = isReviewLecture
+      ? `learn_platform/${classFolder}/lec/rev`
+      : `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
+    const folderRef = ref(storage, folderPath);
+    const result = await listAll(folderRef);
+
+    const links = await Promise.all(result.items.map(async (itemRef) => {
+      const url = await getDownloadURL(itemRef);
+      return { name: itemRef.name, url };
+    }));
+
+    setContentLinks(links);
+    setIsFetching(false);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isReviewLecture) {
-      navigate(`/list-images/${classFolder}/rev`);
-    } else {
-      navigate(`/list-images/${classFolder}/${subjectFolder}/${chapterFolder}`);
-    }
+    await fetchContentLinks();
   };
 
   return (
@@ -149,12 +164,28 @@ function SubjectList() {
         )}
 
         <button 
+          className='btn-subjectlist'
           type="submit" 
           disabled={!classFolder || (!isReviewLecture && (!subjectFolder || !chapterFolder))}
         >
-          Submit
+          {isFetching ? 'Loading...' : 'Submit'}
         </button>
       </form>
+
+      {contentLinks.length > 0 && (
+        <div className='content-list'>
+          <h3>Available Content:</h3>
+          <ul>
+            {contentLinks.map((content) => (
+              <li key={content.name}>
+                <a href={content.url} download={content.name}>
+                  {content.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

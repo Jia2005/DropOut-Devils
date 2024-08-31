@@ -15,9 +15,7 @@ import SubjectList from './Pages/Learning_Platform/Video_Lectures.js/SubjectList
 import VideoList from './Pages/Learning_Platform/Video_Lectures.js/VideoList';
 import VideoPlayer from './Pages/Learning_Platform/Video_Lectures.js/Video';
 import Notes from './Pages/Learning_Platform/Notes/Notes';
-import SubjectNotes from './Pages/Learning_Platform/Notes/SubjectNotes';
 import FormFolder from './Pages/Learning_Platform/Quizzes/ViewQP/FolderForm';
-import ListPdfs from './Pages/Learning_Platform/Quizzes/ViewQP/ListPdf';
 import UploadFile from './Pages/Learning_Platform/Quizzes/AnswerQP/UploadFile';
 import Quizzes from './Pages/Learning_Platform/Quizzes/Quizpage';
 import EnterMeet from './Pages/Learning_Platform/Meetings/EnterMeet';
@@ -63,9 +61,7 @@ function App() {
         <Route path="/list-images/:classFolder/:subjectFolder/:chapterFolder" element={<VideoList />} />
         <Route path="/play-video/:classFolder/:subjectFolder/:chapterFolder/:videoName" element={<VideoPlayer />} />
         <Route path="/note" element={<Notes/>}/>
-        <Route path="/subjectnotes/:classFolder/:subjectFolder/:chapterFolder" element={<SubjectNotes />} />
         <Route path="/viewqp" element={<FormFolder/>}/>
-        <Route path="/list-pdfs/:classFolder" element={<ListPdfs/>}/>
         <Route path="/uploadanswer" element={<UploadFile/>}/>
         <Route path="/quizsec" element={<Quizzes/>}/>
         <Route path="/entermeet" element={<EnterMeet/>}/>
