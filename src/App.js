@@ -29,10 +29,8 @@ import UploadQP from './Pages/Learning_Platform/TeacherSection/UploadQP';
 import Getanspdf from './Pages/Learning_Platform/TeacherSection/Getanspdf';
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
-
 import ReviewList from './Pages/Learning_Platform/Video_Lectures.js/ReviewList';
 import ReviewVideo from './Pages/Learning_Platform/Video_Lectures.js/ReviewVideo';
-
 import ProgressReport from './Pages/Lander/Components/ProgressReport/ProgressReport';
 import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleMeeting';
 import LandingPage from './Pages/LandingPage/LandingPage';
@@ -77,25 +75,12 @@ function App() {
         <Route path="/uploadref" element={<UploadRef/>}/>
         <Route path="/uploadqp" element={<UploadQP/>}/>
         <Route path="/getanspdf" element={<Getanspdf/>}/>
-
         <Route path="/list-images/:classFolder/rev" element={<ReviewList/>}/>
         <Route path="/play-review-video/:classFolder/:videoName" element={<ReviewVideo/>}/>
-
-
-
-
-
-
-
-
-
-
-
         <Route path="/progressreport" element={<ProgressReport/>}/>
         <Route path="/lander" element={<LandingPage/>}/>
         <Route path="/schedulemeet" element={<ScheduleMeeting/>}/>
         <Route path="/teacherinput" element={<TeacherInput/>}/>
-
       </Routes>
     </Router>
   );

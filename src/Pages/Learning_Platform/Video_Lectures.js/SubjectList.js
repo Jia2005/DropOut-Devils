@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, listAll } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Import your Firebase storage setup
+import { storage } from '../../../firebase'; 
 import './SubjectList.css';
-
-
-
-
-
 
 function SubjectList() {
   const [classFolder, setClassFolder] = useState('');
@@ -38,7 +33,6 @@ function SubjectList() {
 
 
     if (!isReviewLecture) {
-      // Fetch the list of subjects (subfolders in 'lec' within selected class)
       const lecRef = ref(storage, `learn_platform/${e.target.value}/lec`);
       const result = await listAll(lecRef);
       const subjectNames = result.prefixes.map((folder) => folder.name);
@@ -59,7 +53,6 @@ function SubjectList() {
 
 
     if (!isReviewLecture) {
-      // Fetch the list of chapters (subfolders in selected subject)
       const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/${e.target.value}`);
       const result = await listAll(subjectRef);
       const chapterNames = result.prefixes.map((folder) => folder.name);
@@ -172,6 +165,7 @@ function SubjectList() {
       </div>
     </div>
   );
+}
 }
 
 export default SubjectList;
