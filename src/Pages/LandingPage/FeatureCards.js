@@ -44,11 +44,11 @@ const FeatureCards = () => {
     <div className="feature-cards-container">
       {features.map((feature, index) => (
         <div className="card" key={index}>
-          <h2>{feature.title}</h2>
-          <p>{feature.description}</p>
-          <ul>
+          <h2 style={{fontSize:'25px',color:'navy',fontWeight:'bold'}}>{feature.title}</h2>
+          <p style={{fontSize:'16px',color:'#2A2323'}}>{feature.description}</p>
+          <ul style={{fontWeight:'bold'}}>
             {feature.features.map((feat, i) => (
-              <li key={i}>{feat}</li>
+              <li style={{fontSize:'16px'}} key={i}>{feat}</li>
             ))}
           </ul>
         </div>
