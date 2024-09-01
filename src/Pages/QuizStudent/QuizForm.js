@@ -34,22 +34,25 @@ function QuizFormPage() {
   }, [auth]);
 
   const fetchUserGrade = async (user) => {
-    if (user) {
+    if (!user) {
+      console.error('User not')
+      return;
+    }
       try {
         const userDocRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          fetchQuizzes(userData.grade);
+          fetchQuizzes(userData.grade,user);
         }
       } catch (error) {
         console.error('Error fetching user grade:', error);
       }
-    }
+    
   };
 
-  const fetchQuizzes = async (grade) => {
+  const fetchQuizzes = async (grade,user) => {
     try {
       const quizCollection = collection(db, 'quizzes');
       const q = query(quizCollection, where('grade', '==', grade));
@@ -58,7 +61,7 @@ function QuizFormPage() {
         .map(doc => ({ id: doc.id, ...doc.data() }))
         .sort((a, b) => (b.createdAt.toDate() - a.createdAt.toDate())); // Sort by creation date descending
       setQuizList(quizListData);
-
+  
       // Fetch attempted quizzes with response timestamps
       const responsesCollection = collection(db, 'responses');
       const responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
@@ -66,14 +69,19 @@ function QuizFormPage() {
       const attemptedData = {};
       responsesSnapshot.docs.forEach(doc => {
         const data = doc.data();
-        attemptedData[data.quizId] = data.time.toDate();
+        attemptedData[data.quizId] = data.time.toDate(); // Store attempted time
       });
+  
+      // Log attempted times
+      console.log('Attempted Times:', attemptedData);
+  
       setAttemptedQuizzes(attemptedData);
     } catch (error) {
-      console.error('Error fetching quizzes:', error);
+      console.error('Error fetching quizzes:', error.message);
     }
   };
-
+  
+  
   const fetchQuestions = async (quizId) => {
     try {
       const questionCollection = collection(db, 'questions');
@@ -147,34 +155,36 @@ function QuizFormPage() {
   const getQuizStatusStyle = (quiz) => {
     const currentDate = new Date();
     const submissionDeadline = new Date(`${quiz.submissionDate}T${quiz.submissionTime}:00`);
-    const isAttempted = isQuizAttempted(quiz);
     const attemptedTime = attemptedQuizzes[quiz.id];
     let style = {};
     let comment = '';
-
-    if (isAttempted) {
+  
+    // Log the attempted time for the quiz
+    console.log(`Quiz ID: ${quiz.id}, Attempted Time: ${attemptedTime}`);
+  
+    if (attemptedTime) {
       if (attemptedTime > submissionDeadline) {
-        style.backgroundColor = '#FFE0D2';
+        style.backgroundColor = '#FFE0D2'; // Orange
         style.borderLeft = '1.2vw solid #FF8900';
         comment = 'Deadline exceeded and attempted';
       } else {
-        style.backgroundColor = '#C8E6C9';
+        style.backgroundColor = '#C8E6C9'; // Light green
         style.borderLeft = '1.2vw solid #4CAF50';
         comment = 'Submitted';
       }
     } else if (currentDate > submissionDeadline) {
-      style.backgroundColor = '#FFCDD2';
+      style.backgroundColor = '#FFCDD2'; // Light red
       style.borderLeft = '1.2vw solid #F44336';
       comment = 'Deadline exceeded and not submitted';
     } else {
-      style.backgroundColor = '#B3E5FC';
+      style.backgroundColor = '#B3E5FC'; // Light blue
       style.borderLeft = '1.2vw solid #2196F3';
       comment = 'Not submitted';
     }
-
+  
     return { style, comment };
   };
-
+  
   const isQuizAttempted = (quiz) => {
     return quiz.attemptedBy && quiz.attemptedBy.includes(user.uid);
   };
