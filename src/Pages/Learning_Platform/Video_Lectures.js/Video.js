@@ -12,7 +12,10 @@ function VideoPlayer() {
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        const videoPath = `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}/${videoName}.mp4`; // assuming videos are .mp4 files
+       
+        const videoPath = (subjectFolder=='revision' || chapterFolder=='revisionchapter')
+      ? `learn_platform/${classFolder}/rev/${videoName}.mp4`
+      : `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}/${videoName}.mp4`;
         const videoRef = ref(storage, videoPath);
         const url = await getDownloadURL(videoRef);
         setVideoUrl(url);
