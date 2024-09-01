@@ -193,5 +193,6 @@ function SubjectList() {
     </div>
   );
 }
+}
 
 export default SubjectList;
