@@ -88,9 +88,9 @@ function CreateLecture() {
   return (
 
 
-    <div className='allform'>
+  
 
-  <>  
+    
     <div className='thisform'>
 
       <form onSubmit={handleUpload}>
@@ -196,77 +196,5 @@ function CreateLecture() {
 
 }
 
-    <form onSubmit={handleUpload}>
-      <label>
-        Select Class:
-        <select value={classFolder} onChange={handleClassChange} required>
-          <option value="" disabled>Select Class</option>
-          {classes.map((className) => (
-            <option key={className} value={className}>
-              {className}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Select Subject:
-        <select value={subjectFolder} onChange={handleSubjectChange} required disabled={!classFolder}>
-          <option value="" disabled>Select Subject</option>
-          {subjects.map((subject) => (
-            <option key={subject} value={subject}>
-              {subject}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Select Chapter:
-        <select
-          value={chapterFolder}
-          onChange={(e) => {
-            setChapterFolder(e.target.value);
-            setNewChapter('');
-          }}
-          disabled={!subjectFolder || newChapter}
-        >
-          <option value="" disabled>Select Chapter</option>
-          {chapters.map((chapter) => (
-            <option key={chapter} value={chapter}>
-              {chapter}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        OR Enter New Chapter:
-        <input
-          type="text"
-          value={newChapter}
-          onChange={(e) => {
-            setNewChapter(e.target.value);
-            setChapterFolder(''); 
-          }}
-          disabled={!subjectFolder || chapterFolder}
-        />
-      </label>
-      <br />
-      <label>
-        Upload Video:
-        <input
-          type="file"
-          accept="video/*"
-          onChange={(e) => setVideoFile(e.target.files[0])}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit" disabled={!videoFile}>Upload Lecture</button>
-    </form>
-  </>
-  );
-}}
 
 export default CreateLecture;
