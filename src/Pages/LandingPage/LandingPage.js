@@ -1,7 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
-import logo from './assets/main-logo.png';
-import backgroundImage from './assets/background-image-modified.jpg';
+import logo from './../Lander/assets/main-logo.png'
 import FeatureCards from './FeatureCards';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';

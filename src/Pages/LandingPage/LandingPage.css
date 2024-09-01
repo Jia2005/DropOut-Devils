@@ -5,6 +5,14 @@
   padding: 0;
 }
 
+.reg a{
+  background-color: #007BFF;
+  color: #fff;
+  padding: 1.8vh 3vh;
+  border: 2px;
+  border-radius: 7%;
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -16,13 +24,7 @@
   width: 100%;
   z-index: 10;
 }
-.reg a{
-  background-color: #007BFF;
-  color: #fff;
-  padding: 1.8vh 3vh;
-  border: 2px;
-  border-radius: 7%;
-}
+
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -56,6 +58,7 @@
 
 .navbar-menu-item a {
   text-decoration: none;
+  color: #000;
 }
 
 .hero-section {
@@ -67,7 +70,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('./assets/background-image-modified.jpg') no-repeat center center/cover;
 }
 
 .hero-background {
