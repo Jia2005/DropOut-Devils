@@ -74,7 +74,7 @@ const Form = () => {
     switch (activeTab) {
       case 'personal':
         return (
-          <div>
+          <div className="form-content">
             <input type="text" name="name" placeholder="Name" value={formData.personal.name} onChange={handleInputChange} />
             <input type="date" name="dob" placeholder="Date of Birth" value={formData.personal.dob} onChange={handleInputChange} />
             <input type="text" name="num" placeholder="Phone Number" value={formData.personal.num} onChange={handleInputChange} />
@@ -84,7 +84,7 @@ const Form = () => {
         );
       case 'academic':
         return (
-          <div>
+          <div className="form-content">
             <input type="text" name="school" placeholder="School" value={formData.academic.school} onChange={handleInputChange} />
             <input type="text" name="grade" placeholder="Grade" value={formData.academic.grade} onChange={handleInputChange} />
             <input type="text" name="year" placeholder="Year" value={formData.academic.year} onChange={handleInputChange} />
@@ -93,7 +93,7 @@ const Form = () => {
         );
       case 'financial':
         return (
-          <div>
+          <div className="form-content">
             <input type="text" name="income" placeholder="Income" value={formData.financial.income} onChange={handleInputChange} />
             <input type="text" name="any" placeholder="Any Financial Aid" value={formData.financial.any} onChange={handleInputChange} />
             <input type="text" name="specify" placeholder="Specify Financial Aid" value={formData.financial.specify} onChange={handleInputChange} />
@@ -101,7 +101,7 @@ const Form = () => {
         );
       case 'documents':
         return (
-          <div>
+          <div className="form-content">
             <input type="file" name="income-cert" onChange={handleFileChange} />
             <input type="file" name="mark-cert" onChange={handleFileChange} />
             <input type="file" name="aadhar-cert" onChange={handleFileChange} />
@@ -120,7 +120,7 @@ const Form = () => {
         <button onClick={() => handleTabClick('financial')} className={activeTab === 'financial' ? 'active' : ''}>Financial Information</button>
         <button onClick={() => handleTabClick('documents')} className={activeTab === 'documents' ? 'active' : ''}>Documents</button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-content">
         {renderFormContent()}
         <button type="submit" disabled={loading}>Submit</button>
       </form>

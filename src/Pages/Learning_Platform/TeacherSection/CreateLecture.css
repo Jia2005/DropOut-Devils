@@ -1,24 +1,27 @@
-.enter-meet {
+.create-lecture-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 70%;
+    max-width: 80%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .meet-form {
+  .create-lecture-form {
     display: flex;
     flex-direction: column;
   }
   
-  label {
-    margin-bottom: 10px;
+  .create-lecture-form label {
+    margin-bottom: 15px;
     font-size: 16px;
   }
   
-  select, .meet-button {
+  .create-lecture-form select, 
+  .create-lecture-form input[type="text"], 
+  .create-lecture-form input[type="file"], 
+  .create-lecture-form button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -27,11 +30,19 @@
     font-size: 16px;
   }
   
-  select {
+  .create-lecture-form select {
     background-color: #ffffff;
   }
   
-  .meet-button {
+  .create-lecture-form input[type="text"] {
+    background-color: #ffffff;
+  }
+  
+  .create-lecture-form input[type="file"] {
+    border: none;
+  }
+  
+  .create-lecture-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -41,11 +52,15 @@
     padding: 15px;
   }
   
-  .meet-button:hover {
+  .create-lecture-form button:hover {
     background-color: #45a049;
   }
   
-  option {
+  .create-lecture-form option {
     padding: 10px;
+  }
+  
+  .create-lecture-form .input-new-chapter {
+    margin-top: 10px;
   }
   

@@ -83,7 +83,8 @@ const ProgressReport = () => {
   return (
     <div className="progress-report">
       <br></br>
-      <h1>Progress Report for {studentData.name}</h1>
+      <h2 style={{fontSize:'40px'}}>Progress Report for {studentData.name}</h2>
+      <p><strong>Name:</strong> {studentData.name}</p>
       <p><strong>Class:</strong> {studentData.class}</p>
       <p><strong>Roll No:</strong> {studentData.rollNo}</p>
       <p><strong>Email:</strong> {studentData.email}</p>

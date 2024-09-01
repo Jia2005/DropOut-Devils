@@ -10,11 +10,12 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 input[type="text"],
 input[type="number"],
 input[type="date"] {
-    width: calc(100% - 22px);
+    width: calc(100%);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;

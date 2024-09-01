@@ -1,5 +1,4 @@
-.panel{
-    
+.video-list-container {
     border-radius: 10px;
     background-color: white;
     margin-top: 150px;
@@ -8,23 +7,40 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     text-align: center;    
 }
-@media  (min-width: 1400px) {
-    .panel{
+
+@media (min-width: 1400px) {
+    .video-list-container {
         margin-left: 300px;
         margin-right: 300px;
     }
-    
 }
-.panel h2{
+
+.video-list-header {
     background-color: #4a90e2;
     font-size: 35px;
     color: white;
-    
+    padding: 10px;
 }
-.panel ul {
-    padding: 5px;
 
+.video-list-items {
+    padding: 5px;
     text-align: center;
     font-weight: bold;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
+.video-list-item {
+    margin-bottom: 15px;
+}
+
+.video-list-item img {
+    width: 300px;
+    height: auto;
+    cursor: pointer;
+}
+
+.video-list-item p {
+    margin-top: 5px;
 }

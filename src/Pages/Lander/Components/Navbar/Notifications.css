@@ -1,0 +1,147 @@
+/* Notifications.css */
+
+.notifications-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notifications-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #231942;
+  }
+  
+  .notifications-container p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .notifications-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .notification-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .notification-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .notification-time {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .notification-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notification-details h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #231942;
+  }
+  
+  .notification-details p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .approval-options-container {
+    margin-top: 20px;
+  }
+  
+  .approval-options-container h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #231942;
+  }
+  
+  .approval-options-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #5e548e;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .approval-options-container button:hover {
+    background-color: #4b3b72;
+  }
+  
+  .rejection-reason-container {
+    margin-top: 15px;
+  }
+  
+  .rejection-reason-container select,
+  .rejection-reason-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .rejection-reason-container textarea {
+    height: 80px;
+  }
+  
+  .reschedule-container {
+    margin-top: 20px;
+  }
+  
+  .reschedule-container h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #231942;
+  }
+  
+  .reschedule-container input,
+  .reschedule-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .reschedule-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #be95c4;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .reschedule-container button:hover {
+    background-color: #a87caa;
+  }
+  

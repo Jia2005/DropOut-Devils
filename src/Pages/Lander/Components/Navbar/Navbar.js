@@ -1,7 +1,7 @@
 import React, { useState } from 'react';  
 import './Navbar.css';   
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; // Updated import
+import { useNavigate } from 'react-router-dom'; 
 import main_logo from '../../assets/main-logo.png';  
 import search_icon from '../../assets/search.png';  
 import notification_icon from '../../assets/notification.png';   
@@ -17,7 +17,8 @@ import CreateQuizPage from '../../../Quiz/Createquiz';
 import ApplicationReviewPage from '../../../financial-aid-form/ApplicationReviewPage';
 import FundsDisbursementPage from '../../../financial-aid-form/FundsDisbursement';
 import TeacherInput from '../../../Teacher-input/TeacherInput';
-
+import Notifications from './Notifications';
+import About from '../About/About';
 const Navbar = ({ role, setComponent }) => {  
   const [isDropdownOpen, setDropdownOpen] = useState(false);  
   const navigate = useNavigate(); // Updated to use react-router-dom's navigate
@@ -25,27 +26,43 @@ const Navbar = ({ role, setComponent }) => {
     setDropdownOpen(prevState => !prevState);  
   };  
 
+  const getRoleContent = () => {
+    switch (role) {
+      case 'student':
+        return LP_Landing;
+      case 'parent':
+        return LP_Landing;
+      case 'teacher':
+        return TeacherLanding;
+      case 'admin':
+        return ApplicationReviewPage;
+      default:
+        return <p>Loading content...</p>;
+    }
+  };
+
   const getSectionOptions = () => {  
     switch (role) {  
       case 'student':  
         return [  
+          { name: 'Dashboard', component: <Main/> },
           { name: 'Learning Platform', component: <LP_Landing/> },  
           { name: 'Financial Aid', component: <Form/> },  
           { name: 'Track Your Application', component: <TrackYourApplication/> },  
-          { name: 'Dashboard', component: <Main/> }  
         ];  
       case 'parent':  
         return [  
+          { name: 'Parent Dashboard', component: <Main />},
           { name: 'Learning Platform', component: <LP_Landing/> },  
           { name: 'Progress Report', component: <ProgressReport/> },  
           { name: 'Interact With Teacher', component: <ScheduleMeeting/> }  
         ];  
       case 'teacher':  
         return [  
+          { name: 'Student Dashboard', component: <Main/> },  
           { name: 'Learning Platform', component: <TeacherLanding/> },  
           { name: 'Quiz Creation', component: <CreateQuizPage/> },   
           { name: 'Create Student Report', component: <TeacherInput/> }, 
-          { name: 'Student Dashboard', component: <Main/> }  
         ];  
       case 'admin':  
         return [  
@@ -68,7 +85,7 @@ const Navbar = ({ role, setComponent }) => {
       <div className='navbar-center'>  
         <ul className='navbar-menu'>  
           <li className='navbar-item'><Link to="/home">Home</Link></li>  
-          <li className='navbar-item'>About</li>  
+          <li className='navbar-item' onClick={()=>setComponent(<About />)}>About</li>  
           <li className='navbar-item dropdown'>  
             <div onMouseEnter={toggleDropdown} className='dropdown-toggle'>Features</div>  
             {isDropdownOpen && (  
@@ -89,7 +106,7 @@ const Navbar = ({ role, setComponent }) => {
         </ul>  
       </div>  
       <div className='navbar-right'>  
-        <img src={notification_icon} alt='Notifications' className='notification-icon' />  
+        <img src={notification_icon} onClick={()=>setComponent(<Notifications onReschedule={()=> setComponent(<ScheduleMeeting/>)}/>)} alt='Notifications' className='notification-icon' />  
         <img src={profile_icon} onClick={() => navigate('/profile')} alt='Profile' className='profile-icon' />  
         <img src={search_icon} alt='Search' className='search-icon' />  
       </div>  

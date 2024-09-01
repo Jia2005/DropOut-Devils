@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import './Lander.css';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import Firebase Auth
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Notifications from './Components/Navbar/Notifications'; // Import Notifications component
 
-const Lander = ({component,setComponent}) => {
+const Lander = ({ component, setComponent }) => {
   const [role, setRole] = useState('');
   const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  
+  const [showNotifications, setShowNotifications] = useState(false); // State for notifications visibility
+
   // Firestore and Auth initialization
   const db = getFirestore();
   const auth = getAuth();
@@ -52,6 +54,10 @@ const Lander = ({component,setComponent}) => {
     setDropdownOpen(!isDropdownOpen);
   };
 
+  const handleNotificationClick = () => {
+    setShowNotifications(!showNotifications);
+  };
+
   const getSectionOptions = () => {
     switch (role) {
       case 'student':
@@ -72,24 +78,15 @@ const Lander = ({component,setComponent}) => {
     setDropdownOpen(false);
   };
 
-  const getRoleContent = () => {
-    switch (role) {
-      case 'student':
-        return <p>Welcome, Student! Here you can access your learning materials, check financial aid options, and get support.</p>;
-      case 'parent':
-        return <p>Welcome, Parent! You can view your child's progress, access reports, and use the parental portal.</p>;
-      case 'teacher':
-        return <p>Welcome, Teacher! Manage your quizzes, upload study materials, and monitor student dashboards.</p>;
-      case 'admin':
-        return <p>Welcome, Admin! Manage users, view reports, and approve or delete applications.</p>;
-      default:
-        return <p>Loading content...</p>;
-    }
-  };
-
   return (
     <div className={`container2 ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme} role={role} setComponent={setComponent} />
+      <Navbar 
+        theme={theme} 
+        setTheme={setTheme} 
+        role={role} 
+        setComponent={setComponent} 
+        onNotificationClick={handleNotificationClick} // Pass the function to Navbar
+      />
       <header>
         {isDropdownOpen && (
           <div className="dropdown-menu">
@@ -100,9 +97,14 @@ const Lander = ({component,setComponent}) => {
             ))}
           </div>
         )}
-      </header><br></br>
+      </header><br />
       <main>
         {component}
+        {showNotifications && (
+          <div className="notifications-container">
+            <Notifications /> 
+          </div>
+        )}
       </main>
     </div>
   );

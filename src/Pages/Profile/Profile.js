@@ -198,56 +198,6 @@ const UserProfile = ({setComponent}) => {
     setIsEditing(false);  
   };  
 
-  // const renderSidebarMenu = () => {
-  //   switch (role) {
-  //     case 'Student':
-  //       return (
-  //         <ul>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
-  //           <li className="center" onClick={()=>setComponent(LP_Landing)}><Link to="/home/">Learning Platform</Link></li>
-  //           <li className="center" onClick={()=>setComponent(Form)}><Link to="/home">Financial Aid</Link></li>
-  //           <li className="center" onClick={()=>setComponent(TrackYourApplication)}><Link to="/home">Track Your Application</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Dashboard</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
-  //         </ul>
-  //       );
-  //     case 'Teacher':
-  //       return (
-  //         <ul>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
-  //           <li className="center" onClick={()=>setComponent(TeacherLanding)}><Link to="/home">Learning Platform</Link></li>
-  //           <li className="center" onClick={()=>setComponent(CreateQuizPage)}><Link to="/home">Quiz Creation</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Student Dashboard</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
-  //         </ul>
-  //       );
-  //     case 'Parent':
-  //       return (
-  //         <ul>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
-  //           <li className="center" onClick={()=>setComponent(LP_Landing)}><Link to="/home">Learning Platform</Link></li>
-  //           <li className="center" onClick={()=>setComponent(ProgressReport)}><Link to="/home">Progress Report</Link></li>
-  //           <li className="center" onClick={()=>setComponent(ScheduleMeeting)}><Link to="/home">Interact with Teacher</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
-  //         </ul>
-  //       );
-  //     case 'Admin':
-  //       return (
-  //         <ul>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Home</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Statistical Report</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Manage Users</Link></li>
-  //           <li className="center" onClick={()=>setComponent(ApplicationReviewPage)}><Link to="/home">View and Approve Applications</Link></li>
-  //           <li className="center" onClick={()=>setComponent(FundsDisbursementPage)}><Link to="/home">Approve Funds</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Delete User</Link></li>
-  //           <li className="center" onClick={()=>setComponent('')}><Link to="/home">Change Password</Link></li>
-  //         </ul>
-  //       );
-  //     default:
-  //       return <ul><li className="center">Home</li></ul>;
-  //   }
-  // };
-
   return (
     <div className="profile-container">
       <div className="sidebar">
@@ -296,7 +246,7 @@ const UserProfile = ({setComponent}) => {
           <div className='upload-image'>
             <input type="file" onChange={handleFileChange} />
           </div><br></br>
-          <button onClick={handleUpload}>Upload Profile Picture</button>
+          <button className='upload-image-btn' onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
             <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>
             <button className="save-button" onClick={handleSave} style={{position: 'relative', bottom: '-20px', float: 'right'}}>Save Changes</button>

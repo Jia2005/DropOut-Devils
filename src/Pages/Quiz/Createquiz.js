@@ -95,7 +95,7 @@ function CreateQuizPage() {
   };
   return (
     <div className="create-quiz-container">
-      <h2>Create Quiz</h2>
+      <h2 style={{fontSize:'40px'}}>Create Quiz</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Quiz Name:</label>
@@ -128,7 +128,7 @@ function CreateQuizPage() {
           />
         </div>
         <div className="question-group">
-          <h3 className='heading'>Questions:</h3><br></br>
+          <h3 className='heading'>Questions</h3><br></br>
           {questions.map((question, qIndex) => (
             <div key={qIndex} className="question-block">
               <div className="form-group-2">
@@ -196,7 +196,7 @@ function CreateQuizPage() {
           </button>
         </div>
         <div className="form-group-2">
-          <label>Quiz should be submitted by:</label>
+          <label style={{fontSize:'16px', fontWeight:'bold'}}>Quiz should be submitted by:</label>
           <input
             style={{ width:'100%' }}
             type="date"

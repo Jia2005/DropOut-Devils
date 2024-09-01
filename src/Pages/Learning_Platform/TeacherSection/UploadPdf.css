@@ -1,24 +1,26 @@
-.enter-meet {
+.upload-pdf-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 70%;
+    max-width: 80%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .meet-form {
+  .upload-pdf-form {
     display: flex;
     flex-direction: column;
   }
   
-  label {
-    margin-bottom: 10px;
+  .upload-pdf-form label {
+    margin-bottom: 15px;
     font-size: 16px;
   }
   
-  select, .meet-button {
+  .upload-pdf-form select, 
+  .upload-pdf-form input[type="file"], 
+  .upload-pdf-form button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -27,11 +29,15 @@
     font-size: 16px;
   }
   
-  select {
+  .upload-pdf-form select {
     background-color: #ffffff;
   }
   
-  .meet-button {
+  .upload-pdf-form input[type="file"] {
+    border: none;
+  }
+  
+  .upload-pdf-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -41,11 +47,7 @@
     padding: 15px;
   }
   
-  .meet-button:hover {
+  .upload-pdf-form button:hover {
     background-color: #45a049;
-  }
-  
-  option {
-    padding: 10px;
   }
   

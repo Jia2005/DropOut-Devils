@@ -5,7 +5,7 @@
   align-items: center;  
   padding: 15px 20px;  
   background-color: #ffffff;  
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }  
 
 a {
@@ -26,6 +26,7 @@ a {
   display: flex;  
   gap: 40px;  
   color: #3A3A3A;  
+  font-family: 'Courier New', Courier, monospace;
 }  
 
 .navbar-item {  
