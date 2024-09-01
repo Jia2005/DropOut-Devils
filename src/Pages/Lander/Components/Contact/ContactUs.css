@@ -1,9 +1,10 @@
 .contact-us-container {
     font-family: Arial, sans-serif;
     color: #333;
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     padding: 20px;
+    margin-top: 80px;
 
   }
   
@@ -108,6 +109,7 @@
   .contact-us-info-text {
     font-size: 18px;
     margin-bottom: 20px;
+    color: black;
   }
   
   .contact-us-map iframe {
@@ -128,6 +130,7 @@
   
   .contact-us-social-links {
     display: flex;
+    justify-content: center;
     gap: 15px;
   }
   

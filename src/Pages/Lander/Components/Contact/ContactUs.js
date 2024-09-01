@@ -9,14 +9,14 @@ const ContactUs = () => {
       <header className="contact-us-header">
         <div className="contact-us-logo">
           <img src={logo} alt="eduSathi Logo" className="contact-us-logo-img" />
-          <span className="contact-us-logo-text">eduSathi</span>
+          <span className="contact-us-logo-text">EduSathi</span>
         </div>
       </header>
       <main className="contact-us-main">
         <section className="contact-us-info">
-          <h1 className="contact-us-heading">Contact Us</h1>
+          <h2 className="contact-us-heading" style={{fontSize:"40px"}}>Contact Us</h2>
           <div className="contact-us-details">
-            <p className="contact-us-detail">
+            <p className="contact-us-detail" style={{color:"black"}}>
               Email: <a href="mailto:support@edusathi.com" className="contact-us-link">support@edusathi.com</a>
             </p>
             <p className="contact-us-detail">
@@ -44,8 +44,8 @@ const ContactUs = () => {
 
         <section className="contact-us-additional">
           <h2 className="contact-us-subheading">Company Information</h2>
-          <p className="contact-us-info-text">
-            eduSathi is committed to providing the best educational support to students and educators. We aim to make learning accessible and enjoyable through our innovative platform. For more information about our services and offerings, visit our website or contact us directly.
+          <p className="contact-us-info-text" >
+            EduSathi is committed to  providing the best educational support to students and educators. We aim to make learning accessible and enjoyable through our innovative platform. For more information about our services and offerings, visit our website or contact us directly.
           </p>
 
           <h2 className="contact-us-subheading">Our Location</h2>
@@ -78,7 +78,7 @@ const ContactUs = () => {
         </section>
       </main>
       <footer className="contact-us-footer">
-        <p>&copy; 2024 eduSathi. All rights reserved.</p>
+        <p>&copy; 2024 EduSathi. All rights reserved.</p>
       </footer>
     </div>
   );
