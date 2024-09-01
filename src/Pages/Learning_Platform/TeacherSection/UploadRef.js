@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
-import { storage } from '../../../firebase'; // Adjust your Firebase storage import as needed
-import './Teachform.css'
-
-
-
-
-
+import { storage } from '../../../firebase'; 
+import './UploadRef.css';
 
 function UploadRef() {
   const [classFolder, setClassFolder] = useState('');
@@ -78,76 +73,77 @@ function UploadRef() {
   };
 
   return (
-    <div className='thatform'>
-    <form onSubmit={handlePdfUpload}>
-      <label>
-        Select Class:
-        <select value={classFolder} onChange={handleClassChange} required>
-          <option value="" disabled>Select Class</option>
-          {classes.map((className) => (
-            <option key={className} value={className}>
-              {className}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Select Subject:
-        <select value={subjectFolder} onChange={handleSubjectChange} required disabled={!classFolder}>
-          <option value="" disabled>Select Subject</option>
-          {subjects.map((subject) => (
-            <option key={subject} value={subject}>
-              {subject}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Select Chapter:
-        <select
-          value={chapterFolder}
-          onChange={(e) => {
-            setChapterFolder(e.target.value);
-            setNewChapter(''); 
-          }}
-          disabled={!subjectFolder || newChapter}
-        >
-          <option value="" disabled>Select Chapter</option>
-          {chapters.map((chapter) => (
-            <option key={chapter} value={chapter}>
-              {chapter}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        OR Enter New Chapter:
-        <input
-          type="text"
-          value={newChapter}
-          onChange={(e) => {
-            setNewChapter(e.target.value);
-            setChapterFolder('');
-          }}
-          disabled={!subjectFolder || chapterFolder}
-        />
-      </label>
-      <br />
-      <label>
-        Upload PDF:
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={(e) => setPdfFile(e.target.files[0])}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit" disabled={!pdfFile}>Upload PDF</button>
-    </form>
+    <div className='upload-ref-wrapper'>
+      <form className='upload-ref-form' onSubmit={handlePdfUpload}>
+        <label>
+          Select Class:
+          <select value={classFolder} onChange={handleClassChange} required>
+            <option value="" disabled>Select Class</option>
+            {classes.map((className) => (
+              <option key={className} value={className}>
+                {className}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Select Subject:
+          <select value={subjectFolder} onChange={handleSubjectChange} required disabled={!classFolder}>
+            <option value="" disabled>Select Subject</option>
+            {subjects.map((subject) => (
+              <option key={subject} value={subject}>
+                {subject}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Select Chapter:
+          <select
+            value={chapterFolder}
+            onChange={(e) => {
+              setChapterFolder(e.target.value);
+              setNewChapter(''); 
+            }}
+            disabled={!subjectFolder || newChapter}
+          >
+            <option value="" disabled>Select Chapter</option>
+            {chapters.map((chapter) => (
+              <option key={chapter} value={chapter}>
+                {chapter}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          OR Enter New Chapter:
+          <input
+            type="text"
+            value={newChapter}
+            onChange={(e) => {
+              setNewChapter(e.target.value);
+              setChapterFolder('');
+            }}
+            className='input-new-chapter'
+            disabled={!subjectFolder || chapterFolder}
+          />
+        </label>
+        <br />
+        <label>
+          Upload PDF:
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={(e) => setPdfFile(e.target.files[0])}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit" disabled={!pdfFile}>Upload PDF</button>
+      </form>
     </div>
   );
 }

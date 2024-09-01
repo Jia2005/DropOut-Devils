@@ -1,136 +1,83 @@
-
-body, h1, h2, h3, h4, h5, h6, ul, li, p, input, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-.form-page {
-    background-color: #231942;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.any{
-    margin-left: 2vw;
-}
-.container {
-    background-color: #fff;
-    padding: 30px;
+.form-container {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    width: 50%;
-}
-.any{
-    margin-right: 3px;
-}
-.headings .titles {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+  }
+  
+  .tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.titles .tab {
+  }
+  
+  .tabs button {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 18px;
+    color: #333;
     cursor: pointer;
-    padding: 10px 15px;
-    color: #9f86c0;
-    transition: color 0.3s ease-in-out;
-}
-
-.titles .tab:hover {
-    color: #5e548e;
-}
-.submit-button-form{
-    margin-left: 40vw;
-}
-.titles .active {
-    font-weight: bold;
-    color: #5e548e;
-    border-bottom: 3px solid #9f86c0;
-}
-li{
-    list-style-type: none;
-}
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center; 
-    margin-bottom: 15px;
-}
-
-.radio-group input[type="radio"] {
-    margin-right: 0vw;
-    margin-left: -21vw;
-}
-
-.radio-label {
-    margin-left: -21vw;
-    align-items: center;
-}
-
-form {
+    flex: 1;
+    text-align: center;
+    vertical-align: middle;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tabs button.active {
+    background-color: navy;
+    color: white;
+  }
+  
+  .tabs button:hover {
+    background-color: rgb(131, 131, 190);
+    color: white;
+  }
+  
+  .form-content {
     display: flex;
     flex-direction: column;
-}
-
-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #231942;
-}
-
-form input[type="text"], 
-form input[type="email"], 
-form input[type="date"], 
-form input[type="phone"], 
-form input[type="file"], 
-form input[type="tel"],
-form textarea,select {
-    margin-right: 4px;
+  }
+  
+  .form-content input[type="text"],
+  .form-content input[type="email"],
+  .form-content input[type="date"],
+  .form-content input[type="file"] {
     margin-bottom: 15px;
     padding: 10px;
-    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
-    transition: border-color 0.3s ease-in-out;
-}
-form input:focus, form textarea:focus {
-    border-color: #5e548e;
-    outline: none;
-}
-
-
-.submit-button-form-final {
-    padding: 10px 15px;
     font-size: 16px;
-    margin-top: 2%;
-    background-color: #5e548e;
-    color: #fff;
-    width: 15.5vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form-content input[type="file"] {
+    padding: 10px;
+  }
+  
+  .form-content button {
+    background-color: #28a745;
+    color: #ffffff;
     border: none;
+    padding: 12px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.submit-button-form-final:hover {
-    background-color: #9f86c0;
-}
-.personal-form, .academic-form, .financial-form, .documents-form {
-    background-color: #e0b1cb;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.personal-form input, .academic-form input, .financial-form input, .documents-form input, 
-.personal-form textarea, .academic-form textarea, .financial-form textarea, .documents-form textarea {
-    background-color: #fff;
-}
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-content button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+  }
+  
+  .form-content button:hover {
+    background-color: #218838;
+  }
+  

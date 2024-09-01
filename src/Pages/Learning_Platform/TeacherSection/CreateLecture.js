@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, listAll, uploadBytes } from 'firebase/storage';
 import { storage } from '../../../firebase'; 
+import './CreateLecture.css';
 
 function CreateLecture() {
   const [classFolder, setClassFolder] = useState('');
@@ -75,8 +76,8 @@ function CreateLecture() {
   };
 
   return (
-    <div className='allform'>
-      <div className='thisform'>
+    <div className='create-lecture-wrapper'>
+      <div className='create-lecture-form'>
         <form onSubmit={handleUpload}>
           <label>
             Select Class:
@@ -140,6 +141,7 @@ function CreateLecture() {
                     setNewChapter(e.target.value);
                     setChapterFolder('');
                   }}
+                  className='input-new-chapter'
                   disabled={!subjectFolder || chapterFolder}
                 />
               </label>

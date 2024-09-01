@@ -246,7 +246,7 @@ const UserProfile = ({setComponent}) => {
           <div className='upload-image'>
             <input type="file" onChange={handleFileChange} />
           </div><br></br>
-          <button onClick={handleUpload}>Upload Profile Picture</button>
+          <button className='upload-image-btn' onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
             <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>
             <button className="save-button" onClick={handleSave} style={{position: 'relative', bottom: '-20px', float: 'right'}}>Save Changes</button>

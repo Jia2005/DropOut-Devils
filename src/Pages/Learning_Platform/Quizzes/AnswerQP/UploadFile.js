@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { storage } from '../../../../firebase'; 
 import { ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
+import './UploadFile.css';
 
 function UploadFile() {
   const [formData, setFormData] = useState({
@@ -74,13 +75,13 @@ function UploadFile() {
   };
 
   return (
-    <div className='allform'>
+    <div className='file-form'>
     <form onSubmit={handleSubmit}>
       
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Class:
-        <select name="class" value={formData.class} onChange={handleChange} required>
+        <select className='select-file' name="class" value={formData.class} onChange={handleChange} required>
           <option value="" disabled>Select Class</option>
           {classes.map((className) => (
             <option key={className} value={className}>
@@ -90,7 +91,7 @@ function UploadFile() {
         </select>
       </label>
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Quiz Name:
         <select name="quiz" value={formData.quiz} onChange={handleChange} required>
           <option value="" disabled>Select Quiz</option>
@@ -102,12 +103,12 @@ function UploadFile() {
         </select>
       </label>
       <br />
-      <label>
+      <label style={{fontSize:'16px', fontWeight:'bold'}}>
         Upload PDF:
         <input type="file" onChange={handleFileChange} accept="application/pdf" required />
       </label>
       <br />
-      <button type="submit">Submit</button>
+      <button className='button-file' type="submit">Submit</button>
     </form>
     </div>
   );

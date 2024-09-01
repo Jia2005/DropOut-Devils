@@ -1,24 +1,25 @@
-.enter-meet {
+.get-anspdf-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 70%;
+    max-width: 80%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .meet-form {
+  .get-anspdf-form {
     display: flex;
     flex-direction: column;
   }
   
-  label {
-    margin-bottom: 10px;
+  .get-anspdf-form label {
+    margin-bottom: 15px;
     font-size: 16px;
   }
   
-  select, .meet-button {
+  .get-anspdf-form select, 
+  .get-anspdf-form button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -27,11 +28,11 @@
     font-size: 16px;
   }
   
-  select {
+  .get-anspdf-form select {
     background-color: #ffffff;
   }
   
-  .meet-button {
+  .get-anspdf-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -41,11 +42,7 @@
     padding: 15px;
   }
   
-  .meet-button:hover {
+  .get-anspdf-form button:hover {
     background-color: #45a049;
-  }
-  
-  option {
-    padding: 10px;
   }
   

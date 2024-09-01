@@ -1,56 +1,70 @@
-import React from 'react';
-import './TeacherLanding.css'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import './TeacherLanding.css';
+import CreateLecture from './CreateLecture';
+import UploadRef from './UploadRef';
+import EnterMeet from '../Meetings/EnterMeet';
+import UploadPdf from './UploadPdf';
+import Getanspdf from './Getanspdf';
 
 function TeacherLanding() {
+  const [activeTab, setActiveTab] = useState('createLecture');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'createLecture':
+        return <CreateLecture />;
+      case 'uploadRef':
+        return <UploadRef />;
+      case 'uploadQP':
+        return <UploadPdf />;
+      case 'enterMeet':
+        return <EnterMeet />;
+      case 'getAnsPdf':
+        return <Getanspdf />;
+      default:
+        return <CreateLecture />;
+    }
+  };
+
   return (
- 
-      
-  <div className="body">
-    <nav className="Navbar">
-      <h1 className="welcome">Welcome to the learning platform</h1>
-    </nav>
-    <div className='Panel'>
-
-    <Link to="/createlecture">
-      <h3>
-        Add a lecture/ review lecture
-      </h3>
-      </Link>
-      <Link to='/uploadref'>
-      <h3>
-        Add a refrence book
-      </h3>
-      </Link>
-
-      <Link to ="/uploadqp">
-      <h3>
-        Add a question paper
-      </h3>
-      </Link>
-
-      <Link to ="/entermeet">
-      <h3>
-        Enter a class
-      </h3>  
-      </Link>  
-
-      <Link to ="/getanspdf">
-      <h3>
-        Download the answer sheets
-      </h3>  
-      </Link>  
+    <div className="teacher-landing-container">
+      <div className="tabs">
+        <button
+          className={`tab ${activeTab === 'createLecture' ? 'active' : ''}`}
+          onClick={() => setActiveTab('createLecture')}
+        >
+          Add a Lecture/Review Lecture
+        </button>
+        <button
+          className={`tab ${activeTab === 'uploadRef' ? 'active' : ''}`}
+          onClick={() => setActiveTab('uploadRef')}
+        >
+          Add a Reference Book
+        </button>
+        <button
+          className={`tab ${activeTab === 'uploadQP' ? 'active' : ''}`}
+          onClick={() => setActiveTab('uploadQP')}
+        >
+          Add a Question Paper
+        </button>
+        <button
+          className={`tab ${activeTab === 'enterMeet' ? 'active' : ''}`}
+          onClick={() => setActiveTab('enterMeet')}
+        >
+          Enter a Class
+        </button>
+        <button
+          className={`tab ${activeTab === 'getAnsPdf' ? 'active' : ''}`}
+          onClick={() => setActiveTab('getAnsPdf')}
+        >
+          Download Answer Sheets
+        </button>
+      </div>
+      <div className="content">
+        {renderContent()}
+      </div>
     </div>
-
-    
-      
-      
-
-  </div>
-  
-  
-  
-  )
+  );
 }
 
 export default TeacherLanding;

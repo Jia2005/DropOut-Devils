@@ -154,15 +154,15 @@ const TeacherInput = () => {
 
   return (
     <div className="teacher-input">
-      <h1>{actionType === "add" ? "Add Student Details" : "Update Student Records"}</h1>
+      <h2 style={{fontSize:'40px'}}>{actionType === "add" ? "Add Student Details" : "Update Student Records"}</h2><br></br>
       <div className="action-buttons">
-        <button onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>Add Student</button>
-        <button onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>Update Student Records</button>
+        <button style={{fontSize:'20px'}} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>Add Student</button>
+        <button style={{fontSize:'20px'}} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>Update Student Records</button>
       </div>
 
       {actionType === "update" && (
         <div className="form-group">
-          <label>Enter Student Email to Fetch Data:</label>
+          <label style={{fontSize:'16px', fontWeight:'bold'}}>Enter Student Email to Fetch Data:</label>
           <input
             type="email"
             value={lookupEmail}
@@ -344,7 +344,7 @@ const TeacherInput = () => {
           />
         </div>
 
-        <button type="submit">{actionType === "add" ? "Add Student" : "Update Student Records"}</button>
+        <button className='teacher-submit' type="submit">{actionType === "add" ? "Add Student" : "Update Student Records"}</button>
       </form>
     </div>
   );

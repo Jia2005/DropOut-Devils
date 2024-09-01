@@ -1,7 +1,7 @@
 import React, { useState } from 'react';  
 import './Navbar.css';   
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; // Updated import
+import { useNavigate } from 'react-router-dom'; 
 import main_logo from '../../assets/main-logo.png';  
 import search_icon from '../../assets/search.png';  
 import notification_icon from '../../assets/notification.png';   
@@ -29,23 +29,24 @@ const Navbar = ({ role, setComponent }) => {
     switch (role) {  
       case 'student':  
         return [  
+          { name: 'Dashboard', component: <Main/> },
           { name: 'Learning Platform', component: <LP_Landing/> },  
           { name: 'Financial Aid', component: <Form/> },  
           { name: 'Track Your Application', component: <TrackYourApplication/> },  
-          { name: 'Dashboard', component: <Main/> }  
         ];  
       case 'parent':  
         return [  
+          { name: 'Parent Dashboard', component: <Main />},
           { name: 'Learning Platform', component: <LP_Landing/> },  
           { name: 'Progress Report', component: <ProgressReport/> },  
           { name: 'Interact With Teacher', component: <ScheduleMeeting/> }  
         ];  
       case 'teacher':  
         return [  
+          { name: 'Student Dashboard', component: <Main/> },  
           { name: 'Learning Platform', component: <TeacherLanding/> },  
           { name: 'Quiz Creation', component: <CreateQuizPage/> },   
           { name: 'Create Student Report', component: <TeacherInput/> }, 
-          { name: 'Student Dashboard', component: <Main/> }  
         ];  
       case 'admin':  
         return [  

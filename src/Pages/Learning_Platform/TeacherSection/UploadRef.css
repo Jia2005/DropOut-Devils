@@ -1,24 +1,27 @@
-.enter-meet {
+.upload-ref-wrapper {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 70%;
+    max-width: 80%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .meet-form {
+  .upload-ref-form {
     display: flex;
     flex-direction: column;
   }
   
-  label {
-    margin-bottom: 10px;
+  .upload-ref-form label {
+    margin-bottom: 15px;
     font-size: 16px;
   }
   
-  select, .meet-button {
+  .upload-ref-form select, 
+  .upload-ref-form input[type="text"], 
+  .upload-ref-form input[type="file"], 
+  .upload-ref-form button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -27,11 +30,19 @@
     font-size: 16px;
   }
   
-  select {
+  .upload-ref-form select {
     background-color: #ffffff;
   }
   
-  .meet-button {
+  .upload-ref-form input[type="text"] {
+    background-color: #ffffff;
+  }
+  
+  .upload-ref-form input[type="file"] {
+    border: none;
+  }
+  
+  .upload-ref-form button {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -41,11 +52,15 @@
     padding: 15px;
   }
   
-  .meet-button:hover {
+  .upload-ref-form button:hover {
     background-color: #45a049;
   }
   
-  option {
+  .upload-ref-form option {
     padding: 10px;
+  }
+  
+  .upload-ref-form .input-new-chapter {
+    margin-top: 10px;
   }
   
