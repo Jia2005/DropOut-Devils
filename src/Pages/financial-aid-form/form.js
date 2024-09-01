@@ -75,35 +75,50 @@ const Form = () => {
       case 'personal':
         return (
           <div className="form-content">
+            <label>Name:</label>
             <input type="text" name="name" placeholder="Name" value={formData.personal.name} onChange={handleInputChange} />
+            <label>Date of Birth:</label>
             <input type="date" name="dob" placeholder="Date of Birth" value={formData.personal.dob} onChange={handleInputChange} />
+            <label>Phone Number:</label>
             <input type="text" name="num" placeholder="Phone Number" value={formData.personal.num} onChange={handleInputChange} />
+            <label>Email:</label>
             <input type="email" name="em" placeholder="Email" value={formData.personal.em} onChange={handleInputChange} />
+            <label>Address:</label>
             <input type="text" name="add" placeholder="Address" value={formData.personal.add} onChange={handleInputChange} />
           </div>
         );
       case 'academic':
         return (
           <div className="form-content">
+            <label>School:</label>
             <input type="text" name="school" placeholder="School" value={formData.academic.school} onChange={handleInputChange} />
+            <label>Grade:</label>
             <input type="text" name="grade" placeholder="Grade" value={formData.academic.grade} onChange={handleInputChange} />
+            <label>Year:</label>
             <input type="text" name="year" placeholder="Year" value={formData.academic.year} onChange={handleInputChange} />
+            <label>Marks: (Previous Year)</label>
             <input type="text" name="marks" placeholder="Marks" value={formData.academic.marks} onChange={handleInputChange} />
           </div>
         );
       case 'financial':
         return (
           <div className="form-content">
+            <label>Income:</label>
             <input type="text" name="income" placeholder="Income" value={formData.financial.income} onChange={handleInputChange} />
+            <label>Any Financial Aid:</label>
             <input type="text" name="any" placeholder="Any Financial Aid" value={formData.financial.any} onChange={handleInputChange} />
+            <label>Specify Financial Aid:</label>
             <input type="text" name="specify" placeholder="Specify Financial Aid" value={formData.financial.specify} onChange={handleInputChange} />
           </div>
         );
       case 'documents':
         return (
           <div className="form-content">
+            <label>Income Certificate: (PDF format only)</label>
             <input type="file" name="income-cert" onChange={handleFileChange} />
+            <label>Previous Year Marksheet: (PDF format only)</label>
             <input type="file" name="mark-cert" onChange={handleFileChange} />
+            <label>Aadhar Card: (PDF format only)</label>
             <input type="file" name="aadhar-cert" onChange={handleFileChange} />
           </div>
         );
