@@ -4,6 +4,7 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../firebase'; 
 import './SubjectList.css';
 
+
 function SubjectList() {
   const [classFolder, setClassFolder] = useState('');
   const [subjectFolder, setSubjectFolder] = useState('');
@@ -65,17 +66,19 @@ function SubjectList() {
     setChapters([]);
 
     if (isReview) {
-      const subjectRef = ref(storage, `learn_platform/${classFolder}/lec/rev`);
+      const subjectRef = ref(storage, `learn_platform/${classFolder}/rev`);
       const result = await listAll(subjectRef);
       const chapterNames = result.prefixes.map((folder) => folder.name);
       setChapters(chapterNames);
     }
   };
 
+
+
   const fetchContentLinks = async () => {
     setIsFetching(true);
     const folderPath = isReviewLecture
-      ? `learn_platform/${classFolder}/lec/rev`
+      ? `learn_platform/${classFolder}/rev`
       : `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
     const folderRef = ref(storage, folderPath);
     const result = await listAll(folderRef);
@@ -85,13 +88,25 @@ function SubjectList() {
       return { name: itemRef.name, url };
     }));
 
-    setContentLinks(links);
+    // Filter for image files
+    const imageLinks = links.filter((link) => /\.(jpg|jpeg|png|gif)$/i.test(link.name));
+
+    setContentLinks(imageLinks);
     setIsFetching(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetchContentLinks();
+  };
+
+  const handleImageClick = (imageName) => {
+    if (!subjectFolder || !chapterFolder){
+      navigate(`/video/${classFolder}/revision/revisionchapter/${imageName.replace(/\.[^/.]+$/, "")}`);
+    }else{
+      navigate(`/video/${classFolder}/${subjectFolder}/${chapterFolder}/${imageName.replace(/\.[^/.]+$/, "")}`);
+    }
+    
   };
 
   return (
@@ -178,13 +193,17 @@ function SubjectList() {
 
       {contentLinks.length > 0 && (
         <div className='content-list'>
-          <h3>Available Content:</h3>
+          <h3>Available Images:</h3>
           <ul>
             {contentLinks.map((content) => (
               <li key={content.name}>
-                <a href={content.url} download={content.name}>
-                  {content.name}
-                </a>
+                <img 
+                  src={content.url} 
+                  alt={content.name} 
+                  style={{ maxWidth: '200px', maxHeight: '200px', cursor: 'pointer' }} 
+                  onClick={() => handleImageClick(content.name)} 
+                />
+                <p>{content.name.split('.')[0]}</p>
               </li>
             ))}
           </ul>
@@ -193,6 +212,8 @@ function SubjectList() {
     </div>
   );
 }
+
+
 
 
 export default SubjectList;

@@ -4,17 +4,18 @@ import logo from './assets/main-logo.png';
 import backgroundImage from './assets/background-image-modified.jpg';
 import FeatureCards from './FeatureCards';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="eduSathi Logo" className="navbar-logo-img" />
-        <span className="navbar-logo-text">eduSathi</span>
+        <span className="navbar-logo-text">EduSathi</span>
       </div>
       <ul className="navbar-menu">
         <li className="navbar-menu-item"><a href="#features">Features</a></li>
-        <li className="navbar-menu-item"><a href="#login-signup">Log In / Sign Up</a></li>
+        <li className="navbar-menu-item reg"><Link to="/signup">Register</Link></li>
       </ul>
     </nav>
   );
@@ -26,7 +27,7 @@ const HeroSection = () => {
       <div className="hero-content">
         <h1 className="hero-heading">Empowering Futures, One Step at a Time</h1>
         <p className="hero-subheading">Help us reach more aspiring and deserving youth!</p>
-        <button className="hero-register-button">Register Now!</button>
+        <Link to="/signup"><button className="hero-register-button">Register Now!</button></Link>
       </div>
     </section>
   );

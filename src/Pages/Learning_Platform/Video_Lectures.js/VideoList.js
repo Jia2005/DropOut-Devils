@@ -11,7 +11,10 @@ function VideoList() {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const folderPath = `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
+      
+      const folderPath = (subjectFolder=='revision' || chapterFolder=='revisionchapter')
+      ? `learn_platform/${classFolder}/rev`
+      : `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
       const folderRef = ref(storage, folderPath);
       const result = await listAll(folderRef);
       const links = await Promise.all(result.items.map(async (itemRef) => {
