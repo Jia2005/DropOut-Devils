@@ -64,11 +64,10 @@ const Navbar = ({ role, setComponent }) => {
         ];
       case 'admin':
         return [
-          { name: 'Statistical Report', component: <Main /> },
-          { name: 'Manage Users', component: <Main /> },
           { name: 'View and Approve Applications', component: <ApplicationReviewPage /> },
           { name: 'Approve Funds', component: <FundsDisbursementPage /> },
-          { name: 'Delete User', component: <Main /> }
+          { name: 'Statistical Report', component: <Main /> },
+          { name: 'Manage Users', component: <Main /> },
         ];
       default:
         return [];

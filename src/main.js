@@ -14,7 +14,7 @@ function Main() {
 			  navigate('/home');
 			}
 			else {
-				navigate('/login');
+				navigate('/lander');
 			}
 		});
   	},[auth]);

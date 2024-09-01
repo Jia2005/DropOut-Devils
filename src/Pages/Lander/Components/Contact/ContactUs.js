@@ -14,14 +14,14 @@ const ContactUs = () => {
               Email: <a href="mailto:support@edusathi.com" className="contact-us-link">support@edusathi.com</a>
             </p>
             <p className="contact-us-detail">
-              Phone: <a href="tel:+1234567890" className="contact-us-link">+123-456-7890</a>
+              Phone: <a href="tel:98190 27396" className="contact-us-link">+91 98190 27396</a>
             </p>
             <p className="contact-us-detail">Address: 123 Learning Lane, Education City, ED 45678</p>
           </div>
         </section>
 
         <section className="contact-us-form">
-          <h2 className="contact-us-subheading">Send Us a Message</h2>
+          <h2 className="contact-us-subheading" style={{fontSize:'30px'}}>Send Us a Message</h2>
           <form className="contact-us-form-fields">
             <label htmlFor="name" className="contact-us-form-label">Name:</label>
             <input type="text" id="name" name="name" className="contact-us-form-input" required />
@@ -37,18 +37,18 @@ const ContactUs = () => {
         </section>
 
         <section className="contact-us-additional">
-          <h2 className="contact-us-subheading">Company Information</h2>
+          <h2 className="contact-us-subheading" style={{fontSize:'30px'}}>Company Information</h2>
           <p className="contact-us-info-text" >
             EduSathi is committed to  providing the best educational support to students and educators. We aim to make learning accessible and enjoyable through our innovative platform. For more information about our services and offerings, visit our website or contact us directly.
           </p>
 
-          <h2 className="contact-us-subheading">Our Location</h2>
+          <br></br><h2 className="contact-us-subheading" style={{fontSize:'30px'}}>Our Location</h2><br></br>
           <div className="contact-us-map">
             <iframe
               title="Google Maps Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9834630688915!2d72.83328527502712!3d19.064464682137828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c91130392c07%3A0x3c47bf391c8de931!2sThadomal%20Shahani%20Engineering%20College!5e0!3m2!1sen!2sin!4v1725177666900!5m2!1sen!2sin"
               width="600"
-              height="450"
+              height="500"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
@@ -57,7 +57,7 @@ const ContactUs = () => {
         </section>
 
         <section className="contact-us-social">
-          <h2 className="contact-us-social-heading">Follow Us</h2>
+          <br></br><h2 className="contact-us-social-heading" style={{fontSize:'30px'}}>Follow Us</h2><br></br>
           <div className="contact-us-social-links">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="contact-us-social-link">
               <i className="fab fa-facebook-f"></i>

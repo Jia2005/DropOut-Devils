@@ -72,7 +72,6 @@ const UserProfile = ({setComponent}) => {
         { text: 'Learning Platform', component: 'LP_Landing' },
         { text: 'Financial Aid', component: 'Financial Aid' }, // Form component heres
         { text: 'Track Your Application', component: 'TrackYourApplication' },
-        { text: 'Dashboard', component: '' },
         { text: 'Change Password', component: '' },
       ],
       Teacher: [
@@ -91,11 +90,10 @@ const UserProfile = ({setComponent}) => {
       ],
       Admin: [
         { text: 'Home', component: '' },
-        { text: 'Statistical Report', component: '' },
-        { text: 'Manage Users', component: '' },
         { text: 'View and Approve Applications', component: 'ApplicationReviewPage' },
         { text: 'Approve Funds', component: 'FundsDisbursementPage' },
-        { text: 'Delete User', component: '' },
+        { text: 'Statistical Report', component: '' },
+        { text: 'Manage Users', component: '' },
         { text: 'Change Password', component: '' },
       ]
     };

@@ -13,7 +13,7 @@ const Footer = () => {
             Email: <a href="mailto:support@edusathi.com" className="footer-link">support@edusathi.com</a>
           </p>
           <p className="footer-contact-detail">
-            Phone: <a href="tel:+1234567890" className="footer-link">+123-456-7890</a>
+            Phone: <a href="tel:98190 27396" className="footer-link">+91 98190 27396</a>
           </p>
           <p className="footer-contact-detail">Address: 123 Learning Lane, Education City, ED 45678</p>
         </div>

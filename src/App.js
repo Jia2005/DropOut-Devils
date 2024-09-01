@@ -29,7 +29,7 @@ function App() {
         <Route path="/lander" element={<LandingPage/>}/>
         <Route path="/notifications" element={<Notifications/>}></Route>
         <Route path="/video/:classFolder/:subjectFolder/:chapterFolder/:videoName" element={<VideoPlayer />} />
-        <Route path="/room/:roomCode" element={<Room />} />
+        <Route path="/room/:roomID" element={<Room />} />
 
 
       </Routes>

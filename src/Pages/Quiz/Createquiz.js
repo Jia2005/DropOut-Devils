@@ -149,7 +149,7 @@ function CreateQuizPage() {
               </div>
               {question.options.map((option, oIndex) => (
                 <div key={oIndex} className="option-group2">
-                  <label>Option {oIndex + 1}:</label>
+                  <label style={{fontSize:'14px', fontWeight:'bold'}}>Option {oIndex + 1}:</label>
                   <input
                     type="text"
                     value={option}
