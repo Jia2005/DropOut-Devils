@@ -52,7 +52,7 @@ const ContactUs = () => {
           <div className="contact-us-map">
             <iframe
               title="Google Maps Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.1350620681637!2d-122.41941668468172!3d37.7749297797591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c2e65fef9%3A0x34f8e059c1a46d91!2s123%20Learning%20Lane%2C%20Education%20City%2C%20ED%2045678!5e0!3m2!1sen!2sus!4v1629464302697!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9834630688915!2d72.83328527502712!3d19.064464682137828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c91130392c07%3A0x3c47bf391c8de931!2sThadomal%20Shahani%20Engineering%20College!5e0!3m2!1sen!2sin!4v1725177666900!5m2!1sen!2sin"
               width="600"
               height="450"
               style={{ border: 0 }}
