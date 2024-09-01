@@ -9,7 +9,7 @@ import Main from './main';
 import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
 import LandingPage from './Pages/LandingPage/LandingPage';
-
+import Notifications from './Pages/Lander/Components/Navbar/Notifications';
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
         <Route path='/profile' element={<UserProfile setComponent={setComponent}/>}/>
         <Route path="/home" element={<HomePage component={component} setComponent={setComponent}/>}/>
         <Route path="/lander" element={<LandingPage/>}/>
+        <Route path="/notifications" element={<Notifications/>}></Route>
       </Routes>
     </Router>
   );

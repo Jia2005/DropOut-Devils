@@ -17,7 +17,7 @@ import CreateQuizPage from '../../../Quiz/Createquiz';
 import ApplicationReviewPage from '../../../financial-aid-form/ApplicationReviewPage';
 import FundsDisbursementPage from '../../../financial-aid-form/FundsDisbursement';
 import TeacherInput from '../../../Teacher-input/TeacherInput';
-
+import Notifications from './Notifications';
 const Navbar = ({ role, setComponent }) => {  
   const [isDropdownOpen, setDropdownOpen] = useState(false);  
   const navigate = useNavigate(); // Updated to use react-router-dom's navigate
@@ -105,7 +105,7 @@ const Navbar = ({ role, setComponent }) => {
         </ul>  
       </div>  
       <div className='navbar-right'>  
-        <img src={notification_icon} alt='Notifications' className='notification-icon' />  
+        <img src={notification_icon} onClick={()=>setComponent(<Notifications onReschedule={()=> setComponent(<ScheduleMeeting/>)}/>)} alt='Notifications' className='notification-icon' />  
         <img src={profile_icon} onClick={() => navigate('/profile')} alt='Profile' className='profile-icon' />  
         <img src={search_icon} alt='Search' className='search-icon' />  
       </div>  
