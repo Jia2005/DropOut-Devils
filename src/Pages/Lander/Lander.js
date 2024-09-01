@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import './Lander.css';
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Notifications from './Components/Navbar/Notifications'; // Import Notifications component
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Notifications from './Components/Navbar/Notifications';
+import LP_Landing from '../Learning_Platform/LP_Landing';
+import TeacherLanding from '../Learning_Platform/TeacherSection/TeacherLanding';
+import ApplicationReviewPage from '../financial-aid-form/ApplicationReviewPage';
 
 const Lander = ({ component, setComponent }) => {
   const [role, setRole] = useState('');
   const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false); // State for notifications visibility
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [defaultComponent, setDefaultComponent] = useState(null);
 
-  // Firestore and Auth initialization
   const db = getFirestore();
   const auth = getAuth();
 
   useEffect(() => {
     const fetchUserRole = async (uid) => {
-      const userRef = doc(db, "users", uid);
+      const userRef = doc(db, 'users', uid);
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
         const userData = userSnap.data();
         const userType = userData.type;
 
-        // Map user type to role
         const roleMapping = {
           1: 'student',
           2: 'teacher',
@@ -32,20 +34,34 @@ const Lander = ({ component, setComponent }) => {
           4: 'admin',
         };
 
-        setRole(roleMapping[userType] || 'student');
+        const userRole = roleMapping[userType] || 'student';
+        setRole(userRole);
+
+        switch (userRole) {
+          case 'student':
+          case 'parent':
+            setDefaultComponent(<LP_Landing />);
+            break;
+          case 'teacher':
+            setDefaultComponent(<TeacherLanding />);
+            break;
+          case 'admin':
+            setDefaultComponent(<ApplicationReviewPage />);
+            break;
+          default:
+            setDefaultComponent(null);
+        }
       } else {
-        console.error("No such user!");
+        console.error('No such user!');
       }
     };
 
-    // Listen for authentication state changes
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, get the UID
         const uid = user.uid;
         fetchUserRole(uid);
       } else {
-        console.error("No user is signed in");
+        console.error('No user is signed in');
       }
     });
   }, [auth, db]);
@@ -85,7 +101,7 @@ const Lander = ({ component, setComponent }) => {
         setTheme={setTheme} 
         role={role} 
         setComponent={setComponent} 
-        onNotificationClick={handleNotificationClick} // Pass the function to Navbar
+        onNotificationClick={handleNotificationClick}
       />
       <header>
         {isDropdownOpen && (
@@ -99,7 +115,7 @@ const Lander = ({ component, setComponent }) => {
         )}
       </header><br />
       <main>
-        {component}
+        {component || defaultComponent}
         {showNotifications && (
           <div className="notifications-container">
             <Notifications /> 
