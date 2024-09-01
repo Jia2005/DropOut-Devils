@@ -36,7 +36,7 @@ import ScheduleMeeting from './Pages/Lander/Components/ScheduleMeeting/ScheduleM
 import LandingPage from './Pages/LandingPage/LandingPage';
 import TeacherInput from './Pages/Teacher-input/TeacherInput';
 import FundsDisbursementPage from './Pages/financial-aid-form/FundsDisbursement';
-
+import Notifications from './Pages/Lander/Components/Navbar/Notifications';
 
 
 function App() {
@@ -81,6 +81,7 @@ function App() {
         <Route path="/lander" element={<LandingPage/>}/>
         <Route path="/schedulemeet" element={<ScheduleMeeting/>}/>
         <Route path="/teacherinput" element={<TeacherInput/>}/>
+        <Route path="/notifications" element={<Notifications/>}></Route>
       </Routes>
     </Router>
   );
