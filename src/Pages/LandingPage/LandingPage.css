@@ -1,8 +1,56 @@
 /* LandingPage.css */
-.landing-page-container {
+.landing-page {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  background-color: #fff; /* White background */
+  padding: 5px 10px; /* Padding for the box */
+  padding-right: 14px;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.navbar-logo-img {
+  height: 60px; /* Adjust height as necessary */
+  margin-right: 8px; /* Space between logo and text */
+}
+
+.navbar-logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000; /* Black text */
+}
+
+.navbar-menu {
+  display: flex;
+  margin-left: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-menu-item {
+  margin: 0 15px;
+}
+
+.navbar-menu-item a {
+  text-decoration: none;
+  color: #000;
 }
 
 .hero-section {
@@ -17,7 +65,7 @@
   background: url('./assets/background-image-modified.jpg') no-repeat center center/cover;
 }
 
-.hero-background-overlay {
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -28,17 +76,17 @@
   z-index: 0;
 }
 
-.hero-content-container {
+.hero-content {
   position: relative;
   z-index: 1;
 }
 
-.hero-title {
+.hero-heading {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-.hero-subtitle {
+.hero-subheading {
   font-size: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -67,12 +115,12 @@
   margin: 0 auto;
 }
 
-.why-edusathi-title {
+.why-edusathi-heading {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.highlighted-text {
+.highlight {
   font-weight: bold;
 }
 
@@ -87,7 +135,7 @@
   text-align: center;
 }
 
-.features-title {
+.features-heading {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
@@ -96,6 +144,7 @@ html {
   scroll-behavior: smooth;
   transition: 1s;
 }
+
 /* Footer.css */
 .footer {
   background-color: #333;
