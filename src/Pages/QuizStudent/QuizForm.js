@@ -35,24 +35,23 @@ function QuizFormPage() {
 
   const fetchUserGrade = async (user) => {
     if (!user) {
-      console.error('User not')
+      console.error('User not logged in');
       return;
     }
-      try {
-        const userDocRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userDocRef);
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
 
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          fetchQuizzes(userData.grade,user);
-        }
-      } catch (error) {
-        console.error('Error fetching user grade:', error);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        fetchQuizzes(userData.grade, user);
       }
-    
+    } catch (error) {
+      console.error('Error fetching user grade:', error);
+    }
   };
 
-  const fetchQuizzes = async (grade,user) => {
+  const fetchQuizzes = async (grade, user) => {
     try {
       const quizCollection = collection(db, 'quizzes');
       const q = query(quizCollection, where('grade', '==', grade));
@@ -80,8 +79,7 @@ function QuizFormPage() {
       console.error('Error fetching quizzes:', error.message);
     }
   };
-  
-  
+
   const fetchQuestions = async (quizId) => {
     try {
       const questionCollection = collection(db, 'questions');
@@ -101,7 +99,16 @@ function QuizFormPage() {
   };
 
   const handleQuizSelection = (quizId) => {
-    fetchQuestions(quizId);
+    const quiz = quizList.find(q => q.id === quizId);
+    const { style } = getQuizStatusStyle(quiz);
+    
+    // Check if the quiz is already submitted or attempted
+    if (style.backgroundColor !== '#C8E6C9' && style.backgroundColor !== '#FFE0D2') {
+      fetchQuestions(quizId);
+    } else {
+      // Display a message or just return
+      alert('You have already submitted or attempted this quiz.');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -184,7 +191,7 @@ function QuizFormPage() {
   
     return { style, comment };
   };
-  
+
   const isQuizAttempted = (quiz) => {
     return quiz.attemptedBy && quiz.attemptedBy.includes(user.uid);
   };
@@ -225,50 +232,30 @@ function QuizFormPage() {
                   <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
                   {question.options.map((option, oIndex) => (
                     <div key={oIndex} className={`option-group ${responses[qIndex] === oIndex ? 'selected' : ''}`}>
-                      <div className="optionAndName">
-                      <input className='optionValues'
+                      <input
                         type="radio"
-                        id={`q${qIndex}o${oIndex}`}
-                        name={`question${qIndex}`}
+                        name={`question-${qIndex}`}
                         value={oIndex}
                         onChange={() => handleResponseChange(qIndex, oIndex)}
-                        checked={responses[qIndex] === oIndex}
                       />
-                      <label className='optionName' htmlFor={`q${qIndex}o${oIndex}`}>{option}</label>
-                    </div></div>
+                      <label>{option}</label>
+                    </div>
                   ))}
                 </div>
               </div>
             ))}
+            <button type="submit" className="submit-button">Submit</button>
           </div>
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
         </form>
       )}
 
       {submitted && (
-        <div className="submission-message">
-          <h2>Thank you for submitting your responses!</h2>
-          <p>Your score: {score} / {questions.length}</p>
-          <div className="pie-chart-container">
+        <div className="result">
+          <h3>Quiz Result</h3>
+          <div className="result-chart">
             <Pie data={chartData} />
           </div>
-          <h3 className='hello'>Correct Answers:</h3>
-          {questions.map((question, index) => (
-            <div key={index} className="question-block">
-              <div className="form-group">
-                <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
-                {question.options.map((option, oIndex) => (
-                  <div key={oIndex} className={`option-group ${oIndex === correctAnswers[index] ? 'correct' : ''}`}>
-                  <label className='optionIs' htmlFor={`q${index}o${oIndex}`}>
-                    {option} {oIndex === correctAnswers[index] && '✔️'}
-                  </label>
-                </div>
-                ))}
-              </div>
-            </div>
-          ))}
+          <p>Your Score: {score}/{questions.length}</p>
         </div>
       )}
     </div>
