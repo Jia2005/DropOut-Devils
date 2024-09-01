@@ -24,11 +24,11 @@
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 15px 30px;
   margin-bottom: 5px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  height: 75px;
 }
 
 .tab.active {

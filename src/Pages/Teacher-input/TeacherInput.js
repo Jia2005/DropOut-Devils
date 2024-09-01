@@ -154,10 +154,10 @@ const TeacherInput = () => {
 
   return (
     <div className="teacher-input">
-      <h2>{actionType === "add" ? "Add Student Details" : "Update Student Records"}</h2><br></br>
+      <h2 style={{fontSize:'40px'}}>{actionType === "add" ? "Add Student Details" : "Update Student Records"}</h2><br></br>
       <div className="action-buttons">
-        <button onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>Add Student</button>
-        <button onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>Update Student Records</button>
+        <button style={{fontSize:'20px'}} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>Add Student</button>
+        <button style={{fontSize:'20px'}} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>Update Student Records</button>
       </div>
 
       {actionType === "update" && (
