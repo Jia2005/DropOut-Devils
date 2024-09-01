@@ -72,21 +72,6 @@ const Lander = ({component,setComponent}) => {
     setDropdownOpen(false);
   };
 
-  const getRoleContent = () => {
-    switch (role) {
-      case 'student':
-        return <p>Welcome, Student! Here you can access your learning materials, check financial aid options, and get support.</p>;
-      case 'parent':
-        return <p>Welcome, Parent! You can view your child's progress, access reports, and use the parental portal.</p>;
-      case 'teacher':
-        return <p>Welcome, Teacher! Manage your quizzes, upload study materials, and monitor student dashboards.</p>;
-      case 'admin':
-        return <p>Welcome, Admin! Manage users, view reports, and approve or delete applications.</p>;
-      default:
-        return <p>Loading content...</p>;
-    }
-  };
-
   return (
     <div className={`container2 ${theme}`}>
       <Navbar theme={theme} setTheme={setTheme} role={role} setComponent={setComponent} />

@@ -25,6 +25,21 @@ const Navbar = ({ role, setComponent }) => {
     setDropdownOpen(prevState => !prevState);  
   };  
 
+  const getRoleContent = () => {
+    switch (role) {
+      case 'student':
+        return LP_Landing;
+      case 'parent':
+        return LP_Landing;
+      case 'teacher':
+        return TeacherLanding;
+      case 'admin':
+        return ApplicationReviewPage;
+      default:
+        return <p>Loading content...</p>;
+    }
+  };
+
   const getSectionOptions = () => {  
     switch (role) {  
       case 'student':  
