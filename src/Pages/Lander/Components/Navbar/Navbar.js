@@ -18,6 +18,7 @@ import ApplicationReviewPage from '../../../financial-aid-form/ApplicationReview
 import FundsDisbursementPage from '../../../financial-aid-form/FundsDisbursement';
 import TeacherInput from '../../../Teacher-input/TeacherInput';
 import Notifications from './Notifications';
+import About from '../About/About';
 const Navbar = ({ role, setComponent }) => {  
   const [isDropdownOpen, setDropdownOpen] = useState(false);  
   const navigate = useNavigate(); // Updated to use react-router-dom's navigate
@@ -84,7 +85,7 @@ const Navbar = ({ role, setComponent }) => {
       <div className='navbar-center'>  
         <ul className='navbar-menu'>  
           <li className='navbar-item'><Link to="/home">Home</Link></li>  
-          <li className='navbar-item'>About</li>  
+          <li className='navbar-item' onClick={()=>setComponent(<About />)}>About</li>  
           <li className='navbar-item dropdown'>  
             <div onMouseEnter={toggleDropdown} className='dropdown-toggle'>Features</div>  
             {isDropdownOpen && (  
