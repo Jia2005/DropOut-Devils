@@ -6,12 +6,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const ContactUs = () => {
   return (
     <div className="contact-us-container">
-      <header className="contact-us-header">
-        <div className="contact-us-logo">
-          <img src={logo} alt="eduSathi Logo" className="contact-us-logo-img" />
-          <span className="contact-us-logo-text">EduSathi</span>
-        </div>
-      </header>
       <main className="contact-us-main">
         <section className="contact-us-info">
           <h2 className="contact-us-heading" style={{fontSize:"40px"}}>Contact Us</h2>

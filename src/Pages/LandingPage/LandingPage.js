@@ -23,7 +23,6 @@ const Navbar = () => {
 const HeroSection = () => {
   return (
     <section className="hero-section">
-      <div className="hero-background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
       <div className="hero-content">
         <h1 className="hero-heading">Empowering Futures, One Step at a Time</h1>
         <p className="hero-subheading">Help us reach more aspiring and deserving youth!</p>
