@@ -19,6 +19,7 @@ import FundsDisbursementPage from '../../../financial-aid-form/FundsDisbursement
 import TeacherInput from '../../../Teacher-input/TeacherInput';
 import Notifications from './Notifications';
 import About from '../About/About';
+import ContactUs from '../Contact/ContactUs';
 const Navbar = ({ role, setComponent }) => {  
   const [isDropdownOpen, setDropdownOpen] = useState(false);  
   const navigate = useNavigate(); // Updated to use react-router-dom's navigate
@@ -102,7 +103,7 @@ const Navbar = ({ role, setComponent }) => {
               </div>  
             )}  
           </li>  
-          <li className='navbar-item'>Contact</li>  
+          <li className='navbar-item' onClick={()=>setComponent(ContactUs)}>Contact</li>  
         </ul>  
       </div>  
       <div className='navbar-right'>  
