@@ -18,13 +18,14 @@ function QuizFormPage() {
   const [score, setScore] = useState(0);
   const [user, setUser] = useState(null);
   const [attemptedQuizzes, setAttemptedQuizzes] = useState({});
+  const [role, setRole] = useState('');
   const auth = getAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        fetchUserGrade(user);
+        fetchUserDetails(user);
       } else {
         setUser(null);
       }
@@ -33,7 +34,7 @@ function QuizFormPage() {
     return () => unsubscribe();
   }, [auth]);
 
-  const fetchUserGrade = async (user) => {
+  const fetchUserDetails = async (user) => {
     if (!user) {
       console.error('User not logged in');
       return;
@@ -44,26 +45,51 @@ function QuizFormPage() {
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        fetchQuizzes(userData.grade, user);
+        setRole(userData.type); // 'type' field determines if the user is a parent or student
+        fetchQuizzesAndResponses(userData, user);
       }
     } catch (error) {
-      console.error('Error fetching user grade:', error);
+      console.error('Error fetching user details:', error);
     }
   };
 
-  const fetchQuizzes = async (grade, user) => {
+  const fetchQuizzesAndResponses = async (userData, user) => {
     try {
       const quizCollection = collection(db, 'quizzes');
-      const q = query(quizCollection, where('grade', '==', grade));
+      let q;
+      let childDocId = null;
+  
+      if (userData.type === 1) { // Student
+        q = query(quizCollection, where('grade', '==', userData.grade));
+      } else if (userData.type === 3) { // Parent
+        const childDocRef = query(collection(db, 'users'), where('email', '==', userData.childEmail));
+        const childDocSnapshot = await getDocs(childDocRef);
+        if (!childDocSnapshot.empty) {
+          const childData = childDocSnapshot.docs[0].data();
+          childDocId = childDocSnapshot.docs[0].id;
+          q = query(quizCollection, where('grade', '==', childData.grade));
+        } else {
+          console.error('Child data not found');
+          return;
+        }
+      }
+  
       const quizSnapshot = await getDocs(q);
       const quizListData = quizSnapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
         .sort((a, b) => (b.createdAt.toDate() - a.createdAt.toDate())); // Sort by creation date descending
+  
       setQuizList(quizListData);
   
-      // Fetch attempted quizzes with response timestamps
       const responsesCollection = collection(db, 'responses');
-      const responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
+      let responsesQuery;
+      
+      if (userData.type === 1) { // Student
+        responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
+      } else if (userData.type === 3) { // Parent
+        responsesQuery = query(responsesCollection, where('userId', '==', childDocId));
+      }
+      
       const responsesSnapshot = await getDocs(responsesQuery);
       const attemptedData = {};
       responsesSnapshot.docs.forEach(doc => {
@@ -71,14 +97,12 @@ function QuizFormPage() {
         attemptedData[data.quizId] = data.time.toDate(); // Store attempted time
       });
   
-      // Log attempted times
-      console.log('Attempted Times:', attemptedData);
-  
       setAttemptedQuizzes(attemptedData);
     } catch (error) {
-      console.error('Error fetching quizzes:', error.message);
+      console.error('Error fetching quizzes and responses:', error.message);
     }
   };
+  
 
   const fetchQuestions = async (quizId) => {
     try {
@@ -102,11 +126,9 @@ function QuizFormPage() {
     const quiz = quizList.find(q => q.id === quizId);
     const { style } = getQuizStatusStyle(quiz);
     
-    // Check if the quiz is already submitted or attempted
     if (style.backgroundColor !== '#C8E6C9' && style.backgroundColor !== '#FFE0D2') {
       fetchQuestions(quizId);
     } else {
-      // Display a message or just return
       alert('You have already submitted or attempted this quiz.');
     }
   };
@@ -165,10 +187,7 @@ function QuizFormPage() {
     const attemptedTime = attemptedQuizzes[quiz.id];
     let style = {};
     let comment = '';
-  
-    // Log the attempted time for the quiz
-    console.log(`Quiz ID: ${quiz.id}, Attempted Time: ${attemptedTime}`);
-  
+
     if (attemptedTime) {
       if (attemptedTime > submissionDeadline) {
         style.backgroundColor = '#FFE0D2'; // Orange
@@ -188,12 +207,8 @@ function QuizFormPage() {
       style.borderLeft = '1.2vw solid #2196F3';
       comment = 'Not submitted';
     }
-  
-    return { style, comment };
-  };
 
-  const isQuizAttempted = (quiz) => {
-    return quiz.attemptedBy && quiz.attemptedBy.includes(user.uid);
+    return { style, comment };
   };
 
   return (
@@ -222,7 +237,7 @@ function QuizFormPage() {
           </div>
         </div>
       )}
-      
+
       {selectedQuiz && !submitted && (
         <form onSubmit={handleSubmit} className="questions-form">
           <div className="questions-grid">
@@ -231,31 +246,33 @@ function QuizFormPage() {
                 <div className="form-group">
                   <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
                   {question.options.map((option, oIndex) => (
-                    <div key={oIndex} className={`option-group ${responses[qIndex] === oIndex ? 'selected' : ''}`}>
+                    <div key={oIndex} className="form-check">
                       <input
+                        className="form-check-input"
                         type="radio"
-                        name={`question-${qIndex}`}
+                        name={`question${qIndex}`}
                         value={oIndex}
+                        checked={responses[qIndex] === oIndex}
                         onChange={() => handleResponseChange(qIndex, oIndex)}
                       />
-                      <label>{option}</label>
+                      <label className="form-check-label">{option}</label>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
-            <button type="submit" className="submit-button">Submit</button>
           </div>
+          <button type="submit" className="submit-button">Submit</button>
         </form>
       )}
 
       {submitted && (
-        <div className="result">
-          <h3>Quiz Result</h3>
-          <div className="result-chart">
+        <div className="result-section">
+          <h2>Quiz Results</h2>
+          <p>Your Score: {score} out of {questions.length}</p>
+          <div className="chart-container">
             <Pie data={chartData} />
           </div>
-          <p>Your Score: {score}/{questions.length}</p>
         </div>
       )}
     </div>

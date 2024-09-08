@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './LandingPage.css';
 import logo from './../Lander/assets/main-logo.png'
 import FeatureCards from './FeatureCards';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ scrollToFooter }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="eduSathi Logo" className="navbar-logo-img" />
         <span className="navbar-logo-text">EduSathi</span>
+        <li className="navbar-menu-item"><a href="#features">Features</a></li>
+        <li className="navbar-menu-item"><a onClick={scrollToFooter}>Contact</a></li>
       </div>
       <ul className="navbar-menu">
-        <li className="navbar-menu-item"><a href="#features">Features</a></li>
         <li className="navbar-menu-item reg"><Link to="/signup" style={{color:'white'}}>Register</Link></li>
       </ul>
     </nav>
@@ -58,13 +59,19 @@ const FeaturesSection = () => {
 };
 
 const LandingPage = () => {
+  const footerRef = useRef(null);
+
+  const scrollToFooter = () => {
+    footerRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="landing-page">
-      <Navbar />
+      <Navbar scrollToFooter={scrollToFooter} />
       <HeroSection />
       <WhyEduSathi />
       <FeaturesSection />
-      <Footer />
+      <Footer ref={footerRef} />
     </div>
   );
 };
