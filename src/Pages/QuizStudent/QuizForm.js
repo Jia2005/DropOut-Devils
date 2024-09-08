@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, where, doc, updateDoc, arrayUnion, addDoc, Timestamp, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, updateDoc, arrayUnion, setDoc, Timestamp, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './QuizForm.css';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { v1 } from 'uuid';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
-function QuizFormPage() {
+function QuizForm() {
   const [quizList, setQuizList] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
@@ -18,13 +19,15 @@ function QuizFormPage() {
   const [score, setScore] = useState(0);
   const [user, setUser] = useState(null);
   const [attemptedQuizzes, setAttemptedQuizzes] = useState({});
+  const [role, setRole] = useState('');
   const auth = getAuth();
+   const [childDocId, setChildDocId] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        fetchUserGrade(user);
+        fetchUserDetails(user);
       } else {
         setUser(null);
       }
@@ -33,7 +36,7 @@ function QuizFormPage() {
     return () => unsubscribe();
   }, [auth]);
 
-  const fetchUserGrade = async (user) => {
+  const fetchUserDetails = async (user) => {
     if (!user) {
       console.error('User not logged in');
       return;
@@ -44,39 +47,61 @@ function QuizFormPage() {
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        fetchQuizzes(userData.grade, user);
+        setRole(userData.type); // 'type' field determines if the user is a parent or student
+        fetchQuizzesAndResponses(userData, user);
       }
     } catch (error) {
-      console.error('Error fetching user grade:', error);
+      console.error('Error fetching user details:', error);
     }
   };
 
-  const fetchQuizzes = async (grade, user) => {
+  const fetchQuizzesAndResponses = async (userData, user) => {
     try {
       const quizCollection = collection(db, 'quizzes');
-      const q = query(quizCollection, where('grade', '==', grade));
+      let q;
+      let childDocId = null;
+
+      if (userData.type === 1) { // Student
+        q = query(quizCollection, where('grade', '==', userData.grade));
+      } else if (userData.type === 3) { // Parent
+        const childDocRef = query(collection(db, 'users'), where('email', '==', userData.childEmail));
+        const childDocSnapshot = await getDocs(childDocRef);
+        if (!childDocSnapshot.empty) {
+          const childData = childDocSnapshot.docs[0].data();
+          childDocId = childDocSnapshot.docs[0].id;
+          q = query(quizCollection, where('grade', '==', childData.grade));
+        } else {
+          console.error('Child data not found');
+          return;
+        }
+      }
+
       const quizSnapshot = await getDocs(q);
       const quizListData = quizSnapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
         .sort((a, b) => (b.createdAt.toDate() - a.createdAt.toDate())); // Sort by creation date descending
+
       setQuizList(quizListData);
-  
-      // Fetch attempted quizzes with response timestamps
+
       const responsesCollection = collection(db, 'responses');
-      const responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
+      let responsesQuery;
+
+      if (userData.type === 1) { // Student
+        responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
+      } else if (userData.type === 3) { // Parent
+        responsesQuery = query(responsesCollection, where('userId', '==', childDocId));
+      }
+
       const responsesSnapshot = await getDocs(responsesQuery);
       const attemptedData = {};
       responsesSnapshot.docs.forEach(doc => {
         const data = doc.data();
         attemptedData[data.quizId] = data.time.toDate(); // Store attempted time
       });
-  
-      // Log attempted times
-      console.log('Attempted Times:', attemptedData);
-  
+
       setAttemptedQuizzes(attemptedData);
     } catch (error) {
-      console.error('Error fetching quizzes:', error.message);
+      console.error('Error fetching quizzes and responses:', error.message);
     }
   };
 
@@ -84,7 +109,7 @@ function QuizFormPage() {
     try {
       const questionCollection = collection(db, 'questions');
       const questionSnapshot = await getDocs(query(questionCollection, where('quizId', '==', quizId)));
-      
+
       const questionList = questionSnapshot.docs
         .map(doc => doc.data())
         .sort((a, b) => a.questionNumber - b.questionNumber);
@@ -101,12 +126,10 @@ function QuizFormPage() {
   const handleQuizSelection = (quizId) => {
     const quiz = quizList.find(q => q.id === quizId);
     const { style } = getQuizStatusStyle(quiz);
-    
-    // Check if the quiz is already submitted or attempted
+
     if (style.backgroundColor !== '#C8E6C9' && style.backgroundColor !== '#FFE0D2') {
       fetchQuestions(quizId);
     } else {
-      // Display a message or just return
       alert('You have already submitted or attempted this quiz.');
     }
   };
@@ -114,35 +137,40 @@ function QuizFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let calculatedScore = 0;
-
+  
     responses.forEach((response, index) => {
       if (response === correctAnswers[index]) {
         calculatedScore += 1;
       }
     });
-
+  
     setScore(calculatedScore);
     setSubmitted(true);
-
+  
     if (selectedQuiz && user) {
       try {
         const quizRef = doc(db, 'quizzes', selectedQuiz);
+        const userId = role === 3 && childDocId ? childDocId : user.uid; // Use childDocId if the user is a parent
+  
         await updateDoc(quizRef, {
-          attemptedBy: arrayUnion(user.uid)
+          attemptedBy: arrayUnion(userId)
         });
-        const responsesRef = collection(db, 'responses');
-        await addDoc(responsesRef, {
+  
+        const responsesRef = doc(db, 'responses', v1());
+  
+        await setDoc(responsesRef, {
           quizId: selectedQuiz,
           responses: responses,
           time: Timestamp.now(),
-          userId: user.uid
+          userId: userId
         });
+        
       } catch (error) {
         console.error('Error submitting quiz:', error);
       }
     }
   };
-
+  
   const handleResponseChange = (questionIndex, optionIndex) => {
     const newResponses = [...responses];
     newResponses[questionIndex] = optionIndex;
@@ -165,10 +193,7 @@ function QuizFormPage() {
     const attemptedTime = attemptedQuizzes[quiz.id];
     let style = {};
     let comment = '';
-  
-    // Log the attempted time for the quiz
-    console.log(`Quiz ID: ${quiz.id}, Attempted Time: ${attemptedTime}`);
-  
+
     if (attemptedTime) {
       if (attemptedTime > submissionDeadline) {
         style.backgroundColor = '#FFE0D2'; // Orange
@@ -188,12 +213,8 @@ function QuizFormPage() {
       style.borderLeft = '1.2vw solid #2196F3';
       comment = 'Not submitted';
     }
-  
-    return { style, comment };
-  };
 
-  const isQuizAttempted = (quiz) => {
-    return quiz.attemptedBy && quiz.attemptedBy.includes(user.uid);
+    return { style, comment };
   };
 
   return (
@@ -222,44 +243,66 @@ function QuizFormPage() {
           </div>
         </div>
       )}
-      
+
       {selectedQuiz && !submitted && (
         <form onSubmit={handleSubmit} className="questions-form">
           <div className="questions-grid">
             {questions.map((question, qIndex) => (
               <div key={qIndex} className="question-block">
-                <div className="form-group">
-                  <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
-                  {question.options.map((option, oIndex) => (
-                    <div key={oIndex} className={`option-group ${responses[qIndex] === oIndex ? 'selected' : ''}`}>
-                      <input
-                        type="radio"
-                        name={`question-${qIndex}`}
-                        value={oIndex}
-                        onChange={() => handleResponseChange(qIndex, oIndex)}
-                      />
-                      <label>{option}</label>
-                    </div>
-                  ))}
+                <div className="form-group-quiz">
+                  <label style={{fontSize: '16px', fontWeight: 'bold'}}>
+                    {question.questionNumber}. {question.question}
+                  </label>
+                  <div className="options option-group">
+                    {question.options.map((option, oIndex) => (
+                      <div className='quiz-option-radio'>
+                        <input className='radio-quiz'
+                          type="radio"
+                          style={{height: '20px'}}
+                          name={`question-${qIndex}`}
+                          value={oIndex}
+                          checked={responses[qIndex] === oIndex}
+                          onChange={() => handleResponseChange(qIndex, oIndex)}
+                          disabled={submitted}
+                        />
+                      <label style={{fontSize: '15px'}} className='option' key={oIndex}>
+                        {option}
+                      </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
-            <button type="submit" className="submit-button">Submit</button>
           </div>
+          <button type="submit" disabled={submitted} className="submit-button">
+            Submit Quiz
+          </button>
         </form>
       )}
 
       {submitted && (
-        <div className="result">
-          <h3>Quiz Result</h3>
-          <div className="result-chart">
-            <Pie data={chartData} />
+        <div className="submission-message">
+          <h2>Thank you for submitting your responses</h2>
+          <p class>You scored {score}/{questions.length}.</p>
+          <div className="pie-chart-container">
+          <Pie style={{height: '280px'}} data={chartData} /></div>
+          <div className="correct-answers ">
+            <h3>Correct Answers:</h3><br />
+            {questions.map((question, qIndex) => (
+              <div key={qIndex} style={{marginTop:'8px'}}>
+                <strong>{question.questionNumber}. {question.question}</strong><br /><br />
+                Correct Answer: {question.options[question.correctOptionIndex]}
+                <br />
+                Your Answer: {question.options[responses[qIndex]]}
+                <br /><br />
+              </div>
+            ))}
           </div>
-          <p>Your Score: {score}/{questions.length}</p>
         </div>
       )}
     </div>
   );
 }
 
-export default QuizFormPage;
+export default QuizForm;

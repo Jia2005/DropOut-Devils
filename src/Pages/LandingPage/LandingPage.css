@@ -36,7 +36,17 @@
 
 .navbar-logo-img {
   height: 60px; /* Adjust height as necessary */
-  margin-right: 8px; /* Space between logo and text */
+  margin-right: 8px; 
+  /* Space between logo and text */
+}
+.navbar-logo li{
+  display: flex;
+  margin-left: 6vw;
+  list-style: none;
+  padding: 0;
+}
+.navbar-logo li:hover{
+  cursor: pointer;
 }
 
 .navbar-logo-text {
@@ -70,6 +80,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url('../Lander/assets/image.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-background {
@@ -135,8 +148,8 @@
 }
 
 .features-section {
+  padding-top: 100px;
   background: #f8f9fa;
-  padding: 4rem 2rem;
   text-align: center;
 }
 

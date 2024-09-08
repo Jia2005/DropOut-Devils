@@ -9,9 +9,114 @@
   overflow-y: auto;
   box-sizing: border-box;
 }
-.QuesN
+.radio-quiz{
+  width: fit-content;
+}
+/* Container for the entire quiz form */
+.quiz-form-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* For comments on quiz status */
 .comment {
   font-weight: bold;
+}
+
+/* Container for quiz selection */
+.quiz-selection {
+  text-align: left;
+}
+
+/* Header for quiz selection section */
+.quiz-selection h2 {
+  margin-bottom: 20px;
+  color: #231942;
+  font-size: 16px;
+}
+
+/* Grid layout for displaying quizzes */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Individual quiz item styling */
+.quiz-item {
+  background-color: #5e548e;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  color: #333;
+}
+
+/* Quiz item hover effect */
+.quiz-item:hover {
+  transform: scale(1.05);
+  background-color: #9f86c0;
+}
+
+/* Quiz item header */
+.quiz-item h3 {
+  margin: 0 0 10px;
+  font-size: 3vh;
+}
+
+/* Paragraph styling within quiz items */
+.quiz-item p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Form for answering quiz questions */
+.questions-form {
+  margin-top: 20px;
+}
+
+/* Grouping options within a question */
+.option-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.option{
+  display: inline;
+}
+/* Styling for the question number */
+.QuesNo {
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 10px;
+}
+
+Pie{
+  height: 35vh;
+  width: 100%;
+}
+
+.comment {
+  font-weight: bold;
+}
+
+.quiz-option-radio {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
 }
 
 .quiz-selection {
@@ -75,6 +180,10 @@
   font-size: large;
   font-weight: 400;
 }
+.correct-answers{
+  align-self: left;
+  text-align: left;
+}
 .option-group.selected {
   background-color: #9f86c0;
   color: #ffffff;
@@ -89,7 +198,9 @@
 .option-group input {
   margin-right: 10px; /* Space between radio button and label */
 }
-
+.pie-chart-container{
+  height: 25vh;
+}
 .option-group .option-label {
   font-size: 16px;
   color: #333;
@@ -137,17 +248,18 @@
 }
 
 .pie-chart-container {
-  margin: 20px auto;
-  width: 60%;
-  height: 35vh;
-  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto; 
+  /* height: 400px; */
   display: flex;
+  justify-content: center;
 }
 
 .pie-chart-container canvas {
   max-width: 100%;
   width: 20vw;
-  max-height: 50vh;
+  max-height: 20vh;
 }
 .hello{
   text-align: left;
