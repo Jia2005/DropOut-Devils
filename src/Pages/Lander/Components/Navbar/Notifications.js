@@ -180,7 +180,7 @@ const Notifications = ({onReschedule}) => {
               <p>{notification.message}</p>
               {selectedNotification === notification.id && userType === 2 && notification.type === 'meeting_request' && (
                 <div className="notification-actions">
-                  <button onClick={() => handleApprove(notification.id, notification.meetingId)}>Approve</button>
+                  <button className='approve-here' onClick={() => handleApprove(notification.id, notification.meetingId)}>Approve</button>
                   {showRejectDropdown === notification.id ? (
                     <div className="reject-dropdown">
                       <select
@@ -193,10 +193,10 @@ const Notifications = ({onReschedule}) => {
                           <option key={index} value={reason}>{reason}</option>
                         ))}
                       </select>
-                      <button onClick={() => handleReject(notification.id, notification.meetingId)}>Submit Rejection</button>
+                      <button  onClick={() => handleReject(notification.id, notification.meetingId)}>Submit Rejection</button>
                     </div>
                   ) : (
-                    <button onClick={() => handleRejectButtonClick(notification.id)}>Reject</button>
+                    <button className='reject-here' onClick={() => handleRejectButtonClick(notification.id)}>Reject</button>
                   )}
                 </div>
               )}

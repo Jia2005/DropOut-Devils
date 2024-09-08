@@ -93,7 +93,7 @@ function FundsDisbursementPage() {
 
                 {!selectedDisbursement ? (
                     <div>
-                        <h3>Pending Disbursements</h3>
+                        
                         <table>
                             <thead>
                                 <tr>

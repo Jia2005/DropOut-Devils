@@ -25,7 +25,14 @@
     list-style: none;
     padding: 0;
   }
-  
+  .approve-here{
+    background-color: lightgreen;
+    margin-right: 8px;
+    color: black;
+  }
+  .reject-here{
+    background-color: red;
+  }
   .notification-item {
     padding: 15px;
     margin-bottom: 10px;
