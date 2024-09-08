@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, where, doc, updateDoc, arrayUnion, addDoc, Timestamp, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, updateDoc, arrayUnion, setDoc, Timestamp, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './QuizForm.css';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { v1 } from 'uuid';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
-function QuizFormPage() {
+function QuizForm() {
   const [quizList, setQuizList] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
@@ -20,6 +21,7 @@ function QuizFormPage() {
   const [attemptedQuizzes, setAttemptedQuizzes] = useState({});
   const [role, setRole] = useState('');
   const auth = getAuth();
+   const [childDocId, setChildDocId] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -58,7 +60,7 @@ function QuizFormPage() {
       const quizCollection = collection(db, 'quizzes');
       let q;
       let childDocId = null;
-  
+
       if (userData.type === 1) { // Student
         q = query(quizCollection, where('grade', '==', userData.grade));
       } else if (userData.type === 3) { // Parent
@@ -73,42 +75,41 @@ function QuizFormPage() {
           return;
         }
       }
-  
+
       const quizSnapshot = await getDocs(q);
       const quizListData = quizSnapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
         .sort((a, b) => (b.createdAt.toDate() - a.createdAt.toDate())); // Sort by creation date descending
-  
+
       setQuizList(quizListData);
-  
+
       const responsesCollection = collection(db, 'responses');
       let responsesQuery;
-      
+
       if (userData.type === 1) { // Student
         responsesQuery = query(responsesCollection, where('userId', '==', user.uid));
       } else if (userData.type === 3) { // Parent
         responsesQuery = query(responsesCollection, where('userId', '==', childDocId));
       }
-      
+
       const responsesSnapshot = await getDocs(responsesQuery);
       const attemptedData = {};
       responsesSnapshot.docs.forEach(doc => {
         const data = doc.data();
         attemptedData[data.quizId] = data.time.toDate(); // Store attempted time
       });
-  
+
       setAttemptedQuizzes(attemptedData);
     } catch (error) {
       console.error('Error fetching quizzes and responses:', error.message);
     }
   };
-  
 
   const fetchQuestions = async (quizId) => {
     try {
       const questionCollection = collection(db, 'questions');
       const questionSnapshot = await getDocs(query(questionCollection, where('quizId', '==', quizId)));
-      
+
       const questionList = questionSnapshot.docs
         .map(doc => doc.data())
         .sort((a, b) => a.questionNumber - b.questionNumber);
@@ -125,7 +126,7 @@ function QuizFormPage() {
   const handleQuizSelection = (quizId) => {
     const quiz = quizList.find(q => q.id === quizId);
     const { style } = getQuizStatusStyle(quiz);
-    
+
     if (style.backgroundColor !== '#C8E6C9' && style.backgroundColor !== '#FFE0D2') {
       fetchQuestions(quizId);
     } else {
@@ -136,35 +137,40 @@ function QuizFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let calculatedScore = 0;
-
+  
     responses.forEach((response, index) => {
       if (response === correctAnswers[index]) {
         calculatedScore += 1;
       }
     });
-
+  
     setScore(calculatedScore);
     setSubmitted(true);
-
+  
     if (selectedQuiz && user) {
       try {
         const quizRef = doc(db, 'quizzes', selectedQuiz);
+        const userId = role === 3 && childDocId ? childDocId : user.uid; // Use childDocId if the user is a parent
+  
         await updateDoc(quizRef, {
-          attemptedBy: arrayUnion(user.uid)
+          attemptedBy: arrayUnion(userId)
         });
-        const responsesRef = collection(db, 'responses');
-        await addDoc(responsesRef, {
+  
+        const responsesRef = doc(db, 'responses', v1());
+  
+        await setDoc(responsesRef, {
           quizId: selectedQuiz,
           responses: responses,
           time: Timestamp.now(),
-          userId: user.uid
+          userId: userId
         });
+        
       } catch (error) {
         console.error('Error submitting quiz:', error);
       }
     }
   };
-
+  
   const handleResponseChange = (questionIndex, optionIndex) => {
     const newResponses = [...responses];
     newResponses[questionIndex] = optionIndex;
@@ -243,35 +249,55 @@ function QuizFormPage() {
           <div className="questions-grid">
             {questions.map((question, qIndex) => (
               <div key={qIndex} className="question-block">
-                <div className="form-group">
-                  <label className='QuesNo'>{`Q${question.questionNumber}. ${question.question}`}</label>
-                  {question.options.map((option, oIndex) => (
-                    <div key={oIndex} className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name={`question${qIndex}`}
-                        value={oIndex}
-                        checked={responses[qIndex] === oIndex}
-                        onChange={() => handleResponseChange(qIndex, oIndex)}
-                      />
-                      <label className="form-check-label">{option}</label>
-                    </div>
-                  ))}
+                <div className="form-group-quiz">
+                  <label style={{fontSize: '16px', fontWeight: 'bold'}}>
+                    {question.questionNumber}. {question.question}
+                  </label>
+                  <div className="options option-group">
+                    {question.options.map((option, oIndex) => (
+                      <div className='quiz-option-radio'>
+                        <input className='radio-quiz'
+                          type="radio"
+                          style={{height: '20px'}}
+                          name={`question-${qIndex}`}
+                          value={oIndex}
+                          checked={responses[qIndex] === oIndex}
+                          onChange={() => handleResponseChange(qIndex, oIndex)}
+                          disabled={submitted}
+                        />
+                      <label style={{fontSize: '15px'}} className='option' key={oIndex}>
+                        {option}
+                      </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <button type="submit" className="submit-button">Submit</button>
+          <button type="submit" disabled={submitted} className="submit-button">
+            Submit Quiz
+          </button>
         </form>
       )}
 
       {submitted && (
-        <div className="result-section">
-          <h2>Quiz Results</h2>
-          <p>Your Score: {score} out of {questions.length}</p>
-          <div className="chart-container">
-            <Pie data={chartData} />
+        <div className="submission-message">
+          <h2>Thank you for submitting your responses</h2>
+          <p class>You scored {score}/{questions.length}.</p>
+          <div className="pie-chart-container">
+          <Pie style={{height: '280px'}} data={chartData} /></div>
+          <div className="correct-answers ">
+            <h3>Correct Answers:</h3><br />
+            {questions.map((question, qIndex) => (
+              <div key={qIndex} style={{marginTop:'8px'}}>
+                <strong>{question.questionNumber}. {question.question}</strong><br /><br />
+                Correct Answer: {question.options[question.correctOptionIndex]}
+                <br />
+                Your Answer: {question.options[responses[qIndex]]}
+                <br /><br />
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -279,4 +305,4 @@ function QuizFormPage() {
   );
 }
 
-export default QuizFormPage;
+export default QuizForm;

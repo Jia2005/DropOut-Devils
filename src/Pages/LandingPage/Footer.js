@@ -8,7 +8,6 @@ const Footer = forwardRef((props, ref) => {
     <footer ref={ref} className="footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <img src={logo} alt="eduSathi Logo" className="footer-logo-img" />
           <span className="footer-logo-text">eduSathi</span>
         </div>
         <div className="footer-contact-info">

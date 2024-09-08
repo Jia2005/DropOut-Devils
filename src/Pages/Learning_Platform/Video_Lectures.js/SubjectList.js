@@ -193,7 +193,7 @@ function SubjectList() {
 
       {contentLinks.length > 0 && (
         <div className='content-list'>
-          <h3>Available Images:</h3>
+          <h3>Available Videos:</h3>
           <ul>
             {contentLinks.map((content) => (
               <li key={content.name}>

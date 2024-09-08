@@ -80,6 +80,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url('../Lander/assets/image.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-background {
@@ -147,9 +150,8 @@
 }
 
 .features-section {
-  margin-top: 4vh;
+  padding-top: 100px;
   background: #f8f9fa;
-  padding: 4rem 2rem;
   text-align: center;
 }
 

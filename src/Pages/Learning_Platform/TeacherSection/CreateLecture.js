@@ -14,6 +14,7 @@ function CreateLecture() {
   const [videoFile, setVideoFile] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [isReviewLecture, setIsReviewLecture] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -52,6 +53,7 @@ function CreateLecture() {
   const handleUpload = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     let basePath = `learn_platform/${classFolder}`;
     if (isReviewLecture) {
       basePath = `${basePath}/rev`;
@@ -71,7 +73,7 @@ function CreateLecture() {
       const imageRef = ref(storage, `${basePath}/${imageName}`);
       await uploadBytes(imageRef, imageFile);
     }
-
+    setLoading(false);
     alert('Video and image uploaded successfully!');
   };
 
@@ -168,7 +170,9 @@ function CreateLecture() {
             />
           </label>
           <br />
-          <button type="submit" disabled={!videoFile}>Upload Lecture</button>
+          <button type="submit" id='Submit-btn' disabled={!videoFile}>
+          {loading ? 'Loading...' : 'Upload Lecture'}
+          </button>
         </form>
       </div>
     </div>

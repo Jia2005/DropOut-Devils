@@ -24,10 +24,10 @@ const Navbar = ({ scrollToFooter }) => {
 const HeroSection = () => {
   return (
     <section className="hero-section">
-      <div className="hero-content">
-        <h1 className="hero-heading">Grooming Futures: One Student at a Time</h1>
-        <p className="hero-subheading">Join us in <b>Empowering Every Learner!</b></p>
-        <Link to="/signup"><button className="hero-register-button">Register Now!</button></Link>
+      <div className="hero-content" style={{color: 'white'}}>
+        <h1 className="hero-heading" style={{color: 'white', textShadow: '3px 3px black'}}>Grooming Futures: One Student at a Time</h1>
+        <p className="hero-subheading" style={{color: 'gold', textShadow: '2px 2px black', fontSize: '30px'}}>Join us in <b>Empowering Every Learner!</b></p>
+        <Link to="/signup"><button className="hero-register-button" style={{backgroundColor:'gold',color:'black', fontWeight:'bold'}}>Register Now!</button></Link>
       </div>
     </section>
   );
@@ -37,7 +37,7 @@ const WhyEduSathi = () => {
   return (
     <section className="why-edusathi-section">
       <div className="why-edusathi-content">
-        <h2 className="why-edusathi-heading">Why <span className="highlight">eduSathi?</span></h2>
+        <h2 className="why-edusathi-heading">Why <span className="highlight">EduSathi?</span></h2>
         <p className="why-edusathi-description">
           EduSathi is your companion in the journey of education. We provide
           top-notch resources, personalized learning experiences, and a
