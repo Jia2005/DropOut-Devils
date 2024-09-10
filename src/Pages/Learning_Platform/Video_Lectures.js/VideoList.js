@@ -1,55 +1,135 @@
+// VideoList.js
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase';
 import './VideoList.css';
 
 function VideoList() {
-  const { classFolder, subjectFolder, chapterFolder } = useParams();
-  const [imageLinks, setImageLinks] = useState([]);
+  const [grades, setGrades] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [chapters, setChapters] = useState([]);
+  const [selectedGrade, setSelectedGrade] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedChapter, setSelectedChapter] = useState('');
+  const [videoLectures, setVideoLectures] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchImages = async () => {
-      
-      const folderPath = (subjectFolder=='revision' || chapterFolder=='revisionchapter')
-      ? `learn_platform/${classFolder}/rev`
-      : `learn_platform/${classFolder}/lec/${subjectFolder}/${chapterFolder}`;
-      const folderRef = ref(storage, folderPath);
-      const result = await listAll(folderRef);
-      const links = await Promise.all(result.items.map(async (itemRef) => {
-        const url = await getDownloadURL(itemRef);
-        return { name: itemRef.name, url };
-      }));
-      setImageLinks(links.filter(link => isImage(link.name)));
+    const fetchOptions = async () => {
+      // Fetch available grades
+      const gradeSnap = await getDocs(collection(db, 'video_lectures'));
+      const gradesSet = new Set();
+      gradeSnap.docs.forEach(doc => gradesSet.add(doc.data().grade));
+      setGrades(Array.from(gradesSet));
+
+      // Fetch subjects based on selected grade
+      if (selectedGrade) {
+        const subjectSnap = await getDocs(query(
+          collection(db, 'video_lectures'),
+          where('grade', '==', selectedGrade)
+        ));
+        const subjectsSet = new Set();
+        subjectSnap.docs.forEach(doc => subjectsSet.add(doc.data().subject));
+        setSubjects(Array.from(subjectsSet));
+      }
+
+      // Fetch chapters based on selected subject
+      if (selectedSubject) {
+        const chapterSnap = await getDocs(query(
+          collection(db, 'video_lectures'),
+          where('grade', '==', selectedGrade),
+          where('subject', '==', selectedSubject)
+        ));
+        const chaptersSet = new Set();
+        chapterSnap.docs.forEach(doc => chaptersSet.add(doc.data().chapter));
+        setChapters(Array.from(chaptersSet));
+      }
     };
 
-    fetchImages();
-  }, [classFolder, subjectFolder, chapterFolder]);
+    fetchOptions();
+  }, [selectedGrade, selectedSubject]);
 
-  const isImage = (fileName) => {
-    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
-    const fileExtension = fileName.slice(fileName.lastIndexOf('.')).toLowerCase();
-    return imageExtensions.includes(fileExtension);
+  const handleGetVideos = async () => {
+    const q = query(
+      collection(db, 'video_lectures'),
+      where('grade', '==', selectedGrade),
+      where('subject', '==', selectedSubject),
+      where('chapter', '==', selectedChapter)
+    );
+    const querySnapshot = await getDocs(q);
+    const lectures = querySnapshot.docs.map(doc => doc.data());
+    setVideoLectures(lectures);
   };
 
-  const handleImageClick = (imageName) => {
-    const videoName = imageName.split('.')[0];
-    navigate(`/play-video/${classFolder}/${subjectFolder}/${chapterFolder}/${videoName}`);
+  const handleImageClick = (vidLink) => {
+    navigate(`/play-video/${encodeURIComponent(vidLink)}`);
   };
-  
+
   return (
     <div className='video-list-container'>
-      <h2 className='video-list-header'>Videos Available</h2>
+      <h2 className='video-list-header'>Select Filters and Get Videos</h2>
+      <div className='filters-container'>
+        <div className='filter-group'>
+          <label htmlFor='grade'>Grade:</label>
+          <select
+            id='grade'
+            value={selectedGrade}
+            onChange={(e) => {
+              setSelectedGrade(e.target.value);
+              setSelectedSubject('');
+              setSelectedChapter('');
+            }}
+          >
+            <option value=''>Select Grade</option>
+            {grades.map(grade => (
+              <option key={grade} value={grade}>{grade}</option>
+            ))}
+          </select>
+        </div>
+        <div className='filter-group'>
+          <label htmlFor='subject'>Subject:</label>
+          <select
+            id='subject'
+            value={selectedSubject}
+            onChange={(e) => {
+              setSelectedSubject(e.target.value);
+              setSelectedChapter('');
+            }}
+            disabled={!selectedGrade}
+          >
+            <option value=''>Select Subject</option>
+            {subjects.map(subject => (
+              <option key={subject} value={subject}>{subject}</option>
+            ))}
+          </select>
+        </div>
+        <div className='filter-group'>
+          <label htmlFor='chapter'>Chapter:</label>
+          <select
+            id='chapter'
+            value={selectedChapter}
+            onChange={(e) => setSelectedChapter(e.target.value)}
+            disabled={!selectedSubject}
+          >
+            <option value=''>Select Chapter</option>
+            {chapters.map(chapter => (
+              <option key={chapter} value={chapter}>{chapter}</option>
+            ))}
+          </select>
+        </div>
+        <button onClick={handleGetVideos}>Get Videos</button>
+      </div>
       <ul className='video-list-items'>
-        {imageLinks.map((image) => (
-          <li key={image.name} className='video-list-item'>
+        {videoLectures.map((lecture) => (
+          <li key={lecture.title} className={`video-list-item ${lecture.is_rev ? 'review' : ''}`}>
             <img 
-              src={image.url} 
-              alt={image.name} 
-              onClick={() => handleImageClick(image.name)} 
+              src={lecture.img_link} 
+              alt={lecture.title} 
+              onClick={() => handleImageClick(lecture.vid_link)} 
             />
-            <p>Name: {image.name.split('.')[0]}</p>
+            <p>Name: {lecture.title}</p>
+            <p>{lecture.is_rev ? 'Review Lecture' : 'Lecture'}</p>
           </li>
         ))}
       </ul>

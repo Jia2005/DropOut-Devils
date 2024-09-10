@@ -160,7 +160,7 @@ function QuizForm() {
   
         await setDoc(responsesRef, {
           quizId: selectedQuiz,
-          responses: responses,
+          selected: responses,
           time: Timestamp.now(),
           userId: userId
         });

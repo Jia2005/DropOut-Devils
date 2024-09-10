@@ -12,6 +12,8 @@ import LandingPage from './Pages/LandingPage/LandingPage';
 import Notifications from './Pages/Lander/Components/Navbar/Notifications';
 import VideoPlayer from './Pages/Learning_Platform/Video_Lectures.js/Video';
 import Room from './Pages/Learning_Platform/Meetings/Room'
+import UploadForm from './Pages/Learning_Platform/Video_Lectures.js/UploadForm';
+import VideoList from './Pages/Learning_Platform/Video_Lectures.js/VideoList';
 function App() {
 
   const [component, setComponent] = useState('');
@@ -22,15 +24,16 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/form" element={<Form />} />
         <Route path='/login' element={<LoginPage />}/>
+        <Route path='/upload' element={<UploadForm />}/>
         <Route path='/signup' element={<SignupPage />}/>
         <Route path='/adminsign' element={<AdminSign/>}/>
         <Route path='/profile' element={<UserProfile setComponent={setComponent}/>}/>
         <Route path="/home" element={<HomePage component={component} setComponent={setComponent}/>}/>
         <Route path="/lander" element={<LandingPage/>}/>
         <Route path="/notifications" element={<Notifications/>}></Route>
-        <Route path="/video/:classFolder/:subjectFolder/:chapterFolder/:videoName" element={<VideoPlayer />} />
         <Route path="/room/:roomID" element={<Room />} />
-
+        <Route path="/videos" element={<VideoList />} />
+        <Route path="/play-video/:videoUrl" element={<VideoPlayer />} />
 
       </Routes>
     </Router>
