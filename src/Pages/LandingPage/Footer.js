@@ -36,5 +36,4 @@ const Footer = forwardRef((props, ref) => {
     </footer>
   );
 });
-
 export default Footer;
