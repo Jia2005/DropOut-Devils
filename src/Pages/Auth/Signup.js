@@ -6,10 +6,8 @@ import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import './Auth.css';
 import { db } from '../../firebase';
 import { useNavigate, Link } from 'react-router-dom';
-
 const signUpUser = async (email, password) => {
-  const auth = getAuth();
-  
+  const auth = getAuth(); 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -20,34 +18,27 @@ const signUpUser = async (email, password) => {
     return { success: false, errorCode, errorMessage };
   }
 };
-
 const storeUserDetails = async (uid, role, details) => {
   const roleType = {
     student: 1,
     teacher: 2,
     parent: 3,
   };
-
   const type = roleType[role];
-
   try {
     await setDoc(doc(db, 'users', uid), { type, ...details });
   } catch (error) {
     console.error('Error storing user details:', error);
   }
 };
-
 const checkChildEmailExists = async (childEmail) => {
   const userRef = doc(db, 'users', childEmail);
   const userDoc = await getDoc(userRef);
-
   return userDoc.exists() && userDoc.data().type === 1; 
 };
-
 function SignupPage() {
   const navigate = useNavigate();
   const [role, setRole] = useState('student');
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -94,19 +85,14 @@ function SignupPage() {
             return;
           }
         }
-
         const roleDetails = {
           student: { type: 1, name: values.name, grade: values.grade, email: values.email },
           teacher: { type: 2, name: values.name, subject: values.subject, email: values.email },
           parent: { type: 3, name: values.name, childEmail: values.childEmail, email: values.email }
         };
-
         const details = roleDetails[values.role];
-
         await storeUserDetails(uid, values.role, details);
-
         const auth = getAuth();
-
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
           navigate('/home');
@@ -114,7 +100,6 @@ function SignupPage() {
         .catch(() => {
           alert('Username or password is incorrect');
         });
-
       } else {
         if (result.errorCode === 'auth/email-already-in-use') {
           alert('The email address is already in use. Please use a different email.');
@@ -125,7 +110,6 @@ function SignupPage() {
       }
     },
   });
-
   return (
     <div className="auth-container">
       <h2>Signup</h2>
@@ -144,7 +128,6 @@ function SignupPage() {
             <div className="error">{formik.errors.email}</div>
           ) : null}
         </div>
-
         <div className="form-group">
           <label>Password:</label>
           <input className='takeInput'
@@ -158,7 +141,6 @@ function SignupPage() {
             <div className="error">{formik.errors.password}</div>
           ) : null}
         </div>
-
         <div className="form-group">
           <label>Confirm Password:</label>
           <input className='takeInput'
@@ -172,7 +154,6 @@ function SignupPage() {
             <div className="error">{formik.errors.confirmPassword}</div>
           ) : null}
         </div>
-
         <div className="form-group">
           <label>Role:</label>
           <select
@@ -188,7 +169,6 @@ function SignupPage() {
             <option value="parent">Parent</option>
           </select>
         </div>
-
         {role === 'student' && (
           <>
             <div className="form-group">
@@ -221,7 +201,6 @@ function SignupPage() {
             </div>
           </>
         )}
-
         {role === 'teacher' && (
           <>
             <div className="form-group">
@@ -254,7 +233,6 @@ function SignupPage() {
             </div>
           </>
         )}
-
         {role === 'parent' && (
           <>
             <div className="form-group">
@@ -287,7 +265,6 @@ function SignupPage() {
             </div>
           </>
         )}
-
         <button type="submit" className="btn">Signup</button>
 
         <div className="login-link">
@@ -298,5 +275,4 @@ function SignupPage() {
     </div>
   );
 }
-
 export default SignupPage;
