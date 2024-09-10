@@ -1,4 +1,3 @@
-// VideoList.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -58,14 +57,14 @@ function VideoList() {
       where('chapter', '==', selectedChapter)
     );
     const querySnapshot = await getDocs(q);
-    const lectures = querySnapshot.docs.map(doc => doc.data());
+    const lectures = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setVideoLectures(lectures);
   };
 
-  const handleImageClick = (vidLink) => {
-    navigate(`/play-video/${encodeURIComponent(vidLink)}`);
+  const handleImageClick = (videoId) => {
+    navigate(`/play-video/${videoId}`);  // Pass video ID to the route
   };
-
+  
   return (
     <div className='video-list-container'>
       <h2 className='video-list-header'>Select Filters and Get Videos</h2>
@@ -122,11 +121,11 @@ function VideoList() {
       </div>
       <ul className='video-list-items'>
         {videoLectures.map((lecture) => (
-          <li key={lecture.title} className={`video-list-item ${lecture.is_rev ? 'review' : ''}`}>
+          <li key={lecture.id} className={`video-list-item ${lecture.is_rev ? 'review' : ''}`}>
             <img 
               src={lecture.img_link} 
               alt={lecture.title} 
-              onClick={() => handleImageClick(lecture.vid_link)} 
+              onClick={() => handleImageClick(lecture.id)}  // Pass video ID here
             />
             <p>Name: {lecture.title}</p>
             <p>{lecture.is_rev ? 'Review Lecture' : 'Lecture'}</p>
