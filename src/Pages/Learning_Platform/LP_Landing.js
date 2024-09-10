@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LP_Landing.css';
 import Notes from './Notes/Notes';
 import Quizzes from './Quizzes/Quizpage';
-import SubjectList from './Video_Lectures.js/SubjectList';
+import SubjectList from './Video_Lectures/SubjectList';
 import EnterMeet from './Meetings/EnterMeet';
 
 function LP_Landing() {

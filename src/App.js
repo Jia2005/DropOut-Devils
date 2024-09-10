@@ -10,10 +10,10 @@ import AdminSign from './Pages/Auth/AdminSign';
 import UserProfile from './Pages/Profile/Profile';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import Notifications from './Pages/Lander/Components/Navbar/Notifications';
-import VideoPlayer from './Pages/Learning_Platform/Video_Lectures.js/Video';
+import VideoPlayer from './Pages/Learning_Platform/Video_Lectures/Video';
 import Room from './Pages/Learning_Platform/Meetings/Room'
-import UploadForm from './Pages/Learning_Platform/Video_Lectures.js/UploadForm';
-import VideoList from './Pages/Learning_Platform/Video_Lectures.js/VideoList';
+import UploadForm from './Pages/Learning_Platform/Video_Lectures/UploadForm';
+import VideoList from './Pages/Learning_Platform/Video_Lectures/VideoList';
 function App() {
 
   const [component, setComponent] = useState('');
@@ -33,7 +33,8 @@ function App() {
         <Route path="/notifications" element={<Notifications/>}></Route>
         <Route path="/room/:roomID" element={<Room />} />
         <Route path="/videos" element={<VideoList />} />
-        <Route path="/play-video/:videoUrl" element={<VideoPlayer />} />
+        <Route path="/play-video/:videoId" element={<VideoPlayer />} /><Route path="/play-video/:videoId" element={<VideoPlayer />} />
+
 
       </Routes>
     </Router>
