@@ -1,23 +1,24 @@
-/* LandingPage.css */
-.landing-page {
+/* General Styling */
+body, html {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
+  transition: 1s;
 }
 
-.reg a{
-  background-color: #007BFF;
-  color: #fff;
-  padding: 1.8vh 3vh;
-  border: 2px;
-  border-radius: 7%;
+.landing-page {
+  margin: 0;
+  padding: 0;
+  background-color: #E5F4E3;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -28,31 +29,32 @@
 .navbar-logo {
   display: flex;
   align-items: center;
-  background-color: #fff; /* White background */
-  padding: 5px 10px; /* Padding for the box */
-  padding-right: 14px;
-  border-radius: 10px; /* Rounded corners */
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
 .navbar-logo-img {
-  height: 60px; /* Adjust height as necessary */
-  margin-right: 8px; 
-  /* Space between logo and text */
-}
-.navbar-logo li{
-  display: flex;
-  margin-left: 6vw;
-  list-style: none;
-  padding: 0;
-}
-.navbar-logo li:hover{
-  cursor: pointer;
+  height: 60px;
+  margin-right: 10px;
 }
 
 .navbar-logo-text {
   font-size: 24px;
   font-weight: bold;
-  color: #000; /* Black text */
+  color: #003F91;
+}
+
+.navbar-logo li {
+  display: flex;
+  margin-left: 3vw;
+  list-style: none;
+  padding: 0;
+  color: #fff;
+}
+
+.navbar-logo li:hover {
+  cursor: pointer;
 }
 
 .navbar-menu {
@@ -66,142 +68,196 @@
   margin: 0 15px;
 }
 
+/* Navbar menu item styling for default state */
 .navbar-menu-item a {
   text-decoration: none;
-  color: #000;
+  color: #003F91; /* Set default text color */
+  padding: 1.8vh 3vh;
+  background-color: transparent; /* No background by default */
+  border: none; /* Remove border by default */
+  border-radius: 7%; /* Keep border-radius in case background is added on hover */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  font-size: large;
+  
 }
 
+/* Navbar menu item styling on hover */
+.navbar-menu-item a:hover {
+  background-color: #5DA9E9; /* Add background on hover */
+  color: #FFFFFF; /* Change text color on hover */
+}
+
+
+.navbar-menu-item.reg a {
+  background-color: #5DA9E9; /* Initial background color */
+  color: white; /* Initial text color */
+  padding: 1.8vh 3vh;
+  border: 2px;
+  border-radius: 7%;
+  display: inline-block; /* Ensures the hover effect applies properly */
+}
+
+.navbar-menu-item.reg a:hover {
+  background-color: #003F91; 
+  color: #FFFFFF; /* Hover text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 100vh;
-  color: #fff;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('../Lander/assets/image.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
+  background: url('https://th.bing.com/th/id/OIP.iADb0KXt7xs_8FjKUAi_kAHaE9?rs=1&pid=ImgDetMain') center/cover;
 }
 
 .hero-heading {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  color: #FFFFFF;
+  text-shadow: 3px 3px #6D326D;
+  margin-bottom: 20px;
 }
 
 .hero-subheading {
-  font-size: 24px;
-  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #FFD700;
+  text-shadow: 2px 2px #6D326D;
+  margin-bottom: 30px;
 }
 
 .hero-register-button {
-  background-color: #007BFF;
+  background-color: #5DA9E9;
+  color: #003F91;
+  padding: 15px 30px;
+  font-size: 1.5rem;
   border: none;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.hero-register-button:hover {
-  background-color: #0056b3;
-}
-
-.why-edusathi-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.why-edusathi-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.why-edusathi-heading {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.highlight {
+  border-radius: 5px;
   font-weight: bold;
 }
 
-.why-edusathi-description {
+.hero-register-button:hover {
+  background-color: #003F91;
+  color: #FFFFFF;
+}
+
+/* Why EduSathi Section */
+.why-EduSathi-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 2rem;
+  background: #e5f4f6;
+}
+
+.why-EduSathi-content {
+  display: flex;
+  max-width: 1200px; /* Set a max width for the container */
+  width: 100%; /* Make it responsive */
+  gap: 2rem; /* Add space between the heading and description */
+}
+
+.why-EduSathi-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  padding-top: 28px;
+  width: 40%; /* Left side width for the heading */
+  text-align: left; /* Align heading to the left */
+  border-bottom: 3px solid #5DA9E9; /* Add underline with custom color */
+  display: inline-block; /* Ensure underline only appears beneath the text */
+  padding-bottom: 5px; /* Add some space between text and underline */
+  color: #003F91;
+}
+
+.why-EduSathi-description {
   font-size: 1.125rem;
   line-height: 1.6;
+  width: 60%; /* Right side width for the description */
+  text-align: justify; /* Align text to the left */
+  color: #022553;
 }
+
+
+/* Features Section */
+/* .features-section {
+  padding: 4rem 2rem;
+  background-color: #5DA9E9;
+  text-align: center;
+} */
 
 .features-section {
-  padding-top: 100px;
-  background: #f8f9fa;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #e0f7fa, #80deea, #b2ebf2); /* Top-to-bottom gradient */
   text-align: center;
+  border-radius: 15px; /* Optional: Adds rounded corners to the section */
+  margin: 0 auto;
 }
+
+
 
 .features-heading {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #003F91;
 }
 
-html {
-  scroll-behavior: smooth;
-  transition: 1s;
-}
-
-/* Footer.css */
+/* Footer */
+/* Footer Section */
 .footer {
-  background-color: #fff;
-  color: #fff;
+  background-color: #e5f4f6;
   padding: 2rem 1rem;
-  text-align: center;
+  text-align: left; /* Align text to left */
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between; /* Space between columns */
+  align-items: flex-start; /* Align items at the top */
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
+  gap: 20px;
 }
 
-.footer-logo-img {
-  width: 50px;
-  height: auto;
+/* Footer Logo */
+.footer-logo {
+  flex: 1; /* Take 1 part of the space */
 }
 
 .footer-logo-text {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-top: 40px;
+  color: #003F91;
+}
+
+/* Contact Info Section */
+.footer-contact-info {
+  flex: 1; /* Take 1 part of the space */
+  padding-left: 2rem;
+  padding-top: 6px;
 }
 
 .footer-section-heading {
-  font-size: 25px;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: black;
   font-weight: bold;
+  color: #003F91;
 }
 
 .footer-contact-detail {
   margin: 0.5rem 0;
+  color: #003F91;
 }
 
 .footer-link {
-  color: #000000;
+  color: #003F91;
+  font-weight: 100;
   text-decoration: none;
   font-weight: bold;
 }
@@ -209,48 +265,41 @@ html {
 .footer-link:hover {
   text-decoration: underline;
 }
+
+/* Social Links Section */
+.footer-social-links {
+  padding-top: 6px;
+  flex: 1; /* Take 1 part of the space */
+  display: block;
+  flex-direction: row;
+  align-items: right; /* Align icons to the right */
+}
+
 .footer-social-link {
-  color: #000;
+  color: #5DA9E9;
   font-size: 1.5rem;
-  margin: 0 0.5rem;
-  text-decoration: none;
+  margin: 1rem;
+  width: 100%;
 }
 
 .footer-social-link:hover {
-  color: #14416e;
+  color: #003F91;
 }
 
-.hero-section {
-  background-image: url('https://th.bing.com/th/id/OIP.iADb0KXt7xs_8FjKUAi_kAHaE9?rs=1&pid=ImgDetMain');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Ensure other necessary styles for .hero-section */
-  padding: 50px;
-  color: white; /* Adjust text color for better contrast */
+.footer-social-icon {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
 }
 
-.hero-content {
-  text-align: center;
-  /* Add any additional styling you need for the content */
-}
-
-.hero-heading {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-.hero-subheading {
-  font-size: 1.5em;
-  margin-bottom: 30px;
-}
-
-.hero-register-button {
-  font-size: 1.2em;
-  padding: 10px 20px;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center; /* Center items on small screens */
+  }
+  
+  .footer-social-links {
+    align-items: center; /* Center social links on small screens */
+    margin-top: 2rem;
+  }
 }
