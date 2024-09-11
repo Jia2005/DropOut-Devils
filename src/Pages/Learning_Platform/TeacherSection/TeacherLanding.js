@@ -5,6 +5,7 @@ import UploadRef from './UploadRef';
 import EnterMeet from '../Meetings/EnterMeet';
 import UploadPdf from './UploadPdf';
 import Getanspdf from './Getanspdf';
+import UploadForm from '../Video_Lectures/UploadForm';
 
 function TeacherLanding() {
   const [activeTab, setActiveTab] = useState('createLecture');
@@ -12,7 +13,7 @@ function TeacherLanding() {
   const renderContent = () => {
     switch (activeTab) {
       case 'createLecture':
-        return <CreateLecture />;
+        return <UploadForm />;
       case 'uploadRef':
         return <UploadRef />;
       case 'uploadQP':

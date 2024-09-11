@@ -1,0 +1,138 @@
+/* Forum Container */
+.forum-container {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto;
+  
+}
+
+/* Sidebar Styling */
+.side {
+  flex: 0.2;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.side h3 {
+  font-size: 20px;
+  color: #1a1a1b;
+}
+
+.side ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side ul li {
+  padding: 10px;
+  cursor: pointer;
+  color: #0079d3;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+.side ul li {
+  display: flex;
+  align-items: center;
+}
+
+.side ul li .fa-icon {
+  margin-right: 10px;
+}
+
+.side ul li.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.side ul li:hover,
+.side ul li.active {
+  background-color: #0079d3;
+  color: white;
+}
+
+/* Main Content Styling */
+.main-content {
+  flex: 0.75;
+  padding: 20px;
+}
+.sign{
+  margin-right: 10px;
+}
+.main-content h4 {
+  color: #1a1a1b;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Post and Comment Styling */
+.post-container {
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-container h4 {
+  font-size: 18px;
+  color: #1a1a1b;
+}
+
+.post-container p {
+  color: #333;
+}
+
+.post-container .post-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Comment Form Styling */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.comment-form input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.comment-form button {
+  background-color: #0079d3;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.comment-form button:hover {
+  background-color: #005bb5;
+}
+
+/* Post Interaction Styling (Likes and Comments) */
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.post-actions button {
+  background-color: #0079d3;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.post-actions button:hover {
+  background-color: #005bb5;
+}

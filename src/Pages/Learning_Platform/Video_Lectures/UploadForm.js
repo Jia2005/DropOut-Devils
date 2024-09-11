@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { storage, db } from '../../../firebase';
+import './UploadForm.css';
 
 function UploadForm() {
   const [grade, setGrade] = useState('');
@@ -56,71 +57,105 @@ function UploadForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={grade}
-        onChange={(e) => setGrade(e.target.value)}
-        placeholder="Grade"
-        required
-      />
-      <input
-        type="text"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        placeholder="Subject"
-        required
-      />
-      <input
-        type="text"
-        value={chapter}
-        onChange={(e) => setChapter(e.target.value)}
-        placeholder="Chapter"
-        required
-      />
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        required
-      />
-      <fieldset>
+    <form className="upload-form" onSubmit={handleSubmit}>
+      <div className="groupit">
+      <div className="form-group">
+        <label htmlFor="grade">Grade:</label>
+        <input
+          id="grade"
+          type="text"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}
+          placeholder="Grade"
+          required
+        />
+      </div>
+      <fieldset className="form-group review-fieldset">
+
         <legend>Review Lecture:</legend>
-        <label>
-          <input
-            type="radio"
-            name="isRev"
-            value="yes"
-            checked={isRev === 'yes'}
-            onChange={(e) => setIsRev(e.target.value)}
-          />
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="isRev"
-            value="no"
-            checked={isRev === 'no'}
-            onChange={(e) => setIsRev(e.target.value)}
-          />
-          No
-        </label>
-      </fieldset>
-      <input
-        type="file"
-        accept="video/*"
-        onChange={(e) => setVideoFile(e.target.files[0])}
-        required
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImageFile(e.target.files[0])}
-        required
-      />
-      <button type="submit">Upload</button>
+        <div className="oneline">
+        <div className="rev">
+          <label>
+            <input
+              type="radio"
+              name="isRev"
+              value="yes"
+              checked={isRev === 'yes'}
+              onChange={(e) => setIsRev(e.target.value)}
+            />
+            Yes
+          </label> 
+        </div>
+        <div className="rev">
+          <label>
+            <input
+              type="radio"
+              name="isRev"
+              value="no"
+              checked={isRev === 'no'}
+              onChange={(e) => setIsRev(e.target.value)}
+            />
+            No
+          </label>
+        </div></div>
+      </fieldset></div>
+      <div className="subchap">
+      <div className="form-group">
+        <label htmlFor="subject">Subject:</label>
+        <input
+          id="subject"
+          type="text"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          placeholder="Subject"
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="chapter">Chapter:</label>
+        <input
+          id="chapter"
+          type="text"
+          value={chapter}
+          onChange={(e) => setChapter(e.target.value)}
+          placeholder="Chapter"
+          required
+        />
+      </div></div>
+      <div className="form-group titlehere">
+        <label htmlFor="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          required
+        />
+      </div>
+      
+      <div className="filegroup">
+      <div className="form-group">
+        <label htmlFor="videoFile">Video File:</label>
+        <input
+          id="videoFile"
+          type="file"
+          accept="video/*"
+          onChange={(e) => setVideoFile(e.target.files[0])}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="imageFile">Image File:</label>
+        <input
+          id="imageFile"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImageFile(e.target.files[0])}
+          required
+        />
+      </div></div>
+      <button className="submit-button" type="submit">Upload</button>
     </form>
   );
 }

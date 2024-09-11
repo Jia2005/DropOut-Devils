@@ -4,6 +4,7 @@ import Notes from './Notes/Notes';
 import Quizzes from './Quizzes/Quizpage';
 import SubjectList from './Video_Lectures/SubjectList';
 import EnterMeet from './Meetings/EnterMeet';
+import VideoList from './Video_Lectures/VideoList';
 
 function LP_Landing() {
   const [activeTab, setActiveTab] = useState('videoLectures');
@@ -11,7 +12,7 @@ function LP_Landing() {
   const renderContent = () => {
     switch (activeTab) {
       case 'videoLectures':
-        return <SubjectList />;
+        return <VideoList />;
       case 'notes':
         return <Notes />;
       case 'quizzes':
