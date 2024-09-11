@@ -59,7 +59,7 @@ textarea {
 }
 
 button[type="submit"] {
-  background-color: #28a745;
+  background-color: #007bff;
   border: none;
   color: white;
   padding: 10px;
@@ -68,5 +68,5 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
