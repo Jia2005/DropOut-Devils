@@ -21,10 +21,14 @@ h1 {
   margin: 0 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #007bffa7;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.teacher-input .button-fd{
+  background-color: #003f91 !important;
 }
 
 .teacher-input button.active {
@@ -38,6 +42,7 @@ form {
 
 .form-group {
   margin-bottom: 15px;
+  max-width: 95%;
 }
 
 label {
@@ -59,7 +64,7 @@ input, .teacher-text {
 }
 
 button[type="submit"] {
-  background-color: #007bff;
+  background-color: #003f91;
   border: none;
   color: white;
   padding: 10px;
@@ -68,5 +73,9 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #003f91;
+}
+
+label {
+  color: #003f91;
 }

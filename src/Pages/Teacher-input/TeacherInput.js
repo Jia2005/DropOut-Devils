@@ -162,13 +162,13 @@ const TeacherInput = () => {
 
       {actionType === "update" && (
         <div className="form-group">
-          <label style={{fontSize:'16px', fontWeight:'bold'}}>Enter Student Email to Fetch Data:</label>
+          <label style={{fontSize:'16px'}}>Enter Student Email to Fetch Data:</label>
           <input
             type="email"
             value={lookupEmail}
             onChange={(e) => setLookupEmail(e.target.value)}
           /><br></br><br></br>
-          <button type="button" onClick={fetchStudentData}>Fetch Data</button>
+          <button type="button" className='button-fd' onClick={fetchStudentData}>Fetch Data</button>
         </div>
       )}
 
@@ -323,7 +323,7 @@ const TeacherInput = () => {
             }
             required
           />
-          <label>Attended Days:</label>
+          <label>Days Attended:</label>
           <input
             type="number"
             name="attendedDays"

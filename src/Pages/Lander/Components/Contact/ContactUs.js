@@ -2,6 +2,11 @@ import React from 'react';
 import './ContactUs.css';
 import logo from '../../assets/main-logo.png'; // Assuming the logo is in the same folder
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import linkedin from '../../../LandingPage/assets/linkedin.png';
+import whatsapp from '../../../LandingPage/assets/whatsapp.png';
+import insta from '../../../LandingPage/assets/insta.png';
+import facebook from '../../../LandingPage/assets/facebook.png';
+import twitter from '../../../LandingPage/assets/twitter.png';
 
 const ContactUs = () => {
   return (
@@ -57,18 +62,27 @@ const ContactUs = () => {
         </section>
 
         <section className="contact-us-social">
-          <br></br><h2 className="contact-us-social-heading" style={{fontSize:'30px'}}>Follow Us</h2><br></br>
-          <div className="contact-us-social-links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="contact-us-social-link">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="contact-us-social-link">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-us-social-link">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
+        <div className="footer-social-links">
+          <h3 className="footer-section-heading-fu">Follow Us</h3>
+          <div className='footer-for-contact'>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+            <img src={facebook} alt="Facebook" className="footer-social-icon" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+            <img src={twitter} alt="Twitter" className="footer-social-icon" />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+            <img src={linkedin} alt="LinkedIn" className="footer-social-icon" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+            <img src={insta} alt="Instagram" className="footer-social-icon" />
+          </a>
+          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+            <img src={whatsapp} alt="WhatsApp" className="footer-social-icon" />
+          </a>
           </div>
+          
+        </div>
         </section>
       </main>
       <footer className="contact-us-footer">

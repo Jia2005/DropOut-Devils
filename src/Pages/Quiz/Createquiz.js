@@ -94,7 +94,8 @@ function CreateQuizPage() {
     }
   };
   return (
-    <div className="create-quiz-container">
+    <div className="create-quiz-background">
+      <div className="create-quiz-container">
       <h2 style={{fontSize:'40px'}}>Create Quiz</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -196,7 +197,7 @@ function CreateQuizPage() {
           </button>
         </div>
         <div className="form-group-2">
-          <label style={{fontSize:'16px', fontWeight:'bold'}}>Quiz should be submitted by:</label>
+          <label style={{fontSize:'16px'}}>Quiz should be submitted by:</label>
           <input
             style={{ width:'100%' }}
             type="date"
@@ -217,6 +218,8 @@ function CreateQuizPage() {
         </button>
       </form>
     </div>
+    </div>
+    
   );
 }
 export default CreateQuizPage;

@@ -162,7 +162,7 @@
   border-radius: 4px;
   margin-bottom: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
 }
 
 .edit-button:hover {
@@ -197,14 +197,14 @@
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background-color: #231942;
+  background-color: #0039f1;
   color: white;
   cursor: pointer;
   margin-top: 10px;
 }
 
 .upload-image-btn:hover {
-  background-color: #140e25;
+  background-color: #0438e3;
   color: white;
   transform: scale(1.03);
   transition: 0.5s;
