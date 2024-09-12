@@ -120,10 +120,8 @@
   margin-bottom: 10px;
 }
 .arrow-icon{
-  position: absolute;
-  top: 34vh;
+  margin-bottom: 4vh;
   height: 3vh;
-  left: 56vw;
 }
 .arrow-icon:hover{
   cursor: pointer;
