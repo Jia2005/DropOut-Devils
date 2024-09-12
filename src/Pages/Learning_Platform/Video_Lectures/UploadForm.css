@@ -1,0 +1,104 @@
+:root {
+  --honeydew: #f0fff0;
+  --argentinian-blue: #0095d9;
+  --marian-blue: #004e92;
+  --white: #ffffff;
+  --finn: #6c757d;
+}
+.groupit{
+  display: flex;
+  gap: 90px;
+}
+.upload-form {
+  background-color: #e5f4f6;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--marian-blue);
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--finn);
+}
+.titlehere input[type="text"]{
+  width: 100%;
+}
+.subchap{
+  display: flex;
+  justify-content: space-between;
+}
+.filegroup{
+  display: flex;
+  justify-content: space-between;
+}
+.filegroup input[type="file"]{
+  width: 400px;
+}
+.form-group input[type="file"] {
+  padding: 5px;
+}
+.subchap input[type="text"]{
+  width: 400px;
+}
+.review-fieldset {
+  background-color: var(--white);
+  border: 1px solid var(--finn);
+  border-radius: 5px;
+  padding: 15px;
+  width: 400px;
+}
+
+.review-fieldset legend {
+  font-weight: bold;
+  color: var(--marian-blue);
+}
+
+.review-fieldset label {
+  display: flex;
+  
+}
+.review-fieldset input{
+    margin-right: 4px;
+}
+.submit-button {
+  background-color: var(--argentinian-blue);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 35%;
+  
+} 
+
+.submit-button:hover {
+  background-color: var(--marian-blue);
+}
+
+.radio-group {
+  display: flex;
+  gap: 30px; 
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+}

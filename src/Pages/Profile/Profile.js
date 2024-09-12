@@ -198,7 +198,7 @@ const UserProfile = ({setComponent}) => {
 
   return (
     <div className="profile-container">
-      <div className="sidebar">
+      <div className="sidebar this">
         <div>
           <div className="profile-pic">
             {profilePic ? (

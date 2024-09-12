@@ -274,6 +274,7 @@ const TeacherInput = () => {
         <div className="form-group">
           <label>Teacher's Remarks:</label>
           <textarea
+            className='teacher-text'
             name="behaviorRemarks"
             value={studentData.behaviorRemarks}
             onChange={handleInputChange}

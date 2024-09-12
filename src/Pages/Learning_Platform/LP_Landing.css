@@ -41,4 +41,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

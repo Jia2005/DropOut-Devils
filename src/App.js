@@ -14,6 +14,7 @@ import VideoPlayer from './Pages/Learning_Platform/Video_Lectures/Video';
 import Room from './Pages/Learning_Platform/Meetings/Room'
 import UploadForm from './Pages/Learning_Platform/Video_Lectures/UploadForm';
 import VideoList from './Pages/Learning_Platform/Video_Lectures/VideoList';
+import CommunityForum from './Pages/Community/CommunityForum';
 function App() {
 
   const [component, setComponent] = useState('');
@@ -33,7 +34,8 @@ function App() {
         <Route path="/notifications" element={<Notifications/>}></Route>
         <Route path="/room/:roomID" element={<Room />} />
         <Route path="/videos" element={<VideoList />} />
-        <Route path="/play-video/:videoId" element={<VideoPlayer />} /><Route path="/play-video/:videoId" element={<VideoPlayer />} />
+        <Route path="/comm" element={<CommunityForum />} />
+        <Route path="/play-video/:videoId" element={<VideoPlayer />} />
 
 
       </Routes>

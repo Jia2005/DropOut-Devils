@@ -29,7 +29,8 @@
   max-width: 60%;
   background-color: rgba(249, 249, 249, 0.9); /* Semi-transparent to show background image faintly */
   border-radius: 8px;
-  margin-top: 80px; /* Push the container below the navbar */
+  margin-top: 80px;
+ 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative; /* Keep it positioned properly over the background */
   z-index: 2; /* Ensure it's above the background image */

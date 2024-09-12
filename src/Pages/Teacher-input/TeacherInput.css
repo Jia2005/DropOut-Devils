@@ -51,14 +51,14 @@ label {
   color: #555;
 }
 
-input, textarea {
+input, .teacher-text {
   width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-textarea {
+.teacher-text {
   resize: vertical;
   min-height: 100px;
 }
