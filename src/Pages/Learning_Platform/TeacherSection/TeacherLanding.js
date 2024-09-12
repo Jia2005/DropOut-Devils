@@ -27,7 +27,9 @@ function TeacherLanding() {
   };
 
   return (
-    <div className="teacher-landing-container">
+
+    <div className="teacher-landing-bg">
+         <div className="teacher-landing-container">
       <div className="tabs">
         <button
           className={`tab ${activeTab === 'createLecture' ? 'active' : ''}`}
@@ -64,6 +66,8 @@ function TeacherLanding() {
         {renderContent()}
       </div>
     </div>
+    </div>
+   
   );
 }
 

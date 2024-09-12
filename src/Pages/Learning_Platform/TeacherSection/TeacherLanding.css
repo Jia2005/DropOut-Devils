@@ -1,19 +1,41 @@
+/* Apply a background image to the body or the main wrapper */
+.teacher-landing-bg {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('../TeacherSection/assets/bg.png') !important; /* Replace with your actual image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Ensures the image stays fixed on scroll */
+  padding-top: 70px; /* This padding ensures the content appears below the fixed navbar */
+  min-height: 100vh; /* Ensure it covers the entire viewport height */
+  padding-top: 70px;
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.9); /* Ensure navbar background is not transparent */
+}
+
+/* Container for the teacher landing page */
 .teacher-landing-container {
   font-family: Arial, sans-serif;
   margin: 0 auto;
   padding: 20px;
-  max-width: 80%;
-  background-color: #f9f9f9;
+  max-width: 60%;
+  background-color: rgba(249, 249, 249, 0.9); /* Semi-transparent to show background image faintly */
   border-radius: 8px;
-  margin-top: 80px;
+  margin-top: 80px; /* Push the container below the navbar */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Keep it positioned properly over the background */
+  z-index: 2; /* Ensure it's above the background image */
 }
 
-.welcome {
-  margin: 0;
-  font-size: 24px;
-}
-
+/* Tabs styling */
 .tabs {
   display: flex;
   flex-direction: row;
@@ -28,19 +50,34 @@
   font-size: 16px;
   cursor: pointer;
   text-align: center;
-  height: 75px;
+  padding: 20px;
+  height: 96px;
+  flex-grow: 1; /* Makes each tab take up equal width */
+  margin-right: 10px;
 }
 
 .tab.active {
-  background-color: navy;
+  background-color: #5DA9E9 !important;
   color: white;
 }
 
 .tab:hover {
-  background-color: rgb(131, 131, 190);
+  background-color: #5daae9de !important;
   color: white;
 }
 
+/* Content area for rendering active components */
 .content {
   margin-top: 20px;
+}
+
+/* Button color styling */
+button {
+  color: #003F91;
+}
+
+/* Optional styling to fix button appearance */
+button:focus {
+  outline: none;
+  box-shadow: none;
 }

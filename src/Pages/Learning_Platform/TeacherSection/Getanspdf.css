@@ -2,7 +2,7 @@
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
-    max-width: 80%;
+    max-width: 90%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,7 @@
   .get-anspdf-form label {
     margin-bottom: 15px;
     font-size: 16px;
+    color: #003F91;
   }
   
   .get-anspdf-form select, 
@@ -33,7 +34,7 @@
   }
   
   .get-anspdf-form button {
-    background-color: #4CAF50;
+    background-color: #003F91;
     color: white;
     border: none;
     cursor: pointer;
@@ -43,6 +44,15 @@
   }
   
   .get-anspdf-form button:hover {
-    background-color: #45a049;
+    background-color: #003F91;
   }
   
+  .get-ans-pdf-form label {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #003F91 !important; 
+  }
+
+  button {
+    color: #003F91;
+  }

@@ -1,156 +1,135 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.create-quiz-background {
+  background-image: url('../Quiz/assets/Quiz.png'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Ensures the background covers the full viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 20px;
+  padding-top: 100px;
+}
+
 .create-quiz-container {
+  background-color: rgba(255, 255, 255, 0.97); /* Semi-transparent background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+
+
+/* Overall Container */
+/* .create-quiz-container {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 80px;
   margin-bottom: 20px;
-  padding: 20px;
-  background-color: rgb(238, 237, 237);
+  padding: 30px;
+  background-color: #f9f9f9;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
+  font-family: 'Open Sans', sans-serif;
+} */
 
+/* Main Heading */
 .create-quiz-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #003F91;
+  font-size: 36px;
+  font-weight: 700;
 }
 
-.heading {
-  margin: 0;
-}
-
-.form-group-2 {
-  margin-bottom: 20px;
-}
-
-.form-group-2 label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #000;
-}
-
-.form-group-2 input[type="text"],
-.form-group-2 input[type="number"],
-.form-group-2 input[type="time"],
-.form-group-2 input[type="date"],
-.form-group-2 select {
-  width: 86%;
-  padding: 10px;
+/* Form Labels */
+.form-group label, .form-group-2 label {
+  color: #003F91;
+  font-weight: 100; /* Make labels bold */
   font-size: 16px;
-  border-radius: 6px;
+}
+
+/* Input Fields */
+.form-group input, .form-group select,
+.form-group-2 input, .form-group-2 select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
   border: 1px solid #bbb;
-  margin-bottom: 10px;
+  margin-top: 8px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+.form-group input:focus, .form-group select:focus {
+  border-color: #003F91; /* Blue border on focus */
 }
 
-.button-group button {
-  padding: 10px 20px;
+/* Button Styles */
+.button-group button, .submit-button2, .add-button {
+  padding: 12px 20px;
   font-size: 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
-  background-color: #4a90e2;
-  color: #fff;
+  background-color: #003F91;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 15px;
 }
 
-.button-group button:hover {
-  background-color: #357ab8;
+.button-group button:hover, .submit-button2:hover, .add-button:hover {
+  background-color: #002B6F; /* Darker blue on hover */
+  box-shadow: 0 4px 12px rgba(0, 63, 145, 0.3); /* Add shadow for hover */
 }
 
-.question-group {
-  margin-bottom: 20px;
-}
-
+/* Question Block */
 .question-block {
-  background-color: #dddde4;
-  padding: 15px;
+  background-color: #ffffff;
+  padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  border-left: 6px solid navy;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-
+  border-left: 6px solid #003F91;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.question-group .option-group2 {
-  position: relative;
-  margin-bottom: 1em;
-  padding-right: 2em;
-}
-
-.question-group .option-group2 label {
-  margin-right: 10px;
-}
-
-.add-button {
-  background-color: #50c878;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #3e9a5d;
-}
-
-.submit-button2 {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 6px;
-  border: none;
-  background-color: #4a90e2;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 30px;
-}
-
-.submit-button2:hover {
-  background-color: #357ab8;
-}
-
-.question-block, .option-group {
-  position: relative;
-}
-
+/* Delete Icon */
 .delete-icon {
   font-size: 1.2em;
   background: transparent;
   border: none;
   cursor: pointer;
   color: red;
-  margin-left: 10px;
+  transition: color 0.3s ease;
 }
 
 .delete-icon:hover {
-  color: #c00; 
+  color: #c00; /* Darker red on hover */
 }
 
-
-.option-group2 {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+/* Hover Effect for Options */
+.option-group2 input:hover, .option-group2 select:hover {
+  border-color: #003F91; /* Blue border on hover */
 }
 
-.option-group2 label {
-  margin-right: 10px; 
-  flex-shrink: 0; 
+/* Add more spacing between questions */
+.question-group {
+  margin-bottom: 30px;
 }
 
-.option-group2 input {
-  flex: 1; 
+/* Add subtle animations */
+input, select, button {
+  transition: all 0.3s ease;
 }

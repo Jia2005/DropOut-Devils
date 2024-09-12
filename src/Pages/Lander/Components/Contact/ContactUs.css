@@ -56,7 +56,7 @@
   }
   
   .contact-us-link {
-    color: #9f86c0;
+    color: #5da9e9;
     text-decoration: none;
   }
   
@@ -124,6 +124,7 @@
   
   .contact-us-social-heading {
     font-size: 24px;
+    text-align: center;
     margin-bottom: 10px;
     color: #5e548e;
   }
@@ -141,7 +142,7 @@
   }
   
   .contact-us-social-link:hover {
-    color: #9f86c0;
+    color: #0039f1;
   }
   
   .contact-us-footer {
@@ -152,3 +153,17 @@
     color: #666;
   }
   
+  .footer-section-heading-fu{
+    text-align: center;
+  }
+
+  .footer-social-link{
+    padding-top: 10px !important;
+    margin-top: 10px !important;
+    align-items: center;
+  }
+
+  .footer-for-contact{
+    text-align: center;
+    padding-top: 12px;
+  }

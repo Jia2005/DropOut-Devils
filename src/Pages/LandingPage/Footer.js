@@ -6,7 +6,7 @@ import linkedin from '../LandingPage/assets/linkedin.png';
 import whatsapp from '../LandingPage/assets/whatsapp.png';
 import insta from '../LandingPage/assets/insta.png';
 import facebook from '../LandingPage/assets/facebook.png';
-import twitter from '../LandingPage/assets/twitter.png'
+import twitter from '../LandingPage/assets/twitter.png';
 
 const Footer = forwardRef((props, ref) => {
   return (
