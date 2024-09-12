@@ -40,6 +40,7 @@ const NewPost = () => {
       content,
       category,
       creator: userName,
+      creatorId:user.uid,
       likes: [],
       comments: [],
       createdAt: new Date(),
@@ -58,7 +59,7 @@ const NewPost = () => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="Content"
+        placeholder=" Content "
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />

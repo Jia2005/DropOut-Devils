@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments, faGraduationCap, faBriefcase, faBrain, faMoneyBill, faPlus, faHeart, faCommentDots, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faGraduationCap, faBriefcase, faBrain, faShare, faMoneyBill, faPlus, faHeart, faCommentDots, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NewPost from './NewPost';
 import { collection, getDocs, addDoc, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from './../../firebase';
@@ -44,19 +44,19 @@ const Forum = () => {
     }
   }, [selectedCategory, currentUserId]);
 
-  // Fetch posts from Firestore
   const fetchPosts = async () => {
     try {
       console.log("Fetching posts...");
       const postsRef = collection(db, 'posts');
       const querySnapshot = await getDocs(postsRef);
+      
       if (querySnapshot.empty) {
         console.log("No posts found.");
         setPosts([]);
         return;
       }
-
-      const postsData = await Promise.all(
+  
+      let postsData = await Promise.all(
         querySnapshot.docs.map(async (doc) => {
           const postData = doc.data();
           const commentsData = await fetchComments(doc.id);
@@ -67,13 +67,19 @@ const Forum = () => {
           };
         })
       );
+  
+      // Filter posts based on selected category
+      if (selectedCategory !== "All Posts") {
+        postsData = postsData.filter(post => post.category === selectedCategory);
+      }
+  
       console.log("Posts fetched successfully:", postsData);
       setPosts(postsData);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
   };
-
+  
   // Fetch users from Firestore
   const fetchUsers = async () => {
     try {
@@ -88,8 +94,6 @@ const Forum = () => {
       console.error('Error fetching users:', error);
     }
   };
-
-  // Fetch comments for a specific post
   const fetchComments = async (postId) => {
     try {
       const commentsRef = collection(db, 'posts', postId, 'comments');
@@ -102,22 +106,17 @@ const Forum = () => {
       return [];
     }
   };
-
-  // Handle liking a post
   const handleLikePost = async (postId) => {
     if (!currentUserId) return;
-
     try {
       const postRef = doc(db, 'posts', postId);
       const postDoc = await getDoc(postRef);
       const postData = postDoc.data();
       const likes = Array.isArray(postData.likes) ? postData.likes : [];
-
       if (likes.includes(currentUserId)) {
         alert('You have already liked this post');
         return;
       }
-
       await updateDoc(postRef, { likes: [...likes, currentUserId] });
       console.log(`Post ${postId} liked by ${currentUserId}`);
       fetchPosts();
@@ -136,12 +135,10 @@ const Forum = () => {
       const commentDoc = await getDoc(commentRef);
       const commentData = commentDoc.data();
       const likes = Array.isArray(commentData.likes) ? commentData.likes : [];
-
       if (likes.includes(currentUserId)) {
         alert('You have already liked this comment');
         return;
       }
-
       await updateDoc(commentRef, { likes: [...likes, currentUserId] });
       console.log(`Comment ${commentId} liked by ${currentUserId}`);
       fetchPosts();
@@ -150,25 +147,21 @@ const Forum = () => {
       alert('Failed to like comment');
     }
   };
-
-  // Toggle comments visibility
   const handleToggleComments = (postId) => {
     setCommentsVisible(prev => (prev === postId ? null : postId));
   };
-
-  // Add a new comment to a post
   const handleAddComment = async (postId) => {
     if (!currentUserId || !newComment.trim()) {
       alert('Comment cannot be empty');
       return;
     }
-
     try {
       await addDoc(collection(db, 'posts', postId, 'comments'), {
         content: newComment,
         createdAt: new Date(),
         creator: users[currentUserId] || 'Unknown',
-        likes: []
+        likes: [],
+        creatorId:currentUserId,
       });
       setNewComment('');
       alert('Comment added');
@@ -179,8 +172,6 @@ const Forum = () => {
       alert('Failed to add comment');
     }
   };
-
-  // Delete a post
   const handleDeletePost = async (postId) => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
@@ -194,8 +185,10 @@ const Forum = () => {
       }
     }
   };
-
-  // Delete a comment
+  const handleCategoryChange = (category) => {
+  setSelectedCategory(category);
+  setIsCreatingPost(false); 
+};
   const handleDeleteComment = async (postId, commentId) => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
       try {
@@ -209,23 +202,26 @@ const Forum = () => {
       }
     }
   };
-
   return (
     <div className="forum-container">
       <div className="sidebar side">
-        <h3>Communities</h3>
+        <h3 style={{borderBottom:"none"}}>Communities</h3><br/>
         <ul>
           {categories.map((category, index) => (
             <li
               key={index}
               className={selectedCategory === category.name ? "active" : ""}
-              onClick={() => setSelectedCategory(category.name)}
+              onClick={() => handleCategoryChange(category.name)}
             >
               <FontAwesomeIcon className='sign' icon={category.icon} /> {category.name}
             </li>
           ))}
         </ul>
       </div>
+      <div className="content">
+      <button onClick={() => setIsCreatingPost(true)} className="create-post-button">
+          <FontAwesomeIcon icon={faPlus} /> Create New Post
+        </button>
       <div className="main-content">
         {isCreatingPost ? (
           <NewPost category={selectedCategory} />
@@ -238,39 +234,47 @@ const Forum = () => {
               </div>
               <p>{post.content}</p>
               <div className="post-actions">
-                <div className="action-icon-container">
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className={`action-icon ${Array.isArray(post.likes) && post.likes.includes(currentUserId) ? 'liked' : ''}`}
-                    onClick={() => handleLikePost(post.id)}
-                  />
-                  <span>{post.likes.length}</span>
-                </div>
-                <div className="action-icon-container">
-                  <FontAwesomeIcon
-                    icon={faCommentDots}
-                    className="action-icon"
-                    onClick={() => handleToggleComments(post.id)}
-                  />
-                  <span>{post.comments ? post.comments.length : 0}</span>
-                </div>
-                {post.userId === currentUserId && (
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    className="action-icon"
-                    onClick={() => handleDeletePost(post.id)}
-                  />
-                )}
-              </div>
+  <div className="action-icon-container">
+    <FontAwesomeIcon
+      icon={faHeart}
+      className={`action-icon ${Array.isArray(post.likes) && post.likes.includes(currentUserId) ? 'liked' : ''}`}
+      onClick={() => handleLikePost(post.id)}
+    />
+    <span>{post.likes.length}</span>
+  </div>
+  <div className="action-icon-container">
+    <FontAwesomeIcon
+      icon={faCommentDots}
+      className="action-icon"
+      onClick={() => handleToggleComments(post.id)}
+    />
+    <span>{post.comments ? post.comments.length : 0}</span>
+  </div>
+  {post.creatorId === currentUserId && (
+    <div className="contains">
+    <FontAwesomeIcon
+      icon={faTrash}
+      className="action-icon trashhere"
+      onClick={() => handleDeletePost(post.id)}
+    /></div>
+  )}
+</div>
+
               {commentsVisible === post.id && (
                 <div className="comments-section">
-                  <textarea
-                    style={{height: '70px', width: '95%', padding:'10px', margin:'10px',}}
+                <div className="comment-input-container">
+                  <textarea style={{height: '50px', width: '45%', padding:'10px', margin:'10px',}}
+                    className="comment-input"
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="Add a comment..."
-                  /><br></br>
-                  <button onClick={() => handleAddComment(post.id)}>Submit</button>
+                  />
+                  <FontAwesomeIcon
+                    icon={faShare}
+                    className="arrow-icon"
+                    onClick={() => handleAddComment(post.id)}
+                  />
+                </div>
                   {post.comments.map(comment => (
                     <div key={comment.id} className="comment-container">
                       <p><strong>{comment.creator}:</strong> {comment.content}</p>
@@ -283,7 +287,7 @@ const Forum = () => {
                           />
                           <span>{comment.likes.length}</span>
                         </div>
-                        {comment.userId === currentUserId && (
+                        {comment.creatorId === currentUserId && (
                           <FontAwesomeIcon
                             icon={faTrash}
                             className="action-icon"
@@ -298,9 +302,7 @@ const Forum = () => {
             </div>
           ))
         )}
-        <button onClick={() => setIsCreatingPost(true)} className="create-post-button">
-          <FontAwesomeIcon icon={faPlus} /> Create New Post
-        </button>
+        </div>
       </div>
     </div>
   );
