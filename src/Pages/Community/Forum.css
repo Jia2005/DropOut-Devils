@@ -92,16 +92,14 @@
   color: #005bb5;
 }
 
-/* Like Button */
 .action-icon.fa-heart {
-  color: #ccc; /* Default color */
+  color: #ccc; 
 }
 
 .action-icon.fa-heart.liked {
-  color: red; /* Liked color */
+  color: red; 
 }
 
-/* Comments Section */
 .comments-section {
   margin-top: 20px;
   border-top: 1px solid #ddd;
@@ -141,8 +139,6 @@
   background-color: #005bb5;
 }
 
-/* Individual Comment Styling */
-/* Individual Comment Styling */
 .comment {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -176,7 +172,6 @@
   color: #005bb5;
 }
 
-/* Post Header Styling */
 .post-header {
   display: flex;
   justify-content: space-between;
@@ -188,7 +183,6 @@
   color: #555;
 }
 
-/* Comment Header Styling */
 .comment-header {
   display: flex;
   justify-content: space-between;
@@ -204,7 +198,6 @@
   margin-right: 15px;
 }
 
-/* Post Header Styling */
 .post-header {
   display: flex;
   justify-content: space-between;
@@ -216,7 +209,6 @@
   color: #555;
 }
 
-/* Comment Header Styling */
 .comment-header {
   display: flex;
   justify-content: space-between;
@@ -232,7 +224,6 @@
   margin-right: 15px;
 }
 
-/* Post Header Styling */
 .post-header {
   display: flex;
   justify-content: space-between;
@@ -244,7 +235,6 @@
   color: #555;
 }
 
-/* Comment Header Styling */
 .comment-header {
   display: flex;
   justify-content: space-between;
@@ -260,8 +250,6 @@
   margin-right: 15px;
 }
 
-
-/* Post and Comment Styling */
 .post-container {
   border: 1px solid #ddd;
   background-color: white;
@@ -271,7 +259,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Post Header Styling */
 .post-header {
   display: flex;
   justify-content: space-between;
@@ -283,7 +270,6 @@
   color: #666;
 }
 
-/* Post Actions */
 .post-actions {
   display: flex;
   align-items: center;
