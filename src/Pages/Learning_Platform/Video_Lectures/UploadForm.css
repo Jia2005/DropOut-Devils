@@ -7,7 +7,7 @@
 }
 .groupit{
   display: flex;
-  gap: 90px;
+  gap: 140px;
 }
 .upload-form {
   background-color: #e5f4f6;
@@ -33,7 +33,7 @@
 
 .form-group input[type="text"],
 .form-group input[type="file"] {
-  width: 400px;
+  width: 300px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid var(--finn);
@@ -50,13 +50,13 @@
   justify-content: space-between;
 }
 .filegroup input[type="file"]{
-  width: 400px;
+  width: 300px;
 }
 .form-group input[type="file"] {
   padding: 5px;
 }
 .subchap input[type="text"]{
-  width: 400px;
+  width: 300px;
 }
 .review-fieldset {
   background-color: var(--white);
