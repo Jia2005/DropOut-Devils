@@ -218,7 +218,7 @@ const Forum = () => {
           ))}
         </ul>
       </div>
-      <div className="content">
+      <div className="forum-content">
       <button onClick={() => setIsCreatingPost(true)} className="create-post-button">
           <FontAwesomeIcon icon={faPlus} /> Create New Post
         </button><br></br>
