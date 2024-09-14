@@ -1,10 +1,11 @@
 .forum-container {
   display: flex;
   flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 }
 .side {
   flex: 0.2;
-  height: 100vh;
   background-color: #f8f9fa;
   padding: 20px;
   border-right: 1px solid #ddd;
@@ -41,8 +42,9 @@
   color: white;
 }
 .main-content {
-  flex: 0.5;
   padding: 20px;
+  overflow-y: scroll;
+  height: 100%;
 }
 .sign {
   margin-right: 10px;

@@ -221,7 +221,7 @@ const Forum = () => {
       <div className="content">
       <button onClick={() => setIsCreatingPost(true)} className="create-post-button">
           <FontAwesomeIcon icon={faPlus} /> Create New Post
-        </button>
+        </button><br></br>
       <div className="main-content">
         {isCreatingPost ? (
           <NewPost category={selectedCategory} />
