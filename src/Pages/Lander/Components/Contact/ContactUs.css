@@ -41,6 +41,7 @@
     font-size: 32px;
     margin-bottom: 20px;
     color: #5e548e;
+    text-align: center;
   }
   
   .contact-us-info {
@@ -72,6 +73,7 @@
     font-size: 24px;
     margin-bottom: 10px;
     color: #5e548e;
+    text-align: center;
   }
   
   .contact-us-form-fields {

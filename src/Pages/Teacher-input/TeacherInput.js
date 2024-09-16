@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import "./TeacherInput.css";
+import backgroundImage from './assets/backgroundImage.png'; // Adjust the path as necessary
 
 const TeacherInput = () => {
   const [role, setRole] = useState('teacher');
@@ -153,21 +154,31 @@ const TeacherInput = () => {
   };
 
   return (
-    <div className="teacher-input">
-      <h2 style={{fontSize:'40px'}}>{actionType === "add" ? "Add Student Details" : "Update Student Records"}</h2><br></br>
+    <div className="teacher-input-bg">
+         <div className="teacher-input">
+      <h2 style={{ fontSize: '40px' }}>
+        {actionType === "add" ? "Add Student Details" : "Update Student Records"}
+      </h2>
+      <br />
       <div className="action-buttons">
-        <button style={{fontSize:'20px'}} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>Add Student</button>
-        <button style={{fontSize:'20px'}} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>Update Student Records</button>
+        <button style={{ fontSize: '20px' }} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>
+          Add Student
+        </button>
+        <button style={{ fontSize: '20px' }} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>
+          Update Student Records
+        </button>
       </div>
 
       {actionType === "update" && (
         <div className="form-group">
-          <label style={{fontSize:'16px'}}>Enter Student Email to Fetch Data:</label>
+          <label style={{ fontSize: '16px' }}>Enter Student Email to Fetch Data:</label>
           <input
             type="email"
             value={lookupEmail}
             onChange={(e) => setLookupEmail(e.target.value)}
-          /><br></br><br></br>
+          />
+          <br />
+          <br />
           <button type="button" className='button-fd' onClick={fetchStudentData}>Fetch Data</button>
         </div>
       )}
@@ -282,60 +293,64 @@ const TeacherInput = () => {
           />
         </div>
 
+        <h2>Attendance</h2>
         <div className="form-group">
-          <h2>Attendance Summary</h2>
-          <label>Year:</label>
-          <input
-            type="text"
-            name="attendanceYear"
-            value={studentData.attendance.year}
-            onChange={(e) =>
-              setStudentData({
-                ...studentData,
-                attendance: { ...studentData.attendance, year: e.target.value },
-              })
-            }
-            required
-          />
-          <label>Month:</label>
-          <input
-            type="text"
-            name="month"
-            value={studentData.attendance.month}
-            onChange={(e) =>
-              setStudentData({
-                ...studentData,
-                attendance: { ...studentData.attendance, month: e.target.value },
-              })
-            }
-            required
-          />
           <label>Total Days:</label>
           <input
             type="number"
             name="totalDays"
             value={studentData.attendance.totalDays}
-            onChange={(e) =>
-              setStudentData({
-                ...studentData,
-                attendance: { ...studentData.attendance, totalDays: e.target.value },
-              })
-            }
+            onChange={(e) => setStudentData({
+              ...studentData,
+              attendance: { ...studentData.attendance, totalDays: e.target.value }
+            })}
             required
           />
-          <label>Days Attended:</label>
+        </div>
+
+        <div className="form-group">
+          <label>Attended Days:</label>
           <input
             type="number"
             name="attendedDays"
             value={studentData.attendance.attendedDays}
-            onChange={(e) =>
-              setStudentData({
-                ...studentData,
-                attendance: { ...studentData.attendance, attendedDays: e.target.value },
-              })
-            }
+            onChange={(e) => setStudentData({
+              ...studentData,
+              attendance: { ...studentData.attendance, attendedDays: e.target.value }
+            })}
             required
           />
+        </div>
+
+        <div className="form-group">
+          <label>Year:</label>
+          <input
+            type="text"
+            name="year"
+            value={studentData.attendance.year}
+            onChange={(e) => setStudentData({
+              ...studentData,
+              attendance: { ...studentData.attendance, year: e.target.value }
+            })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Month:</label>
+          <input
+            type="text"
+            name="month"
+            value={studentData.attendance.month}
+            onChange={(e) => setStudentData({
+              ...studentData,
+              attendance: { ...studentData.attendance, month: e.target.value }
+            })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
           <label>Attendance Percentage:</label>
           <input
             type="text"
@@ -345,9 +360,11 @@ const TeacherInput = () => {
           />
         </div>
 
-        <button className='teacher-submit' type="submit">{actionType === "add" ? "Add Student" : "Update Student Records"}</button>
+        <button type="submit" className='button-fd'>Submit</button>
       </form>
     </div>
+    </div>
+   
   );
 };
 

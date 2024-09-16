@@ -1,11 +1,34 @@
-.container3 {
-  font-family: Arial, sans-serif;
+/* Student Container with Fixed Background Image */
+.container-card-student {
   margin: 0 auto;
   padding: 20px;
   padding-top: 80px;
-  max-width: 80%;
+  max-width: 100%; /* Ensure container spans the full width */
+  background-image: url('../Learning_Platform/Video_Lectures/assets/student-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keeps the background fixed */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* No scroll for container itself */
 }
 
+/* Card Container with Scroll for Overflow */
+.card-container {
+  background-color: #f4ce53;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 80%;
+  max-width: 1000px;
+  max-height: 80vh; /* Limit the card height */
+  overflow-y: auto; /* Add vertical scroll for overflow */
+  font-family: Arial, sans-serif; /* Font applied inside the card */
+}
+
+/* Tab Styles */
 .tabs {
   display: flex;
   justify-content: space-around;
@@ -26,16 +49,18 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Active Tab Styling */
 .tab2.active {
-  background-color: navy;
+  background-color: #5DA9E9;
   color: white;
 }
 
 .tab2:hover {
-  background-color: rgb(131, 131, 190);
+  background-color: #5daae9d3;
   color: white;
 }
 
+/* Content Inside the Card */
 .content2 {
   padding: 20px;
   border: 1px solid #ddd;
@@ -44,4 +69,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 90%;
+    margin-left: 35px;
+    align-items: center;
 }

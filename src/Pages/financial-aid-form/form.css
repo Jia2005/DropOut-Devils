@@ -30,12 +30,12 @@
   }
   
   .tabs button.active {
-    background-color: navy;
+    background-color: #1294ff;
     color: white;
   }
   
   .tabs button:hover {
-    background-color: rgb(131, 131, 190);
+    background-color: #1294ffa0;
     color: white;
   }
   

@@ -1,57 +1,108 @@
 .auth-container {
-  max-width: 400px;
+  max-width: 48%;
   margin: 50px auto;
-  padding: 20px;
-  background-color: #f7f7f7;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* text-align: center; */
+  position: relative;
+  overflow: hidden;
+  background: url('./assets/loginBg.png') no-repeat center center/cover;
+  background-color: #f7f7f7; /* Fallback color */
+}
+
+.signup{
+  text-align: center;
+}
+
+.input-hander{
+  margin-top: 2px !important;
 }
 
 h2 {
-  text-align: center;
   color: #333;
   margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-label {
+.form-group label {
   display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
 .takeInput, select {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 1em;
 }
 
 input:focus, select:focus {
   border-color: #007bff;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 .error {
-  color: red;
+  color: #dc3545;
   font-size: 0.875em;
   margin-top: 5px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
 }
 
 .btn {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #007bff;
-  color: white;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
   background-color: #0056b3;
+}
+
+.login-link p {
+  /* margin-top: 20px; */
+  font-size: 1em;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.already-acc{
+  text-align: center;
+}
+
+.signup-underline{
+  text-decoration: underline;
+  color: #003f91;
+}
+
+.center-align{
+  text-align: center;
+  margin-top: 2px;
 }

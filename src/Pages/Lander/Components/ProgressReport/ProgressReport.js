@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { Pie } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import './ProgressReport.css';
+import background from './assets/bg-image.png'
 
 const ProgressReport = () => {
   const [role, setRole] = useState('parent');

@@ -112,11 +112,11 @@ function SignupPage() {
   });
   return (
     <div className="auth-container">
-      <h2>Signup</h2>
+      <h2 className="signup">Signup</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
-          <input className='takeInput'
+          <input className='input-hander'
             style={{ width:'100%' }}
             type="email"
             name="email"
@@ -130,7 +130,7 @@ function SignupPage() {
         </div>
         <div className="form-group">
           <label>Password:</label>
-          <input className='takeInput'
+          <input className='input-hander'
             type="password"
             name="password"
             onChange={formik.handleChange}
@@ -143,7 +143,7 @@ function SignupPage() {
         </div>
         <div className="form-group">
           <label>Confirm Password:</label>
-          <input className='takeInput'
+          <input className='input-hander'
             type="password"
             name="confirmPassword"
             onChange={formik.handleChange}
@@ -154,7 +154,7 @@ function SignupPage() {
             <div className="error">{formik.errors.confirmPassword}</div>
           ) : null}
         </div>
-        <div className="form-group">
+        <div className="form-group input-hander">
           <label>Role:</label>
           <select
             name="role"
@@ -173,7 +173,7 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="text"
                 name="name"
@@ -187,7 +187,7 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Grade:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="text"
                 name="grade"
@@ -205,7 +205,7 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="text"
                 name="name"
@@ -219,7 +219,7 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Subject:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="text"
                 name="subject"
@@ -237,7 +237,7 @@ function SignupPage() {
           <>
             <div className="form-group">
               <label>Name:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="text"
                 name="name"
@@ -251,7 +251,7 @@ function SignupPage() {
             </div>
             <div className="form-group">
               <label>Child's Email:</label>
-              <input className='takeInput'
+              <input className='input-hander'
                 style={{ width:'100%' }}
                 type="email"
                 name="childEmail"
@@ -267,9 +267,9 @@ function SignupPage() {
         )}
         <button type="submit" className="btn">Signup</button>
 
-        <div className="login-link">
+        <div className="login-link already-acc">
           <br></br>
-          <p>Already have an account? <a href="/login">Log in</a></p>
+          <p>Already have an account? <a href="/login" style={{color:"#0039f1", textDecoration:"underline"}}>LogIn</a></p>
         </div>
       </form>
     </div>
