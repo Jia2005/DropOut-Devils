@@ -15,6 +15,7 @@ import Room from './Pages/Learning_Platform/Meetings/Room'
 import UploadForm from './Pages/Learning_Platform/Video_Lectures/UploadForm';
 import VideoList from './Pages/Learning_Platform/Video_Lectures/VideoList';
 import CommunityForum from './Pages/Community/CommunityForum';
+import Predict from './Pages/Flask_Integration/Predict';
 function App() {
 
   const [component, setComponent] = useState('');
@@ -31,6 +32,7 @@ function App() {
         <Route path='/profile' element={<UserProfile setComponent={setComponent}/>}/>
         <Route path="/home" element={<HomePage component={component} setComponent={setComponent}/>}/>
         <Route path="/lander" element={<LandingPage/>}/>
+        <Route path="/predict" element={<Predict/>}/>
         <Route path="/notifications" element={<Notifications/>}></Route>
         <Route path="/room/:roomID" element={<Room />} />
         <Route path="/videos" element={<VideoList />} />
