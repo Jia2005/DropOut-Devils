@@ -101,62 +101,62 @@ function VideoList() {
   };
 
   return (
-    <div className='video-list-container'>
-      <div className='filters-toggle-container'>
-        <button className='filters-toggle-button' onClick={toggleFilterPanel}>
-          {showFilters ? 'Hide Filters' : 'Show Filters'}
-        </button>
-      </div>
-      {showFilters && (
-        <div className='filter-panel'>
-          <div className="filterhere">
-            <div className='filter-group'>
-              <label htmlFor='subject'>Subjects:</label>
-              <select
-                id='subject'
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)} // Set single subject
-                disabled={!selectedGrade}
-              >
-                <option value=''>Select Subject</option>
-                {subjects.map(subject => (
-                  <option key={subject} value={subject}>{subject}</option>
-                ))}
-              </select>
-            </div>
-            <div className='filter-group'>
-              <label htmlFor='chapter'>Chapters:</label>
-              <select
-                id='chapter'
-                value={selectedChapters}
-                onChange={(e) => setSelectedChapters([e.target.value])} // Handle single chapter selection
-                disabled={!selectedSubject}
-              >
-                <option value=''>Select Chapter</option>
-                {chapters.map(chapter => (
-                  <option key={chapter} value={chapter}>{chapter}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <button className='apply-filters-button' onClick={handleApplyFilters}>Apply Filters</button>
+      <div className='video-list-container'>
+        <div className='filters-toggle-container'>
+          <button className='filters-toggle-button' onClick={toggleFilterPanel}>
+            {showFilters ? 'Hide Filters' : 'Show Filters'}
+          </button>
         </div>
-      )}
-      <div className='video-list-grid'>
-        {videoLectures.map((lecture) => (
-          <div key={lecture.id} className={`video-list-item ${lecture.is_rev ? 'review' : ''}`}>
-            <img 
-              src={lecture.img_link} 
-              alt={lecture.title} 
-              onClick={() => handleImageClick(lecture.id)}  
-              className='video-thumbnail'
-            />
-            <p className='video-title'>{lecture.title}</p>
-            <p className='video-type'>{lecture.is_rev ? 'Review Lecture' : 'Lecture'}</p>
+        {showFilters && (
+          <div className='filter-panel'>
+            <div className="filterhere">
+              <div className='filter-group'>
+                <label htmlFor='subject'>Subjects:</label>
+                <select
+                  id='subject'
+                  value={selectedSubject}
+                  onChange={(e) => setSelectedSubject(e.target.value)} // Set single subject
+                  disabled={!selectedGrade}
+                >
+                  <option value=''>Select Subject</option>
+                  {subjects.map(subject => (
+                    <option key={subject} value={subject}>{subject}</option>
+                  ))}
+                </select>
+              </div>
+              <div className='filter-group'>
+                <label htmlFor='chapter'>Chapters:</label>
+                <select
+                  id='chapter'
+                  value={selectedChapters}
+                  onChange={(e) => setSelectedChapters([e.target.value])} // Handle single chapter selection
+                  disabled={!selectedSubject}
+                >
+                  <option value=''>Select Chapter</option>
+                  {chapters.map(chapter => (
+                    <option key={chapter} value={chapter}>{chapter}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <button className='apply-filters-button' onClick={handleApplyFilters}>Apply Filters</button>
           </div>
-        ))}
+        )}
+        <div className='video-list-grid'>
+          {videoLectures.map((lecture) => (
+            <div key={lecture.id} className={`video-list-item ${lecture.is_rev ? 'review' : ''}`}>
+              <img 
+                src={lecture.img_link} 
+                alt={lecture.title} 
+                onClick={() => handleImageClick(lecture.id)}  
+                className='video-thumbnail'
+              />
+              <p className='video-title'>{lecture.title}</p>
+              <p className='video-type'>{lecture.is_rev ? 'Review Lecture' : 'Lecture'}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
   );
 }
 

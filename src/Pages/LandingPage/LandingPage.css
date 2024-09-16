@@ -76,17 +76,16 @@ body, html {
   background-color: transparent; /* No background by default */
   border: none; /* Remove border by default */
   border-radius: 7%; /* Keep border-radius in case background is added on hover */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition */
   font-size: large;
-  
 }
 
 /* Navbar menu item styling on hover */
 .navbar-menu-item a:hover {
   background-color: #5DA9E9; /* Add background on hover */
   color: #FFFFFF; /* Change text color on hover */
+  transform: translateY(-3px);
 }
-
 
 .navbar-menu-item.reg a {
   background-color: #5DA9E9; /* Initial background color */
@@ -103,8 +102,6 @@ body, html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
-
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -114,7 +111,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('https://th.bing.com/th/id/OIP.iADb0KXt7xs_8FjKUAi_kAHaE9?rs=1&pid=ImgDetMain') center/cover;
+  background: url('./assets/landing.png') center/cover no-repeat;
 }
 
 .hero-heading {
@@ -122,6 +119,13 @@ body, html {
   color: #FFFFFF;
   text-shadow: 3px 3px #6D326D;
   margin-bottom: 20px;
+  animation: bounceIn 1s;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .hero-subheading {
@@ -139,11 +143,13 @@ body, html {
   border: none;
   border-radius: 5px;
   font-weight: bold;
+  animation: pulse 2s infinite;
 }
 
-.hero-register-button:hover {
-  background-color: #003F91;
-  color: #FFFFFF;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Why EduSathi Section */
@@ -157,53 +163,52 @@ body, html {
 
 .why-EduSathi-content {
   display: flex;
-  max-width: 1200px; /* Set a max width for the container */
-  width: 100%; /* Make it responsive */
-  gap: 2rem; /* Add space between the heading and description */
+  max-width: 1200px;
+  width: 100%;
+  gap: 2rem;
 }
 
 .why-EduSathi-heading {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   padding-top: 28px;
-  width: 40%; /* Left side width for the heading */
-  text-align: left; /* Align heading to the left */
-  border-bottom: 3px solid #5DA9E9; /* Add underline with custom color */
-  display: inline-block; /* Ensure underline only appears beneath the text */
-  padding-bottom: 5px; /* Add some space between text and underline */
+  width: 40%;
+  text-align: left;
+  /* border-bottom: 3px solid #5DA9E9; */
+  display: inline-block;
+  padding-bottom: 5px;
   color: #003F91;
+  border: none;
 }
 
 .why-EduSathi-description {
   font-size: 1.125rem;
   line-height: 1.6;
-  width: 60%; /* Right side width for the description */
-  text-align: justify; /* Align text to the left */
+  width: 60%;
+  text-align: justify;
   color: #022553;
 }
 
-
 /* Features Section */
-/* .features-section {
-  padding: 4rem 2rem;
-  background-color: #5DA9E9;
-  text-align: center;
-} */
-
 .features-section {
   padding: 4rem 2rem;
-  background: linear-gradient(to bottom, #e0f7fa, #80deea, #b2ebf2); /* Top-to-bottom gradient */
+  background: linear-gradient(to bottom, #e0f7fa, #80deea, #b2ebf2);
   text-align: center;
-  border-radius: 15px; /* Optional: Adds rounded corners to the section */
+  border-radius: 15px;
   margin: 0 auto;
 }
-
-
 
 .features-heading {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #003F91;
+}
+
+.features-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 /* Footer */
@@ -302,4 +307,48 @@ body, html {
     align-items: center; /* Center social links on small screens */
     margin-top: 2rem;
   }
+}
+
+/* Feature Cards */
+.card {
+  background-color: #f2f6fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Existing styles... */
+
+.video-section {
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.video-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-heading {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.promo-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

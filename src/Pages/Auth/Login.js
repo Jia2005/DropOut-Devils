@@ -78,8 +78,8 @@ function LoginPage() {
         <button type="submit" className="btn">Login</button>
       </form>
       <br></br>    
-      <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
+      <p className="center-align">
+        Don't have an account? <Link to="/signup" className="signup-underline">SignUp</Link>
       </p>
     </div>
   );

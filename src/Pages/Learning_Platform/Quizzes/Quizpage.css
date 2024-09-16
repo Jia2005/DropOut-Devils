@@ -26,12 +26,12 @@
 }
 
 .quiz-tab.active {
-    background-color: #4CAF50;
+    background-color: #0039f1;
     color: white;
 }
 
 .quiz-tab:hover {
-    background-color: #c0c0c0;
+    background-color: #0038f1c9;
     color: white;
 }
 

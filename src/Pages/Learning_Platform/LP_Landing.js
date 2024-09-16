@@ -16,44 +16,46 @@ function LP_Landing() {
       case 'notes':
         return <Notes />;
       case 'quizzes':
-        return <Quizzes/>;
+        return <Quizzes />;
       case 'meetings':
-        return <EnterMeet/>;
+        return <EnterMeet />;
       default:
-        return <SubjectList/>;
+        return <SubjectList />;
     }
   };
 
   return (
-    <div className="container3">
-      <div className="tabs">
-        <button 
-          className={`tab2 ${activeTab === 'videoLectures' ? 'active' : ''}`}
-          onClick={() => setActiveTab('videoLectures')}
-        >
-          Video Lectures
-        </button>
-        <button 
-          className={`tab2 ${activeTab === 'notes' ? 'active' : ''}`}
-          onClick={() => setActiveTab('notes')}
-        >
-          Notes
-        </button>
-        <button 
-          className={`tab2 ${activeTab === 'quizzes' ? 'active' : ''}`}
-          onClick={() => setActiveTab('quizzes')}
-        >
-          Quizzes
-        </button>
-        <button 
-          className={`tab2 ${activeTab === 'meetings' ? 'active' : ''}`}
-          onClick={() => setActiveTab('meetings')}
-        >
-          Meetings
-        </button>
-      </div>
-      <div className="content2">
-        {renderContent()}
+    <div className="container-card-student">
+      <div className="card-container"> {/* Wrap content in card container */}
+        <div className="tabs">
+          <button
+            className={`tab2 ${activeTab === 'videoLectures' ? 'active' : ''}`}
+            onClick={() => setActiveTab('videoLectures')}
+          >
+            Video Lectures
+          </button>
+          <button
+            className={`tab2 ${activeTab === 'notes' ? 'active' : ''}`}
+            onClick={() => setActiveTab('notes')}
+          >
+            Notes
+          </button>
+          <button
+            className={`tab2 ${activeTab === 'quizzes' ? 'active' : ''}`}
+            onClick={() => setActiveTab('quizzes')}
+          >
+            Quizzes
+          </button>
+          <button
+            className={`tab2 ${activeTab === 'meetings' ? 'active' : ''}`}
+            onClick={() => setActiveTab('meetings')}
+          >
+            Meetings
+          </button>
+        </div>
+        <div className="content2">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

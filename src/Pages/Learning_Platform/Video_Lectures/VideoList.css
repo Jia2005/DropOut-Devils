@@ -1,4 +1,15 @@
-
+.student-bg-container{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('../Video_Lectures/assets/student-bg.png') !important; /* Replace with your actual image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Ensures the image stays fixed on scroll */
+  padding-top: 70px; /* This padding ensures the content appears below the fixed navbar */
+  min-height: 100vh; /* Ensure it covers the entire viewport height */
+  padding-top: 70px;
+}
 
 .video-list-item p {
     margin-top: 5px;
@@ -15,7 +26,6 @@
 }
 
 .video-list-container {
-  background-color: #e5f4f6;
   padding: 20px;
   width: 100%;
 }
