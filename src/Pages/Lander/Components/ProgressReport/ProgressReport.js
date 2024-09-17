@@ -84,15 +84,15 @@ const ProgressReport = () => {
   return (
     <div className="progress-report">
       <br></br>
-      <h2 style={{fontSize:'40px'}}>Progress Report for {studentData.name}</h2>
-      <p><strong>Name:</strong> {studentData.name}</p>
-      <p><strong>Class:</strong> {studentData.class}</p>
-      <p><strong>Roll No:</strong> {studentData.rollNo}</p>
-      <p><strong>Email:</strong> {studentData.email}</p>
-      <p><strong>School:</strong> {studentData.school}</p>
-      <p><strong>Overall Grade:</strong> {studentData.overallGrade}</p>
+      <h2 style={{fontSize:'40px', color: "white"}}>Progress Report</h2>
+      <p className='data-report'><strong>Name:</strong> {studentData.name}</p>
+      <p className='data-report'><strong>Class:</strong> {studentData.class}</p>
+      <p className='data-report'><strong>Roll No:</strong> {studentData.rollNo}</p>
+      <p className='data-report'><strong>Email:</strong> {studentData.email}</p>
+      <p className='data-report'><strong>School:</strong> {studentData.school}</p>
+      <p className='data-report'><strong>Overall Grade:</strong> {studentData.overallGrade}</p>
 
-      <h2>Subjects</h2>
+      <h2 style={{color: "white"}}>Subjects</h2>
       <div className="subjects-container">
       {studentData.subjects.map((subject, index) => (
         <div key={index} className="subject-card">
