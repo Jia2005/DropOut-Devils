@@ -53,9 +53,10 @@
   .filterhere{
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
   .filter-panel {
-    background-color: var(--marian-blue);
+    background-color: rgb(22, 208, 255);
     color: white;
     padding: 15px;
     border-radius: 5px;
@@ -73,6 +74,8 @@ width: 440px;
 .filter-group label {
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 15px;
+  color: black;
 }
 
 .filter-group select {
@@ -84,8 +87,8 @@ width: 440px;
 }
 
 .apply-filters-button {
-  background-color: var(--argentinian-blue);
-  color: var(--white);
+  background-color: rgb(71, 114, 255);
+  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;

@@ -129,7 +129,7 @@ const Form = () => {
 
   return (
     <div className="form-container">
-      <div className="tabs">
+      <div className="tabs-finance">
         <button onClick={() => handleTabClick('personal')} className={activeTab === 'personal' ? 'active' : ''}>Personal Information</button>
         <button onClick={() => handleTabClick('academic')} className={activeTab === 'academic' ? 'active' : ''}>Academic Information</button>
         <button onClick={() => handleTabClick('financial')} className={activeTab === 'financial' ? 'active' : ''}>Financial Information</button>
