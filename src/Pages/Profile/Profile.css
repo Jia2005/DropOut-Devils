@@ -87,10 +87,6 @@
   align-items: center;
 }
 
-.sidebar-menu li:hover {
-  background-color: #f0f0f0;
-}
-
 .sidebar-menu li i {
   margin-right: 10px;
   color: #007bff;
@@ -105,7 +101,7 @@
 }
 
 .sidebar-menu li a:hover {
-  color: #007bff; 
+  text-decoration: underline; 
 }
 
 .upload-image {
