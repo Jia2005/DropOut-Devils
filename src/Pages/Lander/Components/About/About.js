@@ -1,5 +1,7 @@
 import React from "react";
 import FeatureCards from "../../../LandingPage/FeatureCards";
+import './About.css';
+
 const WhyEduSathi = () => {
   return (
     <section className="why-edusathi-section">

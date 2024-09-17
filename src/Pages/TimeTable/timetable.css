@@ -32,7 +32,7 @@
 }
 
 .timetable th {
-  background-color: #4CAF50;
+  background-color: rgb(3, 3, 110);
   color: white;
   font-weight: bold;
   position: sticky;
@@ -52,7 +52,7 @@
 
 .timetable tr th:first-child,
 .timetable tr td:first-child {
-  background-color: #4CAF50;
+  background-color: rgb(28, 154, 212);
   color: white;
   font-weight: bold;
   position: sticky;
