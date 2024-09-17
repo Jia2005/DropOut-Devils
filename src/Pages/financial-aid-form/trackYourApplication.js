@@ -135,25 +135,36 @@ function TrackYourApplication() {
 
                 {applicationData && (
                     <div className="application-details">
-                        <h3>Application Details for {applicationData.personal.name}</h3>
-                        <p><strong>Institution:</strong> {applicationData.academic.school}</p>
-                        <p><strong>Grade:</strong> {applicationData.academic.grade}</p>
-                        <p><strong>Year:</strong> {applicationData.academic.year}</p>
-                        <p><strong>Final Status:</strong> {applicationData.finalStatus}</p>
+                        <h3>Application Details</h3><br />
+                        <p className='track-details'><strong>Name:</strong> {applicationData.personal.name}</p>
+                        <p className='track-details'><strong>Institution:</strong> {applicationData.academic.school}</p>
+                        <p className='track-details'><strong>Grade:</strong> {applicationData.academic.grade}</p>
+                        <p className='track-details'><strong>Year:</strong> {applicationData.academic.year}</p>
+                        <p className='track-details'><strong>Final Status:</strong> {applicationData.finalStatus}</p>
 
                         <h4>Documents</h4>
-                        {Object.keys(applicationData.documents).map((docKey) => (
-                            <div key={docKey} className="document-section">
-                                <p>{docKey.replace('-', ' ').toUpperCase()}</p>
-                                <p><strong>Status:</strong> {applicationData.documents[docKey].status}</p>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Document</th>
+                                <th>Reupload</th>
+                            </tr>
+                            {Object.keys(applicationData.documents).map((docKey) => (
+                            <tr>
+                                <td>{docKey.replace('-', ' ').toUpperCase()}</td>
+                                <td>{applicationData.documents[docKey].status}</td>
+                                <td>
                                 <a href={applicationData.documents[docKey].url} target="_blank" rel="noopener noreferrer" className="view-document">
                                     View Document
                                 </a>
-
+                                </td>
+                                <td>
                                 {applicationData.documents[docKey].status === 'reupload' && (
                                     <div className="reupload-section">
                                         <input
                                             type="file"
+                                            style={{fontSize: "14px", margin: '0'}}
                                             onChange={(e) => handleFileChange(e, docKey)}
                                             className="file-input"
                                         />
@@ -162,8 +173,12 @@ function TrackYourApplication() {
                                         </button>
                                     </div>
                                 )}
-                            </div>
+                                </td>
+                            </tr>
                         ))}
+                        </table>
+                        <br />
+                        
 
                         {applicationData.finalStatus === 'approved' && !isSubmitted && (
                             <div className="bank-details-form">
