@@ -3,7 +3,8 @@
     margin: 0 auto;
     padding: 20px;
     max-width: 90%;
-    background-color: #f9f9f9 !important;
+    background-color: transparent;
+    /* background-color: #f9f9f9 !important; */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -67,7 +68,13 @@
   .create-lecture-form label {
     margin-bottom: 15px;
     font-size: 16px;
-    color: #003F91; 
+    color: white;
+    font-weight: bold; 
+  }
+
+  .lec-teacher-label {
+    color: white;
+    font-weight: bold;
   }
   
   #Submit-btn {
