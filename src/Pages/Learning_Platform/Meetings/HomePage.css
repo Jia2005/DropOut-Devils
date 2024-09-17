@@ -3,7 +3,8 @@
     margin: 0 auto;
     padding: 20px;
     width: 60%;
-    background-color: #f9f9f9;
+    background-color: transparent;
+    /* background-color: #f9f9f9; */
     border-radius: 8px;
   }
   

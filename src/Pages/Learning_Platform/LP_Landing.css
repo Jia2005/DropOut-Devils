@@ -4,7 +4,8 @@
   padding: 20px;
   padding-top: 80px;
   max-width: 100%; /* Ensure container spans the full width */
-  background-image: url('../Learning_Platform/Video_Lectures/assets/student-bg.png');
+  /* background-image: url('../Learning_Platform/Video_Lectures/assets/student-bg.png'); */
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190617/ourmid/pngtree-taobao-vector-cartoon-neat-study-desk-table-home-illustration-table-lamp-image_130341.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Keeps the background fixed */
@@ -17,7 +18,9 @@
 
 /* Card Container with Scroll for Overflow */
 .card-container {
-  background-color: rgb(3, 3, 110);
+  /* background-color: rgb(3, 3, 110); */
+  background-color: transparent;
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 94, 0.411);
   padding: 30px;
@@ -42,6 +45,7 @@
   /* border: 1px solid #ddd; */
   border-radius: 5px;
   padding: 15px;
+  font-weight: bold;
   font-size: 18px;
   color: #333;
   cursor: pointer;
@@ -64,9 +68,10 @@
 /* Content Inside the Card */
 .content2 {
   padding: 20px;
-  border: 1px solid #ddd;
+  /* border: 1px solid black; */
   border-radius: 5px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,10 +81,5 @@
 }
 
 .container-card-student ::-webkit-scrollbar {
-  width: 5px;
-}
-
-.container-card-student ::-webkit-scrollbar-thumb {
-  background-color: lightblue;
-  border-radius: 5px;
+  width: 0px;
 }

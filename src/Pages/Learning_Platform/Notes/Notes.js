@@ -69,7 +69,7 @@ function Notes() {
   return (
     <div className='notes-wrapper'>
       <form onSubmit={handleSubmit} className='notes-form'>
-        <div className='form-group'>
+        <div className='form-group-notes'>
           <label htmlFor='class-select'>Select Class Folder:</label>
           <select 
             id='class-select'
@@ -86,7 +86,7 @@ function Notes() {
           </select>
         </div>
 
-        <div className='form-group'>
+        <div className='form-group-notes'>
           <label htmlFor='subject-select'>Select Subject Folder:</label>
           <select 
             id='subject-select'
@@ -104,7 +104,7 @@ function Notes() {
           </select>
         </div>
 
-        <div className='form-group'>
+        <div className='form-group-notes'>
           <label htmlFor='chapter-select'>Select Chapter Folder:</label>
           <select 
             id='chapter-select'

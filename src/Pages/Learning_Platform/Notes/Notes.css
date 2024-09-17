@@ -3,7 +3,8 @@
     margin: 0 auto;
     padding: 20px;
     width: 70%;
-    background-color: #f9f9f9;
+    background-color: transparent;
+    /* background-color: #f9f9f9; */
     border-radius: 8px;
 }
 
@@ -12,17 +13,17 @@
     flex-direction: column;
 }
 
-.form-group {
+.form-group-notes {
     margin-bottom: 15px;
 }
 
-.form-group label {
+.form-group-notes label {
     display: block;
     font-size: 16px;
     font-weight: bold;
 }
 
-.form-group select,
+.form-group-notes select,
 .submit-button {
     width: 100%;
     padding: 10px;
@@ -32,7 +33,7 @@
     font-size: 16px;
 }
 
-.form-group select {
+.form-group-notes select {
     background-color: #ffffff;
 }
 
