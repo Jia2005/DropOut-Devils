@@ -1,0 +1,74 @@
+.timetable-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+.timetable-title {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+}
+
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+}
+
+.timetable th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timetable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.timetable tr:hover {
+  background-color: #e6f7ff;
+  transition: background-color 0.3s ease;
+}
+
+.timetable tr th:first-child,
+.timetable tr td:first-child {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .timetable th,
+  .timetable td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .timetable-title {
+    font-size: 24px;
+  }
+}
