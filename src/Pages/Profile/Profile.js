@@ -128,7 +128,7 @@ const UserProfile = ({setComponent}) => {
           setAge(userData.age);  
           setEmail(userData.email);  
           setPhone(userData.phone);  
-          setCourse(userData.EnrolledCourse);
+          setCourse(userData.enrolledCourse);
           
           // Set role based on the type  
           setRole(mapRole(userData.type));  
