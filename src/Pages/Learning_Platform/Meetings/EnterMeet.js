@@ -28,7 +28,7 @@ const EnterMeet = () => {
         <div className='enter-meet'>
             <form onSubmit={handleFormSubmit} className='meet-form'>
                 <div>
-                    <label style={{fontSize:'16px', color:'#0039f1'}}>Select Class </label>
+                    <label style={{fontSize:'16px', color:'black', fontWeight: "bold"}}>Select Class </label>
                     <select 
                         value={roomCode} 
                         onChange={(e) => setRoomCode(e.target.value)} 

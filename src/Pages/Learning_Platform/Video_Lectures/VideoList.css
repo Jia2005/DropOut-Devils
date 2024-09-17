@@ -56,7 +56,7 @@
     gap: 10px;
   }
   .filter-panel {
-    background-color: rgb(22, 208, 255);
+    background-color: transparent;
     color: white;
     padding: 15px;
     border-radius: 5px;
