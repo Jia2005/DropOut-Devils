@@ -28,7 +28,8 @@ const UserProfile = ({setComponent}) => {
   const [name, setName] = useState('');  
   const [age, setAge] = useState('');  
   const [email, setEmail] = useState('');  
-  const [phone, setPhone] = useState('');  
+  const [phone, setPhone] = useState('');
+  const [course, setCourse] = useState('');  
   const [role, setRole] = useState('');  
   const [file, setFile] = useState(null);  
   const [isEditing, setIsEditing] = useState(false); 
@@ -127,6 +128,7 @@ const UserProfile = ({setComponent}) => {
           setAge(userData.age);  
           setEmail(userData.email);  
           setPhone(userData.phone);  
+          setCourse(userData.EnrolledCourse);
           
           // Set role based on the type  
           setRole(mapRole(userData.type));  
@@ -197,6 +199,7 @@ const UserProfile = ({setComponent}) => {
       age,  
       email,  
       phone,
+      course,
     });  
     setIsEditing(false);  
   };  
@@ -245,6 +248,9 @@ const UserProfile = ({setComponent}) => {
           </div>
           <div className="detail-block">
             <p><strong>Role:</strong> {role} </p>
+          </div>
+          <div className="detail-block">
+            <p><strong>Enrolled Course:</strong> {isEditing ? <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} /> : course}</p>
           </div>
           <div className='upload-image'>
             <input type="file" onChange={handleFileChange} />
