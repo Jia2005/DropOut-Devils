@@ -162,7 +162,7 @@ const Notifications = ({onReschedule}) => {
   };
 
   return (
-    <div className="notifications-container">
+    <div className="notifications-container" style={{marginTop:'0px'}}>
       <h2>Notifications</h2>
       {loading ? (
         <p>Loading notifications...</p>
