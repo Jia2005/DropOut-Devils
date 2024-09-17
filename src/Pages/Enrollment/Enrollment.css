@@ -3,10 +3,11 @@ body, html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  background-color: #E5F4E3;
+  background-color: #f0f0f0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   justify-content: center;
 }
 
