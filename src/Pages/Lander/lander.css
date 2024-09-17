@@ -4,7 +4,6 @@
   font-family: Arial, sans-serif;
   transition: background-color 0.3s, color 0.3s;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .container2.light {
