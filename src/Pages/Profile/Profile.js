@@ -40,6 +40,7 @@ const UserProfile = ({setComponent}) => {
 
   const renderSelectedComponent = (component) => {
     switch (component) {
+      case 'Main_Home':
       case 'LP_Landing':
         return <LP_Landing />;
       case 'Financial Aid':
@@ -71,7 +72,7 @@ const UserProfile = ({setComponent}) => {
   const renderSidebarMenu = () => {
     const menuItems = {
       Student: [
-        { text: 'Home', component: '' },
+        { text: 'Home', component: 'Main_Home' },
         { text: 'Learning Platform', component: 'LP_Landing' },
         { text: 'Financial Aid', component: 'Financial Aid' }, // Form component heres
         { text: 'Track Your Application', component: 'TrackYourApplication' },
@@ -79,21 +80,21 @@ const UserProfile = ({setComponent}) => {
         { text: 'Change Password', component: '' },
       ],
       Teacher: [
-        { text: 'Home', component: '' },
+        { text: 'Home', component: 'TeacherLanding' },
         { text: 'Learning Platform', component: 'TeacherLanding' },
         { text: 'Quiz Creation', component: 'CreateQuizPage' },
         { text: 'Create Student Report', component: 'TeacherInput' },
         { text: 'Change Password', component: '' },
       ],
       Parent: [
-        { text: 'Home', component: '' },
+        { text: 'Home', component: 'Main_Home' },
         { text: 'Learning Platform', component: 'LP_Landing' },
         { text: 'Progress Report', component: 'ProgressReport' },
         { text: 'Interact with Teacher', component: 'ScheduleMeeting' },
         { text: 'Change Password', component: '' },
       ],
       Admin: [
-        { text: 'Home', component: '' },
+        { text: 'Home', component: 'ApplicationReviewPage' },
         { text: 'View and Approve Applications', component: 'ApplicationReviewPage' },
         { text: 'Approve Funds', component: 'FundsDisbursementPage' },
         { text: 'Statistical Report', component: '' },
