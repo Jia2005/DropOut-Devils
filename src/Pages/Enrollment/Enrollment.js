@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Enrollment.css';
 import { db } from '../../firebase';
-import { doc, updateDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Enrollment = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [enrollmentStatus] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -15,18 +29,26 @@ const Enrollment = () => {
   const handleEnrollClick = async () => {
     if (selectedCard) {
       try {
-        const auth = getAuth();
-        const user = auth.currentUser;
-
-        if (user) {
-          const userId = user.email;
+        if (currentUser) {
+          const userId = currentUser.email;
           const userDocRef = doc(db, 'students', userId);
 
-          await updateDoc(userDocRef, {
-            enrolledCourse: selectedCard
-          });
+          const userDoc = await getDoc(userDocRef);
 
-          window.alert('Enrolled successfully!');
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            if (userData.type === 1) {
+              await updateDoc(userDocRef, {
+                enrolledCourse: selectedCard
+              });
+
+              window.alert('Enrolled successfully!');
+            } else {
+              window.alert('Only students can enroll in courses.');
+            }
+          } else {
+            window.alert('User does not exist.');
+          }
         } else {
           window.alert('No user is currently signed in.');
         }
