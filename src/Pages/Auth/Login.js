@@ -58,9 +58,9 @@ function LoginPage() {
             value={formik.values.email}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className="error">{formik.errors.email}</div>
+            <div className="auth-error">{formik.errors.email}</div>
           ) : null}
-        </div>
+        </div><br></br>
 
         <div className="form-group-signup">
           <label>Password:</label>
@@ -72,9 +72,9 @@ function LoginPage() {
             value={formik.values.password}
           />
           {formik.touched.password && formik.errors.password ? (
-            <div className="error">{formik.errors.password}</div>
+            <div className="auth-error">{formik.errors.password}</div>
           ) : null}
-        </div>
+        </div><br></br>
 
         <button type="submit" className="btn">Login</button>
       </form>

@@ -126,9 +126,9 @@ function SignupPage() {
             value={formik.values.email}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className="error">{formik.errors.email}</div>
+            <div className="auth-error">{formik.errors.email}</div>
           ) : null}
-        </div>
+        </div><br></br>
         <div className="form-group-signup">
           <label>Password:</label>
           <input className='input-hander'
@@ -139,9 +139,9 @@ function SignupPage() {
             value={formik.values.password}
           />
           {formik.touched.password && formik.errors.password ? (
-            <div className="error">{formik.errors.password}</div>
+            <div className="auth-error">{formik.errors.password}</div>
           ) : null}
-        </div>
+        </div><br></br>
         <div className="form-group-signup">
           <label>Confirm Password:</label>
           <input className='input-hander'
@@ -152,9 +152,9 @@ function SignupPage() {
             value={formik.values.confirmPassword}
           />
           {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-            <div className="error">{formik.errors.confirmPassword}</div>
+            <div className="auth-error">{formik.errors.confirmPassword}</div>
           ) : null}
-        </div>
+        </div><br></br>
         <div className="form-group-signup input-hander">
           <label>Role:</label>
           <select
@@ -175,7 +175,7 @@ function SignupPage() {
             <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -183,13 +183,13 @@ function SignupPage() {
                 value={formik.values.name}
               />
               {formik.touched.name && formik.errors.name ? (
-                <div className="error">{formik.errors.name}</div>
+                <div className='auth-error'>{formik.errors.name}</div>
               ) : null}
-            </div>
+            </div><br></br>
             <div className="form-group-signup">
               <label>Grade:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="text"
                 name="grade"
                 onChange={formik.handleChange}
@@ -197,9 +197,9 @@ function SignupPage() {
                 value={formik.values.grade}
               />
               {formik.touched.grade && formik.errors.grade ? (
-                <div className="error">{formik.errors.grade}</div>
+                <div className='auth-error'>{formik.errors.grade}</div>
               ) : null}
-            </div>
+            </div><br></br>
           </>
         )}
         {role === 'teacher' && (
@@ -207,7 +207,7 @@ function SignupPage() {
             <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -215,13 +215,13 @@ function SignupPage() {
                 value={formik.values.name}
               />
               {formik.touched.name && formik.errors.name ? (
-                <div className="error">{formik.errors.name}</div>
+                <div className='auth-error'>{formik.errors.name}</div>
               ) : null}
-            </div>
+            </div><br></br>
             <div className="form-group-signup">
               <label>Subject:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="text"
                 name="subject"
                 onChange={formik.handleChange}
@@ -229,9 +229,9 @@ function SignupPage() {
                 value={formik.values.subject}
               />
               {formik.touched.subject && formik.errors.subject ? (
-                <div className="error">{formik.errors.subject}</div>
+                <div className='auth-error'>{formik.errors.subject}</div>
               ) : null}
-            </div>
+            </div><br></br>
           </>
         )}
         {role === 'parent' && (
@@ -239,7 +239,7 @@ function SignupPage() {
             <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="text"
                 name="name"
                 onChange={formik.handleChange}
@@ -247,13 +247,13 @@ function SignupPage() {
                 value={formik.values.name}
               />
               {formik.touched.name && formik.errors.name ? (
-                <div className="error">{formik.errors.name}</div>
+                <div className='auth-error'>{formik.errors.name}</div>
               ) : null}
-            </div>
+            </div><br></br>
             <div className="form-group-signup">
               <label>Child's Email:</label>
               <input className='input-hander'
-                style={{ width:'100%' }}
+                style={{ width:'100%',marginBottom:'0' }}
                 type="email"
                 name="childEmail"
                 onChange={formik.handleChange}
@@ -261,9 +261,9 @@ function SignupPage() {
                 value={formik.values.childEmail}
               />
               {formik.touched.childEmail && formik.errors.childEmail ? (
-                <div className="error">{formik.errors.childEmail}</div>
+                <div className='auth-error'>{formik.errors.childEmail}</div>
               ) : null}
-            </div>
+            </div><br></br>
           </>
         )}
         <button type="submit" className="btn">Signup</button>

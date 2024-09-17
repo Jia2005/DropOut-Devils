@@ -64,8 +64,8 @@ input:focus, select:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-.error {
-  color: #dc3545;
+.auth-error {
+  color: #ee8d96;
   font-size: 0.875em;
   margin-top: 5px;
   position: absolute;
