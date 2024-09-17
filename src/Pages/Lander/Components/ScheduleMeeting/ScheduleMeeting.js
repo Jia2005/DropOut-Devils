@@ -101,10 +101,10 @@ const ScheduleMeeting = () => {
   
   return (
     <div className="schedule-meeting-container">
-      <h2>Schedule a Meeting</h2>
+      <h2 style={{color: "white"}}>Schedule a Meeting</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="date">Preferred Date:</label>
+          <label htmlFor="date" style={{color: "white"}}>Preferred Date:</label>
           <input
             className='date'
             type="date"
@@ -115,7 +115,7 @@ const ScheduleMeeting = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="timeSlot">Preferred Time Slot:</label>
+          <label htmlFor="timeSlot" style={{color: "white"}}>Preferred Time Slot:</label>
           <select
             id="timeSlot"
             value={timeSlot}
@@ -129,7 +129,7 @@ const ScheduleMeeting = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="teacherEmail">Teacher's Email:</label>
+          <label htmlFor="teacherEmail" style={{color: "white"}}>Teacher's Email:</label>
           <input
             type="email"
             id="teacherEmail"
