@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 
 const Enrollment = () => {
   const [selectedCard, setSelectedCard] = useState(null);
-  const [enrollmentStatus, setEnrollmentStatus] = useState('');
+  const [enrollmentStatus] = useState('');
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -26,20 +26,20 @@ const Enrollment = () => {
             enrolledCourse: selectedCard
           });
 
-          setEnrollmentStatus('Enrolled successfully!');
+          window.alert('Enrolled successfully!');
         } else {
-          setEnrollmentStatus('No user is currently signed in.');
+          window.alert('No user is currently signed in.');
         }
       } catch (error) {
         console.error('Error enrolling user: ', error);
-        setEnrollmentStatus('Error enrolling user.');
+        window.alert('Error enrolling user.');
       }
     }
   };
 
   return (
     <div className="landing-page">
-      <div className="features-section">
+      <div className="features-section2">
         <div className="feature-cards-container">
           <div
             className={`card card-full-time ${selectedCard === 'full-time' ? 'selected' : ''}`}
