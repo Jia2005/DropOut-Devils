@@ -1,22 +1,32 @@
+.login-signup-bg {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('./assets/login-signup.png'); /* Correct path to the image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Ensures the image stays fixed on scroll */
+  min-height: 100vh; /* Ensure it covers the entire viewport height */
+  padding-top: 70px; /* Padding for content below the navbar */
+}
+
 .auth-container {
-  max-width: 48%;
+  max-width: 42%;
   margin: 50px auto;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* text-align: center; */
   position: relative;
   overflow: hidden;
-  background: url('./assets/loginBg.png') no-repeat center center/cover;
-  background-color: #f7f7f7; /* Fallback color */
+  margin-top: 20px;
 }
 
-.signup{
+.signup {
   text-align: center;
 }
 
-.input-hander{
+.input-hander {
   margin-top: 2px !important;
 }
 
@@ -79,7 +89,6 @@ input:focus, select:focus {
 }
 
 .login-link p {
-  /* margin-top: 20px; */
   font-size: 1em;
 }
 
@@ -93,16 +102,16 @@ input:focus, select:focus {
   text-decoration: underline;
 }
 
-.already-acc{
+.already-acc {
   text-align: center;
 }
 
-.signup-underline{
+.signup-underline {
   text-decoration: underline;
   color: #003f91;
 }
 
-.center-align{
+.center-align {
   text-align: center;
   margin-top: 2px;
 }
