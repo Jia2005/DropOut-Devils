@@ -119,7 +119,7 @@ function TrackYourApplication() {
     return (
         <div className="track-application-page">
             <div className="track-application-container">
-                <h2>Track Your Application</h2>
+                <h2 style={{color: "white"}}>Track Your Application</h2>
                 <input
                     type="text"
                     value={applicationId}

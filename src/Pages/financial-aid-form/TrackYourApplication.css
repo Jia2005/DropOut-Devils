@@ -6,7 +6,7 @@
 }
 
 .track-application-container {
-    background: #fff;
+    background: rgb(3, 3, 110);
     padding: 20px 30px;
     margin-top: 80px;
     margin-bottom: 20px;
@@ -32,7 +32,7 @@ h2 {
 }
 
 .track-button {
-    background-color: navy;
+    background-color: #003F91;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -42,7 +42,7 @@ h2 {
 }
 
 .track-button:hover {
-    background-color: rgb(0, 0, 54);
+    background-color: rgb(62, 62, 255);
     color: white;
 }
 
