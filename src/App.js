@@ -16,6 +16,8 @@ import UploadForm from './Pages/Learning_Platform/Video_Lectures/UploadForm';
 import VideoList from './Pages/Learning_Platform/Video_Lectures/VideoList';
 import CommunityForum from './Pages/Community/CommunityForum';
 import Predict from './Pages/Flask_Integration/Predict';
+import Timetable from './Pages/TimeTable/timetable';
+
 function App() {
 
   const [component, setComponent] = useState('');
@@ -38,8 +40,7 @@ function App() {
         <Route path="/videos" element={<VideoList />} />
         <Route path="/comm" element={<CommunityForum />} />
         <Route path="/play-video/:videoId" element={<VideoPlayer />} />
-
-
+        <Route path="timetable" element={<Timetable />} />
       </Routes>
     </Router>
   );

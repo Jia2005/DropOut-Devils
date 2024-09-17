@@ -16,6 +16,7 @@ import ScheduleMeeting from '../Lander/Components/ScheduleMeeting/ScheduleMeetin
 import ApplicationReviewPage from '../financial-aid-form/ApplicationReviewPage';
 import FundsDisbursementPage from '../financial-aid-form/FundsDisbursement';
 import TeacherInput from '../Teacher-input/TeacherInput';
+import Enrollment from '../Enrollment/Enrollment'
 
 const UserProfile = ({setComponent}) => {  
   const auth = getAuth();  
@@ -59,6 +60,8 @@ const UserProfile = ({setComponent}) => {
         return <ApplicationReviewPage />;
       case 'FundsDisbursementPage':
         return <FundsDisbursementPage />;
+      case 'Enrollment':
+        return <Enrollment />;
       default:
         return <div>Home</div>;
 
@@ -72,6 +75,7 @@ const UserProfile = ({setComponent}) => {
         { text: 'Learning Platform', component: 'LP_Landing' },
         { text: 'Financial Aid', component: 'Financial Aid' }, // Form component heres
         { text: 'Track Your Application', component: 'TrackYourApplication' },
+        { text: 'Enrollment into course', component: 'Enrollment' },
         { text: 'Change Password', component: '' },
       ],
       Teacher: [

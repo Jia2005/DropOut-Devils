@@ -19,6 +19,8 @@ import TeacherInput from '../../../Teacher-input/TeacherInput';
 import Notifications from './Notifications';
 import About from '../About/About';
 import ContactUs from '../Contact/ContactUs';
+import Enrollment from '../../../Enrollment/Enrollment';
+import Timetable from '../../../TimeTable/timetable';
 
 const Navbar = ({ role, setComponent }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -47,6 +49,7 @@ const Navbar = ({ role, setComponent }) => {
       case 'student':
         return [
           { name: 'Learning Platform', component: <LP_Landing /> },
+          { name: 'Time Table', component: <Timetable /> },
           { name: 'Financial Aid', component: <Form /> },
           { name: 'Track Your Application', component: <TrackYourApplication /> },
         ];

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar/Navbar';
-import './Lander.css';
+import './lander.css';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Notifications from './Components/Navbar/Notifications';
@@ -77,7 +77,7 @@ const Lander = ({ component, setComponent }) => {
   const getSectionOptions = () => {
     switch (role) {
       case 'student':
-        return ['Learning Platform', 'Financial Aid', 'Student Support', 'Dashboard'];
+        return ['Learning Platform','Time Table', 'Financial Aid', 'Student Support', 'Dashboard'];
       case 'parent':
         return ['Learning Platform', 'Statistical Report', 'Parental Portal'];
       case 'teacher':
