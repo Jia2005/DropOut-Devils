@@ -64,8 +64,8 @@ const Enrollment = () => {
       <div className="features-section2">
         <div className="feature-cards-container">
           <div
-            className={`card card-full-time ${selectedCard === 'full-time' ? 'selected' : ''}`}
-            onClick={() => handleCardClick('full-time')}
+            className={`card card-full-time ${selectedCard === 'Full time' ? 'selected' : ''}`}
+            onClick={() => handleCardClick('Full time')}
           >
             <h2>Full-Time Course</h2>
             <p>Comprehensive full-time course designed to immerse you in the subject matter, ensuring a deep and thorough understanding.</p>
@@ -73,8 +73,8 @@ const Enrollment = () => {
             <p>Classes are from morning 7 to afternoon 1 daily</p>
           </div>
           <div
-            className={`card card-part-time ${selectedCard === 'part-time' ? 'selected' : ''}`}
-            onClick={() => handleCardClick('part-time')}
+            className={`card card-part-time ${selectedCard === 'Part time' ? 'selected' : ''}`}
+            onClick={() => handleCardClick('Part time')}
           >
             <h2>Part-Time Course</h2>
             <p>Flexible part-time course that allows you to balance learning with other commitments, providing a more adaptable schedule.</p>
@@ -82,8 +82,8 @@ const Enrollment = () => {
             <p>Classes are from morning 7 to morning 10 daily</p>
           </div>
           <div
-            className={`card card-evening-classes ${selectedCard === 'evening-classes' ? 'selected' : ''}`}
-            onClick={() => handleCardClick('evening-classes')}
+            className={`card card-evening-classes ${selectedCard === 'Evening classes' ? 'selected' : ''}`}
+            onClick={() => handleCardClick('Evening classes')}
           >
             <h2>Evening Classes</h2>
             <p>Evening classes for those who prefer to study after work or other daytime obligations, offering a convenient alternative.</p>
