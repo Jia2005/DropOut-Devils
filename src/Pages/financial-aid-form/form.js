@@ -59,7 +59,7 @@ const Form = () => {
     setLoading(true);
 
     try {
-      const userRef = doc(getFirestore(), 'users', uid);
+      const userRef = doc(getFirestore(), 'financial_form', uid);
       await updateDoc(userRef, formData);
       alert('Form submitted successfully');
     } catch (error) {
