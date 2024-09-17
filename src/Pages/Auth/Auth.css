@@ -8,16 +8,17 @@
   background-attachment: fixed; /* Ensures the image stays fixed on scroll */
   min-height: 100vh; /* Ensure it covers the entire viewport height */
   padding-top: 70px; /* Padding for content below the navbar */
+  display: grid;
+  place-items: center;
 }
 
 .auth-container {
-  max-width: 42%;
-  margin: 50px auto;
+  width: 420px;
+  margin-bottom: 50px;
   padding: 30px;
-  background-color: #ffffff;
+  background-color: rgb(3, 3, 110);
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
   overflow: hidden;
   margin-top: 20px;
 }
@@ -36,15 +37,16 @@ h2 {
   font-size: 1.5em;
 }
 
-.form-group {
+.form-group-signup {
   margin-bottom: 10px;
   position: relative;
 }
 
-.form-group label {
+.form-group-signup label {
   display: block;
-  font-weight: 600;
   margin-bottom: 2px;
+  color: white;
+  font-size: 15px;
 }
 
 .takeInput, select {

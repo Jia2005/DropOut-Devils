@@ -44,10 +44,10 @@ function LoginPage() {
   return (
     <div className="login-signup-bg">
          <div className="auth-container">
-      <h2>Login</h2>
+      <h2 style={{color: "white"}}>Login</h2>
       <form onSubmit={formik.handleSubmit}>
 
-        <div className="form-group">
+        <div className="form-group-signup">
           <label>Email:</label>
           <input className='takeInput'
             style={{ width:'100%' }}
@@ -62,7 +62,7 @@ function LoginPage() {
           ) : null}
         </div>
 
-        <div className="form-group">
+        <div className="form-group-signup">
           <label>Password:</label>
           <input className='takeInput'
             type="password"
@@ -79,8 +79,8 @@ function LoginPage() {
         <button type="submit" className="btn">Login</button>
       </form>
       <br></br>    
-      <p className="center-align">
-        Don't have an account? <Link to="/signup" className="signup-underline">SignUp</Link>
+      <p className="center-align" style={{color: "white"}}>
+        Don't have an account? <Link style={{color: "lightblue"}} to="/signup" className="signup-underline">SignUp</Link>
       </p>
     </div>
     </div>
