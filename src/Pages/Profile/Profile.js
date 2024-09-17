@@ -105,7 +105,7 @@ const UserProfile = ({setComponent}) => {
     return (
       <ul>
         {menuItems[role]?.map((item, index) => (
-          <li key={index} className="center" onClick={() => setComponent(renderSelectedComponent(item.component))}>
+          <li key={index} className="center profile-li" onClick={() => setComponent(renderSelectedComponent(item.component))}>
             <Link to="/home">{item.text}</Link>
           </li>
         )) || <li className="center">Home</li>}
