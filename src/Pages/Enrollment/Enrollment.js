@@ -30,8 +30,8 @@ const Enrollment = () => {
     if (selectedCard) {
       try {
         if (currentUser) {
-          const userId = currentUser.email;
-          const userDocRef = doc(db, 'students', userId);
+          const userId = currentUser.uid;
+          const userDocRef = doc(db, 'users', userId);
 
           const userDoc = await getDoc(userDocRef);
 
