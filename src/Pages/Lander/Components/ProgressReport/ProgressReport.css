@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #ecceeb; /* Slight transparency */
+  background-color: rgb(3, 3, 110);
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   margin-top: 80px;
@@ -29,6 +29,15 @@ h2, h3 {
   border-bottom: 2px solid #3498db;
   padding-bottom: 5px;
   text-align: center;
+}
+
+.data-report {
+  color: white;
+  font-weight: bold;
+}
+
+.data-report strong {
+  color: #ee8d96;
 }
 
 p {
