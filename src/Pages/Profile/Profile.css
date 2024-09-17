@@ -9,12 +9,14 @@
 .this {
   width: 20%;
   padding: 20px;
-  background-color: #ffffff;
+  height: 100vh;
+  background-color: rgb(3, 3, 110);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #ddd;
+  border-right: 1px solid white;
 }
 
 .profile-pic {
@@ -28,7 +30,7 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid black;
+  border: 2px solid white;
   padding: 5px;
 }
 
@@ -57,7 +59,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 10px;
-  color: #333;
+  color: white;
 }
 
 .sidebar-divider {
@@ -96,7 +98,7 @@
 
 .sidebar-menu li a {
   text-decoration: none;
-  color: #333;
+  color: white;
   flex-grow: 1;
   font-size: 1.1rem;
   transition: color 0.3s ease;
@@ -134,7 +136,7 @@
 .profile-details {
   flex: 1;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: skyblue;
 }
 
 .detail-block-container {
