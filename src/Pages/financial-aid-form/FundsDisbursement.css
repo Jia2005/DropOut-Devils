@@ -58,7 +58,7 @@ th, td {
 }
 
 th {
-    background-color: #5e548e;
+    background-color: rgb(68, 171, 255);
     color: white;
 }
 .review-details p,.here{
