@@ -111,7 +111,8 @@ function SignupPage() {
     },
   });
   return (
-    <div className="auth-container">
+    <div className="login-signup-bg">
+          <div className="auth-container">
       <h2 className="signup">Signup</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
@@ -269,10 +270,12 @@ function SignupPage() {
 
         <div className="login-link already-acc">
           <br></br>
-          <p>Already have an account? <a href="/login" style={{color:"#0039f1", textDecoration:"underline"}}>LogIn</a></p>
+          <p>Already have an account? <a href="/login" style={{color:"#0039f1", textDecoration:"underline", fontWeight:"100"}}>LogIn</a></p>
         </div>
       </form>
     </div>
+    </div>
+  
   );
 }
 export default SignupPage;

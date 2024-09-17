@@ -42,7 +42,8 @@ function LoginPage() {
   });
 
   return (
-    <div className="auth-container">
+    <div className="login-signup-bg">
+         <div className="auth-container">
       <h2>Login</h2>
       <form onSubmit={formik.handleSubmit}>
 
@@ -82,6 +83,8 @@ function LoginPage() {
         Don't have an account? <Link to="/signup" className="signup-underline">SignUp</Link>
       </p>
     </div>
+    </div>
+   
   );
 }
 
