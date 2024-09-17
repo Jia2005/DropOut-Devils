@@ -113,9 +113,9 @@ function SignupPage() {
   return (
     <div className="login-signup-bg">
           <div className="auth-container">
-      <h2 className="signup">Signup</h2>
+      <h2 className="signup" style={{'color': 'white'}}>Signup</h2>
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-signup">
           <label>Email:</label>
           <input className='input-hander'
             style={{ width:'100%' }}
@@ -129,7 +129,7 @@ function SignupPage() {
             <div className="error">{formik.errors.email}</div>
           ) : null}
         </div>
-        <div className="form-group">
+        <div className="form-group-signup">
           <label>Password:</label>
           <input className='input-hander'
             type="password"
@@ -142,7 +142,7 @@ function SignupPage() {
             <div className="error">{formik.errors.password}</div>
           ) : null}
         </div>
-        <div className="form-group">
+        <div className="form-group-signup">
           <label>Confirm Password:</label>
           <input className='input-hander'
             type="password"
@@ -155,7 +155,7 @@ function SignupPage() {
             <div className="error">{formik.errors.confirmPassword}</div>
           ) : null}
         </div>
-        <div className="form-group input-hander">
+        <div className="form-group-signup input-hander">
           <label>Role:</label>
           <select
             name="role"
@@ -172,7 +172,7 @@ function SignupPage() {
         </div>
         {role === 'student' && (
           <>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -186,7 +186,7 @@ function SignupPage() {
                 <div className="error">{formik.errors.name}</div>
               ) : null}
             </div>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Grade:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -204,7 +204,7 @@ function SignupPage() {
         )}
         {role === 'teacher' && (
           <>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -218,7 +218,7 @@ function SignupPage() {
                 <div className="error">{formik.errors.name}</div>
               ) : null}
             </div>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Subject:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -236,7 +236,7 @@ function SignupPage() {
         )}
         {role === 'parent' && (
           <>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Name:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -250,7 +250,7 @@ function SignupPage() {
                 <div className="error">{formik.errors.name}</div>
               ) : null}
             </div>
-            <div className="form-group">
+            <div className="form-group-signup">
               <label>Child's Email:</label>
               <input className='input-hander'
                 style={{ width:'100%' }}
@@ -270,7 +270,7 @@ function SignupPage() {
 
         <div className="login-link already-acc">
           <br></br>
-          <p>Already have an account? <a href="/login" style={{color:"#0039f1", textDecoration:"underline", fontWeight:"100"}}>LogIn</a></p>
+          <p style={{color: 'white'}}>Already have an account? <a href="/login" style={{color:"lightblue", textDecoration:"underline", fontWeight:"100"}}>LogIn</a></p>
         </div>
       </form>
     </div>
