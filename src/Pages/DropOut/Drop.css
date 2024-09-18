@@ -1,4 +1,3 @@
-/* Container Styling */
 .drop-container {
   max-width: 800px;
   margin: 60px auto;
@@ -16,7 +15,6 @@
   -webkit-user-drag: none; 
 }
 
-/* Typography */
 h1 {
   font-size: 26px;
   color: #333;
@@ -34,7 +32,6 @@ p {
   user-select: none;
 }
 
-/* Message Box Styling */
 .message-box {
   width: 100%;
   height: 120px;
@@ -54,15 +51,13 @@ p {
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Media Options Styling */
 .media-options {
   margin-bottom: 20px;
 }
 
-/* Button Styling */
 .media-btn,
-.submit-btn,
-.cancel-btn {
+.drop-submit-btn,
+.drop-cancel-btn {
   background-color: #007bff;
   color: white;
   border: none;
@@ -78,30 +73,29 @@ p {
 }
 
 .media-btn:hover,
-.submit-btn:hover,
-.cancel-btn:hover {
+.drop-submit-btn:hover,
+.drop-cancel-btn:hover {
   background-color: #0056b3;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05); /* Grow effect */
+  transform: scale(1.05); 
 }
 
-.submit-btn {
+.drop-submit-btn {
   background-color: #28a745;
 }
 
-.submit-btn:hover {
+.drop-submit-btn:hover {
   background-color: #218838;
 }
 
-.cancel-btn {
+.drop-cancel-btn {
   background-color: #dc3545;
 }
 
-.cancel-btn:hover {
+.drop-cancel-btn:hover {
   background-color: #c82333;
 }
 
-/* Button Container */
 .button-container {
   display: flex;
   justify-content: center;
@@ -109,8 +103,8 @@ p {
   margin-top: 30px;
 }
 
-.submit-btn,
-.cancel-btn {
+.drop-submit-btn,
+.drop-cancel-btn {
   flex: 1; 
   max-width: 220px;
 }
@@ -121,7 +115,6 @@ p {
   font-family: 'Arial', sans-serif;
 }
 
-/* Input and Button Focus Styling */
 button:focus,
 .message-box:focus {
   outline: none;

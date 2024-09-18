@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { storage, db, auth } from '/home/bhavesh/Dropout/DropOut-Devils/src/firebase'; // Adjust based on your file structure
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { storage, db, auth } from './../../firebase'; 
+import { useNavigate } from 'react-router-dom'; 
 import './Drop.css';
 
 function Drop() {
@@ -14,19 +14,17 @@ function Drop() {
   const [fileType, setFileType] = useState('');
   const [file, setFile] = useState(null);
   
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUserId(user.uid); // Set the user's ID
+        setUserId(user.uid); 
       } else {
-        setUserId(null); // User is signed out
+        setUserId(null); 
       }
     });
 
-    // Clean up the subscription on component unmount
     return () => unsubscribe();
   }, []);
 
@@ -132,8 +130,8 @@ function Drop() {
             </div>
 
             <div className="button-container">
-              <button className="submit-btn" type="submit">Send</button>
-              <button className="cancel-btn" type="button" onClick={handleCancel}>No, I am not dropping out</button>
+              <button className="drop-submit-btn" type="submit" style={{backgroundColor:'#28a745', borderRadius:'8px'}}>Send</button>
+              <button className="drop-cancel-btn" type="button" onClick={handleCancel}>No, I am not dropping out</button>
             </div>
 
           </form>
