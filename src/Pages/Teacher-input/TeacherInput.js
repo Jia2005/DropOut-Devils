@@ -162,10 +162,10 @@ const TeacherInput = () => {
         </h2>
         <br />
         <div className="action-buttons">
-          <button style={{ fontSize: '20px' }} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>
+          <button style={{ fontSize: '20px', fontWeight:'bold' }} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>
             Add Student
           </button>
-          <button style={{ fontSize: '20px' }} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>
+          <button style={{ fontSize: '20px', fontWeight:'bold', color:'white' }} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>
             Update Student Records
           </button>
         </div>
