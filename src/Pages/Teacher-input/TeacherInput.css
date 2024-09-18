@@ -1,14 +1,12 @@
-/* Container for the form */
 .teacher-input-bg {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url('./assets/attend.png') !important; /* Replace with your actual image path */
+  background-image: url('./assets/attend.png') !important;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Ensures the image stays fixed on scroll */
-  padding-top: 70px; /* This padding ensures the content appears below the fixed navbar */
-  min-height: 100vh; /* Ensure it covers the entire viewport height */
+  background-attachment: fixed;
+  min-height: 100vh;
   padding-top: 70px;
 }
 
@@ -17,129 +15,123 @@
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
-  margin-top: 80px;
-  background-color: #f9f9f9;
+  background-color: rgb(180, 229, 238);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.); /* Subtle shadow for a modern feel */
-  background-color: rgb(180, 229, 238); /* Semi-transparent to show background image faintly */
-  border-radius: 8px;
-  margin-top: 80px;
- 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Keep it positioned properly over the background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
   z-index: 2;
 }
 
-
-/* Main heading styling */
 h1 {
   text-align: center;
   color: #333;
-  font-size: 36px; /* Larger font for more emphasis */
+  font-size: 36px;
   margin-bottom: 20px;
 }
 
-/* Action buttons container */
 .action-buttons {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
-/* Button styling */
 .teacher-input button {
-  margin: 0 10px;
   padding: 12px 20px;
   border: none;
-  background-color: #007bffa7;
+  background-color: #007bff;
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 16px; /* Slightly increased font size for readability */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effects */
-}
-
-/* Specific button styling for Fetch Data button */
-.teacher-input .button-fd {
-  background-color: #003f91 !important;
-  font-size: 16px; /* Ensures consistency across buttons */
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .teacher-input button:hover {
-  background-color: #0069d9; /* Slightly darker shade on hover for visual feedback */
+  background-color: #0069d9;
+  transform: scale(1.05);
 }
 
-/* Active button styling */
+.teacher-input .button-fd {
+  background-color: #003f91;
+}
+
 .teacher-input button.active {
   background-color: #0056b3;
 }
 
-/* Form layout */
 form {
   display: flex;
   flex-direction: column;
 }
 
-/* Form group layout */
 .form-group {
   margin-bottom: 20px;
-  max-width: 100%; /* Ensure full width of the form container */
 }
 
-/* Label styling */
 label {
   display: block;
   margin-bottom: 8px;
   color: #003f91;
-  font-size: 16px; /* Standardize label size */
+  font-size: 16px;
   font-weight: bold;
 }
 
-/* Input and text area styling */
 input, .teacher-text {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 16px; /* Ensure readable input text size */
-  background-color: #fff; /* Explicitly set background for clarity */
-  transition: border-color 0.3s ease; /* Smooth transition for focus state */
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
 }
 
-/* Focus state for inputs and text areas */
 input:focus, .teacher-text:focus {
-  border-color: #007bff; /* Highlight input when focused */
+  border-color: #007bff;
   outline: none;
 }
 
-/* Textarea specific styling */
 .teacher-text {
   resize: vertical;
   min-height: 100px;
 }
 
-/* Submit button styling */
 button[type="submit"] {
   background-color: #003f91;
-  border: none;
   color: white;
   padding: 12px 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 16px; /* Ensure button text is easy to read */
-  transition: background-color 0.3s ease;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button[type="submit"]:hover {
-  background-color: #002d6e; /* Darker color on hover for better feedback */
+  background-color: #002d6e;
+  transform: scale(1.05);
 }
 
-/* Modify label color to match the theme */
-label {
+.radio-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 16px;
   color: #003f91;
+  cursor: pointer;
 }
 
-/* Responsive adjustments */
+.radio-group input[type="radio"] {
+  margin-right: 5px;
+}
+
 @media (max-width: 768px) {
   .teacher-input {
     padding: 15px;
@@ -147,7 +139,7 @@ label {
   }
 
   .teacher-input button {
-    font-size: 14px; /* Adjust button text size for smaller screens */
+    font-size: 14px;
   }
 
   form {
@@ -155,46 +147,13 @@ label {
   }
 
   h1 {
-    font-size: 28px; /* Adjust heading size for smaller screens */
+    font-size: 28px;
   }
-}
 
-/* Container for radio buttons to style and align them */
-.radio-group {
-  display: flex;
-  align-items: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-/* Styling individual radio buttons */
-.radio-group label {
-  margin-left: 10px;
-  font-size: 16px;
-  color: #003f91;
-  font-weight: normal;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 8px;
-  transform: scale(1.2); /* Slightly larger size for a clearer appearance */
-}
-
-/* Ensuring alignment of radio buttons with labels */
-.radio-group input[type="radio"] + label {
-  margin-left: 5px;
-}
-
-.radio-group label:hover {
-  color: #0056b3; /* Subtle hover effect for the labels */
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
   .radio-group {
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 10px;
   }
 }

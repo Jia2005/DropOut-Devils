@@ -8,7 +8,10 @@ const TeacherInput = () => {
   const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [actionType, setActionType] = useState("add");
-  const [studentData, setStudentData] = useState({
+  const [lookupEmail, setLookupEmail] = useState("");
+  const db = getFirestore();
+
+  const initialStudentData = {
     name: "",
     class: "",
     rollNo: "",
@@ -22,7 +25,9 @@ const TeacherInput = () => {
       { name: "Science", semester1: "", semester2: "" },
       { name: "History", semester1: "", semester2: "" },
     ],
-    behaviorRemarks: "",
+    behavioralIncidents: [],
+    behavioralIncidentsCount: 0,
+    extracurricularActivity: 0,
     attendance: {
       totalDays: "",
       attendedDays: "",
@@ -30,10 +35,9 @@ const TeacherInput = () => {
       year: "",
       month: "",
     },
-  });
+  };
 
-  const [lookupEmail, setLookupEmail] = useState("");
-  const db = getFirestore();
+  const [studentData, setStudentData] = useState(initialStudentData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +49,37 @@ const TeacherInput = () => {
       i === index ? { ...subject, [field]: value } : subject
     );
     setStudentData({ ...studentData, subjects: updatedSubjects });
+  };
+
+  const addBehavioralIncident = () => {
+    setStudentData(prevState => {
+      const newIncidents = [...prevState.behavioralIncidents, { description: "" }];
+      return {
+        ...prevState,
+        behavioralIncidents: newIncidents,
+        behavioralIncidentsCount: newIncidents.length, 
+      };
+    });
+  };
+  
+  const removeBehavioralIncident = (index) => {
+    setStudentData(prevState => {
+      const updatedIncidents = prevState.behavioralIncidents.filter((_, i) => i !== index);
+      return {
+        ...prevState,
+        behavioralIncidents: updatedIncidents,
+        behavioralIncidentsCount: updatedIncidents.length,  
+      };
+    });
+  };
+  
+  
+
+  const handleIncidentChange = (index, value) => {
+    const updatedIncidents = studentData.behavioralIncidents.map((incident, i) =>
+      i === index ? { ...incident, description: value } : incident
+    );
+    setStudentData({ ...studentData, behavioralIncidents: updatedIncidents });
   };
 
   const calculateAttendancePercentage = () => {
@@ -74,297 +109,278 @@ const TeacherInput = () => {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      setStudentData(docSnap.data());
+      const fetchedData = docSnap.data();
+      setStudentData({
+        ...initialStudentData,
+        ...fetchedData,
+        subjects: fetchedData.subjects || initialStudentData.subjects,
+        behavioralIncidentsCount: fetchedData.behavioralIncidents?.length || 0,
+      });
     } else {
       alert(`No student found with email ${lookupEmail}`);
-      setStudentData({
-        name: "",
-        class: "",
-        rollNo: "",
-        email: "",
-        school: "",
-        overallGrade: "",
-        year: "",
-        subjects: [
-          { name: "Math", semester1: "", semester2: "" },
-          { name: "English", semester1: "", semester2: "" },
-          { name: "Science", semester1: "", semester2: "" },
-          { name: "History", semester1: "", semester2: "" },
-        ],
-        behaviorRemarks: "",
-        attendance: {
-          totalDays: "",
-          attendedDays: "",
-          percentage: "",
-          year: "",
-          month: "",
-        },
-      });
+      setStudentData(initialStudentData);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const studentId = `${studentData.email}`;
-
+  
     try {
+      const dataToSave = {
+        ...studentData,
+        behavioralIncidentsCount: studentData.behavioralIncidentsCount, 
+      };
+  
       if (actionType === "add") {
-        await setDoc(doc(db, "students", studentId), studentData);
+        await setDoc(doc(db, "students", studentId), dataToSave);
         alert(`Success! ${studentData.email}'s Progress Report has been saved.`);
       } else if (actionType === "update") {
         const docRef = doc(db, "students", studentId);
         const docSnap = await getDoc(docRef);
-
+  
         if (docSnap.exists()) {
-          await setDoc(doc(db, "students", studentId), studentData, { merge: true });
+          await setDoc(doc(db, "students", studentId), dataToSave, { merge: true });
           alert(`Success! ${studentData.name}'s Progress Report has been updated.`);
         } else {
           alert(`Error: No student found with email ${studentData.email}. Please add the student first.`);
         }
       }
       
-      setStudentData({
-        name: "",
-        class: "",
-        rollNo: "",
-        email: "",
-        school: "",
-        overallGrade: "",
-        year: "",
-        subjects: [
-          { name: "Math", semester1: "", semester2: "" },
-          { name: "English", semester1: "", semester2: "" },
-          { name: "Science", semester1: "", semester2: "" },
-          { name: "History", semester1: "", semester2: "" },
-        ],
-        behaviorRemarks: "",
-        attendance: {
-          totalDays: "",
-          attendedDays: "",
-          percentage: "",
-          year: "",
-          month: "",
-        },
-      });
+      setStudentData(initialStudentData);
       setLookupEmail("");
     } catch (error) {
       console.error("Error saving student data: ", error);
       alert(`Error: Failed to save student data. ${error.message}`);
     }
-  };
+  };  
 
   return (
     <div className="teacher-input-bg">
-         <div className="teacher-input">
-      <h2 style={{ fontSize: '40px' }}>
-        {actionType === "add" ? "Add Student Details" : "Update Student Records"}
-      </h2>
-      <br />
-      <div className="action-buttons">
-        <button style={{ fontSize: '20px' }} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>
-          Add Student
-        </button>
-        <button style={{ fontSize: '20px' }} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>
-          Update Student Records
-        </button>
-      </div>
-
-      {actionType === "update" && (
-        <div className="form-group">
-          <label style={{ fontSize: '16px' }}>Enter Student Email to Fetch Data:</label>
-          <input
-            type="email"
-            value={lookupEmail}
-            onChange={(e) => setLookupEmail(e.target.value)}
-          />
-          <br />
-          <br />
-          <button type="button" className='button-fd' onClick={fetchStudentData}>Fetch Data</button>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={studentData.name}
-            onChange={handleInputChange}
-            required
-          />
+      <div className="teacher-input">
+        <h2 style={{ fontSize: '40px' }}>
+          {actionType === "add" ? "Add Student Details" : "Update Student Records"}
+        </h2>
+        <br />
+        <div className="action-buttons">
+          <button style={{ fontSize: '20px' }} onClick={() => setActionType("add")} className={actionType === "add" ? "active" : ""}>
+            Add Student
+          </button>
+          <button style={{ fontSize: '20px' }} onClick={() => setActionType("update")} className={actionType === "update" ? "active" : ""}>
+            Update Student Records
+          </button>
         </div>
 
-        <div className="form-group">
-          <label>Class:</label>
-          <input
-            type="text"
-            name="class"
-            value={studentData.class}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Roll No:</label>
-          <input
-            type="text"
-            name="rollNo"
-            value={studentData.rollNo}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={studentData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>School:</label>
-          <input
-            type="text"
-            name="school"
-            value={studentData.school}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Overall Grade:</label>
-          <input
-            type="text"
-            name="overallGrade"
-            value={studentData.overallGrade}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Year:</label>
-          <input
-            type="text"
-            name="year"
-            value={studentData.year}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <h2>Subjects</h2>
-        {studentData.subjects.map((subject, index) => (
-          <div key={index} className="form-group">
-            <label>{subject.name}:</label>
+        {actionType === "update" && (
+          <div className="form-group">
+            <label style={{ fontSize: '16px' }}>Enter Student Email to Fetch Data:</label>
             <input
-              type="number"
-              placeholder="Semester 1"
-              value={subject.semester1}
-              onChange={(e) => handleSubjectChange(index, "semester1", e.target.value)}
-              required
+              type="email"
+              value={lookupEmail}
+              onChange={(e) => setLookupEmail(e.target.value)}
             />
+            <br />
+            <br />
+            <button type="button" className='button-fd' onClick={fetchStudentData}>Fetch Data</button>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Name:</label>
             <input
-              type="number"
-              placeholder="Semester 2"
-              value={subject.semester2}
-              onChange={(e) => handleSubjectChange(index, "semester2", e.target.value)}
+              type="text"
+              name="name"
+              value={studentData.name}
+              onChange={handleInputChange}
               required
             />
           </div>
-        ))}
 
-        <div className="form-group">
-          <label>Teacher's Remarks:</label>
-          <textarea
-            className='teacher-text'
-            name="behaviorRemarks"
-            value={studentData.behaviorRemarks}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Class:</label>
+            <input
+              type="text"
+              name="class"
+              value={studentData.class}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <h2>Attendance</h2>
-        <div className="form-group">
-          <label>Total Days:</label>
-          <input
-            type="number"
-            name="totalDays"
-            value={studentData.attendance.totalDays}
-            onChange={(e) => setStudentData({
-              ...studentData,
-              attendance: { ...studentData.attendance, totalDays: e.target.value }
-            })}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Roll No:</label>
+            <input
+              type="text"
+              name="rollNo"
+              value={studentData.rollNo}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Attended Days:</label>
-          <input
-            type="number"
-            name="attendedDays"
-            value={studentData.attendance.attendedDays}
-            onChange={(e) => setStudentData({
-              ...studentData,
-              attendance: { ...studentData.attendance, attendedDays: e.target.value }
-            })}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={studentData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Year:</label>
-          <input
-            type="text"
-            name="year"
-            value={studentData.attendance.year}
-            onChange={(e) => setStudentData({
-              ...studentData,
-              attendance: { ...studentData.attendance, year: e.target.value }
-            })}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>School:</label>
+            <input
+              type="text"
+              name="school"
+              value={studentData.school}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Month:</label>
-          <input
-            type="text"
-            name="month"
-            value={studentData.attendance.month}
-            onChange={(e) => setStudentData({
-              ...studentData,
-              attendance: { ...studentData.attendance, month: e.target.value }
-            })}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Overall Grade:</label>
+            <input
+              type="text"
+              name="overallGrade"
+              value={studentData.overallGrade}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Attendance Percentage:</label>
-          <input
-            type="text"
-            name="percentage"
-            value={studentData.attendance.percentage}
-            readOnly
-          />
-        </div>
+          <div className="form-group">
+            <label>Year:</label>
+            <input
+              type="text"
+              name="year"
+              value={studentData.year}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <button type="submit" className='button-fd'>Submit</button>
-      </form>
+          {studentData.subjects.map((subject, index) => (
+            <div key={index} className="form-group">
+              <label>{subject.name} Semester 1:</label>
+              <input
+                type="text"
+                value={subject.semester1}
+                onChange={(e) => handleSubjectChange(index, "semester1", e.target.value)}
+                required
+              />
+              <label>{subject.name} Semester 2:</label>
+              <input
+                type="text"
+                value={subject.semester2}
+                onChange={(e) => handleSubjectChange(index, "semester2", e.target.value)}
+                required
+              />
+            </div>
+          ))}
+
+          <div className="form-group">
+            <label>Behavioral Incidents:</label>
+            {studentData.behavioralIncidents.map((incident, index) => (
+              <div key={index} className="incident-group">
+                <input
+                  type="text"
+                  placeholder="Incident description"
+                  value={incident.description}
+                  onChange={(e) => handleIncidentChange(index, e.target.value)}
+                />
+                <button type="button" onClick={() => removeBehavioralIncident(index)}>Remove</button>
+              </div>
+            ))}
+            <button type="button" onClick={addBehavioralIncident}>Add Incident</button>
+          </div>
+
+          <div className="form-group">
+            <label>Extracurricular Activity:</label>
+            <div className="radio-group">
+              <label>
+                <input
+                  type="radio"
+                  name="extracurricularActivity"
+                  value="1"
+                  checked={studentData.extracurricularActivity === 1}
+                  onChange={(e) => setStudentData({ ...studentData, extracurricularActivity: parseInt(e.target.value) })}
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="extracurricularActivity"
+                  value="0"
+                  checked={studentData.extracurricularActivity === 0}
+                  onChange={(e) => setStudentData({ ...studentData, extracurricularActivity: parseInt(e.target.value) })}
+                />
+                No
+              </label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Total Days:</label>
+            <input
+              type="number"
+              name="totalDays"
+              value={studentData.attendance.totalDays}
+              onChange={(e) => setStudentData({ ...studentData, attendance: { ...studentData.attendance, totalDays: e.target.value } })}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Attended Days:</label>
+            <input
+              type="number"
+              name="attendedDays"
+              value={studentData.attendance.attendedDays}
+              onChange={(e) => setStudentData({ ...studentData, attendance: { ...studentData.attendance, attendedDays: e.target.value } })}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Attendance Percentage:</label>
+            <input
+              type="text"
+              name="percentage"
+              value={studentData.attendance.percentage}
+              readOnly
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Attendance Year:</label>
+            <input
+              type="text"
+              name="year"
+              value={studentData.attendance.year}
+              onChange={(e) => setStudentData({ ...studentData, attendance: { ...studentData.attendance, year: e.target.value } })}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Attendance Month:</label>
+            <input
+              type="text"
+              name="month"
+              value={studentData.attendance.month}
+              onChange={(e) => setStudentData({ ...studentData, attendance: { ...studentData.attendance, month: e.target.value } })}
+            />
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div className={`teacher-input-bg-image ${theme}`}>
+        <img src={backgroundImage} alt="background" />
+      </div>
     </div>
-    </div>
-   
   );
 };
 

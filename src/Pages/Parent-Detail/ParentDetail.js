@@ -17,13 +17,11 @@ const ParentDetail = () => {
     const fetchUserData = async () => {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        console.log('Current User:', currentUser);
         const userRef = doc(db, 'users', currentUser.uid);
         const userDoc = await getDoc(userRef);
 
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          console.log('User Data:', userData);
           setUser(currentUser);
           if (userData.type === 3) {
             setAnnualIncome(userData.annualIncome || '');
@@ -45,6 +43,11 @@ const ParentDetail = () => {
   }, [auth, db]);
 
   const handleSave = async () => {
+    if (!annualIncome || !education) {
+      setError('Please select both Annual Income and Education.');
+      return;
+    }
+
     if (user && user.uid) {
       const userRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userRef);
@@ -75,23 +78,41 @@ const ParentDetail = () => {
         <>
           <div className="form-group-parent">
             <label htmlFor="annualIncome">Annual Income:</label>
-            <input
-              type="text"
+            <select
               id="annualIncome"
               value={annualIncome}
               onChange={(e) => setAnnualIncome(e.target.value)}
-            />
+            >
+              <option value="">Select income range</option>
+              <option value="Below 2 Lakh">Below 2 Lakh</option>
+              <option value="2 Lakh - 4 Lakh">2 Lakh - 4 Lakh</option>
+              <option value="4 Lakh - 6 Lakh">4 Lakh - 6 Lakh</option>
+              <option value="6 Lakh - 8 Lakh">6 Lakh - 8 Lakh</option>
+              <option value="Above 8 Lakh">Above 8 Lakh</option>
+            </select>
           </div>
           <div className="form-group-parent">
             <label htmlFor="education">Education:</label>
-            <input
-              type="text"
+            <select
               id="education"
               value={education}
               onChange={(e) => setEducation(e.target.value)}
-            />
+            >
+              <option value="">Select education level</option>
+              <option value="Non Literate">Non Literate</option>
+              <option value="Primary School">Primary School</option>
+              <option value="Secondary School">Secondary School</option>
+              <option value="Higher Secondary School">Higher Secondary School</option>
+              <option value="Bachelor's Degree">Bachelor's Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="Doctorate">Doctorate</option>
+            </select>
           </div>
-          <button className="save-button" onClick={handleSave}>
+          <button
+            className="save-button"
+            onClick={handleSave}
+            disabled={!annualIncome || !education}
+          >
             Save
           </button>
         </>

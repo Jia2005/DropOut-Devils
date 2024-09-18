@@ -31,6 +31,8 @@ const UserProfile = ({setComponent}) => {
   const [email, setEmail] = useState('');  
   const [phone, setPhone] = useState('');
   const [course, setCourse] = useState('');  
+  const [annualIncome, setAnnualIncome] = useState(''); 
+  const [education, setEducation] = useState(''); 
   const [role, setRole] = useState('');  
   const [file, setFile] = useState(null);  
   const [isEditing, setIsEditing] = useState(false); 
@@ -132,8 +134,9 @@ const UserProfile = ({setComponent}) => {
           setAge(userData.age);  
           setEmail(userData.email);  
           setPhone(userData.phone);  
-
           setCourse(userData.enrolledCourse);
+          setAnnualIncome(userData.annualIncome);
+          setEducation(userData.education);
           
           setRole(mapRole(userData.type));  
 
@@ -256,6 +259,16 @@ const UserProfile = ({setComponent}) => {
           <div className="detail-block">
             {role === 'Student' && (
               <p><strong>Enrolled Course:</strong> {isEditing ? <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} /> : course}</p>
+            )}
+          </div>
+          <div className="detail-block">
+            {role === 'Parent' && (
+              <p><strong>Annual Income:</strong> {isEditing ? <input type="text" value={annualIncome} onChange={(e) => setCourse(e.target.value)} /> : annualIncome}</p>
+            )}
+          </div>
+          <div className="detail-block">
+            {role === 'Parent' && (
+              <p><strong>Education Level:</strong> {isEditing ? <input type="text" value={education} onChange={(e) => setCourse(e.target.value)} /> : education}</p>
             )}
           </div>
 
