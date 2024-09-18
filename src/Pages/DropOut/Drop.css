@@ -1,66 +1,92 @@
+/* Container Styling */
 .drop-container {
   max-width: 800px;
   margin: 60px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background: linear-gradient(135deg, #f0f4ff, #e2e8ff);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
+  user-select: none; 
+  -webkit-user-drag: none;
 }
 
 .drop-content {
   text-align: center;
+  user-select: none; 
+  -webkit-user-drag: none; 
 }
 
+/* Typography */
 h1 {
-  font-size: 24px;
+  font-size: 26px;
   color: #333;
   margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  user-select: none; 
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
   margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  user-select: none;
 }
 
+/* Message Box Styling */
 .message-box {
   width: 100%;
   height: 120px;
-  padding: 10px;
+  padding: 15px;
   font-size: 16px;
+  font-family: 'Arial', sans-serif;
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 20px;
+  resize: none;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
+.message-box:focus {
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Options Styling */
 .media-options {
   margin-bottom: 20px;
 }
 
-.media-btn {
+/* Button Styling */
+.media-btn,
+.submit-btn,
+.cancel-btn {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   margin: 0 10px;
+  user-select: none; 
+  -webkit-user-drag: none; 
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.media-btn:hover {
+.media-btn:hover,
+.submit-btn:hover,
+.cancel-btn:hover {
   background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Grow effect */
 }
 
 .submit-btn {
   background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 10px;
 }
 
 .submit-btn:hover {
@@ -69,20 +95,43 @@ p {
 
 .cancel-btn {
   background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 10px;
 }
 
 .cancel-btn:hover {
   background-color: #c82333;
 }
 
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  margin-top: 30px;
+}
+
+.submit-btn,
+.cancel-btn {
+  flex: 1; 
+  max-width: 220px;
+}
+
 .thank-you-message {
-  font-size: 18px;
+  font-size: 20px;
   color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Input and Button Focus Styling */
+button:focus,
+.message-box:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.media-btn {
+  background-color: #17a2b8;
+}
+
+.media-btn:hover {
+  background-color: #138496;
 }
