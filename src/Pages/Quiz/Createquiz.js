@@ -62,18 +62,17 @@ function CreateQuizPage() {
         grade,
         submissionDate,
         submissionTime,
-        createdAt: Timestamp.now(), // Add createdAt field with current timestamp
-        attemptedBy: [] // Initialize an empty array for storing attempted students' IDs
+        createdAt: Timestamp.now(), 
+        attemptedBy: [] 
       });
   
-      // Add each question with the associated quizId and question number
       await Promise.all(
         questions.map(async (question, qIndex) => {
           const correctAnswerIndex = question.options.indexOf(question.correctAnswer);
 
           await addDoc(collection(db, 'questions'), {
             quizId: quizId,
-            questionNumber: qIndex + 1, // Store question number here
+            questionNumber: qIndex + 1, 
             question: question.question,
             options: question.options,
             correctOptionIndex: correctAnswerIndex,
@@ -179,7 +178,7 @@ function CreateQuizPage() {
                 Add Option
               </button><br></br><br></br>
               <div className="form-group" style={{ width:'85%' }}>
-                <label>Correct Answer:</label>
+                <label style={{color:'black',fontWeight:'bold'}}>Correct Answer:</label>
                 <select
                   value={question.correctAnswer}
                   onChange={(e) => handleCorrectAnswerChange(qIndex, e.target.value)}
