@@ -9,7 +9,7 @@
 .this {
   width: 20%;
   padding: 20px;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(3, 3, 110);
   color: white;
   display: flex;

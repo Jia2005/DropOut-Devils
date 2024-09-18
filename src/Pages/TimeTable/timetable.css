@@ -1,60 +1,73 @@
 .timetable-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 60px auto;
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .timetable-title {
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   color: #333;
   margin-bottom: 30px;
-  font-weight: bold;
+  font-weight: 700;
   font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.timetable-title::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, #3f51b5 0%, #2196f3 100%);
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
 }
 
 .timetable {
   width: 100%;
   border-collapse: collapse;
-  overflow: hidden;
-}
-
-.timetable th,
-.timetable td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
-  font-size: 16px;
-  font-family: 'Verdana', sans-serif;
 }
 
 .timetable th {
   background-color: rgb(3, 3, 110);
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   position: sticky;
   top: 0;
   z-index: 2;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  font-family: 'Verdana', sans-serif;
 }
 
-.timetable tr:nth-child(even) {
-  background-color: #f9f9f9;
+.timetable th,
+.timetable td {
+  border: 1px solid #ddd;
+  padding: 14px;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.timetable tr:hover {
+.timetable td:hover {
   background-color: #e6f7ff;
-  transition: background-color 0.3s ease;
+  z-index: 1;
 }
 
 .timetable tr th:first-child,
 .timetable tr td:first-child {
   background-color: rgb(28, 154, 212);
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   position: sticky;
   left: 0;
   z-index: 1;
@@ -64,11 +77,11 @@
 @media screen and (max-width: 768px) {
   .timetable th,
   .timetable td {
-    padding: 8px;
+    padding: 10px;
     font-size: 14px;
   }
 
   .timetable-title {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
