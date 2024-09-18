@@ -42,8 +42,7 @@
 
 .tab {
   background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-bottom: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -53,6 +52,7 @@
   flex-grow: 1; 
   margin-right: 10px;
   color: black;
+  font-weight: bold;
 }
 
 .tab.active {

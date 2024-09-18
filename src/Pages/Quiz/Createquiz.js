@@ -135,6 +135,7 @@ function CreateQuizPage() {
               <div className="form-group-2">
                 <h4>Question:</h4>
                 <input
+                  style={{width:'90%'}}
                   type="text"
                   value={question.question}
                   onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
@@ -152,6 +153,7 @@ function CreateQuizPage() {
                 <div key={oIndex} className="option-group2">
                   <label style={{fontSize:'14px', fontWeight:'bold'}}>Option {oIndex + 1}:</label>
                   <input
+                    style={{width:'90%'}}
                     type="text"
                     value={option}
                     onChange={(e) =>

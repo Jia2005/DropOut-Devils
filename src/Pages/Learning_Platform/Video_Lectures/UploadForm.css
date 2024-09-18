@@ -10,29 +10,29 @@
   gap: 140px;
 }
 .upload-form {
-  background-color: #f9f9f9;
+  background-color: transparent;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
-.form-group {
+.form-group2 {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.form-group2 label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: var(--marian-blue);
+  color: white;
+  font-size: 16px;
 }
 
-.form-group input[type="text"],
-.form-group input[type="file"] {
+.form-group2 input[type="text"],
+.form-group2 input[type="file"] {
   width: 300px;
   padding: 10px;
   border-radius: 5px;
@@ -52,7 +52,7 @@
 .filegroup input[type="file"]{
   width: 300px;
 }
-.form-group input[type="file"] {
+.form-group2 input[type="file"] {
   padding: 5px;
 }
 .subchap input[type="text"]{
@@ -94,11 +94,13 @@
   background-color: var(--marian-blue);
 }
 
-.radio-group {
+.radio-group2 {
   display: flex;
-  gap: 30px; 
+  gap: 20px; 
 }
-.radio-group label {
+.radio-group2 label {
   display: flex;
   align-items: center;
+  color: white;
+  padding: 2px;
 }

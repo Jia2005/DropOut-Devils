@@ -3,9 +3,8 @@
     margin: 0 auto;
     padding: 20px;
     max-width: 90%;
-    background-color: #f9f9f9;
+    background-color: transparent;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .upload-ref-form {
@@ -16,6 +15,8 @@
   .upload-ref-form label {
     margin-bottom: 15px;
     font-size: 16px;
+    font-weight: bold;
+    color: white;
   }
   
   .upload-ref-form select, 
@@ -62,12 +63,6 @@
   
   .upload-ref-form .input-new-chapter {
     margin-top: 10px;
-  }
-  
-  .upload-ref-form label {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #003F91; 
   }
 
   button {

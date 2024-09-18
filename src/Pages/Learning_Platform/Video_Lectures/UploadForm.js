@@ -59,7 +59,7 @@ function UploadForm() {
   return (
     <form className="upload-form" onSubmit={handleSubmit}>
       <div className="groupit">
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="grade">Grade:</label>
           <input
             id="grade"
@@ -71,11 +71,11 @@ function UploadForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label>Review Lecture:</label><br></br>
-          <div className="radio-group">
-            <label>
+          <div className="radio-group2"> 
+          <label style={{fontSize:'16px', fontWeight:'bold', margin:'0', marginLeft:'-95px'}}>Review Lecture:</label>
+            <label  style={{fontSize:'16px', fontWeight:'bold'}}>
               <input
+                style={{marginRight:'5px'}}
                 type="radio"
                 name="isRev"
                 value="yes"
@@ -84,8 +84,9 @@ function UploadForm() {
               />
               Yes
             </label>
-            <label>
+            <label  style={{fontSize:'16px', fontWeight:'bold'}}>
               <input
+                style={{marginRight:'5px'}}
                 type="radio"
                 name="isRev"
                 value="no"
@@ -95,11 +96,10 @@ function UploadForm() {
               No
             </label>
           </div>
-        </div>
       </div>
 
       <div className="subchap">
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="subject">Subject:</label>
           <input
             id="subject"
@@ -110,7 +110,7 @@ function UploadForm() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="chapter">Chapter:</label>
           <input
             id="chapter"
@@ -123,7 +123,7 @@ function UploadForm() {
         </div>
       </div>
 
-      <div className="form-group titlehere">
+      <div className="form-group2 titlehere">
         <label htmlFor="title">Title:</label>
         <input
           id="title"
@@ -136,7 +136,7 @@ function UploadForm() {
       </div>
 
       <div className="filegroup">
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="videoFile">Video File:</label>
           <input
             id="videoFile"
@@ -146,7 +146,7 @@ function UploadForm() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group2">
           <label htmlFor="imageFile">Image File:</label>
           <input
             id="imageFile"

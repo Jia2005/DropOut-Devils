@@ -5,12 +5,12 @@ body {
 }
 
 .create-quiz-background {
-  background-image: url('../Quiz/assets/Quiz.png'); /* Replace with your image path */
+  background-image: url('https://img.freepik.com/free-vector/quiz-background-with-flat-objects_23-2147593080.jpg?t=st=1726614140~exp=1726617740~hmac=154fe70afc030392f4edd9f255ef1d744a4ca44a259504eae3e4f13174c08f63&w=740'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  min-height: 100vh; /* Ensures the background covers the full viewport */
+  min-height: 100vh; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ body {
 }
 
 .create-quiz-container {
-  background-color: rgba(255, 255, 255, 0.97); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.98); 
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -28,23 +28,6 @@ body {
   margin-top: 20px;
 }
 
-
-
-
-/* Overall Container */
-/* .create-quiz-container {
-  max-width: 800px;
-  margin: 0 auto;
-  margin-top: 80px;
-  margin-bottom: 20px;
-  padding: 30px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  font-family: 'Open Sans', sans-serif;
-} */
-
-/* Main Heading */
 .create-quiz-container h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -53,14 +36,12 @@ body {
   font-weight: 700;
 }
 
-/* Form Labels */
 .form-group label, .form-group-2 label {
   color: #003F91;
-  font-weight: 100; /* Make labels bold */
+  font-weight: 100; 
   font-size: 16px;
 }
 
-/* Input Fields */
 .form-group input, .form-group select,
 .form-group-2 input, .form-group-2 select {
   width: 100%;
@@ -74,10 +55,9 @@ body {
 }
 
 .form-group input:focus, .form-group select:focus {
-  border-color: #003F91; /* Blue border on focus */
+  border-color: #003F91; 
 }
 
-/* Button Styles */
 .button-group button, .submit-button2, .add-button {
   padding: 12px 20px;
   font-size: 16px;
@@ -91,21 +71,19 @@ body {
 }
 
 .button-group button:hover, .submit-button2:hover, .add-button:hover {
-  background-color: #002B6F; /* Darker blue on hover */
-  box-shadow: 0 4px 12px rgba(0, 63, 145, 0.3); /* Add shadow for hover */
+  background-color: #002B6F;
+  box-shadow: 0 4px 12px rgba(0, 63, 145, 0.3);
 }
 
-/* Question Block */
 .question-block {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
   border-left: 6px solid #003F91;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* Delete Icon */
 .delete-icon {
   font-size: 1.2em;
   background: transparent;
@@ -116,20 +94,17 @@ body {
 }
 
 .delete-icon:hover {
-  color: #c00; /* Darker red on hover */
+  color: #c00;
 }
 
-/* Hover Effect for Options */
 .option-group2 input:hover, .option-group2 select:hover {
-  border-color: #003F91; /* Blue border on hover */
+  border-color: #003F91;
 }
 
-/* Add more spacing between questions */
 .question-group {
   margin-bottom: 30px;
 }
 
-/* Add subtle animations */
 input, select, button {
   transition: all 0.3s ease;
 }
