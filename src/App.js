@@ -17,6 +17,7 @@ import VideoList from './Pages/Learning_Platform/Video_Lectures/VideoList';
 import CommunityForum from './Pages/Community/CommunityForum';
 import Predict from './Pages/Flask_Integration/Predict';
 import Timetable from './Pages/TimeTable/timetable';
+import Drop from './Pages/DropOut/Drop';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/comm" element={<CommunityForum />} />
         <Route path="/play-video/:videoId" element={<VideoPlayer />} />
         <Route path="timetable" element={<Timetable />} />
+        <Route path="drop" element={<Drop />} />
       </Routes>
     </Router>
   );

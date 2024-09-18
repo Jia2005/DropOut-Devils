@@ -1,37 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import './timetable.css';
 import { db } from '../../firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'; 
 
 const Timetable = () => {
   const [enrolledCourse, setEnrolledCourse] = useState('');
   const [loading, setLoading] = useState(true);
+  const auth = getAuth();
 
   useEffect(() => {
-    const fetchEnrollmentData = async () => {
-      try {
-        const auth = getAuth();
-        const user = auth.currentUser;
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userId = user.uid;
+        const userDocRef = doc(db, 'users', userId);
 
-        if (user) {
-          const userId = user.email;
-          const userDocRef = doc(db, 'students', userId);
-          const userDoc = await getDoc(userDocRef);
-
-          if (userDoc.exists()) {
-            setEnrolledCourse(userDoc.data().enrolledCourse);
+        const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+            setEnrolledCourse(doc.data().enrolledCourse);
+            setLoading(false);
+          } else {
+            setEnrolledCourse('');
+            setLoading(false);
           }
-        }
-      } catch (error) {
-        console.error("Error fetching user enrollment data: ", error);
-      } finally {
+        }, (error) => {
+          console.error("Error fetching user enrollment data: ", error);
+          setLoading(false);
+        });
+
+        return () => unsubscribeSnapshot();
+      } else {
         setLoading(false);
       }
-    };
+    });
 
-    fetchEnrollmentData();
-  }, []);
+    return () => unsubscribe();
+  }, [auth]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -129,11 +133,11 @@ const Timetable = () => {
 
   // Determine which timetable to render
   let timetable;
-  if (enrolledCourse === 'full-time') {
+  if (enrolledCourse === 'Full time') {
     timetable = fullTimeTimetable;
-  } else if (enrolledCourse === 'part-time') {
+  } else if (enrolledCourse === 'Part time') {
     timetable = partTimeTimetable;
-  } else if (enrolledCourse === 'evening-classes') {
+  } else if (enrolledCourse === 'Evening classes') {
     timetable = eveningClassesTimetable;
   } else {
     timetable = <p>You are not enrolled in any course.</p>;
