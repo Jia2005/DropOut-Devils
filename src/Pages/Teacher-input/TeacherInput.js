@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import "./TeacherInput.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const TeacherInput = () => {
   const [role, setRole] = useState('teacher');
@@ -270,7 +272,7 @@ const TeacherInput = () => {
                 value={subject.semester1}
                 onChange={(e) => handleSubjectChange(index, "semester1", e.target.value)}
                 required
-              />
+              /><br></br><br></br>
               <label style={{color:'black', fontWeight:'bold'}}>{subject.name} Semester 2:</label>
               <input
                 type="text"
@@ -284,17 +286,26 @@ const TeacherInput = () => {
           <div className="form-group">
             <label style={{color:'black', fontWeight:'bold'}}>Behavioral Incidents:</label>
             {studentData.behavioralIncidents.map((incident, index) => (
+              
               <div key={index} className="incident-group">
+                <div className='Dono'>
                 <input
                   type="text"
                   placeholder="Incident description"
                   value={incident.description}
                   onChange={(e) => handleIncidentChange(index, e.target.value)}
                 />
-                <button style={{backgroundColor:'navy', color:'white', fontWeight:'bold'}} type="button" onClick={() => removeBehavioralIncident(index)}>Remove</button>
-              </div>
+                <button
+                  style={{backgroundColor:'transparent'}}
+                  type="button"
+                  className="delete-icon"
+                  onClick={() => removeBehavioralIncident(index)}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
+              </div></div>
             ))}
-            <button style={{backgroundColor:'navy', color:'white', fontWeight:'bold'}} type="button" onClick={addBehavioralIncident}>Add Incident</button>
+            <button style={{backgroundColor:'navy', color:'white', fontWeight:'bold', borderRadius:'10px'}} type="button" onClick={addBehavioralIncident}>Add Incident</button>
           </div>
 
           <div className="form-group">

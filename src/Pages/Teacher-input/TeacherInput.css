@@ -17,7 +17,7 @@
   font-family: Arial, sans-serif;
   background-color: rgb(180, 229, 238);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 2;
 }
@@ -156,4 +156,21 @@ button[type="submit"]:hover {
     justify-content: flex-start;
     padding-bottom: 10px;
   }
+}
+
+.Dono {
+  display: flex;
+}
+
+.delete-icon {
+  font-size: 1.2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: #c00;
 }
