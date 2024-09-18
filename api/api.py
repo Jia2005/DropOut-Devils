@@ -4,7 +4,7 @@ import pickle
 
 app = Flask(__name__)
 
-loaded_pipe = pickle.load(open('C:/Users/Bhatia/React_Apps/DropOut-Devils/api/pipeline2.pkl', 'rb'))
+loaded_pipe = pickle.load(open('/home/bhavesh/Dropout/DropOut-Devils/api/pipeline2.pkl', 'rb'))
 
 def predict_status(input_data):
     cols = ['Attendance_Rate', 'GPA', 'Behavioral_Incidents', 'Counselor_Visits',

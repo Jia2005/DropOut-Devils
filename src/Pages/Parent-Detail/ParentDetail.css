@@ -1,0 +1,124 @@
+.parent-detail-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .parent-detail-container:hover {
+    background-color: #f9f9f9; 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .parent-detail-title {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    transition: color 0.3s ease;
+  }
+  
+  .parent-detail-title:hover {
+    color: rgb(3, 3, 110);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    font-family: 'Verdana', sans-serif;
+    margin-bottom: 8px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .form-group label:hover {
+    color: rgb(3, 3, 110); 
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Verdana', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: rgb(3, 3, 110); 
+    box-shadow: 0 0 5px rgba(3, 3, 110, 0.3); 
+    outline: none;
+  }
+  
+  .save-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Verdana', sans-serif;
+    color: #ffffff;
+    background-color: rgb(3, 3, 110);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .save-button:hover {
+    background-color: rgb(2, 2, 80); 
+    transform: scale(1.05);
+  }
+  
+  .save-button:active {
+    transform: scale(0.95);
+  }
+  
+  .error-message {
+    color: #ff4d4d;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Verdana', sans-serif;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .parent-detail-container {
+      padding: 15px;
+    }
+  
+    .parent-detail-title {
+      font-size: 24px;
+    }
+  
+    .form-group label {
+      font-size: 14px;
+    }
+  
+    .form-group input {
+      padding: 8px;
+      font-size: 14px;
+    }
+  
+    .save-button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }  
