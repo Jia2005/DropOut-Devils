@@ -19,7 +19,7 @@ body {
 }
 
 .create-quiz-container {
-  background-color: rgba(255, 255, 255, 0.98); 
+  background-color: rgb(3, 3, 110); 
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -31,13 +31,13 @@ body {
 .create-quiz-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #003F91;
+  color: white;
   font-size: 36px;
   font-weight: 700;
 }
 
 .form-group label, .form-group-2 label {
-  color: #003F91;
+  color: white;
   font-weight: 100; 
   font-size: 16px;
 }

@@ -5,12 +5,13 @@ body, html {
   padding: 0;
   scroll-behavior: smooth;
   transition: 1s;
+  background-image: url('https://img.freepik.com/free-vector/back-school-supplies-frame-background_24908-56951.jpg?w=740&t=st=1701617423~exp=1701618023~hmac=b972d3d14bcb04e2dac7240f8cde3a2f99ecca11682b028fd521085798b59eb4');
+  background-size: cover;
 }
 
 .landing-page {
   margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
+  padding: 0; 
 }
 
 /* Navbar */
