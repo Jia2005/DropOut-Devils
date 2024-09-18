@@ -33,11 +33,11 @@ const FeatureCards = () => {
       description: 'A software system to manage flexible schooling options, such as evening classes and part-time programs. The system will allow students to enroll, track their progress, and manage their schedules.',
       features: ['Enrollment management', 'Schedule tracking', 'Progress monitoring', 'Integration with existing school systems'],
     },
-    {
-      title: 'Student Support and Engagement App',
-      description: 'An app that provides personalized support and engagement for students at risk of dropping out. Features will include counseling support, motivational content, and tools for setting and tracking academic goals.',
-      features: ['Counseling resources', 'Goal-setting tools', 'Motivational content', 'Engagement tracking'],
-    }
+    // {
+    //   title: 'Student Support and Engagement App',
+    //   description: 'An app that provides personalized support and engagement for students at risk of dropping out. Features will include counseling support, motivational content, and tools for setting and tracking academic goals.',
+    //   features: ['Counseling resources', 'Goal-setting tools', 'Motivational content', 'Engagement tracking'],
+    // }
   ];
 
   return (
