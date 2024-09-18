@@ -1,28 +1,31 @@
 .profile-container {
   display: flex;
+  min-height: 100vh;
   flex-direction: row;
   position: relative;
-  min-height: 100vh;
   background-color: #fafafa;
 }
 
 .this {
   width: 20%;
+  height: 100%; 
   padding: 20px;
-  height: 100vh;
   background-color: rgb(3, 3, 110);
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   border-right: 1px solid white;
+  overflow-y: auto;
+  box-sizing: border-box; 
 }
+
 
 .profile-pic {
   text-align: center;
   position: relative;
   margin-bottom: 20px;
+  flex-shrink: 0; 
 }
 
 .circular-pic {
@@ -70,6 +73,7 @@
 .sidebar-menu {
   flex-grow: 1;
   margin-top: 20px;
+  overflow-y: auto; 
 }
 
 .sidebar-menu ul {
@@ -130,9 +134,10 @@
 }
 
 .profile-details {
-  flex: 1;
+  flex: 1; 
   padding: 20px;
   background-color: skyblue;
+  overflow: auto; 
 }
 
 .detail-block-container {

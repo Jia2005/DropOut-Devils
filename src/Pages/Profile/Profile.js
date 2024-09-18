@@ -17,6 +17,7 @@ import ApplicationReviewPage from '../financial-aid-form/ApplicationReviewPage';
 import FundsDisbursementPage from '../financial-aid-form/FundsDisbursement';
 import TeacherInput from '../Teacher-input/TeacherInput';
 import Enrollment from '../Enrollment/Enrollment'
+import ParentDetail from '../Parent-Detail/ParentDetail'
 
 const UserProfile = ({setComponent}) => {  
   const auth = getAuth();  
@@ -64,6 +65,8 @@ const UserProfile = ({setComponent}) => {
         return <FundsDisbursementPage />;
       case 'Enrollment':
         return <Enrollment />;
+      case 'ParentDetail':
+        return <ParentDetail />;
       default:
         return <div>Home</div>;
 
@@ -92,6 +95,7 @@ const UserProfile = ({setComponent}) => {
         { text: 'Learning Platform', component: 'LP_Landing' },
         { text: 'Progress Report', component: 'ProgressReport' },
         { text: 'Interact with Teacher', component: 'ScheduleMeeting' },
+        { text: 'Add Personal Details', component: 'ParentDetail' },,
         { text: 'Change Password', component: '' },
       ],
       Admin: [
@@ -128,9 +132,9 @@ const UserProfile = ({setComponent}) => {
           setAge(userData.age);  
           setEmail(userData.email);  
           setPhone(userData.phone);  
+
           setCourse(userData.enrolledCourse);
           
-          // Set role based on the type  
           setRole(mapRole(userData.type));  
 
           if (userData.profilePic) {  
@@ -250,8 +254,11 @@ const UserProfile = ({setComponent}) => {
             <p><strong>Role:</strong> {role} </p>
           </div>
           <div className="detail-block">
-            <p><strong>Enrolled Course:</strong> {isEditing ? <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} /> : course}</p>
+            {role === 'Student' && (
+              <p><strong>Enrolled Course:</strong> {isEditing ? <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} /> : course}</p>
+            )}
           </div>
+
           <div className='upload-image'>
             <input type="file" onChange={handleFileChange} />
           </div><br></br>
