@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import "./TeacherInput.css";
-import backgroundImage from './assets/backgroundImage.png'; // Adjust the path as necessary
 
 const TeacherInput = () => {
   const [role, setRole] = useState('teacher');
@@ -173,7 +172,7 @@ const TeacherInput = () => {
 
         {actionType === "update" && (
           <div className="form-group">
-            <label style={{ fontSize: '16px' }}>Enter Student Email to Fetch Data:</label>
+            <label style={{ fontSize: '16px',color:"black", fontWeight:'bold' }}>Enter Student Email to Fetch Data:</label>
             <input
               type="email"
               value={lookupEmail}
@@ -181,13 +180,13 @@ const TeacherInput = () => {
             />
             <br />
             <br />
-            <button type="button" className='button-fd' onClick={fetchStudentData}>Fetch Data</button>
+            <button type="button" className='button-fd' onClick={fetchStudentData} style={{color:'white'}}>Fetch Data</button>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Name:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Name:</label>
             <input
               type="text"
               name="name"
@@ -198,7 +197,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Class:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Class:</label>
             <input
               type="text"
               name="class"
@@ -209,7 +208,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Roll No:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Roll No:</label>
             <input
               type="text"
               name="rollNo"
@@ -220,7 +219,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Email:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Email:</label>
             <input
               type="email"
               name="email"
@@ -231,7 +230,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>School:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>School:</label>
             <input
               type="text"
               name="school"
@@ -242,7 +241,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Overall Grade:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Overall Grade:</label>
             <input
               type="text"
               name="overallGrade"
@@ -253,7 +252,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Year:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Year:</label>
             <input
               type="text"
               name="year"
@@ -265,14 +264,14 @@ const TeacherInput = () => {
 
           {studentData.subjects.map((subject, index) => (
             <div key={index} className="form-group">
-              <label>{subject.name} Semester 1:</label>
+              <label style={{color:'black', fontWeight:'bold'}}>{subject.name} Semester 1:</label>
               <input
                 type="text"
                 value={subject.semester1}
                 onChange={(e) => handleSubjectChange(index, "semester1", e.target.value)}
                 required
               />
-              <label>{subject.name} Semester 2:</label>
+              <label style={{color:'black', fontWeight:'bold'}}>{subject.name} Semester 2:</label>
               <input
                 type="text"
                 value={subject.semester2}
@@ -283,7 +282,7 @@ const TeacherInput = () => {
           ))}
 
           <div className="form-group">
-            <label>Behavioral Incidents:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Behavioral Incidents:</label>
             {studentData.behavioralIncidents.map((incident, index) => (
               <div key={index} className="incident-group">
                 <input
@@ -292,16 +291,16 @@ const TeacherInput = () => {
                   value={incident.description}
                   onChange={(e) => handleIncidentChange(index, e.target.value)}
                 />
-                <button type="button" onClick={() => removeBehavioralIncident(index)}>Remove</button>
+                <button style={{backgroundColor:'navy', color:'white', fontWeight:'bold'}} type="button" onClick={() => removeBehavioralIncident(index)}>Remove</button>
               </div>
             ))}
-            <button type="button" onClick={addBehavioralIncident}>Add Incident</button>
+            <button style={{backgroundColor:'navy', color:'white', fontWeight:'bold'}} type="button" onClick={addBehavioralIncident}>Add Incident</button>
           </div>
 
           <div className="form-group">
-            <label>Extracurricular Activity:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Extracurricular Activity:</label>
             <div className="radio-group">
-              <label>
+              <label style={{color:'black', fontWeight:'bold'}}>
                 <input
                   type="radio"
                   name="extracurricularActivity"
@@ -311,7 +310,7 @@ const TeacherInput = () => {
                 />
                 Yes
               </label>
-              <label>
+              <label style={{color:'black', fontWeight:'bold'}}>
                 <input
                   type="radio"
                   name="extracurricularActivity"
@@ -325,7 +324,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Total Days:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Total Days:</label>
             <input
               type="number"
               name="totalDays"
@@ -335,7 +334,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Attended Days:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Attended Days:</label>
             <input
               type="number"
               name="attendedDays"
@@ -345,7 +344,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Attendance Percentage:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Attendance Percentage:</label>
             <input
               type="text"
               name="percentage"
@@ -355,7 +354,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Attendance Year:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Attendance Year:</label>
             <input
               type="text"
               name="year"
@@ -365,7 +364,7 @@ const TeacherInput = () => {
           </div>
 
           <div className="form-group">
-            <label>Attendance Month:</label>
+            <label style={{color:'black', fontWeight:'bold'}}>Attendance Month:</label>
             <input
               type="text"
               name="month"
@@ -376,9 +375,6 @@ const TeacherInput = () => {
 
           <button type="submit">Submit</button>
         </form>
-      </div>
-      <div className={`teacher-input-bg-image ${theme}`}>
-        <img src={backgroundImage} alt="background" />
       </div>
     </div>
   );
