@@ -21,7 +21,8 @@ body, html {
 
 .features-section2 {
   padding: 2rem;
-  background-color: rgb(168, 228, 255);
+  background-color: transparent;
+  backdrop-filter: blur(10px);
   text-align: center;
   border-radius: 15px;
   width: 100%;
