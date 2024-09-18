@@ -18,6 +18,7 @@ import CommunityForum from './Pages/Community/CommunityForum';
 import Predict from './Pages/Flask_Integration/Predict';
 import Timetable from './Pages/TimeTable/timetable';
 import Drop from './Pages/DropOut/Drop';
+import ParentDetail from './Pages/Parent-Detail/ParentDetail';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/play-video/:videoId" element={<VideoPlayer />} />
         <Route path="timetable" element={<Timetable />} />
         <Route path="drop" element={<Drop />} />
+        <Route path="/parentdetail" element={<ParentDetail/>} />
       </Routes>
     </Router>
   );
