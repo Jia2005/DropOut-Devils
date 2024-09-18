@@ -102,7 +102,7 @@ const LandingPage = () => {
       <Navbar scrollToFooter={scrollToFooter} />
       <HeroSection />
       <WhyEduSathi />
-      <VideoSection />
+      {/* <VideoSection /> */}
       <FeaturesSection />
       <Footer ref={footerRef} />
     </div>
