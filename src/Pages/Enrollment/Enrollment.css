@@ -16,6 +16,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .features-section2 {
@@ -27,12 +28,18 @@ body, html {
   max-width: 1200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 1rem auto;
+  transition: background-color 0.3s ease;
 }
 
 .section-title {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #003F91;
+  transition: color 0.3s ease;
+}
+
+.section-title:hover {
+  color: #1b0480;
 }
 
 .feature-cards-container { 
@@ -42,6 +49,7 @@ body, html {
   gap: 20px;
 }
 
+/* Card */
 .card {
   background-color: #f2f6fa;
   border-radius: 12px;
@@ -50,9 +58,10 @@ body, html {
   width: 100%;
   max-width: 300px;
   text-align: left;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out, background-color 0.3s ease;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 .card::before {
@@ -63,7 +72,7 @@ body, html {
   right: 0;
   bottom: 0;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -75,6 +84,7 @@ body, html {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #eaf4ff; 
 }
 
 .card.selected {
@@ -85,6 +95,7 @@ body, html {
   font-size: 1.5rem;
   margin-bottom: 15px;
   color: #003F91;
+  transition: color 0.3s ease;
 }
 
 .card p {
@@ -100,13 +111,13 @@ body, html {
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
   margin-top: 20px;
 }
 
 .enroll-button:hover {
   background-color: #2580e2;
-  transform: scale(1.03);
+  transform: scale(1.1);
   transition: 0.1s ease;
 }
 
@@ -119,4 +130,16 @@ body, html {
   font-size: 1rem;
   color: #4CAF50;
   margin-top: 15px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
