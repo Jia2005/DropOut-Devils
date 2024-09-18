@@ -12,7 +12,7 @@ const Navbar = ({ scrollToFooter }) => {
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="EduSathi Logo" className="navbar-logo-img" />
-        <span className="navbar-logo-text">EduSathi</span>
+        <span className="navbar-logo-text">Studyee</span>
         <li className="navbar-menu-item"><a href="#features">Features</a></li>
         <li className="navbar-menu-item" style={{ marginLeft: "0" }}>
           <a onClick={scrollToFooter}>Contact</a>
@@ -55,9 +55,9 @@ const WhyEduSathi = () => {
   return (
     <section className="why-EduSathi-section">
       <div className="why-EduSathi-content">
-        <h2 className="why-EduSathi-heading">Why <span className="highlight">EduSathi?</span></h2>
+      <h2 className="why-EduSathi-heading">Why <span className="highlight"> Studyee?</span></h2>
         <p className="why-EduSathi-description">
-          EduSathi is your companion in the journey of education. We provide
+          Studyee is your companion in the journey of education. We provide
           top-notch resources, personalized learning experiences, and a
           community of like-minded individuals to help you achieve your academic
           goals. Join us today and discover a better way to learn. Our platform offers a diverse range of courses tailored to individual needs, ensuring that every learner can progress at their own pace. Whether you're a student aiming to excel in exams or a professional seeking skill development, EduSathi has something for everyone.

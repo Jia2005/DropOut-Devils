@@ -15,7 +15,7 @@ const Footer = forwardRef((props, ref) => {
         <div className="footer-contact-info">
           <h3 className="footer-section-heading">Contact Us</h3>
           <p className="footer-contact-detail">
-            Email: <a href="mailto:support@edusathi.com" className="footer-link">support@edusathi.com</a>
+            Email: <a href="mailto:support@edusathi.com" className="footer-link">support@studyee.com</a>
           </p>
           <p className="footer-contact-detail">
             Phone: <a href="tel:+1234567890" className="footer-link">+123-456-7890</a>
