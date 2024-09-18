@@ -84,11 +84,11 @@ const ParentDetail = () => {
               onChange={(e) => setAnnualIncome(e.target.value)}
             >
               <option value="">Select income range</option>
-              <option value="Below 1 Lakh">Below 1 Lakh</option>
-              <option value="Below 5 Lakh">Below 5 Lakh</option>
-              <option value="Below 8 Lakh">Below 8 Lakh</option>
-              <option value="Below 15 Lakh">Below 15 Lakh</option>
-              <option value="Above 15 Lakh">Above 15 Lakh</option>
+              <option value="Below 2 Lakh">Below 2 Lakh</option>
+              <option value="2 Lakh - 4 Lakh">2 Lakh - 4 Lakh</option>
+              <option value="4 Lakh - 6 Lakh">4 Lakh - 6 Lakh</option>
+              <option value="6 Lakh - 8 Lakh">6 Lakh - 8 Lakh</option>
+              <option value="Above 8 Lakh">Above 8 Lakh</option>
             </select>
           </div>
           <div className="form-group-parent">
@@ -99,6 +99,7 @@ const ParentDetail = () => {
               onChange={(e) => setEducation(e.target.value)}
             >
               <option value="">Select education level</option>
+              <option value="Non Literate">Non Literate</option>
               <option value="Primary School">Primary School</option>
               <option value="Secondary School">Secondary School</option>
               <option value="Higher Secondary School">Higher Secondary School</option>

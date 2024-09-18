@@ -8,7 +8,10 @@ const TeacherInput = () => {
   const [theme, setTheme] = useState('light');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [actionType, setActionType] = useState("add");
-  const [studentData, setStudentData] = useState({
+  const [lookupEmail, setLookupEmail] = useState("");
+  const db = getFirestore();
+
+  const initialStudentData = {
     name: "",
     class: "",
     rollNo: "",
@@ -23,6 +26,7 @@ const TeacherInput = () => {
       { name: "History", semester1: "", semester2: "" },
     ],
     behavioralIncidents: [],
+    behavioralIncidentsCount: 0,
     extracurricularActivity: 0,
     attendance: {
       totalDays: "",
@@ -31,10 +35,9 @@ const TeacherInput = () => {
       year: "",
       month: "",
     },
-  });
+  };
 
-  const [lookupEmail, setLookupEmail] = useState("");
-  const db = getFirestore();
+  const [studentData, setStudentData] = useState(initialStudentData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,16 +52,28 @@ const TeacherInput = () => {
   };
 
   const addBehavioralIncident = () => {
-    setStudentData({
-      ...studentData,
-      behavioralIncidents: [...studentData.behavioralIncidents, { description: "" }]
+    setStudentData(prevState => {
+      const newIncidents = [...prevState.behavioralIncidents, { description: "" }];
+      return {
+        ...prevState,
+        behavioralIncidents: newIncidents,
+        behavioralIncidentsCount: newIncidents.length, 
+      };
     });
   };
-
+  
   const removeBehavioralIncident = (index) => {
-    const updatedIncidents = studentData.behavioralIncidents.filter((_, i) => i !== index);
-    setStudentData({ ...studentData, behavioralIncidents: updatedIncidents });
+    setStudentData(prevState => {
+      const updatedIncidents = prevState.behavioralIncidents.filter((_, i) => i !== index);
+      return {
+        ...prevState,
+        behavioralIncidents: updatedIncidents,
+        behavioralIncidentsCount: updatedIncidents.length,  
+      };
+    });
   };
+  
+  
 
   const handleIncidentChange = (index, value) => {
     const updatedIncidents = studentData.behavioralIncidents.map((incident, i) =>
@@ -94,86 +109,51 @@ const TeacherInput = () => {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      setStudentData(docSnap.data());
+      const fetchedData = docSnap.data();
+      setStudentData({
+        ...initialStudentData,
+        ...fetchedData,
+        subjects: fetchedData.subjects || initialStudentData.subjects,
+        behavioralIncidentsCount: fetchedData.behavioralIncidents?.length || 0,
+      });
     } else {
       alert(`No student found with email ${lookupEmail}`);
-      setStudentData({
-        name: "",
-        class: "",
-        rollNo: "",
-        email: "",
-        school: "",
-        overallGrade: "",
-        year: "",
-        subjects: [
-          { name: "Math", semester1: "", semester2: "" },
-          { name: "English", semester1: "", semester2: "" },
-          { name: "Science", semester1: "", semester2: "" },
-          { name: "History", semester1: "", semester2: "" },
-        ],
-        behavioralIncidents: [],
-        extracurricularActivity: 0,
-        attendance: {
-          totalDays: "",
-          attendedDays: "",
-          percentage: "",
-          year: "",
-          month: "",
-        },
-      });
+      setStudentData(initialStudentData);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const studentId = `${studentData.email}`;
-
+  
     try {
+      const dataToSave = {
+        ...studentData,
+        behavioralIncidentsCount: studentData.behavioralIncidentsCount, 
+      };
+  
       if (actionType === "add") {
-        await setDoc(doc(db, "students", studentId), studentData);
+        await setDoc(doc(db, "students", studentId), dataToSave);
         alert(`Success! ${studentData.email}'s Progress Report has been saved.`);
       } else if (actionType === "update") {
         const docRef = doc(db, "students", studentId);
         const docSnap = await getDoc(docRef);
-
+  
         if (docSnap.exists()) {
-          await setDoc(doc(db, "students", studentId), studentData, { merge: true });
+          await setDoc(doc(db, "students", studentId), dataToSave, { merge: true });
           alert(`Success! ${studentData.name}'s Progress Report has been updated.`);
         } else {
           alert(`Error: No student found with email ${studentData.email}. Please add the student first.`);
         }
       }
       
-      setStudentData({
-        name: "",
-        class: "",
-        rollNo: "",
-        email: "",
-        school: "",
-        overallGrade: "",
-        year: "",
-        subjects: [
-          { name: "Math", semester1: "", semester2: "" },
-          { name: "English", semester1: "", semester2: "" },
-          { name: "Science", semester1: "", semester2: "" },
-          { name: "History", semester1: "", semester2: "" },
-        ],
-        behavioralIncidents: [],
-        extracurricularActivity: 0,
-        attendance: {
-          totalDays: "",
-          attendedDays: "",
-          percentage: "",
-          year: "",
-          month: "",
-        },
-      });
+      setStudentData(initialStudentData);
       setLookupEmail("");
     } catch (error) {
       console.error("Error saving student data: ", error);
       alert(`Error: Failed to save student data. ${error.message}`);
     }
-  };
+  };  
 
   return (
     <div className="teacher-input-bg">
@@ -320,7 +300,7 @@ const TeacherInput = () => {
 
           <div className="form-group">
             <label>Extracurricular Activity:</label>
-            <div>
+            <div className="radio-group">
               <label>
                 <input
                   type="radio"
