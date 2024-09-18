@@ -27,11 +27,11 @@
     color: rgb(3, 3, 110);
   }
   
-  .form-group {
+  .form-group-parent {
     margin-bottom: 20px;
   }
   
-  .form-group label {
+  .form-group-parent label {
     display: block;
     font-size: 16px;
     font-family: 'Verdana', sans-serif;

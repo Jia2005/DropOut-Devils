@@ -73,7 +73,7 @@ const ParentDetail = () => {
       {error && <p className="error-message">{error}</p>}
       {editable && !error && (
         <>
-          <div className="form-group">
+          <div className="form-group-parent">
             <label htmlFor="annualIncome">Annual Income:</label>
             <input
               type="text"
@@ -82,7 +82,7 @@ const ParentDetail = () => {
               onChange={(e) => setAnnualIncome(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-parent">
             <label htmlFor="education">Education:</label>
             <input
               type="text"

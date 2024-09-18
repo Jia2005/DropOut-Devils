@@ -87,7 +87,7 @@ function FundsDisbursementPage() {
     return (
         <div className="funds-disbursement-page">
             <div className="container">
-                <h2>Funds Disbursement</h2>
+                <h2 style={{color: "white"}}>Funds Disbursement</h2>
 
                 {message && <p className="message">{message}</p>}
 
