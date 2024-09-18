@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, Router } from 'react-router-dom';
 import main_logo from '../../assets/main-logo.png';
 import search_icon from '../../assets/search.png';
 import notification_icon from '../../assets/notification.png';
@@ -49,9 +49,10 @@ const Navbar = ({ role, setComponent }) => {
       case 'student':
         return [
           { name: 'Learning Platform', component: <LP_Landing /> },
+          { name: 'Enroll for Courses', component: <Enrollment/> },
           { name: 'Time Table', component: <Timetable /> },
           { name: 'Financial Aid', component: <Form /> },
-          { name: 'Track Your Application', component: <TrackYourApplication /> },
+          { name: 'Track Your Application', component: <TrackYourApplication /> }
         ];
       case 'parent':
         return [
@@ -102,6 +103,7 @@ const Navbar = ({ role, setComponent }) => {
               </div>
             )}
           </li>
+          { role == "student" && <li className='navbar-item' onClick={() => navigate('/comm')}>Community</li>}
           <li className='navbar-item' onClick={() => setComponent(<ContactUs />)}>Contact</li>
         </ul>
       </div>

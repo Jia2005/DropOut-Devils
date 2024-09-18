@@ -180,7 +180,7 @@ const Notifications = ({onReschedule}) => {
               <p>{notification.message}</p>
               {selectedNotification === notification.id && userType === 2 && notification.type === 'meeting_request' && (
                 <div className="notification-actions">
-                  <button className='approve-here' onClick={() => handleApprove(notification.id, notification.meetingId)}>Approve</button>
+                  {showRejectDropdown !== notification.id ? <button className='approve-here' onClick={() => handleApprove(notification.id, notification.meetingId)}>Approve</button> : <></>}
                   {showRejectDropdown === notification.id ? (
                     <div className="reject-dropdown">
                       <select
