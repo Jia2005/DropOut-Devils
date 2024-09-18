@@ -12,7 +12,6 @@ const Drop = () => {
 
   const handleSubmit = () => {
     if (message.trim()) {
-      // Handle submission logic here (e.g., send the message to the server)
       setIsSubmitted(true);
     }
   };
@@ -31,7 +30,6 @@ const Drop = () => {
   };
 
   const handleCancel = () => {
-    // Handle cancel action (e.g., redirect to another page or close the form)
     console.log("User canceled the drop-out process.");
   };
 

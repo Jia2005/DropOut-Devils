@@ -5,22 +5,28 @@
   background-color: #f9f9f9;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
+  user-select: none; 
+  -webkit-user-drag: none; 
 }
 
 .drop-content {
   text-align: center;
+  user-select: none; 
+  -webkit-user-drag: none; 
 }
 
 h1 {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
+  user-select: none; 
 }
 
 p {
   font-size: 16px;
   color: #666;
   margin-bottom: 20px;
+  user-select: none;
 }
 
 .message-box {
@@ -31,13 +37,17 @@ p {
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 20px;
+  resize: none;
+  outline: none; 
 }
 
 .media-options {
   margin-bottom: 20px;
 }
 
-.media-btn {
+.media-btn,
+.submit-btn,
+.cancel-btn {
   background-color: #007bff;
   color: white;
   border: none;
@@ -46,6 +56,9 @@ p {
   font-size: 16px;
   cursor: pointer;
   margin: 0 10px;
+  user-select: none; 
+  -webkit-user-drag: none; 
+  transition: background-color 0.3s ease; 
 }
 
 .media-btn:hover {
@@ -54,13 +67,6 @@ p {
 
 .submit-btn {
   background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 10px;
 }
 
 .submit-btn:hover {
@@ -69,13 +75,6 @@ p {
 
 .cancel-btn {
   background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 10px;
 }
 
 .cancel-btn:hover {
