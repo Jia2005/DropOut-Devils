@@ -1,13 +1,23 @@
 .application-review-page {
   font-family: Arial, sans-serif;
-  max-width: 80%;
+  max-width: 750px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
+  padding: 30px;
+  background-color: rgb(3, 3, 110);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 80px;
   margin-bottom: 20px;
+}
+
+.application-review-page label {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.application-review-page td {
+  color: white;
 }
 
 .application-details-container {
@@ -29,7 +39,7 @@
 
 .back-button {
   align-self: flex-start;
-  background: #231942;
+  background: #2969f3;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -99,7 +109,7 @@ th {
 }
 
 .view-button {
-  background-color: #231942;
+  background-color: #2969f3;
   color: white;
   padding: 5px 10px;
   border: none;

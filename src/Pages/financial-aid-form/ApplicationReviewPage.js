@@ -123,7 +123,7 @@ function ApplicationReviewPage() {
                 </div>
             ) : (
                 <div className="applications-list">
-                    <h2>Applications</h2>
+                    <h2 style={{color: "white"}}>Applications</h2>
                     <label>
                         Filter by Status:
                         <select value={statusFilter} onChange={handleStatusFilterChange}>
@@ -133,6 +133,7 @@ function ApplicationReviewPage() {
                             <option value="rejected">Rejected</option>
                         </select>
                     </label>
+                    <br />
                     <table>
                         <thead>
                             <tr>

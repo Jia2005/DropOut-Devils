@@ -3,10 +3,15 @@
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+.funds-disbursement-page td {
+    color: white;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
-    background: #f9f9f9;
+    background: rgb(3, 3, 110);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -25,7 +30,7 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #231942;
+    background-color: #2969f3;
     color: white;
     cursor: pointer;
     margin-top: 10px;
@@ -60,14 +65,22 @@ th, td {
 th {
     background-color: rgb(68, 171, 255);
     color: white;
-}
+} 
 .review-details p,.here{
-    margin: 0 10vw 0 10vw;
-}
-.review-details p,.here{
-    text-align: justify;
+    text-align: left;
     margin-bottom: 1vh;
 }
+.review-details h2 {
+    text-align: center;
+} 
 .button{
     margin-right: 2vw;
 }
+
+.review-details {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
