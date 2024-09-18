@@ -129,7 +129,7 @@ function CreateQuizPage() {
           />
         </div>
         <div className="question-group">
-          <h3 className='heading'>Questions</h3><br></br>
+          <h3 className='heading' style={{color:'white'}}>Questions</h3><br></br>
           {questions.map((question, qIndex) => (
             <div key={qIndex} className="question-block">
               <div className="form-group-2">
