@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { useNavigate, Link, Router } from 'react-router-dom';
-import main_logo from '../../assets/main-logo.png';
+import main_logo from './../../../LandingPage/assets/academic.png';
 import search_icon from '../../assets/search.png';
 import notification_icon from '../../assets/notification.png';
 import profile_icon from '../../assets/profile.png';
@@ -82,6 +82,7 @@ const Navbar = ({ role, setComponent }) => {
     <div className='navbar'>
       <div className='navbar-left'>
         <img src={main_logo} alt='Main Logo' className='logo' />
+        <span className="navbar-logo-text">Studyee</span>
       </div>
       <div className='navbar-center'>
         <ul className='navbar-menu'>

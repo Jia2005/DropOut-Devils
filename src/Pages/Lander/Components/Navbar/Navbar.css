@@ -15,7 +15,14 @@
 
 .navbar-left .logo {  
   height: 50px;  
-}  
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+}
 
 .navbar-center {  
   flex: 1;  
@@ -39,7 +46,7 @@
 .navbar-item:hover {  
   background-color: #E8F0FE;  
   color: #1A73E8;  
-}  
+}
 
 .dropdown {  
   position: relative;  
@@ -107,3 +114,10 @@
   transform: scale(1.1);  
 }
 
+.navbar-logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003F91;
+  justify-content: center;
+  align-items: center;
+}
