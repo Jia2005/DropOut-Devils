@@ -25,6 +25,7 @@ const Footer = forwardRef((props, ref) => {
         
         <div className="footer-social-links">
           <h3 className="footer-section-heading">Follow Us</h3>
+          <div className="social-here">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">
             <img src={facebook} alt="Facebook" className="footer-social-icon" />
           </a>
@@ -40,7 +41,7 @@ const Footer = forwardRef((props, ref) => {
           <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="footer-social-link">
             <img src={whatsapp} alt="WhatsApp" className="footer-social-icon" />
           </a>
-        </div>
+        </div></div>
       </div>
     </footer>
   );

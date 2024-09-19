@@ -8,7 +8,14 @@ body, html {
   background-image: url('https://img.freepik.com/free-vector/back-school-supplies-frame-background_24908-56951.jpg?w=740&t=st=1701617423~exp=1701618023~hmac=b972d3d14bcb04e2dac7240f8cde3a2f99ecca11682b028fd521085798b59eb4');
   background-size: cover;
 }
-
+html {
+    --s: 179px; /* control the size*/
+    --c1: #f2f2f2;
+    --c2: #cdcbcc;
+    --c3: #999999;
+    
+    --_g: 0 120deg,#0000 0;
+}
 .landing-page {
   margin: 0;
   padding: 0; 
@@ -192,8 +199,18 @@ body, html {
 
 /* Features Section */
 .features-section {
-  padding: 4rem 2rem;
-  background: linear-gradient(to bottom, #e0f7fa, #80deea, #b2ebf2);
+  padding: 4rem 0rem;
+  
+    background:
+      conic-gradient(from    0deg at calc(500%/6) calc(100%/3),var(--c3) var(--_g)),
+      conic-gradient(from -120deg at calc(100%/6) calc(100%/3),var(--c2) var(--_g)),
+      conic-gradient(from  120deg at calc(100%/3) calc(500%/6),var(--c1) var(--_g)),
+      conic-gradient(from  120deg at calc(200%/3) calc(500%/6),var(--c1) var(--_g)),
+      conic-gradient(from -180deg at calc(100%/3) 50%,var(--c2)  60deg,var(--c1) var(--_g)),
+      conic-gradient(from   60deg at calc(200%/3) 50%,var(--c1)  60deg,var(--c3) var(--_g)),
+      conic-gradient(from  -60deg at 50% calc(100%/3),var(--c1) 120deg,var(--c2) 0 240deg,var(--c3) 0);
+    background-size: calc(var(--s)*1.732) var(--s);
+  
   text-align: center;
   margin: 0 auto;
 }
@@ -201,7 +218,10 @@ body, html {
 .features-heading {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #003F91;
+  color: #fff;
+  background-color: #003F91;
+  border-bottom: none;
+  padding:  20px;
 }
 
 .features-cards {
@@ -272,12 +292,20 @@ body, html {
   text-decoration: underline;
 }
 
-/* Social Links Section */
+.social-here {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+  gap: 10px;
+}
+
 .footer-social-links {
   padding-top: 6px;
   flex: 1; /* Take 1 part of the space */
-  display: block;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   align-items: right; /* Align icons to the right */
 }
 
@@ -301,7 +329,8 @@ body, html {
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
-    align-items: center; /* Center items on small screens */
+    align-items: center;
+     /* Center items on small screens */
   }
   
   .footer-social-links {

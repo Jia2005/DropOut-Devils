@@ -199,17 +199,43 @@ const UserProfile = ({setComponent}) => {
     setIsEditing(true);  
   };  
 
-  const handleSave = async () => {  
-    const userRef = doc(db, 'users', user.uid);  
-    await updateDoc(userRef, {  
-      name,  
-      age,  
-      email,  
-      phone,
-      course,
-    });  
-    setIsEditing(false);  
-  };  
+  const handleSave = async () => {
+    if (user) {
+      const userRef = doc(db, 'users', user.uid); // Ensure user.uid is available
+      try {
+        // Update the document in Firestore with the current state values
+        if(role === "student") {
+          await updateDoc(userRef, {
+            name: name,   // No need to repeat 'name: name', ES6 allows just 'name'
+            age: age,
+            email: email,
+            phone: phone,
+            enrolledCourse: course,
+            annualIncome: annualIncome,
+            education: education,
+          });
+        } else {
+        await updateDoc(userRef, {
+          name: name,   
+          age: age,
+          email: email,
+          phone: phone,
+          annualIncome: annualIncome,
+          education: education,
+        });
+        }
+        setIsEditing(false);
+  
+        alert("Profile updated successfully!"); 
+      } catch (error) {
+        console.error("Error updating profile: ", error);
+        alert("Failed to update profile.");
+      }
+    } else {
+      alert("No user is logged in");
+    }
+  };
+    
 
   return (
     <div className="profile-container">
@@ -245,13 +271,13 @@ const UserProfile = ({setComponent}) => {
             <p><strong>Name:</strong> {isEditing ? <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> : name}</p>
           </div>
           <div className="detail-block">
-            <p><strong>Age:</strong> {isEditing ? <input type="number" value={age} onChange={(e) => setAge(e.target.value)} /> : age}</p>
+            <p><strong>Age:</strong> {isEditing ? <input type="text" value={age} onChange={(e) => setAge(e.target.value)} /> : age}</p>
           </div>
           <div className="detail-block">
             <p><strong>Email:</strong> {isEditing ? <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /> : email}</p>
           </div>
           <div className="detail-block">
-            <p><strong>Phone No.:</strong> {isEditing ? <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} /> : phone}</p>
+            <p><strong>Phone No.:</strong> {isEditing ? <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} /> : phone}</p>
           </div>
           <div className="detail-block">
             <p><strong>Role:</strong> {role} </p>
@@ -277,8 +303,9 @@ const UserProfile = ({setComponent}) => {
           </div><br></br>
           <button className='upload-image-btn' onClick={handleUpload}>Upload Profile Picture</button>
           <div className="profile-action-buttons">
-            <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>
-            <button className="save-button" onClick={handleSave} style={{position: 'relative', bottom: '-20px', float: 'right'}}>Save Changes</button>
+          { !isEditing 
+          ?  <button className="edit-button" onClick={handleEdit} style={{position: 'relative', bottom: '-20px'}}>Edit Profile</button>
+          :  <button className="edit-button" onClick={handleSave} style={{position: 'relative', bottom: '-20px'}}>Save Changes</button>}
           </div>
         </div>
       </div>
