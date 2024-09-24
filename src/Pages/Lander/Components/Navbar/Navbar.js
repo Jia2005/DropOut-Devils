@@ -21,6 +21,8 @@ import About from '../About/About';
 import ContactUs from '../Contact/ContactUs';
 import Enrollment from '../../../Enrollment/Enrollment';
 import Timetable from '../../../TimeTable/timetable';
+import Stats from '../../../Stats/Stats'
+import Motivational from '../../../Motivational/Motivational';
 
 const Navbar = ({ role, setComponent }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -52,7 +54,8 @@ const Navbar = ({ role, setComponent }) => {
           { name: 'Enroll for Courses', component: <Enrollment/> },
           { name: 'Time Table', component: <Timetable /> },
           { name: 'Financial Aid', component: <Form /> },
-          { name: 'Track Your Application', component: <TrackYourApplication /> }
+          { name: 'Track Your Application', component: <TrackYourApplication /> },
+          { name: 'Stay Motivated', component: <Motivational /> },
         ];
       case 'parent':
         return [
@@ -70,7 +73,7 @@ const Navbar = ({ role, setComponent }) => {
         return [
           { name: 'View and Approve Applications', component: <ApplicationReviewPage /> },
           { name: 'Approve Funds', component: <FundsDisbursementPage /> },
-          { name: 'Statistical Report', component: <Main /> },
+          { name: 'Statistical Report', component: <Stats /> },
           { name: 'Manage Users', component: <Main /> },
         ];
       default:
