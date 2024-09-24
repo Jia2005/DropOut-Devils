@@ -68,27 +68,27 @@ const Enrollment = () => {
             onClick={() => handleCardClick('Full time')}
           >
             <h2>Full-Time Course</h2>
-            <p>Comprehensive full-time course designed to immerse you in the subject matter, ensuring a deep and thorough understanding.</p>
+            <p><ul ><li style={{fontSize:"1.2rem"}}>Designed to immerse you in the subject matter</li> <li style={{fontSize:"1.2rem"}}> Ensures a deep and thorough understanding.</li></ul></p>
             <br />
-            <p>Classes are from morning 7 to afternoon 1 daily</p>
+            <p style={{fontWeight:"bold"}}>Timing: 7 am  to 1 pm</p>
           </div>
           <div
             className={`card card-part-time ${selectedCard === 'Part time' ? 'selected' : ''}`}
             onClick={() => handleCardClick('Part time')}
           >
             <h2>Part-Time Course</h2>
-            <p>Flexible part-time course that allows you to balance learning with other commitments, providing a more adaptable schedule.</p>
+            <p><ul><li style={{fontSize:"1.2rem"}}>Allows you to balance learning with other commitments</li> <li style={{fontSize:"1.2rem"}}>Provides a more adaptable schedule</li></ul></p>
             <br />
-            <p>Classes are from morning 7 to morning 10 daily</p>
+            <p style={{fontWeight:"bold"}}>Timing: 7 am  to 10 am</p>
           </div>
           <div
             className={`card card-evening-classes ${selectedCard === 'Evening classes' ? 'selected' : ''}`}
             onClick={() => handleCardClick('Evening classes')}
           >
             <h2>Evening Classes</h2>
-            <p>Evening classes for those who prefer to study after work or other daytime obligations, offering a convenient alternative.</p>
+            <p><ul><li style={{fontSize:"1.2rem"}}>If you prefer to study after work or other daytime obligations</li><li style={{fontSize:"1.2rem"}}> Offers a convenient alternative</li></ul></p>
             <br />
-            <p>Classes are from evening 6 to night 10</p>
+            <p style={{fontWeight:"bold"}}>Timing: 6 pm  to 10 pm</p>
           </div>
         </div>
         <button
