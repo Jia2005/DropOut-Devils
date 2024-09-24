@@ -1,0 +1,95 @@
+.report-container {
+  margin: 70px auto;
+  max-width: 1200px; /* Wide width for the container */
+  padding: 20px;
+  background-color: rgb(3, 3, 110); /* Dark purple background */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-head {
+  text-align: center;
+  color: white; /* Light pink for headings */
+  margin-bottom: 30px;
+}
+
+.report-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.report-card {
+  background-color: #2969f3; /* Secondary purple for cards */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.report-card:hover {
+  transform: scale(1.05);
+}
+
+.report-card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.report-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.charts-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.chart-wrapper {
+  flex: 1 1 48%; /* Each chart will take up about 48% of the width to fit two charts per row */
+  background-color: #f9f9f9; /* Light background for charts */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chart-wrapper h2 {
+  text-align: center;
+  color: #5e548e; /* Secondary purple for chart headings */
+  margin-bottom: 20px;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: #2969f3; /* Blue button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #9f86c0; /* Hover with accent purple */
+}
+
+@media (max-width: 768px) {
+  .report-summary {
+    flex-direction: column;
+  }
+
+  .chart-wrapper {
+    flex: 1 1 100%; /* For smaller screens, each chart takes up the full width */
+  }
+
+  .charts-section {
+    flex-direction: column;
+  }
+}

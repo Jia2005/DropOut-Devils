@@ -1,0 +1,162 @@
+/* General Page Styles */
+.motivational-page {
+    padding: 100px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: rgb(3, 3, 110);
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titles and Subtitles */
+  .motivational-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: rgb(3, 3, 110);
+  }
+  
+  .motivational-subtext {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #2969f3;
+    margin-bottom: 40px;
+  }
+  
+  /* Video Section */
+  .motivational-video-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .motivational-video-card {
+    background-color: #e0b1cb;
+    border-radius: 10px;
+    padding: 10px;
+    width: 45%;
+    margin: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .motivational-video-title {
+    margin-top: 10px;
+    font-weight: bold;
+    color: rgb(3, 3, 110);
+  }
+  
+  /* Quotes Section */
+  .motivational-quote-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    color: #5e548e;
+  }
+  
+  .motivational-quote-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .motivational-quote {
+    font-size: 1.2rem;
+    color: #231942;
+    padding: 15px;
+    border-left: 5px solid #9f86c0;
+    background-color: #f7f5f9;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+  }
+  
+  /* Success Stories Section */
+  .motivational-success-title {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(3, 3, 110);
+    margin: 40px 0 20px;
+  }
+  
+  .motivational-success-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .motivational-success-card {
+    display: flex;
+    background-color: #e0b1cb;
+    padding: 15px;
+    border-radius: 10px;
+    width: 48%;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .motivational-success-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+  }
+  
+  .motivational-success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #2969f3;
+  }
+  
+  .motivational-success-name {
+    font-size: 1.5rem;
+    color: #231942;
+    margin: 0;
+  }
+  
+  .motivational-success-story {
+    font-size: 1.1rem;
+    color: #5e548e;
+    text-align: left;
+  }
+  
+  /* Positive Affirmations Section */
+  .motivational-affirmation-title {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(3, 3, 110);
+    margin: 40px 0 20px;
+  }
+  
+  .motivational-affirmation-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .motivational-affirmation {
+    font-size: 1.2rem;
+    color: #231942;
+    padding: 15px;
+    border: 1px solid rgb(3, 3, 110);
+    border-left: 5px solid rgb(3, 3, 110);
+    background-color: #f7f5f9;
+    border-radius: 8px;
+    width: 45%;
+    text-align: center;
+  }
+  
+  /* Final Note */
+  .motivational-final-note {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #2969f3;
+    margin-top: 40px;
+  }
+  
