@@ -38,7 +38,7 @@ body, html {
 .section-title:hover {
   color: #1b0480;
 }
-.feature-cards-container { 
+.enrol-feature-cards-container { 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -86,12 +86,13 @@ body, html {
   font-family: 'Palatino Linotype';
   font-weight: 400;
   color: #003F91;
-  -webkit-text-stroke: 2px #003F91;
+  -webkit-text-stroke: 1px #003F91;
   transition: color 0.3s ease;
 }
 .card p {
   font-size: 1.2rem;
   margin-bottom: 15px;
+  padding: 0 20px;
 }
 .enroll-button {
   background-color: #007bff;

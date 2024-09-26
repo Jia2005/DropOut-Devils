@@ -30,16 +30,16 @@ function Quizzes() {
           Question Papers
         </button>
         <button
-          className={`quiz-tab ${activeTab === 'mcqs' ? 'active' : ''}`}
-          onClick={() => setActiveTab('mcqs')}
-        >
-          MCQs
-        </button>
-        <button
           className={`quiz-tab ${activeTab === 'uploadAnswer' ? 'active' : ''}`}
           onClick={() => setActiveTab('uploadAnswer')}
         >
           Answer a Question Paper
+        </button>
+        <button
+          className={`quiz-tab ${activeTab === 'mcqs' ? 'active' : ''}`}
+          onClick={() => setActiveTab('mcqs')}
+        >
+          MCQs
         </button>
       </div>
       <div className="quiz-content">

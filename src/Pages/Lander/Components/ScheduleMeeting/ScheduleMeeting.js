@@ -123,9 +123,9 @@ const ScheduleMeeting = () => {
             required
           >
             <option value="" disabled>Select a time slot</option>
-            <option value="9:00-11:00">9:00-11:00</option>
-            <option value="12:00-15:00">12:00-15:00</option>
-            <option value="16:00-19:00">16:00-19:00</option>
+            <option value="9:00-9:15">9:00-9:15</option>
+            <option value="12:00-12:15">12:00-12:15</option>
+            <option value="16:00-16:15">16:00-16:15</option>
           </select>
         </div>
         <div className="form-group">
