@@ -13,7 +13,7 @@ function FundsDisbursementPage() {
             const querySnapshot = await getDocs(collection(db, 'financial_form'));
             const pendingDisbursements = querySnapshot.docs
                 .map(doc => ({ id: doc.id, ...doc.data() }))
-                .filter(docData => docData.disbursementDetails.status === 'pending');
+                .filter(docData => docData.disbursementDetails?.status === 'pending');
                 
             setDisbursements(pendingDisbursements);
         } catch (error) {

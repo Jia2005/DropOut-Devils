@@ -37,8 +37,8 @@ const FeatureCards = () => {
   return (
     <div className="feature-cards-container">
       {features.map((feature, index) => (
-        <div className="card" key={index}>
-          <h2 style={{fontSize:'25px',color:'black',fontWeight:'bold', borderBottom:'2px solid black'}}>{feature.title}</h2>
+        <div className="fcard" key={index}>
+          <h2 style={{fontSize:'25px',fontWeight:'bold', borderBottom:'2px solid black'}}>{feature.title}</h2>
           <p style={{fontSize:'16px',color:'#2A2323'}}>{feature.description}</p>
           <ul style={{fontWeight:'bold'}}>
             {feature.features.map((feat, i) => (

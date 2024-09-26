@@ -14,6 +14,7 @@
   height: 100vh;
   overflow: hidden;
 }
+
 html {
     --s: 179px; /* control the size*/
     --c1: #a4f3f4;
@@ -22,6 +23,7 @@ html {
     
     --_g: 0 120deg,#0000 0;
 }
+
 .side {
   flex: 0.2;
   background-color: #f8f9fa;
