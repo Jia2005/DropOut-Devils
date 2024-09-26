@@ -13,6 +13,12 @@ function TrackYourApplication() {
         accountNumber: '',
         ifscCode: ''
     });
+        const [currentDate,setCurrentDate]=useState('');
+        useEffect(()=>{
+            const today=new Date();
+            const format=today.toISOString().substr(0,10);
+            setCurrentDate(format);
+        },[]);
     const [disbursementDate, setDisbursementDate] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
@@ -97,15 +103,19 @@ function TrackYourApplication() {
             return;
         }
 
+        if (!bankDetails.amount || !bankDetails.bankName || !bankDetails.accountNumber || !bankDetails.ifscCode) {
+        setMessage('Please fill in all the bank details.');
+        return;
+    }
         try {
             const docRef = doc(db, 'financial_form', applicationId);
-            await updateDoc(docRef, {
-                bankDetails: bankDetails,
-                disbursementDetails: {
-                    amount: applicationData.disbursementDetails?.amount || '',
-                    date: disbursementDate,
-                    status: 'pending'
-                }
+        await updateDoc(docRef, {
+            bankDetails: bankDetails,  // Storing the bank details
+            disbursementDetails: {
+                amount: bankDetails.amount,  // Storing the amount from the bank details
+                date: currentDate,  // Storing the current date
+                status: 'pending',  // Status is pending until approved
+            }
             });
 
             setIsSubmitted(true);
@@ -201,10 +211,17 @@ function TrackYourApplication() {
                                     onChange={(e) => setBankDetails({ ...bankDetails, ifscCode: e.target.value })}
                                     placeholder="IFSC Code"
                                 />
+                                 <input
+                                    type="number"
+                                    value={bankDetails.amount}
+                                    onChange={(e) => setBankDetails({ ...bankDetails, amount: e.target.value })}
+                                    placeholder="Amount"
+                                />
                                 <input
                                     type="date"
-                                    value={disbursementDate}
-                                    onChange={(e) => setDisbursementDate(e.target.value)}
+                                    value={currentDate}
+
+                                    readOnly
                                 />
                                 <button onClick={handleSubmitBankDetails} disabled={loading} className="submit-button">
                                     {loading ? 'Submitting...' : 'Submit Bank Details'}
