@@ -62,7 +62,7 @@ const Enrollment = () => {
   return (
     <div className="landing-page">
       <div className="features-section2">
-        <div className="feature-cards-container">
+        <div className="enrol-feature-cards-container">
           <div
             className={`card card-full-time ${selectedCard === 'Full time' ? 'selected' : ''}`}
             onClick={() => handleCardClick('Full time')}
