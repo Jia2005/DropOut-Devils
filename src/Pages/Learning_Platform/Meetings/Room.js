@@ -9,8 +9,8 @@ const Room = () => {
 
     useEffect(() => {
         if (roomContainerRef.current) {
-            const appID = 1920129428;
-            const serverSecret = "76cc4662d2057482c1758703af9f0887";
+            const appID = 737088863;
+            const serverSecret = "85c97d88f3ceb5ad24f38dc3479317da";
             const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString(), "Your Identification");
             const zp = ZegoUIKitPrebuilt.create(kitToken);
             zp.joinRoom({
