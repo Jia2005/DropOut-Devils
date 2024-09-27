@@ -101,7 +101,7 @@ function Drop() {
         {!isSubmitted ? (
           <form onSubmit={handleSubmit}>
             <h1>Our systems have detected you are dropping out.</h1>
-            <p>We're here to listen. You can share your thoughts with us below:</p>
+            <p className="drop-para">We're here to listen. You can share your thoughts with us below:</p>
             
             <textarea
               className="message-box"
@@ -138,7 +138,7 @@ function Drop() {
         ) : (
           <div className="thank-you-message">
             <h2>Thank you for sharing your thoughts with us.</h2>
-            <p>We will reach out to you soon.</p>
+            <p className="drop-para">We will reach out to you soon.</p>
             <button className="media-btn" onClick={handleReturnToHome}>Return to Home</button>
           </div>
         )}
