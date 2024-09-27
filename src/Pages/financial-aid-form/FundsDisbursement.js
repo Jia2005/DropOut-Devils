@@ -119,8 +119,9 @@ function FundsDisbursementPage() {
                     </div>
                 ) : (
                     <div className="review-details">
-                        <h3 className="here">Review Funds and Bank Details</h3>
+                        <h3 className="here">Review Funds and Bank Details</h3><br />
                         <p><strong>Application ID:</strong> {selectedDisbursement.id}</p>
+                        <p><strong>Name:</strong> {selectedDisbursement.personal.name}</p>
                         <p><strong>Amount:</strong> {selectedDisbursement.disbursementDetails?.amount || 'N/A'}</p>
                         <p><strong>Date:</strong> {selectedDisbursement.disbursementDetails?.date || 'N/A'}</p>
                         <p><strong>Bank Name:</strong> {selectedDisbursement.bankDetails?.bankName || 'N/A'}</p>

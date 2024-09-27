@@ -81,7 +81,8 @@ function ApplicationReviewPage() {
                         Back to Applications
                     </button>
                     <div className="application-details">
-                        <h2>Application Details for {selectedApplication.personal.name}</h2>
+                        <h2>Application Details</h2>
+                        <p><strong>Name:</strong> {selectedApplication.personal.name}</p>
                         <p><strong>Institution:</strong> {selectedApplication.academic.school}</p>
                         <p><strong>Grade:</strong> {selectedApplication.academic.grade}</p>
                         <p><strong>Year:</strong> {selectedApplication.academic.year}</p>
