@@ -1,162 +1,139 @@
-/* General Page Styles */
 .motivational-page {
     padding: 100px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    font-family: 'Georgia', serif;
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-aesthetic-background-pink-pastel-image_866344.jpg');
     color: rgb(3, 3, 110);
     width: 100%;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Titles and Subtitles */
-  .motivational-title {
+}
+
+.motivational-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: rgb(3, 3, 110);
-  }
-  
-  .motivational-subtext {
+    font-family: 'Roboto', sans-serif;
+}
+
+.motivational-subtext {
     text-align: center;
     font-size: 1.2rem;
-    color: #2969f3;
+    color: #1a73e8;
     margin-bottom: 40px;
-  }
-  
-  /* Video Section */
-  .motivational-video-section {
+    font-family: 'Georgia', serif;
+}
+
+.motivational-video-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-  }
-  
-  .motivational-video-card {
-    background-color: #e0b1cb;
+}
+
+.motivational-video-card {
     border-radius: 10px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
     padding: 10px;
     width: 45%;
     margin: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-  }
-  
-  .motivational-video-title {
-    margin-top: 10px;
+}
+
+.motivational-video-title {
+    margin-top: 12px;
     font-weight: bold;
     color: rgb(3, 3, 110);
-  }
-  
-  /* Quotes Section */
-  .motivational-quote-title {
-    text-align: center;
-    font-size: 2rem;
-    margin: 40px 0 20px;
-    color: #5e548e;
-  }
-  
-  .motivational-quote-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .motivational-quote {
-    font-size: 1.2rem;
-    color: #231942;
-    padding: 15px;
-    border-left: 5px solid #9f86c0;
-    background-color: #f7f5f9;
-    border-radius: 8px;
-    width: 80%;
-    text-align: center;
-  }
-  
-  /* Success Stories Section */
-  .motivational-success-title {
+    font-family: 'Roboto', sans-serif;
+}
+
+.motivational-success-title {
     text-align: center;
     font-size: 2rem;
     color: rgb(3, 3, 110);
     margin: 40px 0 20px;
-  }
-  
-  .motivational-success-section {
+    font-family: 'Roboto', sans-serif;
+}
+
+.motivational-success-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
-  }
-  
-  .motivational-success-card {
+}
+
+.motivational-success-card {
     display: flex;
-    background-color: #e0b1cb;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 48%;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .motivational-success-image {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-right: 15px;
-  }
-  
-  .motivational-success-content {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.motivational-success-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: #2969f3;
-  }
-  
-  .motivational-success-name {
+    color: #1a73e8;
+    font-family: 'Georgia', serif;
+}
+
+.motivational-success-name {
     font-size: 1.5rem;
-    color: #231942;
+    color: #0d47a1;
     margin: 0;
-  }
-  
-  .motivational-success-story {
+    font-family: 'Roboto', sans-serif;
+}
+
+.motivational-success-story {
     font-size: 1.1rem;
-    color: #5e548e;
+    color: #3f51b5;
     text-align: left;
-  }
-  
-  /* Positive Affirmations Section */
-  .motivational-affirmation-title {
+    font-family: 'Georgia', serif;
+}
+
+.motivational-affirmation-title {
     text-align: center;
     font-size: 2rem;
     color: rgb(3, 3, 110);
     margin: 40px 0 20px;
-  }
-  
-  .motivational-affirmation-section {
+    font-family: 'Roboto', sans-serif;
+}
+
+.motivational-affirmation-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
-  }
-  
-  .motivational-affirmation {
+}
+
+.motivational-affirmation {
     font-size: 1.2rem;
-    color: #231942;
+    color: #052658;
     padding: 15px;
-    border: 1px solid rgb(3, 3, 110);
-    border-left: 5px solid rgb(3, 3, 110);
-    background-color: #f7f5f9;
+    box-shadow: 3px 3px #052658;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
     border-radius: 8px;
     width: 45%;
     text-align: center;
-  }
-  
-  /* Final Note */
-  .motivational-final-note {
+    font-family: 'Georgia', serif;
+}
+
+.motivational-final-note {
     text-align: center;
     font-size: 1.2rem;
-    color: #2969f3;
+    color: #1a73e8;
     margin-top: 40px;
-  }
-  
+    font-family: 'Georgia', serif;
+}
+
+.motivational-success-image {
+    border-radius: 100%;
+    margin-right: 20px;
+}

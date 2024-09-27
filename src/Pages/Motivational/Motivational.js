@@ -1,5 +1,6 @@
 import React from 'react';
 import './Motivational.css';
+import { height, width } from '@fortawesome/free-solid-svg-icons/fa0';
 
 const Motivational = () => {
   const videos = [
@@ -33,12 +34,12 @@ const Motivational = () => {
     {
       name: "Ravi Kumar",
       story: "Ravi faced numerous challenges, including financial struggles, but with perseverance and support from mentors, he graduated with honors and is now pursuing his dream of becoming an engineer.",
-      image: "https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww" // Placeholder image
+      image: "https://i.pinimg.com/736x/65/31/3a/65313a2dbb8f92185f03f9a43b156d05.jpg"
     },
     {
       name: "Anjali Singh",
       story: "Anjali overcame learning disabilities through determination and the help of her teachers. Today, she is a successful graphic designer, inspiring others to embrace their unique journeys.",
-      image: "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      image: "https://th.bing.com/th/id/OIP.MerUndzcbOkJf9kuOaprhQAAAA?w=166&h=208&c=7&r=0&o=5&pid=1.7"
     },
   ];
 
@@ -61,8 +62,8 @@ const Motivational = () => {
           <div className="motivational-video-card" key={index}>
             <iframe 
               width="400" 
-              height="250" 
-              src={video.src} 
+              height="250"
+              src={video.src} style={{borderRadius:'20px'}} 
               title={video.title} 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -77,7 +78,7 @@ const Motivational = () => {
       <div className="motivational-success-section">
         {successStories.map((story, index) => (
           <div className="motivational-success-card" key={index}>
-            <img src={story.image} alt={`${story.name}`} className="motivational-success-image" />
+            <img src={story.image} alt={`${story.name}`} width={'100px'} height={'100px'} className="motivational-success-image" />
             <div className="motivational-success-content">
               <h3 className="motivational-success-name">{story.name}</h3>
               <p className="motivational-success-story">{story.story}</p>
