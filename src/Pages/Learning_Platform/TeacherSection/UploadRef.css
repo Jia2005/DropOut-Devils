@@ -23,6 +23,7 @@
   .upload-ref-form input[type="text"], 
   .upload-ref-form input[type="file"], 
   .upload-ref-form button {
+    color:black;
     width: 100%;
     padding: 10px;
     margin-top: 5px;
