@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import './LandingPage.css';
-import logo from '../Lander/assets/main-logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import linkedin from '../LandingPage/assets/linkedin.png';
 import whatsapp from '../LandingPage/assets/whatsapp.png';

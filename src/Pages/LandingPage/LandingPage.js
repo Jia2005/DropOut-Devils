@@ -4,8 +4,7 @@ import logo from './assets/academic.png';
 import FeatureCards from './FeatureCards';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-import landing from '../LandingPage/assets/landing.png'; // Adjust path as necessary
-import promoVideo from '../LandingPage/assets/LandingPage-vid.mp4'; // Adjust path as necessary
+import landing from '../LandingPage/assets/landing.png'; 
 
 const Navbar = ({ scrollToFooter }) => {
   return (
@@ -67,20 +66,6 @@ const WhyEduSathi = () => {
   );
 };
 
-const VideoSection = () => {
-  return (
-    <section className="video-section">
-      <div className="video-content">
-        <h2 className="video-heading">Your studies are like building blocks for your dreams.</h2>
-        <video className="promo-video" controls>
-          <source src={promoVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </section>
-  );
-};
-
 const FeaturesSection = () => {
   return (
     <section id="features" className="features-section">
@@ -102,7 +87,6 @@ const LandingPage = () => {
       <Navbar scrollToFooter={scrollToFooter} />
       <HeroSection />
       <WhyEduSathi />
-      {/* <VideoSection /> */}
       <FeaturesSection />
       <Footer ref={footerRef} />
     </div>
