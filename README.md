@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Studyee 🚀📚
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A platform ***Where education meets innovation.***
 
-## Available Scripts
+We're using technology to help all students succeed, no matter where they come from or what challenges they face. 
 
-In the project directory, you can run:
+Because we truly believe education isn't just important - **it's a fundamental human right.**
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Studyee changes how education works by bringing everyone together in one digital space. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Our platform uses smart technology to spot where students might be struggling, offer personalized help, and break down the barriers that keep some kids from getting a quality education.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Our platform connects students, parents, teachers, and administrators through innovative tools designed to enhance the educational experience:
 
-### `npm run build`
+### For Students
+- A mobile app so you can learn anywhere, even without internet
+- A community where you can connect with alumni of the institute, who help and guide you
+- Learning options that fit how you naturally learn best
+- Simple ways to apply for and track financial help
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### For Parents
+- Easy scheduling for video calls with teachers
+- Quick updates about important school events
+- Access to their child's complete report cards and academic progress
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### For Teachers
+- Easy tools to manage classes, homework, and tests
+- Share materials and create fun quizzes for your students
+- Hold live classes and mentoring sessions
+- Make student report cards with helpful insights
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### For Administrators
+- Access comprehensive user analytics and engagement metrics
+- Review and approve financial aid applications with document verification
+- Manage user permissions and access controls
+- Monitor platform integrity and security
